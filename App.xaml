@@ -1,0 +1,20 @@
+﻿<Application x:Class="BoardDesigner.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ResourceDictionaries\Brushes.xaml" />
+                <ResourceDictionary Source="ResourceDictionaries\Slider.xaml"/>
+                <ResourceDictionary Source="ResourceDictionaries\OverViewMapxaml.xaml" />
+                <ResourceDictionary Source="ResourceDictionaries\DesignerItem.xaml" />
+                <ResourceDictionary Source="ResourceDictionaries\ToolBox.xaml" />
+                <ResourceDictionary Source="ResourceDictionaries\ToolBox\BaseShape.xaml" />
+                <ResourceDictionary Source="ResourceDictionaries\ToolBox\BaseControl.xaml" />
+                <ResourceDictionary Source="ResourceDictionaries\ToolBox\Chart.xaml" />
+                <ResourceDictionary Source="ResourceDictionaries\ToolBox\Expand.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

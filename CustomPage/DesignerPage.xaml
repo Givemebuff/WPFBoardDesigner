@@ -1,0 +1,47 @@
+﻿<Page xmlns:BaseControl="clr-namespace:BoardDesigner.BoardControl.BaseControl" 
+      xmlns:Base="clr-namespace:BoardDesigner.Base"   
+      xmlns:BoardControl="clr-namespace:BoardDesigner.BoardControl" 
+      xmlns:ig="http://schemas.infragistics.com/xaml" 
+      x:Class="BoardDesigner.CustomPage.DesignerPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:converter="clr-namespace:BoardDesigner.Converter"
+      mc:Ignorable="d" 
+      d:DesignHeight="2160" d:DesignWidth="3840"
+	Title="DesignerPage">
+    <Page.Resources>
+        <converter:DesignerBrushToBrushConverter x:Key="DesignerBrushToBrushConverter" />
+    </Page.Resources>
+    <Grid  >
+        <ScrollViewer Name="DesignerScrollViewer"                                  
+                                  HorizontalScrollBarVisibility="Auto"
+                                  VerticalScrollBarVisibility="Auto">
+            <Grid Width="1920" Height="1080"  DataContext="{Binding Board}" >
+                <Grid.Background>
+                    <ImageBrush ImageSource="/BoardDesigner;component/Resources/Images/透明背景.PNG" TileMode="Tile" Viewport="0,0,16,16" ViewportUnits="Absolute"  />
+                </Grid.Background>
+                <Base:DesignerCanvas x:Name="MainPanel" AllowDrop="True"
+                                     Width="{Binding Size.Width}" Height="{Binding Size.Height}" 
+                                     Opacity="{Binding Opacity}" Visibility="{Binding Visibility}"
+                                     >
+                    <!--Background="{Binding Background,Converter={StaticResource DesignerBrushToBrushConverter}}"-->
+                    <Base:DesignerCanvas.Background>
+                        <MultiBinding Converter="{StaticResource DesignerBrushToBrushConverter}">                           
+                            <Binding Path="Background.BackgoundImage"/>
+                            <Binding Path="Background.ColorBrush"/>
+                        </MultiBinding>
+                    </Base:DesignerCanvas.Background>
+                    
+
+                </Base:DesignerCanvas>                
+            </Grid>
+        </ScrollViewer>
+        <Base:OverViewMap Width="100" Height="100"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Top"
+                               ScrollViewer="{Binding ElementName=DesignerScrollViewer}"
+                                />
+    </Grid>
+</Page>

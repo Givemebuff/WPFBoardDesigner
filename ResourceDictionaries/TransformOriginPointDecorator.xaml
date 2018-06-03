@@ -1,0 +1,34 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+                    xmlns:thumb="clr-namespace:BoardDesigner.BaseThumb">
+
+
+    <Style TargetType="{x:Type thumb:CenterPointThumb}">
+        <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate  TargetType="{x:Type thumb:CenterPointThumb}">
+                    <Canvas>
+                        <Path Stroke="Black" StrokeThickness=".5" Fill="SkyBlue" x:Name="OriginMoveThumbFillCircle">
+                            <Path.Data>
+                                <EllipseGeometry  RadiusX="3" RadiusY="3" Center="{Binding OriginPoint}"/>
+                            </Path.Data>
+                        </Path>
+                    </Canvas>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Fill" TargetName="OriginMoveThumbFillCircle" Value="Red"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <ControlTemplate x:Key="TransformOriginPointDecoratorTemplate" TargetType="{x:Type Control}">
+        <Canvas>
+            <thumb:CenterPointThumb />
+        </Canvas>
+    </ControlTemplate>
+</ResourceDictionary>

@@ -1,2 +1,3 @@
 # WPFBoardDesigner
 BoardDesigner
+Test

@@ -107,7 +107,7 @@ namespace BoardDesigner.Model
 
         #region 网格
         [Browsable(false)]
-        public int _row
+        public int _rowIndex
         {
             get;
             set;
@@ -116,18 +116,18 @@ namespace BoardDesigner.Model
         [Category("网格")]
         [DisplayName("行索引")]
         [Description("网格的第几行")]
-        [XmlAttribute("Row")]
-        public int Row
+        [XmlAttribute("RowIndex")]
+        public int RowIndex
         {
-            get { return this._row; }
+            get { return this._rowIndex; }
             set
             {
-                this._row = value;
-                OnPropertyChanged("Row");
+                this._rowIndex = value;
+                OnPropertyChanged("RowIndex");
             }
         }
         [Browsable(false)]
-        public int _column
+        public int _columnIndex
         {
             get;
             set;
@@ -136,13 +136,13 @@ namespace BoardDesigner.Model
         [DisplayName("列索引")]
         [Description("网格的第几列")]
         [XmlAttribute("Column")]
-        public int Column
+        public int ColumnIndex
         {
-            get { return this._column; }
+            get { return this._columnIndex; }
             set
             {
-                this._column = value;
-                OnPropertyChanged("Column");
+                this._columnIndex = value;
+                OnPropertyChanged("ColumnIndex");
             }
         }
 

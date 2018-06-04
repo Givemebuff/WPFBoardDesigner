@@ -39,6 +39,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Indusfo.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dll\Indusfo.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Indusfo.DataAccessLayer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dll\Indusfo.DataAccessLayer.dll</HintPath>
+    </Reference>
     <Reference Include="InfragisticsWPF4.Controls.Charts.XamDiagram.v14.2, Version=14.2.20142.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
     <Reference Include="InfragisticsWPF4.Controls.Editors.XamColorPicker.v14.2, Version=14.2.20142.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
     <Reference Include="InfragisticsWPF4.Controls.Editors.XamDateTimeInput.v14.2, Version=14.2.20142.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
@@ -111,6 +119,12 @@
     <Compile Include="Control\BoardDataGrid.xaml.cs">
       <DependentUpon>BoardDataGrid.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Control\BoardDataGridColumn.xaml.cs">
+      <DependentUpon>BoardDataGridColumn.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\BoardDataGridContentTexkBlock.xaml.cs">
+      <DependentUpon>BoardDataGridContentTexkBlock.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Control\BoardImage.xaml.cs">
       <DependentUpon>BoardImage.xaml</DependentUpon>
     </Compile>
@@ -136,6 +150,8 @@
     <Compile Include="Model\Control\DesignerTable.cs" />
     <Compile Include="Model\Element\Border.cs" />
     <Compile Include="Model\Brush\Brush.cs" />
+    <Compile Include="Model\Element\DesignerAlterRow.cs" />
+    <Compile Include="Model\Element\DesignerDataSource.cs" />
     <Compile Include="Model\Element\Font.cs" />
     <Compile Include="Model\Element\Position.cs" />
     <Compile Include="Model\Element\Size.cs" />
@@ -198,6 +214,14 @@
       <DependentUpon>BoardLabel.xaml</DependentUpon>
     </Compile>
     <Page Include="Control\BoardDataGrid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\BoardDataGridColumn.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\BoardDataGridContentTexkBlock.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -368,12 +392,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ZoomableCanvas\ZoomableCanvasLib.csproj">
-      <Project>{d52af3ac-7f85-4378-883f-d8d124aab9d1}</Project>
-      <Name>ZoomableCanvasLib</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\Images\Bold.png" />
     <Resource Include="Resources\Images\CenterAlign.png" />
     <Resource Include="Resources\Images\Close_16x16.png" />
@@ -536,14 +554,13 @@
     <Resource Include="bin\Debug\BgImg2.jpg" />
     <Resource Include="Resources\Images\ImageDemo.png" />
     <Resource Include="bin\Debug\ImageDemo.png" />
+    <Content Include="dll\Indusfo.Common.dll" />
+    <Content Include="dll\Indusfo.DataAccessLayer.dll" />
     <Content Include="Resources\Meida\VideoDemo.wmv" />
     <Resource Include="bin\Debug\GifDemo.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Content Include="dll\XamlAnimatedGif.dll" />
-    <Resource Include="GifDemo.gif">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
     <Content Include="dll\WPFVisifire.Charts.dll" />
     <None Include="Resources\Images\GifDemo.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

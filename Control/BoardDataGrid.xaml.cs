@@ -1,9 +1,14 @@
-﻿using BoardDesigner.Interface;
+﻿using BoardDesigner.Converter;
+using BoardDesigner.DemoData;
+using BoardDesigner.Interface;
 using BoardDesigner.Model;
+using Indusfo.Common;
+using Indusfo.Data.DataAccessBaseLayer;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +21,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace BoardDesigner.UControl
 {
@@ -27,7 +33,63 @@ namespace BoardDesigner.UControl
         public DesignerTable DesignerItem { get; set; }
 
 
+        #region 数据源
+        public DataTable DataSource
+        {
+            get { return (DataTable)GetValue(DataSourceProperty); }
+            set { SetValue(DataSourceProperty, value); }
+        }
 
+        // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty DataSourceProperty =
+            DependencyProperty.Register("DataSource", typeof(DataTable), typeof(BoardDataGrid), new PropertyMetadata(null, new PropertyChangedCallback(DataSourcePropertyChanged)));
+
+        private static void DataSourcePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            BoardDataGrid bdg = d as BoardDataGrid;
+            bdg.Bind();
+        }
+        #endregion
+
+        #region 显示行数
+        public int RowCount
+        {
+            get { return (int)GetValue(RowCountProperty); }
+            set { SetValue(RowCountProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for RowCount.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty RowCountProperty =
+            DependencyProperty.Register("RowCount", typeof(int), typeof(BoardDataGrid), new PropertyMetadata(0, new PropertyChangedCallback(RowCountPropertyChanged)));
+
+        private static void RowCountPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            BoardDataGrid bdg = d as BoardDataGrid;
+            int newCount = (int)e.NewValue;
+            int currnentCount = bdg.ContentGrid.RowDefinitions.Count;
+
+            if (currnentCount > newCount)
+            {
+                //减少
+                int diff = currnentCount - newCount;
+                for (int i = 0; i < diff; i++)
+                {
+                    bdg.ContentGrid.RowDefinitions.Remove(bdg.ContentGrid.RowDefinitions.Last());
+                }
+            }
+            else if (currnentCount < newCount)
+            {
+                //增加
+                int diff = newCount - currnentCount;
+                for (int i = 0; i < diff; i++)
+                {
+                    bdg.ContentGrid.RowDefinitions.Add(new RowDefinition());
+                }
+            }
+        }
+        #endregion
+
+        #region 列标题集合
         public ObservableCollection<DesignerDataGridColumn> Columns
         {
             get { return (ObservableCollection<DesignerDataGridColumn>)GetValue(ColumnsProperty); }
@@ -45,11 +107,7 @@ namespace BoardDesigner.UControl
         {
             BoardDataGrid bdg = d as BoardDataGrid;
             ObservableCollection<DesignerDataGridColumn> columns = e.NewValue as ObservableCollection<DesignerDataGridColumn>;
-            bdg.ClearHeaderColumn();
-            foreach (DesignerDataGridColumn column in columns)
-            {
-                bdg.AddColumn(column);
-            }
+            bdg.InitColumns(columns);
         }
 
         void Columns_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -72,6 +130,44 @@ namespace BoardDesigner.UControl
             }
         }
 
+        #endregion
+
+        #region 筛选行
+
+        public ObservableCollection<DesignerAlterRow> AlterRows
+        {
+            get { return (ObservableCollection<DesignerAlterRow>)GetValue(AlterRowsProperty); }
+            set { SetValue(AlterRowsProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for AlterRows.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty AlterRowsProperty =
+            DependencyProperty.Register("AlterRows", typeof(ObservableCollection<DesignerAlterRow>), typeof(BoardDataGrid), new PropertyMetadata(null));
+        #endregion
+
+        #region 时间
+        public DispatcherTimer PaggingTimer { get; set; }
+
+
+
+        public int PaggingTimeSpan
+        {
+            get { return (int)GetValue(PaggingTimeSpanProperty); }
+            set { SetValue(PaggingTimeSpanProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for PaggingTimeSpan.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty PaggingTimeSpanProperty =
+            DependencyProperty.Register("PaggingTimeSpan", typeof(int), typeof(BoardDataGrid), new PropertyMetadata(1000, new PropertyChangedCallback(PaggingTimeSpanPropertyChanged)));
+
+
+        private static void PaggingTimeSpanPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            BoardDataGrid bdg = d as BoardDataGrid;
+            if (bdg.PaggingTimer != null)
+                bdg.PaggingTimer.Interval = new TimeSpan(0, 0, 0, 0, (int)e.NewValue);
+        }
+        #endregion
 
         public BoardDataGrid()
         {
@@ -80,26 +176,40 @@ namespace BoardDesigner.UControl
             {
                 Size = new DesignerSize(300, 180),
                 Border = new DesignerBorder(),
+                DisplayRowCount = 10,
                 HeaderHeight = 40,
                 HeaderBorder = new DesignerBorder(),
                 ContentBorder = new DesignerBorder(),
                 Position = new DesignerPosition() { Padding = new Thickness(5) },
                 HeaderPadding = new Thickness(5),
-                ContentPadding = new Thickness(5),
                 ContentMargin = new Thickness(2),
                 HeaderMargin = new Thickness(2),
                 HeaderFont = new DesignerFont(),
                 HeaderHorizontalAlignment = System.Windows.HorizontalAlignment.Center,
                 HeaderVerticalAlignment = System.Windows.VerticalAlignment.Center,
-                Columns = new ObservableCollection<DesignerDataGridColumn>()
+                Columns = new ObservableCollection<DesignerDataGridColumn>(),
+                PaggingTimeSpan = 5000,
+                CellHorizontalAlignment = HorizontalAlignment.Center,
+                CellVerticalAlignment = VerticalAlignment.Center,
+                AlterRows = new ObservableCollection<DesignerAlterRow>()
             };
 
             InitBinding();
+            InitTimer();
 
         }
+
         public object GetDesignerItem()
         {
             return this.DesignerItem;
+        }
+
+        public void InitTimer()
+        {
+            //
+            PaggingTimer = new DispatcherTimer();
+            PaggingTimer.Tick += PaggingTimer_Tick;
+            PaggingTimer.Interval = new TimeSpan(0, 0, 0, 0, DesignerItem.PaggingTimeSpan);
         }
 
         public void InitBinding()
@@ -110,10 +220,133 @@ namespace BoardDesigner.UControl
             Binding canvasTop = new Binding("Position.Location.Y") { Source = DataContext };
             this.SetBinding(Canvas.TopProperty, canvasTop);
             this.SetBinding(ColumnsProperty, new Binding("Columns") { Source = DataContext });
+            this.SetBinding(RowCountProperty, new Binding("DisplayRowCount") { Source = DataContext });
+            this.SetBinding(AlterRowsProperty, new Binding("AlterRows") { Source = DataContext });
+            this.SetBinding(PaggingTimeSpanProperty, new Binding("PaggingTimeSpan") { Source = DataContext });
             Columns.CollectionChanged += Columns_CollectionChanged;
         }
+        
 
-        #region 标题
+        #region 数据
+
+        public void GetData()
+        {
+            using (SqlExcuter se = new SqlExcuter(DataBaseType.SqlServer, DesignerItem.DataSource.ConnectionString))
+            {
+                try
+                {
+                    DataSource = se.ExecuteSelectSql(DesignerItem.DataSource.SqlString);
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message);
+                }
+            }
+        }
+
+        public void Bind()
+        {
+            int rowCount = DataSource.Rows.Count;
+            int yu = rowCount % RowCount;
+            PageCount = rowCount / RowCount;
+            if (yu > 0)
+                PageCount++;
+            PageIndex = 0;
+           
+        }
+
+        /// <summary>
+        /// 当前页码
+        /// </summary>
+        public int PageIndex { get; set; }
+        /// <summary>
+        /// 页数
+        /// </summary>
+        public int PageCount { get; set; }
+
+        public void StartWork()
+        {
+            PaggingTimer.Start();
+        }
+
+        private void PaggingTimer_Tick(object sender, EventArgs e)
+        {
+            ContentGrid.Children.Clear();
+            BindPage(GetNextPageData());
+        }
+
+        public DataTable GetNextPageData()
+        {
+            DataTable data = new DataTable();
+            int index = 0;
+            //新DataTable按列表头顺序集合有效数据
+            foreach (DataColumn column in DataSource.Columns)
+            {
+                foreach (DesignerDataGridColumn dcol in Columns)
+                {
+                    if (dcol.Position.ColumnIndex == index)
+                    {
+                        if (column.ColumnName == dcol.BindingName)
+                        {
+                            DataColumn newColumn = new DataColumn() { ColumnName = column.ColumnName, DataType = column.DataType };
+                            data.Columns.Add(newColumn);
+                            index++;
+                            break;
+                        }
+                    }
+                }
+            }
+            int beginRowIndex = PageIndex * RowCount;
+            int nextPageBeginRowIndex = (PageIndex + 1) * RowCount;
+            for (int i = beginRowIndex;
+                i < (nextPageBeginRowIndex > DataSource.Rows.Count ? DataSource.Rows.Count : nextPageBeginRowIndex); i++)
+            {
+                DataRow newRow = data.NewRow();
+                foreach (DataColumn col in data.Columns)
+                {
+                    newRow[col.ColumnName] = DataSource.Rows[i][col.ColumnName];
+                }
+                data.Rows.Add(newRow);
+            }
+
+            PageIndex++;
+
+            if (PageIndex > PageCount)
+                PageIndex = 0;
+
+            return data;
+        }
+
+        public void BindPage(DataTable data)
+        {
+            //将一页内容显示到表格中
+            for (int i = 0; i < data.Rows.Count; i++)
+            {
+                for (int j = 0; j < data.Columns.Count; j++)
+                {
+                    BoardDataGridContentTexkBlock tb = new BoardDataGridContentTexkBlock(this.DesignerItem, data.Rows[i][j].ToString());
+
+                    foreach (DesignerAlterRow ar in AlterRows)
+                    {
+                        if (ar.AlternationRowIndex <= 0)
+                            continue;
+                        else if ((i + 1) % ar.AlternationRowIndex == 0)
+                        {
+                            if (ar.AlternatingRowBackground != null)
+                                tb.uBorder.Background = ar.AlternatingRowBackground;
+                        }
+
+                    }
+                    tb.SetValue(Grid.RowProperty, i);
+                    tb.SetValue(Grid.ColumnProperty, j);
+                    ContentGrid.Children.Add(tb);
+                }
+            }
+        }
+
+        #endregion
+
+        #region 列变化
         public int HeaderColumnsCount
         {
             get
@@ -122,10 +355,21 @@ namespace BoardDesigner.UControl
             }
         }
 
-        public void ClearHeaderColumn()
+        public void ClearColumn()
         {
             HeaderGrid.ColumnDefinitions.Clear();
             HeaderGrid.Children.Clear();
+            ContentGrid.ColumnDefinitions.Clear();
+            ContentGrid.Children.Clear();
+        }
+
+        public void InitColumns(ObservableCollection<DesignerDataGridColumn> columns)
+        {
+            ClearColumn();
+            foreach (DesignerDataGridColumn column in columns)
+            {
+                AddColumn(column);
+            }
         }
 
         /// <summary>
@@ -133,65 +377,52 @@ namespace BoardDesigner.UControl
         /// </summary>
         /// <param name="headerText"></param>    
         /// <returns>索引</returns>
-        public int AddColumn(DesignerDataGridColumn column)
+        public void AddColumn(DesignerDataGridColumn column)
         {
+            //添加列，获取坐标
             ColumnDefinition cd = new ColumnDefinition();
-            cd.SetBinding(WidthProperty, new Binding("ColumnWidth") { Source = column });
-
             HeaderGrid.ColumnDefinitions.Add(cd);
-
-            TextBlock tb = new TextBlock();
-            HeaderGrid.Children.Add(tb);
-
-            tb.SetBinding(TextBlock.HorizontalAlignmentProperty, new Binding("HorizontalContentAlignment") { Source = column });
-            tb.SetBinding(TextBlock.VerticalAlignmentProperty, new Binding("VerticalContentAlignment") { Source = column });
-            tb.SetBinding(TextBlock.FontFamilyProperty, new Binding("Font.FontFamily") { Source = column });
-            tb.SetBinding(TextBlock.FontSizeProperty, new Binding("Font.FontSize") { Source = column });
-            tb.SetBinding(TextBlock.ForegroundProperty, new Binding("Font.FontColor") { Source = column });
-            tb.SetBinding(TextBlock.FontStyleProperty, new Binding("Font.FontStyle") { Source = column });
-            tb.SetBinding(TextBlock.TextProperty, new Binding("Text") { Source = column });
-            tb.Uid = column.Name;
             int lastIndex = HeaderColumnsCount - 1;
-            tb.SetValue(Grid.ColumnProperty, lastIndex);
+            column.Position._columnIndex = lastIndex;
+            //设置宽度
+            cd.SetBinding(ColumnDefinition.WidthProperty, new Binding("ColumnWidth") { Source = column });
+            BoardDataGridColumn bd = new BoardDataGridColumn(column);
+            HeaderGrid.Children.Add(bd);
+            bd.Uid = column.Name;
 
-            return lastIndex;
+            //内容
+            ColumnDefinition cd2 = new ColumnDefinition();
+            cd2.SetBinding(ColumnDefinition.WidthProperty, new Binding("ColumnWidth") { Source = column });
+            ContentGrid.ColumnDefinitions.Add(cd2);
         }
 
         public void RemoveColumn(DesignerDataGridColumn column)
         {
-            int index = 0;
+            //删除列
+            HeaderGrid.ColumnDefinitions.Remove(HeaderGrid.ColumnDefinitions[column.Position.ColumnIndex]);
+            ContentGrid.ColumnDefinitions.Remove(ContentGrid.ColumnDefinitions[column.Position.ColumnIndex]);
             //删除元素
-            for (int j = 0; j < HeaderGrid.Children.Count; j++)
+            for (int i = 0; i < HeaderGrid.Children.Count; i++)
             {
-                TextBlock tb = HeaderGrid.Children[j] as TextBlock;
-                if ((HeaderGrid.Children[j] as TextBlock).Uid == column.Name)
+                BoardDataGridColumn bd = HeaderGrid.Children[i] as BoardDataGridColumn;
+                if (bd.Uid == column.Name)
                 {
-
-                    index = (int)tb.GetValue(Grid.ColumnProperty);
-                    HeaderGrid.Children.Remove(HeaderGrid.Children[j]);
+                    HeaderGrid.Children.Remove(bd);
                     break;
                 }
             }
-            //再遍历，若当前列还有元素则退出
-            foreach (object obj in HeaderGrid.Children) 
+            ReorderColumns(column.Position.ColumnIndex);
+
+
+        }
+
+        public void ReorderColumns(int index)
+        {
+            foreach (DesignerDataGridColumn column in Columns)
             {
-                TextBlock tb = obj as TextBlock;
-                int columnN = (int)tb.GetValue(Grid.ColumnProperty);
-                if (columnN == index)
-                    return;
+                if (column.Position.ColumnIndex > index)
+                    column.Position.ColumnIndex--;
             }
-            //若没有则前移
-            foreach (object obj in HeaderGrid.Children)
-            {
-                TextBlock tb = obj as TextBlock;
-                int columnN = (int)tb.GetValue(Grid.ColumnProperty);
-                if (columnN > index)
-                {
-                    columnN--;
-                    tb.SetValue(Grid.ColumnProperty, columnN);
-                }
-            }
-            HeaderGrid.ColumnDefinitions.Remove(HeaderGrid.ColumnDefinitions[index]);   
         }
 
         #endregion

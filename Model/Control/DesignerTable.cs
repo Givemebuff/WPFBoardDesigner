@@ -21,46 +21,25 @@ namespace BoardDesigner.Model
 
 
         #region 筛选行
-
         [Browsable(false)]
-        public Brush _alternatingRowBackground
+        public ObservableCollection<DesignerAlterRow> _alterRows
         {
-            get;
-            set;
+            get;set;
         }
-
-        [Category("图表")]
-        [DisplayName("筛选行的背景色")]
-        [Description("筛选行的背景色")]
-        public Brush AlternatingRowBackground
+        [Category("行相关")]
+        [DisplayName("筛选条件集合")]
+        [Description("筛选条件集合")]
+        public ObservableCollection<DesignerAlterRow> AlterRows
         {
-            get { return this._alternatingRowBackground; }
+            get { return this._alterRows; }
             set
             {
-                this._alternatingRowBackground = value;
-                OnPropertyChanged("AlternatingRowBackground");
+                this._alterRows = value;
+                OnPropertyChanged("AlterRows");
             }
         }
 
-        [Browsable(false)]
-        public int _alternationCount
-        {
-            get;
-            set;
-        }
-
-        [Category("图表")]
-        [DisplayName("筛选行条件")]
-        [Description("筛选行条件")]
-        public int AlternationCount
-        {
-            get { return this._alternationCount; }
-            set
-            {
-                this._alternationCount = value;
-                OnPropertyChanged("AlternationCount");
-            }
-        }
+       
 
         #endregion
 
@@ -73,7 +52,7 @@ namespace BoardDesigner.Model
             set;
         }
 
-        [Category("图表")]
+        [Category("列标题相关")]
         [DisplayName("列标题内边距")]
         [Description("列标题内边距")]
         public Thickness HeaderPadding
@@ -93,7 +72,7 @@ namespace BoardDesigner.Model
             set;
         }
 
-        [Category("图表")]
+        [Category("列标题相关")]
         [DisplayName("列标题外边距")]
         [Description("列标题外边距")]
         public Thickness HeaderMargin
@@ -114,7 +93,7 @@ namespace BoardDesigner.Model
             set;
         }
 
-        [Category("图表")]
+        [Category("列标题相关")]
         [DisplayName("列标题背景")]
         [Description("列标题背景色")]
         public Brush HeaderBackground
@@ -134,7 +113,7 @@ namespace BoardDesigner.Model
             set;
         }
 
-        [Category("图表")]
+        [Category("列标题相关")]
         [DisplayName("列标题字体")]
         [Description("列标题字体")]
         public DesignerFont HeaderFont
@@ -154,7 +133,7 @@ namespace BoardDesigner.Model
             set;
         }
 
-        [Category("图表")]
+        [Category("列标题相关")]
         [DisplayName("列标题高度")]
         [Description("列标题高度")]
         public double HeaderHeight
@@ -174,7 +153,7 @@ namespace BoardDesigner.Model
             set;
         }
 
-        [Category("图表")]
+        [Category("列标题相关")]
         [DisplayName("列标题边框")]
         [Description("列标题边框")]
         public DesignerBorder HeaderBorder
@@ -194,7 +173,7 @@ namespace BoardDesigner.Model
             set;
         }
 
-        [Category("图表")]
+        [Category("列标题相关")]
         [DisplayName("列标题单元格水平排版")]
         [Description("列标题单元格水平排版")]
         public HorizontalAlignment HeaderHorizontalAlignment
@@ -214,7 +193,7 @@ namespace BoardDesigner.Model
             set;
         }
 
-        [Category("图表")]
+        [Category("列标题相关")]
         [DisplayName("列标题单元格垂直排版")]
         [Description("列标题单元格垂直排版")]
         public VerticalAlignment HeaderVerticalAlignment
@@ -241,7 +220,7 @@ namespace BoardDesigner.Model
             set;
         }
 
-        [Category("图表")]
+        [Category("内容")]
         [DisplayName("内容内边距")]
         [Description("内容内边距")]
         public Thickness ContentPadding
@@ -261,7 +240,7 @@ namespace BoardDesigner.Model
             set;
         }
 
-        [Category("图表")]
+        [Category("内容")]
         [DisplayName("内容外边距")]
         [Description("内容外边距")]
         public Thickness ContentMargin
@@ -282,7 +261,7 @@ namespace BoardDesigner.Model
             set;
         }
 
-        [Category("图表")]
+        [Category("内容")]
         [DisplayName("内容背景色")]
         [Description("内容背景色")]
         public Brush ContentBackground
@@ -302,7 +281,7 @@ namespace BoardDesigner.Model
             set;
         }
 
-        [Category("图表")]
+        [Category("内容")]
         [DisplayName("内容边框")]
         [Description("内容边框")]
         public DesignerBorder ContentBorder
@@ -322,7 +301,7 @@ namespace BoardDesigner.Model
             set;
         }
 
-        [Category("图表")]
+        [Category("内容")]
         [DisplayName("内容字体")]
         [Description("内容字体")]
         public DesignerFont ContentFont
@@ -333,27 +312,9 @@ namespace BoardDesigner.Model
                 this._contentFont = value;
                 OnPropertyChanged("RowFont");
             }
-        }       
-
-        [Browsable(false)]
-        public double _rowHeight
-        {
-            get;
-            set;
         }
 
-        [Category("图表")]
-        [DisplayName("内容行高")]
-        [Description("内容行高")]
-        public double RowHeight
-        {
-            get { return this._rowHeight; }
-            set
-            {
-                this._rowHeight = value;
-                OnPropertyChanged("RowHeight");
-            }
-        }
+
 
         #endregion
 
@@ -366,7 +327,7 @@ namespace BoardDesigner.Model
             set;
         }
 
-        [Category("图表")]
+        [Category("单元格相关")]
         [DisplayName("单元格垂直排版")]
         [Description("单元格垂直排版")]
         public VerticalAlignment CellVerticalAlignment
@@ -378,12 +339,129 @@ namespace BoardDesigner.Model
                 OnPropertyChanged("CellVerticalAlignment");
             }
         }
+        [Browsable(false)]
+        public HorizontalAlignment _cellHorizontalAlignment
+        {
+            get;
+            set;
+        }
+
+        [Category("单元格相关")]
+        [DisplayName("单元格水平排版")]
+        [Description("单元格水平排版")]
+        public HorizontalAlignment CellHorizontalAlignment
+        {
+            get { return this._cellHorizontalAlignment; }
+            set
+            {
+                this._cellHorizontalAlignment = value;
+                OnPropertyChanged("CellHorizontalAlignment");
+            }
+        }
+
+        [Browsable(false)]
+        public Brush _cellBackground
+        {
+            get;
+            set;
+        }
+
+        [Category("单元格相关")]
+        [DisplayName("单元格背景色")]
+        [Description("单元格背景色")]
+        public Brush CellBackground
+        {
+            get { return this._cellBackground; }
+            set
+            {
+                this._cellBackground = value;
+                OnPropertyChanged("CellBackground");
+            }
+        }
+
+        [Browsable(false)]
+        public DesignerBorder _cellBorder
+        {
+            get;
+            set;
+        }
+
+        [Category("单元格相关")]
+        [DisplayName("单元格边框")]
+        [Description("单元格边框")]
+        public DesignerBorder CellBorder
+        {
+            get { return this._cellBorder; }
+            set
+            {
+                this._cellBorder = value;
+                OnPropertyChanged("CellBorder");
+            }
+        }
+
+        [Browsable(false)]
+        public Thickness _cellPadding
+        {
+            get;
+            set;
+        }
+
+        [Category("单元格相关")]
+        [DisplayName("单元格内边距")]
+        [Description("单元格内边距")]
+        public Thickness CellPadding
+        {
+            get { return this._cellPadding; }
+            set
+            {
+                this._cellPadding = value;
+                OnPropertyChanged("CellPadding");
+            }
+        }
+
+        [Browsable(false)]
+        public Thickness _cellMargin
+        {
+            get;
+            set;
+        }
+
+        [Category("单元格相关")]
+        [DisplayName("单元格外边距")]
+        [Description("单元格外边距")]
+        public Thickness CellMargin
+        {
+            get { return this._cellMargin; }
+            set
+            {
+                this._cellMargin = value;
+                OnPropertyChanged("CellMargin");
+            }
+        }
+
 
         #endregion
 
         #region 数据
-
         [Browsable(false)]
+        public DesignerDataSource _dataSource { get; set; }
+        [Category("数据")]
+        [DisplayName("数据源")]
+        [Description("数据源设置")]
+        public DesignerDataSource DataSource
+        {
+            get
+            {
+                return this._dataSource;
+            }
+            set
+            {
+                this._dataSource = value;
+                OnPropertyChanged("DataSource");
+            }
+        }
+
+            [Browsable(false)]
         public bool _autoGenerateColumns
         {
             get;
@@ -403,15 +481,86 @@ namespace BoardDesigner.Model
             }
         }
 
+        [Browsable(false)]
+        public int _displayRowCount
+        {
+            get;
+            set;
+        }
+
+        [Category("行相关")]
+        [DisplayName("显示行数")]
+        [Description("单页呈现行数")]
+        public int DisplayRowCount
+        {
+            get { return this._displayRowCount; }
+            set
+            {
+                if (value <= 0)
+                    value = 1;
+                this._displayRowCount = value;
+                OnPropertyChanged("DisplayRowCount");
+            }
+        }
+
+        [ReadOnly(true)]
+        [Category("列相关")]
+        [DisplayName("显示列数")]
+        [Description("列数")]
+        public int ColumnCount
+        {
+            get
+            {
+                if (this._columns == null)
+                    return 0;
+                else
+                    return this._columns.Count;
+            }
+        }
+
+
+
         #region 列标题容器
+
+        [Browsable(false)]
         public ObservableCollection<DesignerDataGridColumn> _columns { get; set; }
-        public ObservableCollection<DesignerDataGridColumn> Columns 
+
+        [Category("列相关")]
+        [DisplayName("列标题集合")]
+        [Description("列标题集合")]
+        public ObservableCollection<DesignerDataGridColumn> Columns
         {
             get { return this._columns; }
-            set 
+            set
             {
                 this._columns = value;
                 OnPropertyChanged("Columns");
+            }
+        }
+
+        #endregion
+
+        #region 时间
+
+        [Browsable(false)]
+        public int _paggingTimeSpan
+        {
+            get;
+            set;
+        }
+
+        [Category("动画相关")]
+        [DisplayName("换页时间间隔")]
+        [Description("当前页到下一页时间间隔")]
+        public int PaggingTimeSpan
+        {
+            get { return this._paggingTimeSpan; }
+            set
+            {
+                if (value < 1)
+                    value = 50;
+                this._paggingTimeSpan = value;
+                OnPropertyChanged("PaggingTimeSpan");
             }
         }
 
@@ -442,6 +591,7 @@ namespace BoardDesigner.Model
             }
         }
 
+        [Browsable(false)]
         public ScrollBarVisibility _verticalScrollBarVisibility
         {
             get;

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media;
 
 namespace BoardDesigner.Model
 {
@@ -50,6 +51,22 @@ namespace BoardDesigner.Model
             {
                 this._bindingName = value;
                 OnPropertyChanged("BindingName");
+            }
+        }
+
+        [Browsable(false)]
+        public Brush _columnBackground { get; set; }
+
+        [Category("列标题相关")]
+        [DisplayName("列标题背景")]
+        [Description("设置列标题背景")]
+        public Brush ColumnBackground
+        {
+            get { return this._columnBackground; }
+            set
+            {
+                this._columnBackground = value;
+                OnPropertyChanged("ColumnBackground");
             }
         }
 

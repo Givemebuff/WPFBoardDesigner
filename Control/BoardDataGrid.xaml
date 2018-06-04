@@ -21,8 +21,8 @@
                 <Binding Path="Background.ColorBrush"/>
             </MultiBinding>
         </Border.Background>
-        <Grid Background="{x:Null}">
-            <Grid.RowDefinitions>
+        <Grid Background="{x:Null}"  >
+            <Grid.RowDefinitions >
                 <RowDefinition x:Name="DataGridHeaderRowDefinition" Height="{Binding HeaderHeight}"></RowDefinition>
                 <RowDefinition x:Name="DataGridContentRowDefinition" Height="1*"></RowDefinition>
             </Grid.RowDefinitions>
@@ -36,18 +36,19 @@
             <Border x:Name="DataGridContentBorder" Grid.Row="1"  
                     BorderThickness="{Binding ContentBorder.BorderThickness}"  BorderBrush="{Binding ContentBorder.BorderBrush}" 
                     CornerRadius="{Binding ContentBorder.CornerRadius}" Padding="{Binding ContentPadding}" Margin="{Binding ContentMargin}" Background="{Binding ContentBackground}">
-                <ScrollViewer Background="{x:Null}" x:Name="ContentScrollViewer" VerticalScrollBarVisibility="{Binding VerticalScrollBarVisibility}" HorizontalScrollBarVisibility="{Binding HorizontalScrollBarVisibility}"  >
-                    <Grid x:Name="ContentGrid" Background="{x:Null}"
+
+                <Grid x:Name="ContentGrid" Background="{x:Null}"
+                      Height="{Binding ElementName=DataGridContentBorder,Path=ActualHeight}"
+                      Width="{Binding ElementName=DataGridContentBorder,Path=ActualWidth}" 
                       HorizontalAlignment="{Binding HeaderHorizontalAlignment}" VerticalAlignment="{Binding HeaderVerticalAlignment}"
                           >
                         <Grid.RowDefinitions >
                             
                         </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
+                        <Grid.ColumnDefinitions >
                             
                         </Grid.ColumnDefinitions>
-                    </Grid>
-                </ScrollViewer>               
+                    </Grid>                        
             </Border>
         </Grid>
     </Border>

@@ -9,6 +9,7 @@ using System.Windows.Media;
 
 namespace BoardDesigner.Model
 {
+    [Serializable]
     public class DesignerBorder : DesignerElement
     {
         public DesignerBorder() 

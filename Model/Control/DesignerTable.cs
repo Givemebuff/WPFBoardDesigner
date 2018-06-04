@@ -12,20 +12,25 @@ using System.Windows.Media;
 
 namespace BoardDesigner.Model
 {
+    [Serializable]
     public class DesignerTable : DesignerControl
     {
         public DesignerTable()
         {
             this.Type = DesignerElementType.Table;
+            this.AlterRows = new ObservableCollection<DesignerAlterRow>();
+            this.Columns = new ObservableCollection<DesignerDataGridColumn>();
         }
 
 
         #region 筛选行
+
         [Browsable(false)]
         public ObservableCollection<DesignerAlterRow> _alterRows
         {
             get;set;
         }
+
         [Category("行相关")]
         [DisplayName("筛选条件集合")]
         [Description("筛选条件集合")]
@@ -39,11 +44,9 @@ namespace BoardDesigner.Model
             }
         }
 
-       
-
         #endregion
 
-        #region 标题     
+        #region 标题
 
         [Browsable(false)]
         public Thickness _headerPadding
@@ -549,7 +552,7 @@ namespace BoardDesigner.Model
             set;
         }
 
-        [Category("动画相关")]
+        [Category("计时器")]
         [DisplayName("换页时间间隔")]
         [Description("当前页到下一页时间间隔")]
         public int PaggingTimeSpan
@@ -561,6 +564,28 @@ namespace BoardDesigner.Model
                     value = 50;
                 this._paggingTimeSpan = value;
                 OnPropertyChanged("PaggingTimeSpan");
+            }
+        }
+
+        [Browsable(false)]
+        public int _dataAccessTimeSpan
+        {
+            get;
+            set;
+        }
+
+        [Category("计时器")]
+        [DisplayName("数据访问时间间隔")]
+        [Description("获取新数据时间间隔")]
+        public int DataAccrssTimeSpan
+        {
+            get { return this._dataAccessTimeSpan; }
+            set
+            {
+                if (value < 1000)
+                    value = 1000;
+                this._dataAccessTimeSpan = value;
+                OnPropertyChanged("DataAccrssTimeSpan");
             }
         }
 

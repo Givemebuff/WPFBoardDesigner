@@ -8,6 +8,7 @@ using System.Xml.Serialization;
 
 namespace BoardDesigner.Model
 {
+    [Serializable]
     public class DesignerSize:DesignerElement
     {
         #region 长宽

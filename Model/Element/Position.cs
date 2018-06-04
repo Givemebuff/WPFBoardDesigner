@@ -9,6 +9,7 @@ using System.Xml.Serialization;
 
 namespace BoardDesigner.Model
 {
+    [Serializable]
     public class DesignerPosition : DesignerElement
     {
         public DesignerPosition()

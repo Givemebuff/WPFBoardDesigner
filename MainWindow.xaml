@@ -38,7 +38,7 @@
             <Custom:XamRibbon.QuickAccessToolbar >
                 <Custom:QuickAccessToolbar  />
             </Custom:XamRibbon.QuickAccessToolbar>
-            <Custom:RibbonTabItem Header="工具">
+            <Custom:RibbonTabItem Header="开始">
                 <Custom:RibbonGroup Id="Clipboard" Caption="粘贴板">
                     <Custom:ToolHorizontalWrapPanel>
                         <Custom:ButtonTool
@@ -64,6 +64,22 @@
                         <Custom:ButtonTool
 							Content="重复" IsQatCommonTool="True"
 							Id="redoTool" SmallImage="Resources/Images/EditRedo.png"/>
+                    </Custom:ButtonGroup>
+                </Custom:RibbonGroup>
+                <Custom:RibbonGroup Id="Running" Caption="运行时">
+                    <Custom:ToolHorizontalWrapPanel>
+                        <Custom:ButtonTool
+							Caption="预览" Click="ViewButtonTool_Click"
+							Custom:RibbonGroup.MaximumSize="ImageAndTextLarge"
+							SmallImage="Resources/Images/Paste_16x16.png"
+							LargeImage="Resources/Images/Paste_32x32.png"/>
+                    </Custom:ToolHorizontalWrapPanel>
+                    <Custom:ButtonGroup x:Name="RunningButtonGroup">
+                        <Custom:ButtonTool 
+							Content="生成" IsQatCommonTool="True"
+							Id="Build" SmallImage="Resources/Images/T 16X16.png"/>
+
+
                     </Custom:ButtonGroup>
                 </Custom:RibbonGroup>
             </Custom:RibbonTabItem>

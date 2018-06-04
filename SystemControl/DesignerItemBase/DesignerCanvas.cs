@@ -6,8 +6,10 @@ using BoardDesigner.Interface;
 using BoardDesigner.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -50,6 +52,28 @@ namespace BoardDesigner.Base
 
         #endregion
 
+        public DesignerBoard Board
+        {
+            get { return (DesignerBoard)GetValue(BoardProperty); }
+            set
+            {
+                SetValue(BoardProperty, value);
+            }
+        }
+        public static readonly DependencyProperty BoardProperty =
+          DependencyProperty.Register("Board", typeof(DesignerBoard), typeof(DesignerCanvas), new PropertyMetadata(
+              new DesignerBoard()
+              {
+                  Size = new DesignerSize(1366, 768),
+                  Background = new DesignerBrush(Color.FromRgb(255, 255, 255))//new DesignerBrush(Color.FromRgb(255, 255, 255))//new SolidColorBrush(Color.FromRgb(255, 255, 255))//
+              },
+              new PropertyChangedCallback(BoardPropertyChanged)));
+
+        private static void BoardPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            //TODO新建看板
+            ((DesignerCanvas)d).SelectItem = e.NewValue;
+        }
 
         public IEnumerable<DesignerItem> SelectedItems
         {
@@ -65,7 +89,7 @@ namespace BoardDesigner.Base
 
         public DesignerCanvas()
         {
-           
+            this.DataContext = Board;
         }    
 
 
@@ -168,6 +192,20 @@ namespace BoardDesigner.Base
             this.DeselectAll();
             designerItem.IsSelected = true;
             this.SelectItem = designerItem;
+        }
+
+        public DesignerBoard Warp() 
+        {            
+            foreach (object obj in this.Children) 
+            {
+                if (obj is DesignerItem) 
+                {
+                 
+                 DesignerControl clonedChild= (DesignerControl) ((obj as DesignerItem).Content as IDesigner).GetDesignerItem();
+                    this.Board.Children.Add(clonedChild);
+                }
+            }
+            return this.Board;
         }
 
         //protected override System.Windows.Size MeasureOverride(System.Windows.Size constraint)

@@ -9,6 +9,7 @@ using System.Windows.Media;
 
 namespace BoardDesigner.Model
 {
+    [Serializable]
     public class DesignerAlterRow: DesignerElement
     {
         [Browsable(false)]

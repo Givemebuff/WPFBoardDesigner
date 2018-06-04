@@ -8,9 +8,10 @@ using System.Windows.Shapes;
 using System.Xml.Serialization;
 
 namespace BoardDesigner.Model
-{
+{ [Serializable]
     public class DesignerShape : DesignerVisualContentElement
     {
+       
         public DesignerShape() { this.Type = DesignerElementType.Shape; }
         [Browsable(false)]
         public Path _data

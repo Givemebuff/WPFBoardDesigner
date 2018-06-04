@@ -10,6 +10,7 @@ using System.Xml.Serialization;
 
 namespace BoardDesigner.Model
 {
+    [Serializable]
     public class DesignerControl : DesignerVisualContentElement
     {
         public DesignerControl() 

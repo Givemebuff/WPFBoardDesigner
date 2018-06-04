@@ -26,10 +26,11 @@ namespace BoardDesigner.Model
         Image =14,
         GIF =15,
         Video = 16,
-        Table =17
+        Table =17,
+        Label = 18
 
     }
-
+    [Serializable]
     public class PropertyChangeBase : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
@@ -40,8 +41,9 @@ namespace BoardDesigner.Model
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
-    }
 
+    }
+    [Serializable]
     public class DesignerElement : PropertyChangeBase
     {
         [XmlAttribute("Name")]
@@ -213,7 +215,7 @@ namespace BoardDesigner.Model
     {
         public DesignerBackgroundElement() { this.Type = DesignerElementType.DesignerBackgroundElement; }
     }
-
+    [Serializable]
     public class DesignerVisualContentElement : DesignerVisualElement
     {
         public DesignerVisualContentElement()

@@ -8,6 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("dll/indusfo.common.dll")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("dll/indusfo.dataaccesslayer.dll")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/meida/videodemo.wmv")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("dll/xamlanimatedgif.dll")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("dll/wpfvisifire.charts.dll")]

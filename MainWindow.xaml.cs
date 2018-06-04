@@ -87,6 +87,14 @@ namespace BoardDesigner
             {
                 CurrentDesignerCanvas = null;                
             }
+        }
+
+        //预览
+        private void ViewButtonTool_Click(object sender, RoutedEventArgs e)
+        {
+            DesignerBoard board = CurrentDesignerCanvas.Warp();
+            BoardViewer bv = new BoardViewer(board);
+            bv.Show();
         }     
 
 

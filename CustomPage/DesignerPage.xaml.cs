@@ -24,37 +24,12 @@ namespace BoardDesigner.CustomPage
     /// DesignerPage.xaml 的交互逻辑
     /// </summary>
     public partial class DesignerPage : Page
-    {
-        #region 编辑对象
-
-        public DesignerBoard Board
-        {
-            get { return (DesignerBoard)GetValue(BoardProperty); }
-            set
-            {
-                SetValue(BoardProperty, value);
-            }
-        }
-        public static readonly DependencyProperty BoardProperty =
-          DependencyProperty.Register("Board", typeof(DesignerBoard), typeof(DesignerPage), new PropertyMetadata(
-              new DesignerBoard() { 
-                  Size = new DesignerSize(1366, 758),
-                  Background = new DesignerBrush(Color.FromRgb(255, 255, 255))//new DesignerBrush(Color.FromRgb(255, 255, 255))//new SolidColorBrush(Color.FromRgb(255, 255, 255))//
-              },
-              new PropertyChangedCallback(BoardPropertyChanged)));
-
-        private static void BoardPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {        
-            ((DesignerPage)d).MainPanel.SelectItem = e.NewValue;
-        }
-
-
-        #endregion
+    {       
        
         public DesignerPage()
         {
             InitializeComponent();
-            this.MainPanel.DataContext = Board;
+            
         }
     }
 }

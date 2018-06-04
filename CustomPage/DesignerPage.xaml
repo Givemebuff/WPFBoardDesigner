@@ -18,23 +18,20 @@
         <ScrollViewer Name="DesignerScrollViewer"                                  
                                   HorizontalScrollBarVisibility="Auto"
                                   VerticalScrollBarVisibility="Auto">
-            <Grid Width="1920" Height="1080"  DataContext="{Binding Board}" >
+            <Grid Width="3840" Height="2160"   >
                 <Grid.Background>
                     <ImageBrush ImageSource="/BoardDesigner;component/Resources/Images/透明背景.PNG" TileMode="Tile" Viewport="0,0,16,16" ViewportUnits="Absolute"  />
                 </Grid.Background>
                 <Base:DesignerCanvas x:Name="MainPanel" AllowDrop="True"
                                      Width="{Binding Size.Width}" Height="{Binding Size.Height}" 
                                      Opacity="{Binding Opacity}" Visibility="{Binding Visibility}"
-                                     >
-                    <!--Background="{Binding Background,Converter={StaticResource DesignerBrushToBrushConverter}}"-->
+                                     >                  
                     <Base:DesignerCanvas.Background>
                         <MultiBinding Converter="{StaticResource DesignerBrushToBrushConverter}">                           
                             <Binding Path="Background.BackgoundImage"/>
                             <Binding Path="Background.ColorBrush"/>
                         </MultiBinding>
                     </Base:DesignerCanvas.Background>
-                    
-
                 </Base:DesignerCanvas>                
             </Grid>
         </ScrollViewer>

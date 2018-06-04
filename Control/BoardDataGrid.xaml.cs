@@ -18,6 +18,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -28,27 +29,39 @@ namespace BoardDesigner.UControl
     /// <summary>
     /// BoardDataGrid.xaml 的交互逻辑
     /// </summary>
-    public partial class BoardDataGrid : UserControl, IDesigner
+    public partial class BoardDataGrid : UserControl, IDesigner,IWorker
     {
         public DesignerTable DesignerItem { get; set; }
 
 
         #region 数据源
-        public DataTable DataSource
+
+        public DesignerDataSource DataSource
         {
-            get { return (DataTable)GetValue(DataSourceProperty); }
+            get { return (DesignerDataSource)GetValue(DataSourceProperty); }
             set { SetValue(DataSourceProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
+        // Using a DependencyProperty as the backing store for DataSource.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty DataSourceProperty =
-            DependencyProperty.Register("DataSource", typeof(DataTable), typeof(BoardDataGrid), new PropertyMetadata(null, new PropertyChangedCallback(DataSourcePropertyChanged)));
+            DependencyProperty.Register("DataSource", typeof(DesignerDataSource), typeof(BoardDataGrid), new PropertyMetadata(null));
 
-        private static void DataSourcePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        public DataTable ItemSource
+        {
+            get { return (DataTable)GetValue(ItemSourceProperty); }
+            set { SetValue(ItemSourceProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ItemSourceProperty =
+            DependencyProperty.Register("ItemSource", typeof(DataTable), typeof(BoardDataGrid), new PropertyMetadata(null, new PropertyChangedCallback(ItemSourcePropertyChanged)));
+
+        private static void ItemSourcePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             BoardDataGrid bdg = d as BoardDataGrid;
-            bdg.Bind();
+            bdg.StartBind();
         }
+
         #endregion
 
         #region 显示行数
@@ -146,9 +159,31 @@ namespace BoardDesigner.UControl
         #endregion
 
         #region 时间
+
+        #region 数据访问时间
+
+        public DispatcherTimer DataAccrssTimer { get; set; }
+        public int DataAccessTimeSpan
+        {
+            get { return (int)GetValue(DataAccessTimeSpanProperty); }
+            set { SetValue(DataAccessTimeSpanProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for DataAccessTimeSpan.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty DataAccessTimeSpanProperty =
+            DependencyProperty.Register("DataAccessTimeSpan", typeof(int), typeof(BoardDataGrid), new PropertyMetadata(60000, new PropertyChangedCallback(DataAccessTimeSpanPropertyChanged)));
+
+        private static void DataAccessTimeSpanPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            BoardDataGrid bdg = d as BoardDataGrid;
+            if (bdg.DataAccrssTimer != null)
+                bdg.DataAccrssTimer.Interval = new TimeSpan(0, 0, 0, 0, (int)e.NewValue);
+        }
+
+        #endregion
+
+        #region 分页刷新时间
         public DispatcherTimer PaggingTimer { get; set; }
-
-
 
         public int PaggingTimeSpan
         {
@@ -167,8 +202,19 @@ namespace BoardDesigner.UControl
             if (bdg.PaggingTimer != null)
                 bdg.PaggingTimer.Interval = new TimeSpan(0, 0, 0, 0, (int)e.NewValue);
         }
+
         #endregion
 
+        #endregion
+
+        public BoardDataGrid(DesignerTable dt)
+        {
+            InitializeComponent();
+            DesignerItem = dt;
+            InitBinding();
+            InitTimer();
+
+        }
         public BoardDataGrid()
         {
             InitializeComponent();
@@ -188,7 +234,8 @@ namespace BoardDesigner.UControl
                 HeaderHorizontalAlignment = System.Windows.HorizontalAlignment.Center,
                 HeaderVerticalAlignment = System.Windows.VerticalAlignment.Center,
                 Columns = new ObservableCollection<DesignerDataGridColumn>(),
-                PaggingTimeSpan = 5000,
+                PaggingTimeSpan = 10000,
+                DataAccrssTimeSpan = 60000,
                 CellHorizontalAlignment = HorizontalAlignment.Center,
                 CellVerticalAlignment = VerticalAlignment.Center,
                 AlterRows = new ObservableCollection<DesignerAlterRow>()
@@ -206,7 +253,11 @@ namespace BoardDesigner.UControl
 
         public void InitTimer()
         {
-            //
+
+            DataAccrssTimer = new DispatcherTimer();
+            DataAccrssTimer.Tick += DataAccrssTimer_Tick;
+            DataAccrssTimer.Interval = new TimeSpan(0, 0, 0, 0, DesignerItem.DataAccrssTimeSpan);
+
             PaggingTimer = new DispatcherTimer();
             PaggingTimer.Tick += PaggingTimer_Tick;
             PaggingTimer.Interval = new TimeSpan(0, 0, 0, 0, DesignerItem.PaggingTimeSpan);
@@ -223,36 +274,41 @@ namespace BoardDesigner.UControl
             this.SetBinding(RowCountProperty, new Binding("DisplayRowCount") { Source = DataContext });
             this.SetBinding(AlterRowsProperty, new Binding("AlterRows") { Source = DataContext });
             this.SetBinding(PaggingTimeSpanProperty, new Binding("PaggingTimeSpan") { Source = DataContext });
+            this.SetBinding(DataSourceProperty, new Binding("DataSource") { Source = DataContext });
             Columns.CollectionChanged += Columns_CollectionChanged;
         }
-        
+
 
         #region 数据
 
         public void GetData()
         {
-            using (SqlExcuter se = new SqlExcuter(DataBaseType.SqlServer, DesignerItem.DataSource.ConnectionString))
+            try
             {
-                try
+                using (SqlExcuter se = new SqlExcuter(DataBaseType.SqlServer, DataSource.ConnectionString))
                 {
-                    DataSource = se.ExecuteSelectSql(DesignerItem.DataSource.SqlString);
+                    ItemSource = se.ExecuteSelectSql(DataSource.SqlString);
                 }
-                catch (Exception e)
-                {
-                    MessageBox.Show(e.Message);
-                }
+            }
+            catch (Exception e)
+            {
+                //TODO
+                MessageBox.Show(e.Message);
             }
         }
 
-        public void Bind()
+        public void StartBind()
         {
-            int rowCount = DataSource.Rows.Count;
-            int yu = rowCount % RowCount;
-            PageCount = rowCount / RowCount;
-            if (yu > 0)
-                PageCount++;
-            PageIndex = 0;
-           
+            if (ItemSource != null && ItemSource.Rows.Count > 0)
+            {
+                int rowCount = ItemSource.Rows.Count;
+                int yu = rowCount % RowCount;
+                PageCount = rowCount / RowCount;
+                if (yu > 0)
+                    PageCount++;
+                PageIndex = 0;                
+            }
+
         }
 
         /// <summary>
@@ -266,6 +322,8 @@ namespace BoardDesigner.UControl
 
         public void StartWork()
         {
+            DataAccrssTimer.Start();
+            GetData();
             PaggingTimer.Start();
         }
 
@@ -273,45 +331,68 @@ namespace BoardDesigner.UControl
         {
             ContentGrid.Children.Clear();
             BindPage(GetNextPageData());
+            
+            DoubleAnimation opacityAnimation2 = new DoubleAnimation();
+            opacityAnimation2.From = 0;//透明度初始值
+            opacityAnimation2.To = 1;//透明度值
+            opacityAnimation2.Duration = new Duration(TimeSpan.FromSeconds(2));
+            ContentGrid.BeginAnimation(Grid.OpacityProperty, opacityAnimation2);
+        }
+        void DataAccrssTimer_Tick(object sender, EventArgs e)
+        {
+            GetData();
         }
 
         public DataTable GetNextPageData()
         {
+           
             DataTable data = new DataTable();
-            int index = 0;
+            if (ItemSource == null || ItemSource.Rows.Count <= 0)
+                return data;
+            //int index = 0;
             //新DataTable按列表头顺序集合有效数据
-            foreach (DataColumn column in DataSource.Columns)
+
+            for (int i = 0; i < Columns.Count; i++)
             {
-                foreach (DesignerDataGridColumn dcol in Columns)
-                {
-                    if (dcol.Position.ColumnIndex == index)
-                    {
-                        if (column.ColumnName == dcol.BindingName)
-                        {
-                            DataColumn newColumn = new DataColumn() { ColumnName = column.ColumnName, DataType = column.DataType };
-                            data.Columns.Add(newColumn);
-                            index++;
-                            break;
-                        }
-                    }
-                }
+                data.Columns.Add(Columns[i].BindingName);
             }
+            //foreach (DataColumn column in ItemSource.Columns)
+            //{
+            //    foreach (DesignerDataGridColumn dcol in Columns)
+            //    {
+            //        if (dcol.Position.ColumnIndex == index)
+            //        {
+            //            if (column.ColumnName == dcol.BindingName)
+            //            {
+            //                DataColumn newColumn = new DataColumn() { ColumnName = column.ColumnName, DataType = column.DataType };
+            //                data.Columns.Add(newColumn);
+            //                index++;
+            //                break;
+            //            }
+            //        }
+            //    }
+            //}
+
+
+
+
             int beginRowIndex = PageIndex * RowCount;
-            int nextPageBeginRowIndex = (PageIndex + 1) * RowCount;
+            int endRowIndex = beginRowIndex + RowCount;
             for (int i = beginRowIndex;
-                i < (nextPageBeginRowIndex > DataSource.Rows.Count ? DataSource.Rows.Count : nextPageBeginRowIndex); i++)
+                i < (endRowIndex > (ItemSource.Rows.Count - 1) ? ItemSource.Rows.Count  : endRowIndex); i++)
             {
                 DataRow newRow = data.NewRow();
                 foreach (DataColumn col in data.Columns)
                 {
-                    newRow[col.ColumnName] = DataSource.Rows[i][col.ColumnName];
+                    if (ItemSource.Columns.Contains(col.ColumnName))
+                        newRow[col.ColumnName] = ItemSource.Rows[i][col.ColumnName];
                 }
                 data.Rows.Add(newRow);
             }
 
             PageIndex++;
 
-            if (PageIndex > PageCount)
+            if (PageIndex >= PageCount)
                 PageIndex = 0;
 
             return data;

@@ -105,7 +105,10 @@
     <Compile Include="BoardControl\BaseControl\Label.cs" />
     <Compile Include="BoardControl\BaseControl\Video.cs" />
     <Compile Include="BoardControl\BaseShape\Circle.cs" />
-    <Compile Include="BoardControl\BaseShape\ICandy.cs" />
+    <Compile Include="Control\BoardChart.xaml.cs">
+      <DependentUpon>BoardChart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Interface\ICandy.cs" />
     <Compile Include="BoardControl\BaseShape\Line.cs" />
     <Compile Include="BoardControl\BaseShape\Rect.cs" />
     <Compile Include="BoardControl\BaseShape\SpLine.cs" />
@@ -116,6 +119,9 @@
     <Compile Include="BoardControl\ChartControl\SpLineChart.cs" />
     <Compile Include="BoardControl\ChartControl\Table.cs" />
     <Compile Include="BoardControl\ControlWrapper.cs" />
+    <Compile Include="BoardViewer.xaml.cs">
+      <DependentUpon>BoardViewer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Control\BoardDataGrid.xaml.cs">
       <DependentUpon>BoardDataGrid.xaml</DependentUpon>
     </Compile>
@@ -131,7 +137,7 @@
     <Compile Include="Control\BoardTable.xaml.cs">
       <DependentUpon>BoardTable.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Control\IDesigner.cs" />
+    <Compile Include="Interface\IDesigner.cs" />
     <Compile Include="CustomPage\DesignerPage.xaml.cs">
       <DependentUpon>DesignerPage.xaml</DependentUpon>
     </Compile>
@@ -139,11 +145,12 @@
       <DependentUpon>HelpPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="DemoData\DataTableData.cs" />
-    <Compile Include="Model\Board\Board.cs" />
+    <Compile Include="Interface\IWorker.cs" />
     <Compile Include="Model\Container\Container.cs" />
-    <Compile Include="Model\Container\DesignerBoard.cs" />
+    <Compile Include="Model\Control\DesignerBoard.cs" />
     <Compile Include="Model\Container\DesignerPagePanel.cs" />
     <Compile Include="Model\Container\ScrollViewer.cs" />
+    <Compile Include="Model\Control\DesignerChart.cs" />
     <Compile Include="Model\Control\DesignerControl.cs" />
     <Compile Include="Model\Control\DesignerDataGridColumn.cs" />
     <Compile Include="Model\Control\DesignerImage.cs" />
@@ -187,6 +194,7 @@
     <Compile Include="SystemControl\Converter\LocationFormatConverter.cs" />
     <Compile Include="SystemControl\Converter\SetterValueConvert.cs" />
     <Compile Include="SystemControl\Converter\StringToImageSourceConverter.cs" />
+    <Compile Include="SystemControl\CopyHelper\CopyHelper.cs" />
     <Compile Include="SystemControl\Factory\CandyFactory.cs" />
     <Compile Include="SystemControl\Converter\PointMarginConverter.cs" />
     <Compile Include="SystemControl\DesignerItemBase\DesignerCanvas.cs" />
@@ -213,6 +221,14 @@
     <Compile Include="Control\BoardLabel.xaml.cs">
       <DependentUpon>BoardLabel.xaml</DependentUpon>
     </Compile>
+    <Page Include="BoardViewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\BoardChart.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Control\BoardDataGrid.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -568,7 +584,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Debug\Resources\" />
-    <Folder Include="Interface\" />
+    <Folder Include="Model\Board\" />
     <Folder Include="Model\TextBlock\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

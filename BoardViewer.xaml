@@ -1,0 +1,19 @@
+﻿<Window x:Class="BoardDesigner.BoardViewer"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+          xmlns:converter="clr-namespace:BoardDesigner.Converter"
+        Title="BoardViewer"       
+         WindowStyle="None" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <converter:DesignerBrushToBrushConverter x:Key="DesignerBrushToBrushConverter" />
+    </Window.Resources>
+    <Canvas x:Name="MainPanel" Opacity="{Binding Opacity}" Visibility="{Binding Visibility}">
+        
+        <Canvas.Background>
+            <MultiBinding Converter="{StaticResource DesignerBrushToBrushConverter}">
+                <Binding Path="Background.BackgoundImage"/>
+                <Binding Path="Background.ColorBrush"/>
+            </MultiBinding>
+        </Canvas.Background>
+    </Canvas>
+</Window>

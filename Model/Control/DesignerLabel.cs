@@ -9,10 +9,12 @@ using System.Windows.Media;
 
 namespace BoardDesigner.Model
 {
+    [Serializable]
     public class DesignerLabel:DesignerControl
     {
         public DesignerLabel() 
-        {            
+        {
+            this.Type = DesignerElementType.Label;
             Text = "请输入文本";
             Font = new DesignerFont();
             this.Size = new DesignerSize(150, 50);

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace BoardDesigner.Model
 {
+    [Serializable]
     public class DesignerDataSource:DesignerElement
     {
         [Browsable(false)]

@@ -1,4 +1,6 @@
 ﻿using BoardDesigner.DemoData;
+using BoardDesigner.Model;
+using BoardDesigner.UControl;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -14,31 +16,29 @@ namespace BoardDesigner.BoardControl.ChartControl
         public ControlWrapper GetCandy()
         {
             ControlWrapper cw = new ControlWrapper();
-            Chart chart = new Chart();
-            Title title = new Title();
-            title.Text = "图表标题";
-            Axis x = new Axis();
-            Axis y = new Axis();
-            chart.AxesX.Add(x);
-            chart.AxesY.Add(y);
-
-            y.Title = "额度";
-            x.Title = "月份";
-
-            DataSeries serie = new DataSeries();
-            foreach (DataRow r in DemoDataTableData.DataTableData2.Rows)
+            DesignerChart dc = new DesignerChart();
+            dc.Series[0].RenderAs = RenderAs.Spline;
+            dc.ChartAxesX[0].AxisMaximum = 12;
+            dc.ChartAxesX[0].AxisMinimum = 1;
+            dc.ChartAxesY[0].AxisMaximum = 1000;
+            dc.ChartAxesY[0].AxisMinimum = 500;
+            dc.ChartAxesX[0].Interval = 1;
+            dc.ChartAxesY[0].Interval = 100;
+            dc.ChartTitles[0].Text = "2015年销售额变化趋势";
+            List<DataPoint> dps = new List<DataPoint>();          
+            DataTable data = DemoDataTableData.Turnover;
+            for(int i=0;i<12;i++)
             {
-                DataPoint point = new DataPoint();
-                point.XValue = r["Month"];
-                point.YValue = Convert.ToDouble(r["Money"]);
-                serie.DataPoints.Add(point);
+                DataPoint dp = new DataPoint();
+                dp.XValue = data.Rows[i]["Month"];
+                dp.YValue = Convert.ToDouble(data.Rows[i]["Turnover"]);
+                dps.Add(dp);
             }
-
-            serie.RenderAs = RenderAs.Spline;
-            chart.Series.Add(serie);
-
+            
+            dc.Series[0].DataPoints = new DataPointCollection(dps);
+            BoardChart chart = new BoardChart(dc);
             cw.Protect(chart);
-            chart.IsHitTestVisible = false;
+            
             return cw;
         }
     }

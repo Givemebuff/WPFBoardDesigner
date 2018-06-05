@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Media;
 using Visifire.Charts;
 using Visifire.Commons;
@@ -22,7 +23,8 @@ namespace BoardDesigner.Model
             this.ChartAxesX.Add(new DesignerChartAxis());
             this.ChartAxesY = new ObservableCollection<DesignerChartAxis>();
             this.ChartAxesY.Add(new DesignerChartAxis());
-
+            this.Series = new ObservableCollection<DesignerChartDataSeries>();
+            this.Series.Add(new DesignerChartDataSeries());
         }
         #region 标题
         [Browsable(false)]
@@ -72,10 +74,10 @@ namespace BoardDesigner.Model
         [Description("设置Y轴")]
         public ObservableCollection<DesignerChartAxis> ChartAxesY
         {
-            get { return this._chartAxesX; }
+            get { return this._chartAxesY; }
             set
             {
-                this._chartAxesX = value;
+                this._chartAxesY = value;
                 OnPropertyChanged("ChartAxesY");
             }
         }
@@ -84,12 +86,23 @@ namespace BoardDesigner.Model
 
         #region 数据
 
-        #region 数据源
-        #endregion
-
         #region 数据线
 
+        [Browsable(false)]
+        public ObservableCollection<DesignerChartDataSeries> _series { get; set; }
 
+        [Category("图表数据")]
+        [DisplayName("数据线集合")]
+        [Description("数据线集合")]
+        public ObservableCollection<DesignerChartDataSeries> Series
+        {
+            get { return this._series; }
+            set
+            {
+                this._series = value;
+                OnPropertyChanged("Series");
+            }
+        }
 
         #endregion
 
@@ -103,13 +116,14 @@ namespace BoardDesigner.Model
         {
             this.Text = "图表标题";
             this.TitleFont = new DesignerFont();
-            this.TitleBorder = new DesignerBorder() { BorderThickness = new System.Windows.Thickness(1) };
+            this.TitleBorder = new DesignerBorder() { BorderThickness = new System.Windows.Thickness(0) };
         }
 
         [Browsable(false)]
         public DesignerFont _titleFont
         {
-            get; set;
+            get;
+            set;
         }
 
         [Category("基础")]
@@ -150,7 +164,8 @@ namespace BoardDesigner.Model
         [Browsable(false)]
         public DesignerBorder _titleBorder
         {
-            get; set;
+            get;
+            set;
         }
         [Category("基础")]
         [DisplayName("标题边框")]
@@ -167,7 +182,8 @@ namespace BoardDesigner.Model
         [Browsable(false)]
         public Brush _titleBackground
         {
-            get; set;
+            get;
+            set;
         }
         [Category("基础")]
         [DisplayName("标题背景")]
@@ -201,11 +217,12 @@ namespace BoardDesigner.Model
             this.IncludeZero = true;
         }
 
-        #region 轴类型 
+        #region 轴类型
         [Browsable(false)]
         public AxisTypes _axisType
         {
-            get; set;
+            get;
+            set;
         }
         [Category("轴")]
         [DisplayName("轴类型")]
@@ -225,7 +242,8 @@ namespace BoardDesigner.Model
         [Browsable(false)]
         public Brush _lineColor
         {
-            get; set;
+            get;
+            set;
         }
         [Category("轴")]
         [DisplayName("轴颜色")]
@@ -243,7 +261,8 @@ namespace BoardDesigner.Model
         [Browsable(false)]
         public LineStyles _lineStyle
         {
-            get; set;
+            get;
+            set;
         }
         [Category("轴")]
         [DisplayName("轴线类型")]
@@ -261,7 +280,8 @@ namespace BoardDesigner.Model
         [Browsable(false)]
         public double _lineThickness
         {
-            get; set;
+            get;
+            set;
         }
         [Category("轴")]
         [DisplayName("轴线粗细")]
@@ -352,7 +372,8 @@ namespace BoardDesigner.Model
         [Browsable(false)]
         public bool _includeZero
         {
-            get; set;
+            get;
+            set;
         }
         [Category("轴")]
         [DisplayName("包括零点")]
@@ -368,6 +389,9 @@ namespace BoardDesigner.Model
         }
 
         public string _suffix { get; set; }
+        [Category("轴")]
+        [DisplayName("修饰字符")]
+        [Description("单位之类的")]
         public string Suffix
         {
             get
@@ -382,6 +406,9 @@ namespace BoardDesigner.Model
         }
 
         public bool _logarithmic { get; set; }
+        [Category("轴")]
+        [DisplayName("对数形式")]
+        [Description("对数形式")]
         public bool Logarithmic
         {
             get { return this._logarithmic; }
@@ -415,15 +442,65 @@ namespace BoardDesigner.Model
 
         #endregion
     }
-
     public class DesignerChartDataSeries : DesignerVisualElement
     {
-
-        #region 基础
+        public DesignerChartDataSeries()
+        {
+            this.AutoFitToPlotArea = false;
+            this.AxisXType = AxisTypes.Primary;
+            this.AxisYType = AxisTypes.Primary;
+            this.SeriesBorder = new DesignerBorder() { BorderThickness = new Thickness(0) };
+            this.BorderStyle = BorderStyles.Solid;
+            this.Color = new SolidColorBrush(System.Windows.Media.Color.FromRgb(74, 134, 232));
+            this.DataPoints = new DataPointCollection();
+            this.HighLightColor = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 255, 255));
+            this.IncludeDataPointsInLegend = false;
+            this.IncludePercentageInLegend = false;
+            this.IncludeYValueInLegend = false;
+            this.LabelAngle = double.NaN;
+            this.LabelBackground = null;
+            this.LabelEnabled = false;
+            this.LabelFont = new DesignerFont() { FontFamily = new FontFamily("Verdana"), FontSize = 10.2 };
+            this.LabelLineColor = new SolidColorBrush(System.Windows.Media.Color.FromRgb(128, 128, 128));
+            this.LabelLineEnabled = false;
+            this.LabelLineStyle = LineStyles.Solid;
+            this.LabelLineThickness = 0;
+            this.LabelStyle = LabelStyles.OutSide;
+            this.LabelText = "#YValue";
+            this.SeriesName = "Series";
+            this.LegendText = "";
+            this.LightingEnabled = true;
+            this.LightWeight = false;
+            this.LineCap = PenLineCap.Round;
+            this.LineFill = null;
+            this.LineStyle = LineStyles.Dashed;
+            this.LineTension = 0.5;
+            this.LineThickness = 2;
+            this.MarkerBorderColor = new SolidColorBrush(System.Windows.Media.Color.FromRgb(23, 145, 50));
+            this.MarkerBorderThickness = new Thickness(1);
+            this.MarkerColor = new SolidColorBrush(System.Windows.Media.Color.FromRgb(245, 226, 164));
+            this.MarkerEnabled = false;
+            this.MarkerScale = 1;
+            this.MarkerSize = 4;
+            this.MarkerType = MarkerTypes.Circle;
+            this.RadiusX = new CornerRadius(0);
+            this.RadiusY = new CornerRadius(0);
+            this.RenderAs = Visifire.Charts.RenderAs.Line;
+            this.ShadowEnabled = true;
+            this.ShowInLegend = true;
+            this.ZIndex = 0;
+            this.XValueType = ChartValueTypes.Auto;
+            this.LegendMarkerColor = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255,0,0));
+        }
 
         #region 颜色
+
+        [Browsable(false)]
         public Brush _color { set; get; }
 
+        [Category("表现")]
+        [DisplayName("呈现颜色")]
+        [Description("颜色")]
         public Brush Color
         {
             set
@@ -434,16 +511,37 @@ namespace BoardDesigner.Model
             get { return this._color; }
         }
 
-        public Brush _highLightColor { get; set; }
-        public Brush HighLightColor
+        #region Radius
+
+         [Browsable(false)]
+        public System.Windows.CornerRadius _radiusX { set; get; }
+
+        [Category("表现")]
+        [DisplayName("RadiusX")]
+        [Description("RadiusX")]
+        public System.Windows.CornerRadius RadiusX
         {
-            get { return this._highLightColor; }
-            set
-            {
-                this._highLightColor = value;
-                OnPropertyChanged("HighLightColor");
-            }
+            set { this._radiusX = value; OnPropertyChanged("RadiusX"); }
+            get { return this._radiusX; }
         }
+
+         [Browsable(false)]
+        public System.Windows.CornerRadius _radiusY { set; get; }
+
+        [Category("表现")]
+        [DisplayName("RadiusY")]
+        [Description("RadiusY")]
+        public System.Windows.CornerRadius RadiusY
+        {
+            set { this._radiusY = value; OnPropertyChanged("RadiusY"); }
+            get { return this._radiusY; }
+        }
+
+
+
+
+        #endregion
+
         #endregion
 
         #region 边框
@@ -468,10 +566,16 @@ namespace BoardDesigner.Model
             }
         }
 
+         [Browsable(false)]
         public Visifire.Commons.BorderStyles _borderStyle
         {
-            get; set;
+            get;
+            set;
         }
+
+        [Category("线边框")]
+        [DisplayName("线边框线条类型")]
+        [Description("线边框线条类型")]
         public Visifire.Commons.BorderStyles BorderStyle
         {
             get { return this._borderStyle; }
@@ -486,8 +590,11 @@ namespace BoardDesigner.Model
         #endregion
 
         #region Label
-
+         [Browsable(false)]
         public DesignerFont _labelFont { get; set; }
+        [Category("标签")]
+        [DisplayName("标签字体")]
+        [Description("标签字体")]
         public DesignerFont LabelFont
         {
             get { return this._labelFont; }
@@ -497,8 +604,11 @@ namespace BoardDesigner.Model
                 OnPropertyChanged("LabelFont");
             }
         }
-
+         [Browsable(false)]
         public double _labelAngle { get; set; }
+        [Category("标签")]
+        [DisplayName("标签角度")]
+        [Description("标签角度")]
         public double LabelAngle
         {
             get { return this._labelAngle; }
@@ -509,8 +619,11 @@ namespace BoardDesigner.Model
             }
         }
 
-
+         [Browsable(false)]
         public Brush _labelBackground { get; set; }
+        [Category("标签")]
+        [DisplayName("标签背景")]
+        [Description("标签背景")]
         public Brush LabelBackground
         {
             get { return this._labelBackground; }
@@ -520,8 +633,11 @@ namespace BoardDesigner.Model
                 OnPropertyChanged("LabelBackground");
             }
         }
-
+         [Browsable(false)]
         public string _labelText { get; set; }
+        [Category("标签")]
+        [DisplayName("标签文本")]
+        [Description("标签文本")]
         public string LabelText
         {
             get { return this._labelText; }
@@ -531,8 +647,11 @@ namespace BoardDesigner.Model
                 OnPropertyChanged("LabelText");
             }
         }
-
+         [Browsable(false)]
         public LabelStyles _labelStyle { get; set; }
+        [Category("标签")]
+        [DisplayName("标签类型")]
+        [Description("标签类型")]
         public LabelStyles LabelStyle
         {
             get { return this._labelStyle; }
@@ -542,8 +661,11 @@ namespace BoardDesigner.Model
                 OnPropertyChanged("LabelStyle");
             }
         }
-
+         [Browsable(false)]
         public bool _labelEnabled { get; set; }
+        [Category("标签")]
+        [DisplayName("呈现标签")]
+        [Description("呈现标签")]
         public bool LabelEnabled
         {
             get { return this._labelEnabled; }
@@ -553,7 +675,11 @@ namespace BoardDesigner.Model
 
 
         #region LabelLine
+         [Browsable(false)]
         public Brush _labelLineColor { get; set; }
+        [Category("标签线")]
+        [DisplayName("标签线颜色")]
+        [Description("标签线颜色")]
         public Brush LabelLineColor
         {
             get { return this._labelLineColor; }
@@ -563,8 +689,11 @@ namespace BoardDesigner.Model
                 OnPropertyChanged("LabelLineColor");
             }
         }
-
+         [Browsable(false)]
         public LineStyles _labelLineStyle { get; set; }
+        [Category("标签线")]
+        [DisplayName("标签线类型")]
+        [Description("标签线类型")]
         public LineStyles LabelLineStyle
         {
             get { return this._labelLineStyle; }
@@ -574,8 +703,11 @@ namespace BoardDesigner.Model
                 OnPropertyChanged("OnPropertyChanged");
             }
         }
-
+         [Browsable(false)]
         public double _labelLineThickness { get; set; }
+        [Category("标签线")]
+        [DisplayName("标签线粗细")]
+        [Description("标签线粗细")]
         public double LabelLineThickness
         {
             get { return this._labelLineThickness; }
@@ -585,8 +717,11 @@ namespace BoardDesigner.Model
                 OnPropertyChanged("LabelLineThickness");
             }
         }
-
+         [Browsable(false)]
         public bool _labelLineEnabled { get; set; }
+        [Category("标签线")]
+        [DisplayName("呈现标签线")]
+        [Description("呈现标签线")]
         public bool LabelLineEnabled
         {
             get { return this._labelLineEnabled; }
@@ -600,24 +735,55 @@ namespace BoardDesigner.Model
 
         #endregion
 
-        #region Legend 
+        #region Legend
+         [Browsable(false)]
+        public string _seriesName { set; get; }
+        [Category("图例")]
+        [DisplayName("数据项名称")]
+        [Description("数据项名称")]
+        public string SeriesName
+        {
+            set { this._seriesName = value; OnPropertyChanged("SeriesName"); }
+            get { return this._seriesName; }
+        }
+         [Browsable(false)]
+        public bool _showInLegend { set; get; }
+        [Category("图例")]
+        [DisplayName("呈现图例")]
+        [Description("在图例中呈现")]
+        public bool ShowInLegend
+        {
+            set { this._showInLegend = value; OnPropertyChanged("ShowInLegend"); }
+            get { return this._showInLegend; }
+        }
 
 
+         [Browsable(false)]
         public string _legendText { get; set; }
+        [Category("图例")]
+        [DisplayName("图例内文本")]
+        [Description("图例内文本")]
         public string LegendText
         {
             get { return this._legendText; }
             set { this._legendText = value; OnPropertyChanged("LegendText"); }
         }
 
+         [Browsable(false)]
         public Brush _legendMarkerColor { get; set; }
+        [Category("图例")]
+        [DisplayName("图例标记颜色")]
+        [Description("图例标记颜色")]
         public Brush LegendMarkerColor
         {
             get { return this._legendMarkerColor; }
             set { this._legendMarkerColor = value; OnPropertyChanged("LegendMarkerColor"); }
         }
-
+         [Browsable(false)]
         public MarkerTypes _legendMarkerType { get; set; }
+        [Category("图例")]
+        [DisplayName("图例标记类型")]
+        [Description("图例标记类型")]
         public MarkerTypes LegendMarkerType
         {
             get { return this._legendMarkerType; }
@@ -626,18 +792,263 @@ namespace BoardDesigner.Model
 
         #endregion
 
+        #region Light
+
+         [Browsable(false)]
+        public Brush _highLightColor { get; set; }
+        [Category("高亮")]
+        [DisplayName("高亮颜色")]
+        [Description("高亮颜色")]
+        public Brush HighLightColor
+        {
+            get { return this._highLightColor; }
+            set
+            {
+                this._highLightColor = value;
+                OnPropertyChanged("HighLightColor");
+            }
+        }
+
+         [Browsable(false)]
+        public bool _lightingEnabled { set; get; }
+        [Category("高亮")]
+        [DisplayName("呈现高亮")]
+        [Description("呈现高亮")]
+        public bool LightingEnabled
+        {
+            set { this._lightingEnabled = value; OnPropertyChanged("LightingEnabled"); }
+            get { return this._lightingEnabled; }
+        }
+
+         [Browsable(false)]
+        public bool _lightWeight { get; set; }
+
+        [Category("高亮")]
+        [DisplayName("LightWeight")]
+        [Description("LightWeight")]
+        public bool LightWeight
+        {
+            get { return this._lightWeight; }
+            set { this._lightWeight = value; OnPropertyChanged("LightWeight"); }
+        }
+
+
         #endregion
 
+        #region Line
+
+         [Browsable(false)]
+        public PenLineCap _lineCap { set; get; }
+        [Category("线条")]
+        [DisplayName("LineCap")]
+        [Description("LineCap")]
+        public PenLineCap LineCap
+        {
+            set { this._lineCap = value; OnPropertyChanged("LineCap"); }
+            get { return this._lineCap; }
+        }
+
+         [Browsable(false)]
+        public Brush _lineFill { set; get; }
+        [Category("线条")]
+        [DisplayName("LineFill")]
+        [Description("LineFill")]
+        public Brush LineFill
+        {
+            set { this._lineFill = value; OnPropertyChanged("LineFill"); }
+            get { return this._lineFill; }
+        }
+
+         [Browsable(false)]
+        public LineStyles _lineStyle { set; get; }
+        [Category("线条")]
+        [DisplayName("LineStyle")]
+        [Description("LineStyle")]
+        public LineStyles LineStyle
+        {
+            set { this._lineStyle = value; OnPropertyChanged("LineStyle"); }
+            get { return this._lineStyle; }
+        }
+
+         [Browsable(false)]
+        public double _lineTension { set; get; }
+        [Category("线条")]
+        [DisplayName("LineTension")]
+        [Description("LineTension")]
+        public double LineTension
+        {
+            set { this._lineTension = value; OnPropertyChanged("LineTension"); }
+            get { return this._lineTension; }
+        }
+
+
+         [Browsable(false)]
+        public double _lineThickness { set; get; }
+        [Category("线条")]
+        [DisplayName("LineThickness")]
+        [Description("LineThickness")]
+        public double LineThickness
+        {
+            set { this._lineThickness = value; OnPropertyChanged("LineThickness"); }
+            get { return this._lineThickness; }
+        }
+
+        #endregion
+
+        #region Marker
+
+         [Browsable(false)]
+        public System.Windows.Media.Brush _markerBorderColor { set; get; }
+        [Category("标记")]
+        [DisplayName("标记边框颜色")]
+        [Description("标记边框颜色")]
+        public System.Windows.Media.Brush MarkerBorderColor
+        {
+            set { this._markerBorderColor = value; OnPropertyChanged("MarkerBorderColor"); }
+            get { return this._markerBorderColor; }
+        }
+
+         [Browsable(false)]
+        public Thickness _markerBorderThickness { set; get; }
+        [Category("标记")]
+        [DisplayName("标记边框粗细")]
+        [Description("标记边框粗细")]
+        public Thickness MarkerBorderThickness
+        {
+            set { this._markerBorderThickness = value; OnPropertyChanged("MarkerBorderThickness"); }
+            get { return this._markerBorderThickness; }
+        }
+
+         [Browsable(false)]
+        public System.Windows.Media.Brush _markerColor { set; get; }
+        [Category("标记")]
+        [DisplayName("标记颜色")]
+        [Description("标记颜色")]
+        public System.Windows.Media.Brush MarkerColor
+        {
+            set { this._markerColor = value; OnPropertyChanged("MarkerColor"); }
+            get { return this._markerColor; }
+        }
+
+         [Browsable(false)]
+        public bool _markerEnabled { set; get; }
+        [Category("标记")]
+        [DisplayName("呈现标记")]
+        [Description("呈现标记")]
+        public bool MarkerEnabled
+        {
+            set { this._markerEnabled = value; OnPropertyChanged("MarkerEnabled"); }
+            get { return this._markerEnabled; }
+        }
+
+        [Browsable(false)]
+        public double _markerScale { set; get; }
+        [Category("标记")]
+        [DisplayName("MarkerScale")]
+        [Description("MarkerScale")]
+        public double MarkerScale
+        {
+            set { this._markerScale = value; OnPropertyChanged("MarkerScale"); }
+            get { return this._markerScale; }
+        }
+
+         [Browsable(false)]
+        public double _markerSize { set; get; }
+
+        [Category("标记")]
+        [DisplayName("标记大小")]
+        [Description("标记大小")]
+        public double MarkerSize
+        {
+            set { this._markerSize = value; OnPropertyChanged("MarkerSize"); }
+            get { return this._markerSize; }
+        }
+
+         [Browsable(false)]
+        public MarkerTypes _markerType { set; get; }
+
+        [Category("标记")]
+        [DisplayName("标记类型")]
+        [Description("标记类型")]
+        public MarkerTypes MarkerType
+        {
+            set { this._markerType = value; OnPropertyChanged("MarkerType"); }
+            get { return this._markerType; }
+        }
+
+
+
+        #endregion
+
+    
+
+        #region 表现形式
+         [Browsable(false)]
+        public RenderAs _renderAs { set; get; }
+
+        [Category("表现")]
+        [DisplayName("图表类型")]
+        [Description("图表类型")]
+        public RenderAs RenderAs
+        {
+            set { this._renderAs = value; OnPropertyChanged("RenderAs"); }
+            get { return this._renderAs; }
+        }
+
+        #region 展现层次
+         [Browsable(false)]
+        public int _zIndex { set; get; }
+
+        [Category("表现")]
+        [DisplayName("层")]
+        [Description("层")]
+        public int ZIndex
+        {
+            set { this._zIndex = value; OnPropertyChanged("ZIndex"); }
+            get { return this._zIndex; }
+        }
+
+        #endregion
+
+        #endregion
+
+        #region 阴影
+         [Browsable(false)]
+        public bool _shadowEnabled { set; get; }
+
+        [Category("表现")]
+        [DisplayName("呈现阴影")]
+        [Description("呈现阴影")]
+        public bool ShadowEnabled
+        {
+            set { this._shadowEnabled = value; OnPropertyChanged("ShadowEnabled"); }
+            get { return this._shadowEnabled; }
+        }
+
+
+
+        #endregion
 
         #region 数据
+
+         [Browsable(false)]
         public DesignerDataSource _dataSource { get; set; }
+
+
+        [Category("数据")]
+        [DisplayName("数据源")]
+        [Description("数据源")]
         public DesignerDataSource DataSource
         {
             get { return this._dataSource; }
             set { this._dataSource = value; OnPropertyChanged("DataSource"); }
         }
 
+         [Browsable(false)]
         public DataPointCollection _dataPoints { set; get; }
+        [Category("数据")]
+        [DisplayName("数据点集合")]
+        [Description("数据点集合")]
         public DataPointCollection DataPoints
         {
             set
@@ -651,8 +1062,33 @@ namespace BoardDesigner.Model
             }
         }
 
+        #region 数据种类
+         [Browsable(false)]
+        public ChartValueTypes _xValueType { set; get; }
+
+        [Category("数据")]
+        [DisplayName("XValueType")]
+        [Description("XValueType")]
+        public ChartValueTypes XValueType
+        {
+            set
+            {
+                this._xValueType = value;
+                OnPropertyChanged("XValueType");
+            }
+            get
+            {
+                return this._xValueType;
+            }
+        }
+
+
+
         #endregion
 
+
+
+        #endregion
 
         #region 选项
 
@@ -663,7 +1099,8 @@ namespace BoardDesigner.Model
         [Browsable(false)]
         public AxisTypes _axisXType
         {
-            get; set;
+            get;
+            set;
         }
         [Category("轴")]
         [DisplayName("依赖X轴")]
@@ -681,7 +1118,8 @@ namespace BoardDesigner.Model
         [Browsable(false)]
         public AxisTypes _axisYType
         {
-            get; set;
+            get;
+            set;
         }
         [Category("轴")]
         [DisplayName("依赖Y轴")]
@@ -704,13 +1142,15 @@ namespace BoardDesigner.Model
         #region 拓展选项
 
         #region 自动填充区域
-
+         [Browsable(false)]
         public bool _autoFitToPlotArea
         {
             set;
             get;
         }
-
+        [Category("其他")]
+        [DisplayName("自动填充到区域")]
+        [Description("自动填充到区域")]
         public bool AutoFitToPlotArea
         {
             get { return this._autoFitToPlotArea; }
@@ -724,7 +1164,7 @@ namespace BoardDesigner.Model
         #endregion
 
         #region Legend内容
-
+         [Browsable(false)]
         /// <summary>
         /// 包含数据点
         /// </summary>
@@ -733,6 +1173,9 @@ namespace BoardDesigner.Model
             set;
             get;
         }
+        [Category("图例")]
+        [DisplayName("图例包含数据点")]
+        [Description("图例包含数据点")]
 
         public bool IncludeDataPointsInLegend
         {
@@ -743,6 +1186,7 @@ namespace BoardDesigner.Model
                 OnPropertyChanged("IncludeDataPointsInLegend");
             }
         }
+         [Browsable(false)]
         /// <summary>
         /// 包含百分比
         /// </summary>
@@ -751,7 +1195,9 @@ namespace BoardDesigner.Model
             set;
             get;
         }
-
+        [Category("图例")]
+        [DisplayName("图例包含百分比")]
+        [Description("图例包含百分比")]
         public bool IncludePercentageInLegend
         {
             get { return this._includePercentageInLegend; }
@@ -761,7 +1207,7 @@ namespace BoardDesigner.Model
                 OnPropertyChanged("IncludePercentageInLegend");
             }
         }
-
+         [Browsable(false)]
         /// <summary>
         /// 包含值
         /// </summary>
@@ -770,14 +1216,16 @@ namespace BoardDesigner.Model
             set;
             get;
         }
-
+        [Category("图例")]
+        [DisplayName("图例包含值")]
+        [Description("图例包含值")]
         public bool IncludeYValueInLegend
         {
             get { return this._includeYValueInLegend; }
             set
             {
                 this._includeYValueInLegend = value;
-                OnPropertyChanged("IncludeYValueInLegend ");
+                OnPropertyChanged("IncludeYValueInLegend");
             }
         }
 
@@ -793,7 +1241,6 @@ namespace BoardDesigner.Model
 
 
         #endregion
-
 
     }
 

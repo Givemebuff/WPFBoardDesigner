@@ -10,8 +10,9 @@
     <UserControl.Resources>
         <converter:DesignerBrushToBrushConverter x:Key="DesignerBrushToBrushConverter" />
     </UserControl.Resources>
-    
-    <chart:Chart Width="{Binding Size.Width}" Height="{Binding Size.Height}"
+    <chart:Chart 
+        x:Name="uChart"
+        Width="{Binding Size.Width}" Height="{Binding Size.Height}"
             BorderThickness="{Binding Border.BorderThickness}"  BorderBrush="{Binding Border.BorderBrush}" 
             CornerRadius="{Binding Border.CornerRadius}"
             Visibility="{Binding Visibility}" Margin="{Binding Position.Margin}" 
@@ -22,15 +23,6 @@
                 <Binding Path="Background.ColorBrush"/>
             </MultiBinding>
         </chart:Chart.Background>
-        <chart:Chart.Titles>           
-        </chart:Chart.Titles>
-        <chart:Chart.AxesY>
-            <chart:Axis LineColor="#FF61F1FF" AxisType="Primary" Suffix="%" ValueFormatString="" Logarithmic="{Binding PrimaryYIsLogarithmic}" Interval="{Binding PrimaryYInterval}"/>
-            <chart:Axis LineColor="#FF61F1FF" AxisType="Secondary" Suffix="%" ValueFormatString="" Logarithmic="True" Interval="1"/>
-        </chart:Chart.AxesY>
-        <chart:Chart.AxesX>
-            <chart:Axis LineColor="#FF61F1FF" AxisType="Primary" Suffix="{Binding PrimaryAxisXShffix}" ValueFormatString="" Logarithmic="True" Interval="1"/>
-        </chart:Chart.AxesX>
     </chart:Chart>        
   
 

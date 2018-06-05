@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Git\WPFBoardDesigner\obj\Debug\
+G:\Git\WPFBoardDesigner\obj\Debug\
 BoardDesigner
 none
 false
 DEBUG;TRACE
-C:\Git\WPFBoardDesigner\App.xaml
+G:\Git\WPFBoardDesigner\App.xaml
 36-832899670
 51001589770
 1061382625807
-42-548112745
+42-1160016154
 BoardViewer.xaml;Control\BoardChart.xaml;Control\BoardDataGrid.xaml;Control\BoardDataGridColumn.xaml;Control\BoardDataGridContentTexkBlock.xaml;Control\BoardImage.xaml;Control\BoardTable.xaml;CustomPage\HelpPage.xaml;MainWindow.xaml;CustomPage\DesignerPage.xaml;ResourceDictionaries\AngleInfoChrome.xaml;ResourceDictionaries\Brushes.xaml;ResourceDictionaries\DataGrid.xaml;ResourceDictionaries\DesignerItem.xaml;ResourceDictionaries\Expander.xaml;ResourceDictionaries\LineChrome.xaml;ResourceDictionaries\LineDecorator.xaml;ResourceDictionaries\LocationInfoChrome.xaml;ResourceDictionaries\OverViewMapxaml.xaml;ResourceDictionaries\ResizeableChrome.xaml;ResourceDictionaries\ResizeableDecorator.xaml;ResourceDictionaries\RotateableChrome.xaml;ResourceDictionaries\RotateableDecorator.xaml;ResourceDictionaries\SizeInfoChrome.xaml;ResourceDictionaries\Slider.xaml;ResourceDictionaries\ToolBar.xaml;ResourceDictionaries\ToolBox.xaml;ResourceDictionaries\ToolBox\BaseControl.xaml;ResourceDictionaries\ToolBox\BaseShape.xaml;ResourceDictionaries\ToolBox\Chart.xaml;ResourceDictionaries\ToolBox\Expand.xaml;ResourceDictionaries\TransformOriginPointChrome.xaml;ResourceDictionaries\TransformOriginPointDecorator.xaml;roundGridControl.xaml;Test.xaml;Control\BoardLabel.xaml;
 
 False

@@ -233,3 +233,5 @@ C:\Git\WPFBoardDesigner\obj\Debug\BoardViewer.g.cs
 C:\Git\WPFBoardDesigner\obj\Debug\Control\BoardChart.g.cs
 C:\Git\WPFBoardDesigner\obj\Debug\BoardViewer.baml
 C:\Git\WPFBoardDesigner\obj\Debug\Control\BoardChart.baml
+G:\Git\WPFBoardDesigner\obj\Debug\Control\BoardChart.g.cs
+G:\Git\WPFBoardDesigner\obj\Debug\Control\BoardChart.baml

@@ -16,7 +16,10 @@ namespace BoardDesigner.BoardControl.ChartControl
         public ControlWrapper GetCandy()
         {
             ControlWrapper cw = new ControlWrapper();
-            BoardChart chart = new BoardChart();         
+            DesignerChart dc = new DesignerChart();
+            dc.Series[0].RenderAs = RenderAs.Column;
+            BoardChart chart = new BoardChart(dc);
+            cw.Protect(chart);
          
             return cw;
         }

@@ -85,5 +85,32 @@ namespace BoardDesigner.DemoData
            }
            
         }
+
+        public static DataTable Turnover
+        {
+            get 
+            {
+                DataTable data = new DataTable();
+                data.Columns.Add("Month");
+               data.Columns.Add("Turnover");
+               data.Columns.Add("Year");
+               Random rd = new Random();
+               for (int j = 0; j < 3; j++)
+               {
+                   
+                   for (int i = 0; i < 12; i++)
+                   {
+                       DataRow nr = data.NewRow();
+                       nr["Year"] = 2015 + j;
+                       nr["Month"] = i + 1;
+                       nr["Turnover"] = rd.Next(500, 1000);
+                       data.Rows.Add(nr);
+                   }
+                  
+               }
+                  
+                return data;
+            }
+        }
     }
 }

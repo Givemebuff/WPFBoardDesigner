@@ -17,6 +17,7 @@ namespace BoardDesigner.Model
         { 
             this.Type = DesignerElementType.Control;
             this.Background = new DesignerBrush(Color.FromArgb(0,255,255,255));
+
         }
 
 

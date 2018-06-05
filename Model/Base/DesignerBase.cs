@@ -27,7 +27,8 @@ namespace BoardDesigner.Model
         GIF =15,
         Video = 16,
         Table =17,
-        Label = 18
+        Label = 18,
+        Chart = 19
 
     }
     [Serializable]

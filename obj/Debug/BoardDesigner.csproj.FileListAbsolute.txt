@@ -227,3 +227,9 @@ G:\Git\WPFBoardDesigner\obj\Debug\BoardDesigner.Properties.Resources.resources
 G:\Git\WPFBoardDesigner\obj\Debug\BoardDesigner.csproj.GenerateResource.Cache
 G:\Git\WPFBoardDesigner\obj\Debug\BoardDesigner.exe.licenses
 G:\Git\WPFBoardDesigner\obj\Debug\BoardDesigner.exe
+C:\Git\WPFBoardDesigner\bin\Debug\Indusfo.Common.dll
+C:\Git\WPFBoardDesigner\bin\Debug\Indusfo.DataAccessLayer.dll
+C:\Git\WPFBoardDesigner\obj\Debug\BoardViewer.g.cs
+C:\Git\WPFBoardDesigner\obj\Debug\Control\BoardChart.g.cs
+C:\Git\WPFBoardDesigner\obj\Debug\BoardViewer.baml
+C:\Git\WPFBoardDesigner\obj\Debug\Control\BoardChart.baml

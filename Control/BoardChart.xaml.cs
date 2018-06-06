@@ -1,4 +1,5 @@
-﻿using BoardDesigner.Interface;
+﻿using BoardDesigner.Converter;
+using BoardDesigner.Interface;
 using BoardDesigner.Model;
 using System;
 using System.Collections.Generic;
@@ -353,58 +354,62 @@ namespace BoardDesigner.UControl
 
         void AddSeries(DesignerChartDataSeries newSeries)
         {
+            newSeries.DataPoints.CollectionChanged += DataPoints_CollectionChanged;
             DataSeries s = new Visifire.Charts.DataSeries();
+            //线属性
             s.Uid = newSeries.ID.ToString();
+            s.SetBinding(DataSeries.AutoFitToPlotAreaProperty, new Binding("AutoFitToPlotArea") { Source = newSeries, Mode = BindingMode.OneWay });
+            s.SetBinding(DataSeries.AxisXTypeProperty, new Binding("AxisXType") { Source = newSeries, Mode = BindingMode.OneWay });
+            s.SetBinding(DataSeries.AxisYTypeProperty, new Binding("AxisYType") { Source = newSeries, Mode = BindingMode.OneWay });
+            s.SetBinding(DataSeries.BorderColorProperty, new Binding("SeriesBorder.BorderBrush") { Source = newSeries, Mode = BindingMode.OneWay });
+            s.SetBinding(DataSeries.BorderStyleProperty, new Binding("BorderStyle") { Source = newSeries, Mode = BindingMode.OneWay });
+            s.SetBinding(DataSeries.BorderThicknessProperty, new Binding("SeriesBorder.BorderThickness") { Source = newSeries, Mode = BindingMode.OneWay });
+            s.SetBinding(DataSeries.ColorProperty, new Binding("Color") { Source = newSeries, Mode = BindingMode.OneWay });
+            s.SetBinding(DataSeries.DataPointsProperty, new Binding("DataPoints") { Source = newSeries,Converter = (IValueConverter)(new DesignerDataPointCollectionToVisifireDataPointCollectionConverter())});
+            s.SetBinding(DataSeries.HighLightColorProperty, new Binding("HighLightColor") { Source = newSeries, Mode = BindingMode.OneWay });
+            s.SetBinding(DataSeries.IncludeDataPointsInLegendProperty, new Binding("IncludeDataPointsInLegend") { Source = newSeries, Mode = BindingMode.OneWay });
+            s.SetBinding(DataSeries.IncludePercentageInLegendProperty, new Binding("IncludePercentageInLegend") { Source = newSeries, Mode = BindingMode.OneWay });
+            s.SetBinding(DataSeries.IncludeYValueInLegendProperty, new Binding("IncludeYValueInLegend") { Source = newSeries, Mode = BindingMode.OneWay });
+            s.SetBinding(DataSeries.LabelBackgroundProperty, new Binding("LabelBackground") { Source = newSeries, Mode = BindingMode.OneWay });
+            s.SetBinding(DataSeries.LabelEnabledProperty, new Binding("LabelEnabled") { Source = newSeries, Mode = BindingMode.OneWay });
+            s.SetBinding(DataSeries.LabelFontColorProperty, new Binding("LabelFont.FontColor") { Source = newSeries, Mode = BindingMode.OneWay });
+            s.SetBinding(DataSeries.LabelFontFamilyProperty, new Binding("LabelFont.FontFamily") { Source = newSeries, Mode = BindingMode.OneWay });
+            s.SetBinding(DataSeries.LabelFontSizeProperty, new Binding("LabelFont.FontSize") { Source = newSeries, Mode = BindingMode.OneWay });
+            s.SetBinding(DataSeries.LabelFontStyleProperty, new Binding("LabelFont.FontStyle") { Source = newSeries, Mode = BindingMode.OneWay });
+            s.SetBinding(DataSeries.LabelFontWeightProperty, new Binding("LabelFont.FontWeight") { Source = newSeries, Mode = BindingMode.OneWay });
+            s.SetBinding(DataSeries.LabelLineColorProperty, new Binding("LabelLineColor") { Source = newSeries, Mode = BindingMode.OneWay });
+            s.SetBinding(DataSeries.LabelLineEnabledProperty, new Binding("LabelLineEnabled") { Source = newSeries, Mode = BindingMode.OneWay });
+            s.SetBinding(DataSeries.LabelLineStyleProperty, new Binding("LabelLineStyle") { Source = newSeries, Mode = BindingMode.OneWay });
+            s.SetBinding(DataSeries.LabelLineThicknessProperty, new Binding("LabelLineThickness") { Source = newSeries, Mode = BindingMode.OneWay });
+            s.SetBinding(DataSeries.LabelStyleProperty, new Binding("LabelStyle") { Source = newSeries, Mode = BindingMode.OneWay });
+            s.SetBinding(DataSeries.LabelTextProperty, new Binding("LabelText") { Source = newSeries, Mode = BindingMode.OneWay });
+            s.SetBinding(DataSeries.LegendMarkerColorProperty, new Binding("LegendMarkerColor") { Source = newSeries, Mode = BindingMode.OneWay });
+            s.SetBinding(DataSeries.LegendMarkerTypeProperty, new Binding("LegendMarkerType") { Source = newSeries, Mode = BindingMode.OneWay });
+            s.SetBinding(DataSeries.LegendTextProperty, new Binding("LegendText") { Source = newSeries, Mode = BindingMode.OneWay });
+            s.SetBinding(DataSeries.LightingEnabledProperty, new Binding("LightingEnabled") { Source = newSeries, Mode = BindingMode.OneWay });
+            s.SetBinding(DataSeries.LineCapProperty, new Binding("LineCap") { Source = newSeries, Mode = BindingMode.OneWay });
+            s.SetBinding(DataSeries.LineFillProperty, new Binding("LineFill") { Source = newSeries, Mode = BindingMode.OneWay });
+            s.SetBinding(DataSeries.LineStyleProperty, new Binding("LineStyle") { Source = newSeries, Mode = BindingMode.OneWay });
+            s.SetBinding(DataSeries.LineTensionProperty, new Binding("LineTension") { Source = newSeries, Mode = BindingMode.OneWay });
+            s.SetBinding(DataSeries.LineThicknessProperty, new Binding("LineThickness") { Source = newSeries, Mode = BindingMode.OneWay });
+            s.SetBinding(DataSeries.MarkerBorderColorProperty, new Binding("MarkerBorderColor") { Source = newSeries, Mode = BindingMode.OneWay });
+            s.SetBinding(DataSeries.MarkerBorderThicknessProperty, new Binding("MarkerBorderThickness") { Source = newSeries, Mode = BindingMode.OneWay });
+            s.SetBinding(DataSeries.MarkerColorProperty, new Binding("MarkerColor") { Source = newSeries, Mode = BindingMode.OneWay });
+            s.SetBinding(DataSeries.MarkerEnabledProperty, new Binding("MarkerEnabled") { Source = newSeries, Mode = BindingMode.OneWay });
+            s.SetBinding(DataSeries.MarkerScaleProperty, new Binding("MarkerScale") { Source = newSeries, Mode = BindingMode.OneWay });
+            s.SetBinding(DataSeries.MarkerSizeProperty, new Binding("MarkerSize") { Source = newSeries, Mode = BindingMode.OneWay });
+            s.SetBinding(DataSeries.MarkerTypeProperty, new Binding("MarkerType") { Source = newSeries, Mode = BindingMode.OneWay });
+            s.SetBinding(DataSeries.RadiusXProperty, new Binding("RadiusX") { Source = newSeries, Mode = BindingMode.OneWay });
+            s.SetBinding(DataSeries.RadiusYProperty, new Binding("RadiusY") { Source = newSeries, Mode = BindingMode.OneWay });
+            s.SetBinding(DataSeries.RenderAsProperty, new Binding("RenderAs") { Source = newSeries, Mode = BindingMode.OneWay });
+            s.SetBinding(DataSeries.ShadowEnabledProperty, new Binding("ShadowEnabled") { Source = newSeries, Mode = BindingMode.OneWay });
+            s.SetBinding(DataSeries.ShowInLegendProperty, new Binding("ShowInLegend") { Source = newSeries, Mode = BindingMode.OneWay });
+            s.SetBinding(DataSeries.LabelAngleProperty, new Binding("LabelAngle") { Source = newSeries, Mode = BindingMode.OneWay });
+            s.SetBinding(DataSeries.XValueTypeProperty, new Binding("XValueType") { Source = newSeries, Mode = BindingMode.OneWay });
+            s.SetBinding(DataSeries.ZIndexProperty, new Binding("ZIndex") { Source = newSeries, Mode = BindingMode.OneWay });
+                   
 
-            s.SetBinding(DataSeries.AutoFitToPlotAreaProperty, new Binding("AutoFitToPlotArea") { Source = newSeries ,Mode  = BindingMode.OneWay});
-            s.SetBinding(DataSeries.AxisXTypeProperty, new Binding("AxisXType") { Source = newSeries ,Mode  = BindingMode.OneWay});
-            s.SetBinding(DataSeries.AxisYTypeProperty, new Binding("AxisYType") { Source = newSeries ,Mode  = BindingMode.OneWay});
-            s.SetBinding(DataSeries.BorderColorProperty, new Binding("SeriesBorder.BorderBrush") { Source = newSeries ,Mode  = BindingMode.OneWay});
-            s.SetBinding(DataSeries.BorderStyleProperty, new Binding("BorderStyle") { Source = newSeries ,Mode  = BindingMode.OneWay});
-            s.SetBinding(DataSeries.BorderThicknessProperty, new Binding("SeriesBorder.BorderThickness") { Source = newSeries ,Mode  = BindingMode.OneWay});
-            s.SetBinding(DataSeries.ColorProperty, new Binding("Color") { Source = newSeries ,Mode  = BindingMode.OneWay});
-            s.SetBinding(DataSeries.DataPointsProperty, new Binding("DataPoints") { Source = newSeries ,Mode  = BindingMode.OneWay});
-            s.SetBinding(DataSeries.HighLightColorProperty, new Binding("HighLightColor") { Source = newSeries ,Mode  = BindingMode.OneWay});
-            s.SetBinding(DataSeries.IncludeDataPointsInLegendProperty, new Binding("IncludeDataPointsInLegend") { Source = newSeries ,Mode  = BindingMode.OneWay});
-            s.SetBinding(DataSeries.IncludePercentageInLegendProperty, new Binding("IncludePercentageInLegend") { Source = newSeries ,Mode  = BindingMode.OneWay});
-            s.SetBinding(DataSeries.IncludeYValueInLegendProperty, new Binding("IncludeYValueInLegend") { Source = newSeries ,Mode  = BindingMode.OneWay});
-            s.SetBinding(DataSeries.LabelBackgroundProperty, new Binding("LabelBackground") { Source = newSeries ,Mode  = BindingMode.OneWay});
-            s.SetBinding(DataSeries.LabelEnabledProperty, new Binding("LabelEnabled") { Source = newSeries ,Mode  = BindingMode.OneWay});
-            s.SetBinding(DataSeries.LabelFontColorProperty, new Binding("LabelFont.FontColor") { Source = newSeries ,Mode  = BindingMode.OneWay});
-            s.SetBinding(DataSeries.LabelFontFamilyProperty, new Binding("LabelFont.FontFamily") { Source = newSeries ,Mode  = BindingMode.OneWay});
-            s.SetBinding(DataSeries.LabelFontSizeProperty, new Binding("LabelFont.FontSize") { Source = newSeries ,Mode  = BindingMode.OneWay});
-            s.SetBinding(DataSeries.LabelFontStyleProperty, new Binding("LabelFont.FontStyle") { Source = newSeries ,Mode  = BindingMode.OneWay});
-            s.SetBinding(DataSeries.LabelFontWeightProperty, new Binding("LabelFont.FontWeight") { Source = newSeries ,Mode  = BindingMode.OneWay});
-            s.SetBinding(DataSeries.LabelLineColorProperty, new Binding("LabelLineColor") { Source = newSeries ,Mode  = BindingMode.OneWay});
-            s.SetBinding(DataSeries.LabelLineEnabledProperty, new Binding("LabelLineEnabled") { Source = newSeries ,Mode  = BindingMode.OneWay});
-            s.SetBinding(DataSeries.LabelLineStyleProperty, new Binding("LabelLineStyle") { Source = newSeries ,Mode  = BindingMode.OneWay});
-            s.SetBinding(DataSeries.LabelLineThicknessProperty, new Binding("LabelLineThickness") { Source = newSeries ,Mode  = BindingMode.OneWay});
-            s.SetBinding(DataSeries.LabelStyleProperty, new Binding("LabelStyle") { Source = newSeries ,Mode  = BindingMode.OneWay});
-            s.SetBinding(DataSeries.LabelTextProperty, new Binding("LabelText") { Source = newSeries ,Mode  = BindingMode.OneWay});
-            s.SetBinding(DataSeries.LegendMarkerColorProperty, new Binding("LegendMarkerColor") { Source = newSeries ,Mode  = BindingMode.OneWay});
-            s.SetBinding(DataSeries.LegendMarkerTypeProperty, new Binding("LegendMarkerType") { Source = newSeries ,Mode  = BindingMode.OneWay});
-            s.SetBinding(DataSeries.LegendTextProperty, new Binding("LegendText") { Source = newSeries ,Mode  = BindingMode.OneWay});
-            s.SetBinding(DataSeries.LightingEnabledProperty, new Binding("LightingEnabled") { Source = newSeries ,Mode  = BindingMode.OneWay});
-            s.SetBinding(DataSeries.LineCapProperty, new Binding("LineCap") { Source = newSeries ,Mode  = BindingMode.OneWay});
-            s.SetBinding(DataSeries.LineFillProperty, new Binding("LineFill") { Source = newSeries ,Mode  = BindingMode.OneWay});
-            s.SetBinding(DataSeries.LineStyleProperty, new Binding("LineStyle") { Source = newSeries ,Mode  = BindingMode.OneWay});
-            s.SetBinding(DataSeries.LineTensionProperty, new Binding("LineTension") { Source = newSeries ,Mode  = BindingMode.OneWay});
-            s.SetBinding(DataSeries.LineThicknessProperty, new Binding("LineThickness") { Source = newSeries ,Mode  = BindingMode.OneWay});
-            s.SetBinding(DataSeries.MarkerBorderColorProperty, new Binding("MarkerBorderColor") { Source = newSeries ,Mode  = BindingMode.OneWay});
-            s.SetBinding(DataSeries.MarkerBorderThicknessProperty, new Binding("MarkerBorderThickness") { Source = newSeries ,Mode  = BindingMode.OneWay});
-            s.SetBinding(DataSeries.MarkerColorProperty, new Binding("MarkerColor") { Source = newSeries ,Mode  = BindingMode.OneWay});
-            s.SetBinding(DataSeries.MarkerEnabledProperty, new Binding("MarkerEnabled") { Source = newSeries ,Mode  = BindingMode.OneWay});
-            s.SetBinding(DataSeries.MarkerScaleProperty, new Binding("MarkerScale") { Source = newSeries ,Mode  = BindingMode.OneWay});
-            s.SetBinding(DataSeries.MarkerSizeProperty, new Binding("MarkerSize") { Source = newSeries ,Mode  = BindingMode.OneWay});
-            s.SetBinding(DataSeries.MarkerTypeProperty, new Binding("MarkerType") { Source = newSeries ,Mode  = BindingMode.OneWay});
-            s.SetBinding(DataSeries.RadiusXProperty, new Binding("RadiusX") { Source = newSeries ,Mode  = BindingMode.OneWay});
-            s.SetBinding(DataSeries.RadiusYProperty, new Binding("RadiusY") { Source = newSeries ,Mode  = BindingMode.OneWay});
-            s.SetBinding(DataSeries.RenderAsProperty, new Binding("RenderAs") { Source = newSeries ,Mode  = BindingMode.OneWay});
-            s.SetBinding(DataSeries.ShadowEnabledProperty, new Binding("ShadowEnabled") { Source = newSeries ,Mode  = BindingMode.OneWay});
-            s.SetBinding(DataSeries.ShowInLegendProperty, new Binding("ShowInLegend") { Source = newSeries ,Mode  = BindingMode.OneWay});
-            s.SetBinding(DataSeries.LabelAngleProperty, new Binding("LabelAngle") { Source = newSeries ,Mode  = BindingMode.OneWay});
-            s.SetBinding(DataSeries.XValueTypeProperty, new Binding("XValueType") { Source = newSeries ,Mode  = BindingMode.OneWay});
-            s.SetBinding(DataSeries.ZIndexProperty, new Binding("ZIndex") { Source = newSeries ,Mode  = BindingMode.OneWay});
+
             Chart uChart = this.Content as Chart;
             if (uChart.Series == null)
                 uChart.Series = new DataSeriesCollection();
@@ -433,6 +438,113 @@ namespace BoardDesigner.UControl
                 AddSeries(s);
             }
         }
+
+        void DataPoints_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            //获取所属数据线，找到对应线，对该线进行数据点增删
+            DesignerDataPointCollection ddplist = sender as DesignerDataPointCollection;
+            string uid = (ddplist.Parent as DesignerChartDataSeries).ID.ToString();
+            DataSeries ds = null;
+            Chart uChart = this.Content as Chart;
+            foreach (DataSeries s in uChart.Series)
+            {
+                if (s.Uid == uid)
+                {
+                    ds = s;
+                    break;
+                }
+            }
+            if (ds == null)
+                throw new Exception("添加数据点时找不到数据线");
+          
+            switch (e.Action)
+            {
+                case NotifyCollectionChangedAction.Add:
+                    foreach (object obj in e.NewItems)
+                    {
+                        
+                        AddDataPoint(ds, obj as DesignerDataPoint);
+                    }
+                    break;
+                case NotifyCollectionChangedAction.Remove:
+                    foreach (object obj in e.OldItems)
+                    {
+                        RemoveDataPoint(ds, obj as DesignerDataPoint);
+                    }
+                    break;
+
+                default: break;
+            }
+            
+        }    
+       
+
+
+        void AddDataPoint(DataSeries ds, DesignerDataPoint dp)
+        {
+            
+            DataPoint newDp = new DataPoint();
+            newDp.Uid = dp.ID.ToString();
+            newDp.Name = dp.Name;
+            newDp.SetBinding(DataPoint.AxisXLabelProperty, new Binding("AxisXLabel") { Source = dp, Mode = BindingMode.OneWay });
+            newDp.SetBinding(DataPoint.BorderColorProperty, new Binding("LabelBorder.BorderBrush") { Source = dp, Mode = BindingMode.OneWay });
+            newDp.SetBinding(DataPoint.BorderStyleProperty, new Binding("BorderStyle") { Source = dp, Mode = BindingMode.OneWay });
+            newDp.SetBinding(DataPoint.BorderThicknessProperty, new Binding("LabelBorder.BorderThickness") { Source = dp, Mode = BindingMode.OneWay });
+            newDp.SetBinding(DataPoint.ColorProperty, new Binding("Color") { Source = dp, Mode = BindingMode.OneWay });
+            newDp.SetBinding(DataPoint.EnabledProperty, new Binding("Enabled") { Source = dp, Mode = BindingMode.OneWay });
+            newDp.SetBinding(DataPoint.LabelAngleProperty, new Binding("LabelAngle") { Source = dp, Mode = BindingMode.OneWay });
+            newDp.SetBinding(DataPoint.LabelBackgroundProperty, new Binding("LabelBackground") { Source = dp, Mode = BindingMode.OneWay });
+            newDp.SetBinding(DataPoint.LabelEnabledProperty, new Binding("LabelEnabled") { Source = dp, Mode = BindingMode.OneWay });
+            newDp.SetBinding(DataPoint.LabelFontColorProperty, new Binding("LabelFont.FontColor") { Source = dp, Mode = BindingMode.OneWay });
+            newDp.SetBinding(DataPoint.LabelFontFamilyProperty, new Binding("LabelFont.FontFamily") { Source = dp, Mode = BindingMode.OneWay });
+            newDp.SetBinding(DataPoint.LabelFontSizeProperty, new Binding("LabelFont.FontSize") { Source = dp, Mode = BindingMode.OneWay });
+            newDp.SetBinding(DataPoint.LabelFontStyleProperty, new Binding("LabelFont.FontStyle") { Source = dp, Mode = BindingMode.OneWay });
+            newDp.SetBinding(DataPoint.LabelFontWeightProperty, new Binding("LabelFont.FontWeight") { Source = dp, Mode = BindingMode.OneWay });
+            newDp.SetBinding(DataPoint.LabelLineColorProperty, new Binding("LabelLineColor") { Source = dp, Mode = BindingMode.OneWay });
+            newDp.SetBinding(DataPoint.LabelLineEnabledProperty, new Binding("LabelLineEnabled") { Source = dp, Mode = BindingMode.OneWay });
+            newDp.SetBinding(DataPoint.LabelLineStyleProperty, new Binding("LabelLineStyle") { Source = dp, Mode = BindingMode.OneWay });
+            newDp.SetBinding(DataPoint.LabelLineThicknessProperty, new Binding("LabelLineThickness") { Source = dp, Mode = BindingMode.OneWay });
+            newDp.SetBinding(DataPoint.LabelStyleProperty, new Binding("LabelStyle") { Source = dp, Mode = BindingMode.OneWay });
+            newDp.SetBinding(DataPoint.LabelTextProperty, new Binding("LabelText") { Source = dp, Mode = BindingMode.OneWay });
+            newDp.SetBinding(DataPoint.LegendMarkerColorProperty, new Binding("LegendMarkerColor") { Source = dp, Mode = BindingMode.OneWay });
+            newDp.SetBinding(DataPoint.LegendMarkerTypeProperty, new Binding("LegendMarkerType") { Source = dp, Mode = BindingMode.OneWay });
+            newDp.SetBinding(DataPoint.LegendTextProperty, new Binding("LegendText") { Source = dp, Mode = BindingMode.OneWay });
+            newDp.SetBinding(DataPoint.LightingEnabledProperty, new Binding("LightingEnabled") { Source = dp, Mode = BindingMode.OneWay });
+            newDp.SetBinding(DataPoint.MarkerBorderColorProperty, new Binding("MarkerBorderColor") { Source = dp, Mode = BindingMode.OneWay });
+            newDp.SetBinding(DataPoint.MarkerBorderThicknessProperty, new Binding("MarkerBorderThickness") { Source = dp, Mode = BindingMode.OneWay });
+            newDp.SetBinding(DataPoint.MarkerColorProperty, new Binding("MarkerColor") { Source = dp, Mode = BindingMode.OneWay });
+            newDp.SetBinding(DataPoint.MarkerEnabledProperty, new Binding("MarkerEnabled") { Source = dp, Mode = BindingMode.OneWay });
+            newDp.SetBinding(DataPoint.MarkerScaleProperty, new Binding("MarkerScale") { Source = dp, Mode = BindingMode.OneWay });
+            newDp.SetBinding(DataPoint.MarkerSizeProperty, new Binding("MarkerSize") { Source = dp, Mode = BindingMode.OneWay });
+            newDp.SetBinding(DataPoint.MarkerTypeProperty, new Binding("MarkerType") { Source = dp, Mode = BindingMode.OneWay });
+
+            newDp.SetBinding(DataPoint.OpacityProperty, new Binding("DataPointOpacity") { Source = dp, Mode = BindingMode.OneWay });
+            newDp.SetBinding(DataPoint.RadiusXProperty, new Binding("RadiusX") { Source = dp, Mode = BindingMode.OneWay });
+            newDp.SetBinding(DataPoint.RadiusYProperty, new Binding("RadiusY") { Source = dp, Mode = BindingMode.OneWay });
+            newDp.SetBinding(DataPoint.ShadowEnabledProperty, new Binding("ShadowEnabled") { Source = dp, Mode = BindingMode.OneWay });
+            newDp.SetBinding(DataPoint.ShowInLegendProperty, new Binding("ShowInLegend") { Source = dp, Mode = BindingMode.OneWay });
+            newDp.SetBinding(DataPoint.StickColorProperty, new Binding("StickColor") { Source = dp, Mode = BindingMode.OneWay });
+            newDp.SetBinding(DataPoint.XValueProperty, new Binding("XValue") { Source = dp, Mode = BindingMode.OneWay });
+            newDp.SetBinding(DataPoint.YValueProperty, new Binding("YValue") { Source = dp, Mode = BindingMode.OneWay });
+            newDp.SetBinding(DataPoint.YValuesProperty, new Binding("YValues") { Source = dp, Mode = BindingMode.OneWay });
+            newDp.SetBinding(DataPoint.ZValueProperty, new Binding("ZValue") { Source = dp, Mode = BindingMode.OneWay });
+
+            if (ds.DataPoints == null)
+                ds.DataPoints = new DataPointCollection();
+            ds.DataPoints.Add(newDp);
+            
+
+        }
+        void RemoveDataPoint(DataSeries ds, DesignerDataPoint dp)
+        {
+            var array = ds.DataPoints.Where((d) => d.Name == dp.Name);
+            //TODO 是否内存泄漏
+            foreach (IDataPoint idp in array)
+            {
+                ds.DataPoints.Remove(idp);
+            }
+        }
+
 
         #endregion
         public object GetDesignerItem()

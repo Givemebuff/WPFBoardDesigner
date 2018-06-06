@@ -1,0 +1,9 @@
+﻿<Window x:Class="BoardDesigner.Windows.ImageResourceWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="图片资源" Height="525" Width="616">
+    <Grid>
+       
+
+    </Grid>
+</Window>

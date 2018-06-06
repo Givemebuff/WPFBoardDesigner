@@ -309,7 +309,47 @@
                                                     </Grid>
                                                 </DataTemplate>
                                             </ig:PropertyGridEditorDefinition.EditTemplate>
-                                        </ig:PropertyGridEditorDefinition>                                  
+                                        </ig:PropertyGridEditorDefinition>
+                                        <ig:PropertyGridEditorDefinition>
+                                            <ig:PropertyGridEditorDefinition.TargetProperties>                                                
+                                                <sys:String>BackgoundImage</sys:String>
+                                            </ig:PropertyGridEditorDefinition.TargetProperties>
+                                            <ig:PropertyGridEditorDefinition.EditTemplate>
+                                                <DataTemplate>
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="Auto" />
+                                                            <ColumnDefinition Width="*" />
+                                                        </Grid.ColumnDefinitions>
+                                                        <ig:XamComboEditor x:Name="ImageXamComboEditor" 
+                                                                           Height="70" Width="200" 
+                                                                           IsEditable="True" AllowFiltering="True" 
+                                                                           DisplayMemberPath="ImageName"
+                                                                           SelectedItem="{Binding Path=Value}"
+                                                                           Loaded="ImageXamComboEditor_Loaded">
+                                                            <ig:XamComboEditor.ItemTemplate>
+                                                                <DataTemplate>
+                                                                    <Grid Height="60">
+                                                                        <Grid.ColumnDefinitions>
+                                                                            <ColumnDefinition Width="100" />
+                                                                            <ColumnDefinition Width="60" />
+                                                                            <ColumnDefinition Width="Auto" />
+                                                                        </Grid.ColumnDefinitions>
+                                                                        <TextBlock Text="{Binding Path=ImageName}" Margin="3" Grid.Column="0"
+                                   HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                                                        <TextBlock Text="{Binding Path=FileSize}" Margin="3" Grid.Column="1"
+                                   HorizontalAlignment="Right" VerticalAlignment="Center" />
+                                                                        <Image Source="{Binding Path=Source}" Stretch="Uniform"
+                               Grid.Column="2" Margin="3" />
+                                                                    </Grid>
+                                                                </DataTemplate>
+                                                            </ig:XamComboEditor.ItemTemplate>
+                                                        </ig:XamComboEditor>
+                                                        <Button Grid.Column="1" Content="设置" x:Name="SettingImageButton" Click="SettingImageButton_Click"></Button>
+                                                    </Grid>
+                                                </DataTemplate>
+                                            </ig:PropertyGridEditorDefinition.EditTemplate>
+                                        </ig:PropertyGridEditorDefinition>
                                     </ig:XamPropertyGrid.EditorDefinitions>
                                 </ig:XamPropertyGrid>
                             </DockPanel>

@@ -44,6 +44,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -77,6 +78,7 @@
     </Reference>
     <Reference Include="InfragisticsWPF4.Controls.Charts.XamDiagram.v14.2, Version=14.2.20142.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
     <Reference Include="InfragisticsWPF4.Controls.Editors.XamColorPicker.v14.2, Version=14.2.20142.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
+    <Reference Include="InfragisticsWPF4.Controls.Editors.XamComboEditor.v14.2, Version=14.2.20142.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
     <Reference Include="InfragisticsWPF4.Controls.Editors.XamDateTimeInput.v14.2, Version=14.2.20142.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
     <Reference Include="InfragisticsWPF4.Controls.Editors.XamMaskedInput.v14.2, Version=14.2.20142.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
     <Reference Include="InfragisticsWPF4.Controls.Editors.XamPropertyGrid.v14.2, Version=14.2.20142.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
@@ -174,32 +176,30 @@
     </Compile>
     <Compile Include="DemoData\DataTableData.cs" />
     <Compile Include="Interface\IWorker.cs" />
-    <Compile Include="Model\Container\Container.cs" />
-    <Compile Include="Model\Control\DesignerBoard.cs" />
-    <Compile Include="Model\Container\DesignerPagePanel.cs" />
-    <Compile Include="Model\Container\ScrollViewer.cs" />
-    <Compile Include="Model\Control\DesignerChart.cs" />
-    <Compile Include="Model\Control\DesignerControl.cs" />
-    <Compile Include="Model\Control\DesignerDataGridColumn.cs" />
-    <Compile Include="Model\Control\DesignerImage.cs" />
-    <Compile Include="Model\Control\DesignerTable.cs" />
-    <Compile Include="Model\Element\Border.cs" />
-    <Compile Include="Model\Brush\Brush.cs" />
-    <Compile Include="Model\Element\DesignerAlterRow.cs" />
-    <Compile Include="Model\Element\DesignerDataSource.cs" />
-    <Compile Include="Model\Element\Font.cs" />
-    <Compile Include="Model\Element\Position.cs" />
-    <Compile Include="Model\Element\Size.cs" />
-    <Compile Include="Model\Panel\DesignerCanvasPanel.cs" />
-    <Compile Include="Model\Panel\DesignerDockPanel.cs" />
-    <Compile Include="Model\Panel\DesignerPanel.cs" />
-    <Compile Include="Model\Panel\DesignerStackPanel.cs" />
-    <Compile Include="Model\Panel\DisignerGridPanel.cs" />
-    <Compile Include="Model\Shape\DesignerShape.cs" />
-    <Compile Include="Model\Control\DesignerLabel.cs" />
-    <Compile Include="roundGridControl.xaml.cs">
-      <DependentUpon>roundGridControl.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="BoardModel\Container\Container.cs" />
+    <Compile Include="BoardModel\Control\DesignerBoard.cs" />
+    <Compile Include="BoardModel\Container\DesignerPagePanel.cs" />
+    <Compile Include="BoardModel\Container\ScrollViewer.cs" />
+    <Compile Include="BoardModel\Control\DesignerChart.cs" />
+    <Compile Include="BoardModel\Control\DesignerControl.cs" />
+    <Compile Include="BoardModel\Control\DesignerDataGridColumn.cs" />
+    <Compile Include="BoardModel\Control\DesignerImage.cs" />
+    <Compile Include="BoardModel\Control\DesignerTable.cs" />
+    <Compile Include="BoardModel\Element\Border.cs" />
+    <Compile Include="BoardModel\Brush\Brush.cs" />
+    <Compile Include="BoardModel\Element\DesignerAlterRow.cs" />
+    <Compile Include="BoardModel\Element\DesignerDataSource.cs" />
+    <Compile Include="BoardModel\Element\Font.cs" />
+    <Compile Include="BoardModel\Element\Position.cs" />
+    <Compile Include="BoardModel\Element\Size.cs" />
+    <Compile Include="BoardModel\Panel\DesignerCanvasPanel.cs" />
+    <Compile Include="BoardModel\Panel\DesignerDockPanel.cs" />
+    <Compile Include="BoardModel\Panel\DesignerPanel.cs" />
+    <Compile Include="BoardModel\Panel\DesignerStackPanel.cs" />
+    <Compile Include="BoardModel\Panel\DisignerGridPanel.cs" />
+    <Compile Include="BoardModel\Shape\DesignerShape.cs" />
+    <Compile Include="BoardModel\Control\DesignerLabel.cs" />
+    <Compile Include="Model\RImage.cs" />
     <Compile Include="SystemControl\Adorner\AngleInfoAdorner.cs" />
     <Compile Include="SystemControl\Adorner\DesignerItemAdorner.cs" />
     <Compile Include="SystemControl\Adorner\LineAdorner.cs" />
@@ -217,6 +217,7 @@
     <Compile Include="SystemControl\Chrome\SizeInfoChrome.cs" />
     <Compile Include="SystemControl\Chrome\TransformOriginPointChrome.cs" />
     <Compile Include="SystemControl\Converter\DesignerBrushToBrushConverter.cs" />
+    <Compile Include="SystemControl\Converter\DesignerDataPointCollectionToVisifireDataPointCollectionConverter.cs" />
     <Compile Include="SystemControl\Converter\DoubleFormatConverter.cs" />
     <Compile Include="SystemControl\Converter\Int100ToDoubleConverter.cs" />
     <Compile Include="SystemControl\Converter\LocationFormatConverter.cs" />
@@ -248,6 +249,9 @@
     </Compile>
     <Compile Include="Control\BoardLabel.xaml.cs">
       <DependentUpon>BoardLabel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ImageResourceWindow.xaml.cs">
+      <DependentUpon>ImageResourceWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="BoardViewer.xaml">
       <SubType>Designer</SubType>
@@ -389,10 +393,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="roundGridControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Test.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -401,12 +401,16 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Windows\ImageResourceWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\Base\DesignerBase.cs" />
-    <Compile Include="Model\ExtendToString.cs" />
-    <Compile Include="Model\Expection\BoardModelConverter.cs" />
-    <Compile Include="Model\Expection\BoardModelConvertException.cs" />
+    <Compile Include="BoardModel\Base\DesignerBase.cs" />
+    <Compile Include="BoardModel\ExtendToString.cs" />
+    <Compile Include="BoardModel\Expection\BoardModelConverter.cs" />
+    <Compile Include="BoardModel\Expection\BoardModelConvertException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -615,8 +619,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Debug\Resources\" />
-    <Folder Include="Model\Board\" />
-    <Folder Include="Model\TextBlock\" />
+    <Folder Include="BoardModel\Board\" />
+    <Folder Include="BoardModel\TextBlock\" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">

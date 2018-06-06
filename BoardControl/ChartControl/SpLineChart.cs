@@ -25,17 +25,17 @@ namespace BoardDesigner.BoardControl.ChartControl
             dc.ChartAxesX[0].Interval = 1;
             dc.ChartAxesY[0].Interval = 100;
             dc.ChartTitles[0].Text = "2015年销售额变化趋势";
-            List<DataPoint> dps = new List<DataPoint>();          
+            List<DesignerDataPoint> dps = new List<DesignerDataPoint>();          
             DataTable data = DemoDataTableData.Turnover;
             for(int i=0;i<12;i++)
             {
-                DataPoint dp = new DataPoint();
+                DesignerDataPoint dp = new DesignerDataPoint();
                 dp.XValue = data.Rows[i]["Month"];
                 dp.YValue = Convert.ToDouble(data.Rows[i]["Turnover"]);
                 dps.Add(dp);
             }
-            
-            dc.Series[0].DataPoints = new DataPointCollection(dps);
+
+            dc.Series[0].DataPoints = new DesignerDataPointCollection(dps, dc.Series[0]);
             BoardChart chart = new BoardChart(dc);
             cw.Protect(chart);
             

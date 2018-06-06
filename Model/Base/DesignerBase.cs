@@ -28,7 +28,8 @@ namespace BoardDesigner.Model
         Video = 16,
         Table =17,
         Label = 18,
-        Chart = 19
+        Chart = 19,
+        DataPoint = 20
 
     }
     [Serializable]

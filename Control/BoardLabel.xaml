@@ -20,7 +20,7 @@
             </MultiBinding>
         </Border.Background>
         <Label x:Name="uLabel" Content="{Binding Text}" 
-                 FontFamily="{Binding Font.FontFamily}"
+                 FontFamily="{Binding Font.FontFamily}" FontWeight="{Binding Font.FontWeight}"
                FontSize="{Binding Font.FontSize}" FontStyle="{Binding FontStyle}" Foreground="{Binding Font.FontColor}"       
                 HorizontalContentAlignment="{Binding HorizontalContentAlignment}"
            VerticalContentAlignment="{Binding VerticalContentAlignment}"  

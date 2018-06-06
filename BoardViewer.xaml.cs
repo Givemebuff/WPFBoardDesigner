@@ -45,7 +45,7 @@ namespace BoardDesigner
             this.Width = Board.Size.Width;
 
             foreach (DesignerControl cd in Board.Children) 
-            {
+            {                
                 switch (cd.Type)
                 {
                     case DesignerElementType.Image:
@@ -59,6 +59,10 @@ namespace BoardDesigner
                     case DesignerElementType.Table:
                         BoardDataGrid bdg = new BoardDataGrid(cd as DesignerTable);
                         MainPanel.Children.Add(bdg);
+                        break;
+                    case DesignerElementType.Chart:
+                        BoardChart bc = new BoardChart(cd as DesignerChart);
+                        MainPanel.Children.Add(bc);
                         break;
                     default: break;
                 }

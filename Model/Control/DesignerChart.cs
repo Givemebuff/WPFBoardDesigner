@@ -473,7 +473,7 @@ namespace BoardDesigner.Model
             this.LightWeight = false;
             this.LineCap = PenLineCap.Round;
             this.LineFill = null;
-            this.LineStyle = LineStyles.Dashed;
+            this.LineStyle = LineStyles.Solid;
             this.LineTension = 0.5;
             this.LineThickness = 2;
             this.MarkerBorderColor = new SolidColorBrush(System.Windows.Media.Color.FromRgb(23, 145, 50));
@@ -490,7 +490,7 @@ namespace BoardDesigner.Model
             this.ShowInLegend = true;
             this.ZIndex = 0;
             this.XValueType = ChartValueTypes.Auto;
-            this.LegendMarkerColor = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255,0,0));
+            this.LegendMarkerColor = null;
         }
 
         #region 颜色
@@ -505,6 +505,8 @@ namespace BoardDesigner.Model
         {
             set
             {
+                if (value == null)
+                    return;
                 this._color = value;
                 OnPropertyChanged("Color");
             }
@@ -978,9 +980,7 @@ namespace BoardDesigner.Model
 
 
 
-        #endregion
-
-    
+        #endregion    
 
         #region 表现形式
          [Browsable(false)]
@@ -1241,6 +1241,16 @@ namespace BoardDesigner.Model
 
 
         #endregion
+
+    }
+
+    public class DesignerDataPoint : DesignerElement
+    {
+        public DesignerDataPoint()
+        {
+            this.Type = DesignerElementType.DataPoint;
+        }
+        Brush Color { get; set; }
 
     }
 

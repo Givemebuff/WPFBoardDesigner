@@ -41,7 +41,7 @@
                     </Grid.RowDefinitions>
                 </Grid>
             </ScrollViewer>
-            <Button  Grid.Row="2" x:Name="MoreButton" Click="MoreButton_Click" Content="更多..." Style="{StaticResource ShowListButtonStyle}">
+            <Button  Grid.Row="2" x:Name="MoreButton" Content="更多..." Command="ApplicationCommands.Open" Style="{StaticResource ShowListButtonStyle}">
                
             </Button>
         </Grid>

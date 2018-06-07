@@ -51,7 +51,8 @@ namespace BoardDesigner.UControl
             this.SetBinding(DesignerCanvas.LeftProperty, canvasLeft);
             Binding canvasTop = new Binding("Position.Location.Y") { Source = DataContext };
             this.SetBinding(DesignerCanvas.TopProperty, canvasTop);
-
+            Binding canvasZIndex = new Binding("Position.ZIndex") { Source = DataContext };
+            this.SetBinding(Canvas.ZIndexProperty, canvasZIndex);
         }
 
         public object GetDesignerItem()

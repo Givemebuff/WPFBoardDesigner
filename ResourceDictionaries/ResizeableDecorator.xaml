@@ -2,21 +2,21 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:thumb="clr-namespace:BoardDesigner.BaseThumb">
 
-    <ControlTemplate x:Key="CornerRectResizeableThumbTemplate"  TargetType="{x:Type thumb:ResizeableThumb}">      
-        <Rectangle Fill="LightSalmon"   Opacity="0.8" Width="10" Height="10" x:Name="CornerRect" >
+    <ControlTemplate x:Key="CornerRectResizeableThumbTemplate"  TargetType="{x:Type thumb:ResizeableThumb}">
+        <Rectangle Fill="#00499d"   Opacity="0.8" Width="6" Height="6" x:Name="CornerRect" >
         </Rectangle>
         <ControlTemplate.Triggers>
             <Trigger Property="IsMouseOver" Value="true">
-                <Setter Property="Fill" TargetName="CornerRect" Value="LightBlue"/>
+                <Setter Property="Fill" TargetName="CornerRect" Value="LightGray"/>
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
-    <ControlTemplate x:Key="SideRectResizeableThumbTemplate"  TargetType="{x:Type thumb:ResizeableThumb}">      
-        <Rectangle Fill="DimGray" Stroke="LightGray" StrokeThickness="1" Opacity="0.8"  x:Name="SideRect"/>
+    <ControlTemplate x:Key="SideRectResizeableThumbTemplate"  TargetType="{x:Type thumb:ResizeableThumb}">
+        <Rectangle Fill="#00c5ff" Stroke="Transparent" StrokeThickness="2" Opacity="0.8" StrokeDashArray="1,1"  x:Name="SideRect"/>
         <ControlTemplate.Triggers>
             <Trigger Property="IsMouseOver" Value="true">
-                <Setter Property="Fill" TargetName="SideRect" Value="LightBlue"/>
+                <Setter Property="Fill" TargetName="SideRect" Value="LightGray"/>
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
@@ -24,28 +24,28 @@
     <ControlTemplate x:Key="ResizeableDecoratorTemplate" TargetType="Control" >
         <Grid >
             <!--上方-->
-            <thumb:ResizeableThumb Template="{StaticResource SideRectResizeableThumbTemplate}" Cursor="SizeNS" Margin="0 -5 0 0"   Height="10"
+            <thumb:ResizeableThumb Template="{StaticResource SideRectResizeableThumbTemplate}" Cursor="SizeNS" Margin="0 -3 0 0"   Height="5"
            VerticalAlignment="Top" HorizontalAlignment="Stretch" />
             <!--左边-->
-            <thumb:ResizeableThumb Template="{StaticResource SideRectResizeableThumbTemplate}" Cursor="SizeWE" Margin="-5 0 0 0"  Width="10"  
+            <thumb:ResizeableThumb Template="{StaticResource SideRectResizeableThumbTemplate}" Cursor="SizeWE" Margin="-3 0 0 0"  Width="5"  
            VerticalAlignment="Stretch" HorizontalAlignment="Left"/>
             <!--右边-->
-            <thumb:ResizeableThumb Template="{StaticResource SideRectResizeableThumbTemplate}" Cursor="SizeWE" Margin="0 0 -5 0" Width="10"
+            <thumb:ResizeableThumb Template="{StaticResource SideRectResizeableThumbTemplate}" Cursor="SizeWE" Margin="0 0 -3 0" Width="5"
            VerticalAlignment="Stretch" HorizontalAlignment="Right"/>
             <!--下方-->
-            <thumb:ResizeableThumb Template="{StaticResource SideRectResizeableThumbTemplate}" Cursor="SizeNS" Margin="0 0 0 -5"  Height="10"
+            <thumb:ResizeableThumb Template="{StaticResource SideRectResizeableThumbTemplate}" Cursor="SizeNS" Margin="0 0 0 -3"  Height="5"
            VerticalAlignment="Bottom"  HorizontalAlignment="Stretch"/>
             <!--左上-->
-            <thumb:ResizeableThumb Template="{StaticResource CornerRectResizeableThumbTemplate}" Cursor="SizeNWSE" Margin="-5 -5 0 0" 
+            <thumb:ResizeableThumb Template="{StaticResource CornerRectResizeableThumbTemplate}" Cursor="SizeNWSE" Margin="-3 -3 0 0" 
            VerticalAlignment="Top" HorizontalAlignment="Left"/>
             <!--右上-->
-            <thumb:ResizeableThumb Template="{StaticResource CornerRectResizeableThumbTemplate}" Cursor="SizeNESW" Margin="0 -5 -5 0" 
+            <thumb:ResizeableThumb Template="{StaticResource CornerRectResizeableThumbTemplate}" Cursor="SizeNESW" Margin="0 -3 -3 0" 
            VerticalAlignment="Top" HorizontalAlignment="Right"/>
             <!--左下-->
-            <thumb:ResizeableThumb Template="{StaticResource CornerRectResizeableThumbTemplate}" Cursor="SizeNESW" Margin="-5 0 0 -5" 
+            <thumb:ResizeableThumb Template="{StaticResource CornerRectResizeableThumbTemplate}" Cursor="SizeNESW" Margin="-3 0 0 -3" 
            VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
             <!--右下-->
-            <thumb:ResizeableThumb Template="{StaticResource CornerRectResizeableThumbTemplate}" Cursor="SizeNWSE" Margin="0 0 -5 -5"
+            <thumb:ResizeableThumb Template="{StaticResource CornerRectResizeableThumbTemplate}" Cursor="SizeNWSE" Margin="0 0 -3 -3"
                                     VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
         </Grid>
     </ControlTemplate>

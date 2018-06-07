@@ -85,6 +85,7 @@
     <Reference Include="InfragisticsWPF4.Controls.Editors.XamSlider.v14.2, Version=14.2.20142.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
     <Reference Include="InfragisticsWPF4.Controls.Editors.XamSyntaxEditor.v14.2, Version=14.2.20142.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
     <Reference Include="InfragisticsWPF4.Controls.Gauges.v14.2, Version=14.2.20142.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
+    <Reference Include="InfragisticsWPF4.Controls.Interactions.XamDialogWindow.v14.2, Version=14.2.20142.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
     <Reference Include="InfragisticsWPF4.Controls.Maps.XamMap.v14.2, Version=14.2.20142.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
     <Reference Include="InfragisticsWPF4.Controls.Menus.XamDataTree.v14.2, Version=14.2.20142.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
     <Reference Include="InfragisticsWPF4.Controls.Menus.XamMenu.v14.2, Version=14.2.20142.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
@@ -194,9 +195,6 @@
     <Compile Include="UControl\BoardImage.xaml.cs">
       <DependentUpon>BoardImage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UControl\BoardTable.xaml.cs">
-      <DependentUpon>BoardTable.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Interface\IDesigner.cs" />
     <Compile Include="CustomPage\DesignerPage.xaml.cs">
       <DependentUpon>DesignerPage.xaml</DependentUpon>
@@ -283,6 +281,9 @@
     <Compile Include="Windows\ImageResourceWindow.xaml.cs">
       <DependentUpon>ImageResourceWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\NewBoardDialog.xaml.cs">
+      <DependentUpon>NewBoardDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\NewBoardWindow.xaml.cs">
       <DependentUpon>NewBoardWindow.xaml</DependentUpon>
     </Compile>
@@ -311,10 +312,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UControl\BoardImage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UControl\BoardTable.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -446,6 +443,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Windows\NewBoardDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\NewBoardWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -463,6 +464,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -471,9 +473,10 @@
     </Compile>
     <EmbeddedResource Include="Properties\Licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <None Include="BoardDesigner_TemporaryKey.pfx" />
     <None Include="packages.config" />
@@ -487,184 +490,313 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Images\Bold.png" />
-    <Resource Include="Resources\Images\CenterAlign.png" />
-    <Resource Include="Resources\Images\Close_16x16.png" />
-    <Resource Include="Resources\Images\Close_Large.png" />
-    <Resource Include="Resources\Images\color_chooser_32x32.png" />
-    <Resource Include="Resources\Images\EditCopy.png" />
-    <Resource Include="Resources\Images\EditCut.png" />
-    <Resource Include="Resources\Images\EditRedo.png" />
-    <Resource Include="Resources\Images\EditUndo.png" />
-    <Resource Include="Resources\Images\Exit_16x16.png" />
-    <Resource Include="Resources\Images\FontColor.png" />
-    <Resource Include="Resources\Images\FormatPainter.png" />
-    <Resource Include="Resources\Images\GalleryItem_50sGreen.png" />
-    <Resource Include="Resources\Images\GalleryItem_BlatantlyBold.png" />
-    <Resource Include="Resources\Images\GalleryItem_BoldlyBlue.png" />
-    <Resource Include="Resources\Images\GalleryItem_ItalicizedIndigo.png" />
-    <Resource Include="Resources\Images\GalleryItem_MediumRed.png" />
-    <Resource Include="Resources\Images\GalleryItem_Normal.png" />
-    <Resource Include="Resources\Images\GalleryItem_Pink.png" />
-    <Resource Include="Resources\Images\GalleryItem_UnmistakablyLarge.png" />
-    <Resource Include="Resources\Images\GalleryItem_Vivid.png" />
-    <Resource Include="Resources\Images\help.png" />
-    <Resource Include="Resources\Images\Internet_32x32.png" />
-    <Resource Include="Resources\Images\Intranet_32x32.png" />
-    <Resource Include="Resources\Images\Italic.png" />
-    <Resource Include="Resources\Images\JustifyAlign.png" />
-    <Resource Include="Resources\Images\LeftAlign.png" />
-    <Resource Include="Resources\Images\Local_32x32.png" />
-    <Resource Include="Resources\Images\New_Large.png" />
-    <Resource Include="Resources\Images\Open_16x16.png" />
-    <Resource Include="Resources\Images\Open_Large.png" />
-    <Resource Include="Resources\Images\Options_16x16.png" />
-    <Resource Include="Resources\Images\Paste_16x16.png" />
-    <Resource Include="Resources\Images\Paste_32x32.png" />
-    <Resource Include="Resources\Images\QuickStyles_16x16.png" />
-    <Resource Include="Resources\Images\QuickStyles_32x32.png" />
-    <Resource Include="Resources\Images\RightAlign.png" />
-    <Resource Include="Resources\Images\SaveAs_16x16.png" />
-    <Resource Include="Resources\Images\Save_16x16.png" />
-    <Resource Include="Resources\Images\Save_Large.png" />
-    <Resource Include="Resources\Images\Theme_Black.png" />
-    <Resource Include="Resources\Images\Theme_Blue.png" />
-    <Resource Include="Resources\Images\Theme_IG.png" />
-    <Resource Include="Resources\Images\Theme_Large.png" />
-    <Resource Include="Resources\Images\Theme_Metro.png" />
-    <Resource Include="Resources\Images\Theme_MetroDark.png" />
-    <Resource Include="Resources\Images\Theme_Silver.png" />
-    <Resource Include="Resources\Images\Underline.png" />
-    <Resource Include="Resources\Images\Watermark.png" />
-    <Resource Include="Resources\Images\WatermarkTool.png" />
-    <Resource Include="Resources\Images\xamRibbonDefaultApplicationIcon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Images\T 16X16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Images\GIF 16X16.png" />
-    <Resource Include="Resources\Images\IMG 16X16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Images\Video 16X16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Images\line 16X16.png" />
-    <Resource Include="Resources\Images\spline 16X16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Images\rect 16X16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Images\circle 16X16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Images\polygon 16X16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Images\triangle 16X16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Images\brush 16X16.png" />
-    <Resource Include="Resources\Images\marker pan 16X16.png" />
-    <Resource Include="Resources\Images\paintbucket 16X16.png" />
-    <Resource Include="Resources\Images\pancil 16X16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Images\pen 16X16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Images\canvans 16X16.png" />
-    <Resource Include="Resources\Images\dockpnale 16X16.png" />
-    <Resource Include="Resources\Images\grid 16X16.png" />
-    <Resource Include="Resources\Images\zoomCanvans 16X16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Images\paint 72X72.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Images\XML 24X24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Images\shell 24X24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Images\networkStruct.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Images\透明背景.PNG" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Images\line 24X24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Images\triangle 24X24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Images\spline 24X24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Images\Rect 24X24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Images\fivestar 24X24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Images\heart 24X24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Images\image 24X24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Images\GIF 24X24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Images\chrome 24X24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Images\table 24X24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Images\linechart 24X24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Images\areachart 24X24.png" />
-    <Resource Include="Resources\Images\columnchart 24X24.png" />
-    <Resource Include="Resources\Images\piechart 24X24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Images\splinechart 24X24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Images\picture 128X128.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\picture 128X128.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="bin\Debug\BgImg.jpg">
+    <Resource Include="Resources\Images\BgImg.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="bin\Debug\BgImg2.jpg" />
-    <Resource Include="Resources\Images\ImageDemo.png" />
-    <Resource Include="bin\Debug\ImageDemo.png" />
-    <Resource Include="bin\Debug\tw1.png" />
-    <Resource Include="bin\Debug\tw2.png" />
+    <Resource Include="Resources\Images\tw1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\tw2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Gifs\GifDemo.gif" />
+    <Resource Include="Resources\Icons\web-design.ico" />
+    <Resource Include="Resources\Images\areachart 24X24.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\Bold.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\brush 16X16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\canvans 16X16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\CenterAlign.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\chrome 24X24.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\circle 16X16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\Close_16x16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\Close_Large.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\color_chooser_32x32.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\columnchart 24X24.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\dockpnale 16X16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\EditCopy.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\EditCut.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\EditRedo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\EditUndo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\Exit_16x16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\fivestar 24X24.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\FontColor.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\FormatPainter.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\GalleryItem_50sGreen.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\GalleryItem_BlatantlyBold.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\GalleryItem_BoldlyBlue.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\GalleryItem_ItalicizedIndigo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\GalleryItem_MediumRed.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\GalleryItem_Normal.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\GalleryItem_Pink.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\GalleryItem_UnmistakablyLarge.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\GalleryItem_Vivid.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\GIF 16X16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\GIF 24X24.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\grid 16X16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\heart 24X24.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\help.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\image 24X24.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\IMG 16X16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\Internet_32x32.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\Intranet_32x32.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\Italic.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\JustifyAlign.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\LeftAlign.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\line 16X16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\line 24X24.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\linechart 24X24.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\Local_32x32.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\marker pan 16X16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\networkStruct.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\New_Large.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\Open_16x16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\Open_Large.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\Options_16x16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\paint 72X72.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\paintbucket 16X16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\pancil 16X16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\Paste_16x16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\Paste_32x32.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\pen 16X16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\picture 128X128.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\piechart 24X24.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\polygon 16X16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\QuickStyles_16x16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\QuickStyles_32x32.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\rect 16X16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\Rect 24X24.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\RightAlign.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\SaveAs_16x16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\Save_16x16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\Save_Large.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\shell 24X24.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\spline 16X16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\spline 24X24.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\splinechart 24X24.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\T 16X16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\table 24X24.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\Theme_Black.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\Theme_Blue.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\Theme_IG.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\Theme_Large.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\Theme_Metro.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\Theme_MetroDark.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\Theme_Silver.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\triangle 16X16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\triangle 24X24.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\Underline.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\Video 16X16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\Watermark.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\WatermarkTool.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\xamRibbonDefaultApplicationIcon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\XML 24X24.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\zoomCanvans 16X16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\透明背景.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\preview_72px.png" />
+    <Resource Include="Resources\Images\complete_128px.png" />
+    <Resource Include="Resources\Images\label_128px.png" />
+    <Resource Include="Resources\Images\gif_128px.png" />
+    <Resource Include="Resources\Images\video_128px.png" />
+    <Resource Include="Resources\Images\browser_128px.png" />
+    <Resource Include="Resources\Images\Design_128px.png" />
+    <Resource Include="Resources\Images\boxin_128px.png" />
+    <Resource Include="Resources\Images\pencil_128px.png" />
+    <Resource Include="Resources\Images\brush_128px.png" />
+    <Resource Include="Resources\Images\brush.png" />
+    <Resource Include="Resources\Images\markerpen_128px.png" />
+    <Resource Include="Resources\Images\bucket_128px.png" />
+    <Resource Include="Resources\Images\xml.png" />
+    <Resource Include="Resources\Images\cmd_128px.png" />
+    <Content Include="Resources\Videos\VideoDemo.wmv" />
     <Content Include="dll\Indusfo.Common.dll" />
     <Content Include="dll\Indusfo.DataAccessLayer.dll" />
-    <Content Include="Resources\Meida\VideoDemo.wmv" />
-    <Resource Include="bin\Debug\GifDemo.gif">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
     <Content Include="dll\XamlAnimatedGif.dll" />
     <Content Include="dll\WPFVisifire.Charts.dll" />
-    <None Include="Resources\Images\GifDemo.gif">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="bin\Debug\Resources\" />
+    <Folder Include="bin\Debug\" />
     <Folder Include="BoardModel\Board\" />
     <Folder Include="BoardModel\TextBlock\" />
     <Folder Include="NewFolder1\" />

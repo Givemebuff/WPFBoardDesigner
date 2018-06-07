@@ -5,11 +5,11 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:BoardDesigner.CustomPage"
       mc:Ignorable="d" 
-      d:DesignHeight="768" d:DesignWidth="1366"
+      d:DesignHeight="768" d:DesignWidth="1366" 
       Title="MainPage">
     <Grid  ClipToBounds="True">
         <Grid.Background>
-            <ImageBrush ImageSource="/BoardDesigner;component/bin/Debug/tw1.png"/>
+            <ImageBrush ImageSource="/BoardDesigner;component/Resources/Images/tw1.png"/>
         </Grid.Background>
         <Grid  Height="400" VerticalAlignment="Top" Margin="100,50,100,0">
             <Grid.ColumnDefinitions>

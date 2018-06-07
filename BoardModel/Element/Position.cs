@@ -192,5 +192,24 @@ namespace BoardDesigner.Model
         #endregion
 
         #endregion
+
+        #region 图层
+          [Browsable(false)]
+        public int _zIndex { get; set; }
+        [Category("视图")]
+        [DisplayName("所在图层")]
+        [Description("所在Z轴图层，即平面的上下层次")]
+        public int ZIndex
+        {
+            get { return this._zIndex; }
+            set
+            {
+                this._zIndex = value;
+                OnPropertyChanged("ZIndex");
+            }
+        }
+
+
+        #endregion
     }
 }

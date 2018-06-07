@@ -270,6 +270,8 @@ namespace BoardDesigner.UControl
             this.SetBinding(Canvas.LeftProperty, canvasLeft);
             Binding canvasTop = new Binding("Position.Location.Y") { Source = DataContext };
             this.SetBinding(Canvas.TopProperty, canvasTop);
+            Binding canvasZIndex = new Binding("Position.ZIndex") { Source = DataContext };
+            this.SetBinding(Canvas.ZIndexProperty, canvasZIndex);
             this.SetBinding(ColumnsProperty, new Binding("Columns") { Source = DataContext });
             this.SetBinding(RowCountProperty, new Binding("DisplayRowCount") { Source = DataContext });
             this.SetBinding(AlterRowsProperty, new Binding("AlterRows") { Source = DataContext });

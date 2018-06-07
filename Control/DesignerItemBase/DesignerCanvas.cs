@@ -47,7 +47,7 @@ namespace BoardDesigner.Base
 
         private static void SelectItemPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-
+            
         }
 
         #endregion

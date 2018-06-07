@@ -24,12 +24,17 @@ namespace BoardDesigner.CustomPage
     /// DesignerPage.xaml 的交互逻辑
     /// </summary>
     public partial class DesignerPage : Page
-    {       
-       
+    {
+        public string FilePath { get; set; }
         public DesignerPage()
         {
             InitializeComponent();
             
+        }
+        public DesignerPage(DesignerBoard db)
+        {
+            InitializeComponent();
+            this.MainPanel.Board = db;
         }
     }
 }

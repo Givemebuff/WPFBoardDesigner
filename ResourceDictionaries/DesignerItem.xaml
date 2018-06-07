@@ -4,7 +4,7 @@
                     xmlns:chrome="clr-namespace:BoardDesigner.BaseChrome"
                     xmlns:base="clr-namespace:BoardDesigner.Base"
                      xmlns:converter="clr-namespace:BoardDesigner.Converter" >
- 
+
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="..\ResourceDictionaries\ResizeableChrome.xaml"/>
         <ResourceDictionary Source="..\ResourceDictionaries\RotateableChrome.xaml" />
@@ -12,14 +12,38 @@
         <ResourceDictionary Source="..\ResourceDictionaries\LocationInfoChrome.xaml"/>
         <ResourceDictionary Source="..\ResourceDictionaries\LineChrome.xaml"/>
     </ResourceDictionary.MergedDictionaries>
-    
-      <converter:PointMarginConverter x:Key="PointMarginConverter"/>
-    <ControlTemplate x:Key="RectMoveableThumbTemplate"  TargetType="{x:Type thumb:MoveableThumb}">        
+
+    <converter:PointMarginConverter x:Key="PointMarginConverter"/>
+    <ControlTemplate x:Key="RectMoveableThumbTemplate"  TargetType="{x:Type thumb:MoveableThumb}">
         <!--透明填充矩形-->
         <Rectangle Fill="Transparent" x:Name="MoveThumbFillRect"></Rectangle>
         <ControlTemplate.Triggers>
-            <Trigger Property="IsMouseOver" Value="true">
+            <!--<Trigger Property="IsMouseOver" Value="true">                
                 <Setter Property="Fill" TargetName="MoveThumbFillRect" Value="#9987CEFF"/>
+            </Trigger>-->
+            <Trigger>
+                <Trigger.EnterActions>
+                    <BeginStoryboard x:Name="enterStory">
+
+                        <Storyboard>
+
+                            <DoubleAnimation Storyboard.TargetProperty="(FrameworkElement.Effect).(DropShadowEffect.BlurRadius)"
+                                                  BeginTime="00:00:00" Duration="00:00:01"
+                                                  From="0" To="10" 
+                                                  AutoReverse="True" RepeatBehavior="Forever">
+                            </DoubleAnimation>
+
+                            <DoubleAnimation Storyboard.TargetProperty="(FrameworkElement.Effect).(DropShadowEffect.Opacity)"
+                                                 BeginTime="00:00:00" Duration="00:00:00"
+                                                 From="0" To="1" >
+                            </DoubleAnimation>
+
+                        </Storyboard>
+
+                    </BeginStoryboard>
+
+                </Trigger.EnterActions>
+
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
@@ -40,11 +64,11 @@
                     <Grid DataContext="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=.}" >
                         <ContentPresenter x:Name="CC"
                                           Content="{TemplateBinding ContentControl.Content}"
-                                          Margin="{TemplateBinding Padding}" />                  
+                                          Margin="{TemplateBinding Padding}" />
                         <thumb:MoveableThumb Cursor="SizeAll" Template="{StaticResource RectMoveableThumbTemplate}" x:Name="MoveThumb"/>
-                        
+
                         <base:DesignerItemDecorator x:Name="DesignerDecorator" ShowDecorator="{Binding RelativeSource={RelativeSource TemplatedParent},Path=IsSelected}" />
-                    </Grid>                   
+                    </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

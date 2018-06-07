@@ -572,11 +572,15 @@ namespace BoardDesigner.UControl
             this.SetBinding(Canvas.LeftProperty, canvasLeft);
             Binding canvasTop = new Binding("Position.Location.Y") { Source = DataContext };
             this.SetBinding(Canvas.TopProperty, canvasTop);
+            Binding canvasZIndex = new Binding("Position.ZIndex") { Source = DataContext };
+            this.SetBinding(Canvas.ZIndexProperty, canvasZIndex);
+
 
             this.SetBinding(ChartTitlesProperty, new Binding("ChartTitles") { Source = DataContext });
             this.SetBinding(ChartAxesXProperty, new Binding("ChartAxesX") { Source = DataContext });
             this.SetBinding(ChartAxesYProperty, new Binding("ChartAxesY") { Source = DataContext });
             this.SetBinding(ChartDataSeriesProperty, new Binding("Series") { Source = DataContext });
+            
 
             ChartTitles.CollectionChanged += ChartTitles_CollectionChanged;
             ChartAxesX.CollectionChanged += ChartAxesX_CollectionChanged;

@@ -93,9 +93,8 @@ namespace BoardDesigner.SystemControl
             DependencyProperty.Register("HeaderText", typeof(string), typeof(ShowList), new PropertyMetadata("标题"));
 
         #endregion
-        #region
 
-
+        #region 打开页面类型
 
         public OpenPageTypes OpenPageType
         {
@@ -132,6 +131,7 @@ namespace BoardDesigner.SystemControl
             {
                 case OpenPageTypes.DesignerPage:
                     //根据关键词获取DesignerBoard对象
+                  
                     //初始化DesignerPage并打开
                     break;
                 case OpenPageTypes.DocPage:
@@ -151,21 +151,7 @@ namespace BoardDesigner.SystemControl
 
             }
             e.Handled = true;
-        }
-
-        public void MoreButton_Click(object sender, RoutedEventArgs e)
-        {
-            //打开文件对话框
-            Microsoft.Win32.OpenFileDialog ofd = new Microsoft.Win32.OpenFileDialog();
-            ofd.DefaultExt = ".*";
-            ofd.Filter = "所有文件|*.*";
-            if (ofd.ShowDialog() == true)
-            {
-                //此处做你想做的事 ...=ofd.FileName; 
-            }
-            //根据结果选择打开方式
-            e.Handled = true;
-        }
+        }   
 
     }
 }

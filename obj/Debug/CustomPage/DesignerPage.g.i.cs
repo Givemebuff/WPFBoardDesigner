@@ -19,6 +19,7 @@ using Infragistics.Controls;
 using Infragistics.Controls.Charts;
 using Infragistics.Controls.Editors;
 using Infragistics.Controls.Gauges;
+using Infragistics.Controls.Interactions;
 using Infragistics.Controls.Maps;
 using Infragistics.Controls.Menus;
 using Infragistics.Documents;

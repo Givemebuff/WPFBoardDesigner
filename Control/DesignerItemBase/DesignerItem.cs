@@ -88,25 +88,18 @@ namespace BoardDesigner.Base
             if (designer != null)
             {
                
-
+                //选择多个时
                 if ((Keyboard.Modifiers & (ModifierKeys.Shift | ModifierKeys.Control)) != ModifierKeys.None)
                 {
                     this.IsSelected = !this.IsSelected;
                 }
-                else
+                else//单个选择时
                 {
                     DesignerCanvas dc = this.Parent as DesignerCanvas;
-                    if (!this.IsSelected)
-                    {
-                        designer.DeselectAll();
-                        this.IsSelected = true;
-                        if (dc.SelectItem == this)
-                            dc.SelectItem = null;
-                    }
-                    else 
-                    {
-                        dc.SelectItem = this;                       
-                    }
+                    designer.DeselectAll();
+                    this.IsSelected = true;
+                    dc.SelectItem = this;
+                   
                 }
             }
 

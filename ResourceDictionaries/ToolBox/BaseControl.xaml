@@ -2,23 +2,23 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:base="clr-namespace:BoardDesigner.Base">
     <base:ToolBox x:Key="BaseControlToolBox"
-               DefaultItemSize="25,25">
+               DefaultItemSize="50,50">
         <ItemsControl.Items>
             <Image IsHitTestVisible="False" x:Name="Label"
                    Stretch="Fill"
-                   Source="\Resources\Images\T 16X16.png" />
+                   Source="pack://application:,,,/Resources/Images/label_128px.png" />
             <Image IsHitTestVisible="False" x:Name="Image"
                    Stretch="Fill"
-                   Source="\Resources\Images\image 24X24.png" />
+                   Source="pack://application:,,,/Resources/Images/picture 128X128.png" />
             <Image IsHitTestVisible="False" x:Name="GIF"
                    Stretch="Fill"
-                   Source="\Resources\Images\GIF 24X24.png" />
+                   Source="pack://application:,,,/Resources/Images/gif_128px.png" />
             <Image IsHitTestVisible="False" x:Name="Video"
                    Stretch="Fill"
-                   Source="\Resources\Images\Video 16X16.png" />
+                   Source="pack://application:,,,/Resources/Images/video_128px.png" />
             <Image IsHitTestVisible="False" x:Name="WebBrowser"
                    Stretch="Fill"   
-                   Source="\Resources\Images\chrome 24X24.png" />
+                   Source="pack://application:,,,/Resources/Images/browser_128px.png" />
         </ItemsControl.Items>
     </base:ToolBox>
 </ResourceDictionary>

@@ -25,8 +25,10 @@ namespace BoardDesigner.UControl
         public DesignerImage DesignerItem { get; set; }
         public BoardImage()
         {
-            InitializeComponent();  
+            InitializeComponent();
             DesignerItem = new DesignerImage();
+            DesignerItem.Size.Width = 200;
+            DesignerItem.Size.Height = 200;
             InitBinding();
           
         }
@@ -50,7 +52,8 @@ namespace BoardDesigner.UControl
             this.SetBinding(Canvas.LeftProperty, canvasLeft);
             Binding canvasTop = new Binding("Position.Location.Y") { Source = DataContext };
             this.SetBinding(Canvas.TopProperty, canvasTop);
-
+            Binding canvasZIndex = new Binding("Position.ZIndex") { Source = DataContext };
+            this.SetBinding(Canvas.ZIndexProperty, canvasZIndex);
         }
     }
 }

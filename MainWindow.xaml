@@ -363,11 +363,7 @@
                         <igWPF:ContentPane  x:Name="MainPage" Header="主页" CloseButtonVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto">
                             <ContentControl x:Name="contentPage" />
                         </igWPF:ContentPane>
-                        <igWPF:ContentPane  x:Name="helpPage" Header="帮助" CloseButtonVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto">
-                            <ContentControl>
-
-                            </ContentControl>
-                        </igWPF:ContentPane>
+                        <igWPF:ContentPane  x:Name="helpPage" Header="帮助" CloseButtonVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
                     </igWPF:TabGroupPane>
 
                 </igWPF:SplitPane>

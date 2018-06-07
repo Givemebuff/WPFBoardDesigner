@@ -124,6 +124,30 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>dll\XamlAnimatedGif.dll</HintPath>
     </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=3.3.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>packages\Extended.Wpf.Toolkit.3.3.0\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=3.3.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>packages\Extended.Wpf.Toolkit.3.3.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=3.3.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>packages\Extended.Wpf.Toolkit.3.3.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=3.3.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>packages\Extended.Wpf.Toolkit.3.3.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.DataGrid, Version=3.3.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>packages\Extended.Wpf.Toolkit.3.3.0\lib\net40\Xceed.Wpf.DataGrid.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=3.3.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>packages\Extended.Wpf.Toolkit.3.3.0\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -135,8 +159,14 @@
     <Compile Include="BoardControl\BaseControl\Label.cs" />
     <Compile Include="BoardControl\BaseControl\Video.cs" />
     <Compile Include="BoardControl\BaseShape\Circle.cs" />
-    <Compile Include="Control\BoardChart.xaml.cs">
+    <Compile Include="SystemControl\ShowList.xaml.cs">
+      <DependentUpon>ShowList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UControl\BoardChart.xaml.cs">
       <DependentUpon>BoardChart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomPage\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Interface\ICandy.cs" />
     <Compile Include="BoardControl\BaseShape\Line.cs" />
@@ -152,19 +182,19 @@
     <Compile Include="BoardViewer.xaml.cs">
       <DependentUpon>BoardViewer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Control\BoardDataGrid.xaml.cs">
+    <Compile Include="UControl\BoardDataGrid.xaml.cs">
       <DependentUpon>BoardDataGrid.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Control\BoardDataGridColumn.xaml.cs">
+    <Compile Include="UControl\BoardDataGridColumn.xaml.cs">
       <DependentUpon>BoardDataGridColumn.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Control\BoardDataGridContentTexkBlock.xaml.cs">
+    <Compile Include="UControl\BoardDataGridContentTexkBlock.xaml.cs">
       <DependentUpon>BoardDataGridContentTexkBlock.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Control\BoardImage.xaml.cs">
+    <Compile Include="UControl\BoardImage.xaml.cs">
       <DependentUpon>BoardImage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Control\BoardTable.xaml.cs">
+    <Compile Include="UControl\BoardTable.xaml.cs">
       <DependentUpon>BoardTable.xaml</DependentUpon>
     </Compile>
     <Compile Include="Interface\IDesigner.cs" />
@@ -200,88 +230,99 @@
     <Compile Include="BoardModel\Shape\DesignerShape.cs" />
     <Compile Include="BoardModel\Control\DesignerLabel.cs" />
     <Compile Include="Model\RImage.cs" />
-    <Compile Include="SystemControl\Adorner\AngleInfoAdorner.cs" />
-    <Compile Include="SystemControl\Adorner\DesignerItemAdorner.cs" />
-    <Compile Include="SystemControl\Adorner\LineAdorner.cs" />
-    <Compile Include="SystemControl\Chrome\LineChrome.cs" />
-    <Compile Include="SystemControl\Adorner\LocationInfoAdorner.cs" />
-    <Compile Include="SystemControl\Adorner\MoveAdorner.cs" />
-    <Compile Include="SystemControl\Adorner\ResizeAdorner.cs" />
-    <Compile Include="SystemControl\Adorner\RubberbandAdorner.cs" />
-    <Compile Include="SystemControl\Adorner\SizeInfoAdorner.cs" />
-    <Compile Include="SystemControl\Chrome\AngleInfoChrome.cs" />
-    <Compile Include="SystemControl\Chrome\LocationInfoChrome.cs" />
-    <Compile Include="SystemControl\Chrome\MoveableChrome.cs" />
-    <Compile Include="SystemControl\Chrome\ResizeableChrome.cs" />
-    <Compile Include="SystemControl\Chrome\RotateableChrome.cs" />
-    <Compile Include="SystemControl\Chrome\SizeInfoChrome.cs" />
-    <Compile Include="SystemControl\Chrome\TransformOriginPointChrome.cs" />
-    <Compile Include="SystemControl\Converter\DesignerBrushToBrushConverter.cs" />
-    <Compile Include="SystemControl\Converter\DesignerDataPointCollectionToVisifireDataPointCollectionConverter.cs" />
-    <Compile Include="SystemControl\Converter\DoubleFormatConverter.cs" />
-    <Compile Include="SystemControl\Converter\Int100ToDoubleConverter.cs" />
-    <Compile Include="SystemControl\Converter\LocationFormatConverter.cs" />
-    <Compile Include="SystemControl\Converter\SetterValueConvert.cs" />
-    <Compile Include="SystemControl\Converter\StringToImageSourceConverter.cs" />
-    <Compile Include="SystemControl\CopyHelper\CopyHelper.cs" />
-    <Compile Include="SystemControl\Factory\CandyFactory.cs" />
-    <Compile Include="SystemControl\Converter\PointMarginConverter.cs" />
-    <Compile Include="SystemControl\DesignerItemBase\DesignerCanvas.cs" />
-    <Compile Include="SystemControl\DesignerItemBase\DesignerItem.cs" />
-    <Compile Include="SystemControl\DesignerItemBase\DesignerItemDecorator.cs" />
-    <Compile Include="SystemControl\OverViewMap\OverViewMap.cs" />
-    <Compile Include="SystemControl\Thumb\CenterPointThumb.cs" />
-    <Compile Include="SystemControl\Thumb\LineThumb.cs" />
-    <Compile Include="SystemControl\Thumb\MoveableThumb.cs" />
-    <Compile Include="SystemControl\Thumb\ResizeableThumb.cs" />
-    <Compile Include="SystemControl\Thumb\RotateableThumb.cs" />
-    <Compile Include="SystemControl\ToolBox\ToolBox.cs" />
-    <Compile Include="SystemControl\ToolBox\ToolBoxItem.cs" />
-    <Compile Include="SystemControl\ZoomableCanvans\LinkedListExtensions.cs" />
-    <Compile Include="SystemControl\ZoomableCanvans\MathExtensions.cs" />
-    <Compile Include="SystemControl\ZoomableCanvans\PriorityQuadTree.cs" />
-    <Compile Include="SystemControl\ZoomableCanvans\PriorityQueue.cs" />
-    <Compile Include="SystemControl\ZoomableCanvans\RectExtensions.cs" />
-    <Compile Include="SystemControl\ZoomableCanvans\VirtualPanel.cs" />
-    <Compile Include="SystemControl\ZoomableCanvans\ZoomableCanvas.cs" />
+    <Compile Include="Control\Adorner\AngleInfoAdorner.cs" />
+    <Compile Include="Control\Adorner\DesignerItemAdorner.cs" />
+    <Compile Include="Control\Adorner\LineAdorner.cs" />
+    <Compile Include="Control\Chrome\LineChrome.cs" />
+    <Compile Include="Control\Adorner\LocationInfoAdorner.cs" />
+    <Compile Include="Control\Adorner\MoveAdorner.cs" />
+    <Compile Include="Control\Adorner\ResizeAdorner.cs" />
+    <Compile Include="Control\Adorner\RubberbandAdorner.cs" />
+    <Compile Include="Control\Adorner\SizeInfoAdorner.cs" />
+    <Compile Include="Control\Chrome\AngleInfoChrome.cs" />
+    <Compile Include="Control\Chrome\LocationInfoChrome.cs" />
+    <Compile Include="Control\Chrome\MoveableChrome.cs" />
+    <Compile Include="Control\Chrome\ResizeableChrome.cs" />
+    <Compile Include="Control\Chrome\RotateableChrome.cs" />
+    <Compile Include="Control\Chrome\SizeInfoChrome.cs" />
+    <Compile Include="Control\Chrome\TransformOriginPointChrome.cs" />
+    <Compile Include="Control\Converter\DesignerBrushToBrushConverter.cs" />
+    <Compile Include="Control\Converter\DesignerDataPointCollectionToVisifireDataPointCollectionConverter.cs" />
+    <Compile Include="Control\Converter\DoubleFormatConverter.cs" />
+    <Compile Include="Control\Converter\Int100ToDoubleConverter.cs" />
+    <Compile Include="Control\Converter\LocationFormatConverter.cs" />
+    <Compile Include="Control\Converter\SetterValueConvert.cs" />
+    <Compile Include="Control\Converter\StringToImageSourceConverter.cs" />
+    <Compile Include="Control\CopyHelper\CopyHelper.cs" />
+    <Compile Include="Control\Factory\CandyFactory.cs" />
+    <Compile Include="Control\Converter\PointMarginConverter.cs" />
+    <Compile Include="Control\DesignerItemBase\DesignerCanvas.cs" />
+    <Compile Include="Control\DesignerItemBase\DesignerItem.cs" />
+    <Compile Include="Control\DesignerItemBase\DesignerItemDecorator.cs" />
+    <Compile Include="Control\OverViewMap\OverViewMap.cs" />
+    <Compile Include="Control\Thumb\CenterPointThumb.cs" />
+    <Compile Include="Control\Thumb\LineThumb.cs" />
+    <Compile Include="Control\Thumb\MoveableThumb.cs" />
+    <Compile Include="Control\Thumb\ResizeableThumb.cs" />
+    <Compile Include="Control\Thumb\RotateableThumb.cs" />
+    <Compile Include="Control\ToolBox\ToolBox.cs" />
+    <Compile Include="Control\ToolBox\ToolBoxItem.cs" />
+    <Compile Include="Control\ZoomableCanvans\LinkedListExtensions.cs" />
+    <Compile Include="Control\ZoomableCanvans\MathExtensions.cs" />
+    <Compile Include="Control\ZoomableCanvans\PriorityQuadTree.cs" />
+    <Compile Include="Control\ZoomableCanvans\PriorityQueue.cs" />
+    <Compile Include="Control\ZoomableCanvans\RectExtensions.cs" />
+    <Compile Include="Control\ZoomableCanvans\VirtualPanel.cs" />
+    <Compile Include="Control\ZoomableCanvans\ZoomableCanvas.cs" />
     <Compile Include="Test.xaml.cs">
       <DependentUpon>Test.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Control\BoardLabel.xaml.cs">
+    <Compile Include="UControl\BoardLabel.xaml.cs">
       <DependentUpon>BoardLabel.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\ImageResourceWindow.xaml.cs">
       <DependentUpon>ImageResourceWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\NewBoardWindow.xaml.cs">
+      <DependentUpon>NewBoardWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="BoardViewer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Control\BoardChart.xaml">
+    <Page Include="SystemControl\ShowList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Control\BoardDataGrid.xaml">
+    <Page Include="UControl\BoardChart.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Control\BoardDataGridColumn.xaml">
+    <Page Include="UControl\BoardDataGrid.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Control\BoardDataGridContentTexkBlock.xaml">
+    <Page Include="UControl\BoardDataGridColumn.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Control\BoardImage.xaml">
+    <Page Include="UControl\BoardDataGridContentTexkBlock.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Control\BoardTable.xaml">
+    <Page Include="UControl\BoardImage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UControl\BoardTable.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CustomPage\HelpPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomPage\MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -397,11 +438,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Control\BoardLabel.xaml">
+    <Page Include="UControl\BoardLabel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\ImageResourceWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\NewBoardWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -431,6 +476,7 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="BoardDesigner_TemporaryKey.pfx" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -621,6 +667,7 @@
     <Folder Include="bin\Debug\Resources\" />
     <Folder Include="BoardModel\Board\" />
     <Folder Include="BoardModel\TextBlock\" />
+    <Folder Include="NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">

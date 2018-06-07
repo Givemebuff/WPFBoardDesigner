@@ -58,7 +58,7 @@ namespace BoardDesigner
         public MainWindow()
         {
             InitializeComponent();
-            contentPage.Content = new Frame() { Content = new DesignerPage() };
+            this.MainPage.Content = new Frame() { Content = new MainPage() };
             helpPage.Content = new Frame() { Content = new HelpPage() };
 
         }
@@ -112,39 +112,35 @@ namespace BoardDesigner
             //加载图片资源
             List<RImage> imgs = new List<RImage>();
             //资源文件中图片
-            ////foreach(object obj in Properties.Resources.ResourceManager.)
-            //int i = 0;
-            //Properties.Resources res = new Properties.Resources();
-            //PropertyInfo[] peoperInfo = res.GetType().GetProperties(BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Instance);
-            //string[] image = new string[peoperInfo.Count()];
-            //foreach (PropertyInfo pro in peoperInfo)
-            //{
-            //    image[i] = pro.Name;
-            //    i++;
-            //}
+            //TODO
             //文件夹下图片
-            string curDirPath = Directory.GetCurrentDirectory()+@"\Images";
+            string curDirPath = Directory.GetCurrentDirectory() + @"\Images";
+            //若不存在文件夹则先创建
+            if (!Directory.Exists(curDirPath))
+            {
+                Directory.CreateDirectory(curDirPath);
+            }
             DirectoryInfo di = new DirectoryInfo(curDirPath);
             FileInfo[] fis = di.GetFiles();
-            foreach (FileInfo fi in fis) 
+            foreach (FileInfo fi in fis)
             {
                 string ext = fi.Extension.ToLower();
                 if (ext.IndexOf("jpg") == -1 && ext.IndexOf("png") == -1 && ext.IndexOf("gif") == -1 && ext.IndexOf("bmp") == -1)
                     continue;
-                else 
+                else
                 {
-                    RImage image= new RImage()
+                    RImage image = new RImage()
                     {
                         ImageName = fi.Name,
-                        Path = fi.FullName,                        
+                        Path = fi.FullName,
                         ImageUri = new Uri(fi.FullName, UriKind.Absolute),
                         Source = new BitmapImage(new Uri(fi.FullName, UriKind.Absolute))//FileSize = String.Format("{0:F}", ((double)(fi.Length / 1024)).ToString()),
                     };
-                    image.FileSize = fi.Length < 1024 ? 
+                    image.FileSize = (double)fi.Length < 1024 ?
                         (fi.Length.ToString() + "B") :
                         (
-                        (fi.Length/1024)<1024? String.Format("{0:F}", ((double)(fi.Length / 1024)).ToString()+"KB"):
-                    String.Format("{0:F}", ((double)(fi.Length /1024/1024)).ToString()+"MB"));
+                        ((double)fi.Length / 1024) < 1024 ? String.Format("{0:F}", (((double)fi.Length / 1024)).ToString() + "KB") :
+                    String.Format("{0:F}", (((double)fi.Length / 1024 / 1024)).ToString() + "MB"));
                     imgs.Add(image);
                 }
             }

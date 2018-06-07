@@ -1,0 +1,50 @@
+﻿<UserControl x:Class="BoardDesigner.SystemControl.ShowList"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BoardDesigner.SystemControl"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <Style TargetType="Button" x:Key="ShowListButtonStyle">
+            <Setter Property="Foreground"  Value="Blue"/>
+            <Setter Property="BorderThickness" Value="0"/> 
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Background" Value="Transparent"/>
+        </Style>
+    </UserControl.Resources>
+    <Border >
+        <Grid>
+            <Grid.RowDefinitions>               
+                <RowDefinition/> 
+                <RowDefinition Height="10*"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock Background="{x:Null}" x:Name="HeaderTextBlock"  Grid.Row="0"   Foreground="White"    
+                     FontSize="18"
+                     FontWeight="Bold"></TextBlock>
+            <ScrollViewer Grid.Row="1"  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden">
+                <Grid x:Name="ContentGrid">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                </Grid>
+            </ScrollViewer>
+            <Button  Grid.Row="2" x:Name="MoreButton" Click="MoreButton_Click" Content="更多..." Style="{StaticResource ShowListButtonStyle}">
+               
+            </Button>
+        </Grid>
+    </Border>
+   
+</UserControl>

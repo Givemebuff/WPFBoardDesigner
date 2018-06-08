@@ -1,4 +1,5 @@
 ﻿using BoardDesigner.BaseThumb;
+using BoardDesigner.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -96,6 +97,12 @@ namespace BoardDesigner.Base
                 else//单个选择时
                 {
                     DesignerCanvas dc = this.Parent as DesignerCanvas;
+                    if(this.Content is IDesigner)
+                    {
+                        if (dc.SelectItem == (this.Content as IDesigner).GetDesignerItem())
+                            return;
+                    }
+                         
                     designer.DeselectAll();
                     this.IsSelected = true;
                     dc.SelectItem = this;

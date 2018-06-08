@@ -1,7 +1,9 @@
-﻿using BoardDesigner.Properties;
+﻿using BoardDesigner.Model;
+using BoardDesigner.Properties;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,11 +24,11 @@ namespace BoardDesigner.Converter
             }
             else 
             {
-                string fileName = value.ToString();
+                string fileName = Directory.GetCurrentDirectory() + "\\Images\\" + value.ToString();             
                 if (System.IO.File.Exists(fileName))
-                {
-                    string dirPth = System.IO.Directory.GetCurrentDirectory();                  
-                    return (ImageSource)(new BitmapImage(new Uri(dirPth + "\\" + fileName, UriKind.Absolute)));
+                {                 
+
+                    return (ImageSource)(new BitmapImage(new Uri( fileName, UriKind.Absolute)));
                 }
                 else
                 {
@@ -36,8 +38,8 @@ namespace BoardDesigner.Converter
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
+        {           
+           return (value as BitmapImage).UriSource.AbsolutePath;
         }
     }
 }

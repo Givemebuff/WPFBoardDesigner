@@ -182,11 +182,15 @@ namespace BoardDesigner.Base
             this.Children.Add(designerItem);
 
             IDesigner uc = designerItem.Content as IDesigner;
-            Binding canvasLeft = new Binding("Position.Location.X") { Source = uc.GetDesignerItem(),Mode= BindingMode.TwoWay };
-            designerItem.SetBinding(DesignerCanvas.LeftProperty, canvasLeft);
-            Binding canvasTop = new Binding("Position.Location.Y") { Source = uc.GetDesignerItem(), Mode = BindingMode.TwoWay };
-            designerItem.SetBinding(DesignerCanvas.TopProperty, canvasTop);
             DesignerVisualElement dc = uc.GetDesignerItem() as DesignerVisualElement;
+
+            Binding canvasLeft = new Binding("Position.Location.X") { Source = dc};
+            designerItem.SetBinding(DesignerCanvas.LeftProperty, canvasLeft);
+            Binding canvasTop = new Binding("Position.Location.Y") { Source = dc};
+            designerItem.SetBinding(DesignerCanvas.TopProperty, canvasTop);
+            Binding canvasZIndex = new Binding("Position.ZIndex") { Source = dc };
+            designerItem.SetBinding(DesignerCanvas.ZIndexProperty, canvasZIndex);
+
             dc.Position.MoveTo(location.X, location.Y);          
            
             this.DeselectAll();

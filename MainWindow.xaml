@@ -1,4 +1,4 @@
-﻿<Custom:XamRibbonWindow xmlns:BoardControl="clr-namespace:BoardDesigner.BoardControl"  
+﻿<Window xmlns:BoardControl="clr-namespace:BoardDesigner.BoardControl"  
                         xmlns:Controls="clr-namespace:System.Windows.Controls" 
                         xmlns:igWPF="http://schemas.infragistics.com/xaml/wpf" 
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -7,16 +7,19 @@
         xmlns:ig="http://schemas.infragistics.com/xaml" 
         xmlns:Custom="http://infragistics.com/Ribbon" 
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="BoardDesigner.MainWindow"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
+        xmlns:MyWindow="clr-namespace:BoardDesigner"
+        x:Class="BoardDesigner.MainWindow"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:converter="clr-namespace:BoardDesigner.Converter"
         xmlns:res="clr-namespace:BoardDesigner.Properties"
         x:Name="ThisWindow"
         Title="看板设计器" Height="768" Width="1366" WindowStyle="ThreeDBorderWindow" Icon="Resources/Icons/web-design.ico" >
-    <Custom:XamRibbonWindow.Resources>
+    <Window.Resources>
         <converter:Int100ToDoubleConverter x:Key="Int100ToDoubleConverter"/>
-    </Custom:XamRibbonWindow.Resources>
-    <Custom:XamRibbonWindow.CommandBindings>
+        <converter:RImageToStringConverter x:Key="RImageToStringConverter" />
+    </Window.Resources>
+    <Window.CommandBindings>
         <CommandBinding Command="ApplicationCommands.Open"
                         CanExecute="OpenProCommand_CanExecute"
                          Executed="OpenProCommand_Executed">
@@ -25,182 +28,24 @@
                           CanExecute="NewProCommand_CanExecute"
                          Executed="NewProCommand_Executed">
         </CommandBinding>
-    </Custom:XamRibbonWindow.CommandBindings>
-    <Custom:RibbonWindowContentHost>
-        <Custom:RibbonWindowContentHost.Ribbon>
-            <Custom:XamRibbon Height="120" Grid.Row="0" VerticalAlignment="Top" Theme="Office2013" AllowMinimize="True" AutoHideEnabled="True" >
-                <Custom:XamRibbon.ApplicationMenu>
-                    <Custom:ApplicationMenu Caption="文件">
-                        <Custom:ApplicationMenu.RecentItems>
-                            <Custom:ButtonTool Caption="11111" />
-                        </Custom:ApplicationMenu.RecentItems>
-                        <Custom:ButtonTool x:Name="NewProjectButton" Caption="新建" LargeImage="Resources/Images/New_Large.png" Command="ApplicationCommands.New" />
-                        <Custom:ButtonTool x:Name="OpenProjectButton" Caption="打开" LargeImage="Resources/Images/Open_Large.png"  Command="ApplicationCommands.Open"/>
-                        <Custom:ButtonTool x:Name="SaveProjectButton" Caption="保存" LargeImage="Resources/Images/Save_Large.png" Command="ApplicationCommands.Save"/>
-                        <Custom:SeparatorTool/>
-                        <Custom:ButtonTool x:Name="ExitApplicationButton"  Caption="退出" LargeImage="Resources/Images/Close_Large.png" Command="ApplicationCommands.Close"/>
-                        <Custom:ApplicationMenu.FooterToolbar>
-                            <Custom:ApplicationMenuFooterToolbar>
-                                <Custom:ButtonTool Caption=""/>
-                            </Custom:ApplicationMenuFooterToolbar>
-                        </Custom:ApplicationMenu.FooterToolbar>
-                    </Custom:ApplicationMenu>
-                </Custom:XamRibbon.ApplicationMenu>
-                <Custom:XamRibbon.QuickAccessToolbar >
-                    <Custom:QuickAccessToolbar Visibility="Collapsed" />
-                </Custom:XamRibbon.QuickAccessToolbar>
-                <Custom:RibbonTabItem Header="开始">
-                    <Custom:RibbonGroup Id="FileGroup" Caption="文件">
-                        <Custom:ToolHorizontalWrapPanel>
-                            <Custom:ButtonTool
-							Caption="新建"
-							Custom:RibbonGroup.MaximumSize="ImageAndTextLarge" Command="ApplicationCommands.New"
-							SmallImage="Resources/Images/New_Large.png"
-							LargeImage="Resources/Images/New_Large.png"/>
-                        </Custom:ToolHorizontalWrapPanel>
-                        <Custom:ToolHorizontalWrapPanel>
-                            <Custom:ButtonTool
-							Caption="打开"
-							Custom:RibbonGroup.MaximumSize="ImageAndTextLarge" Command="ApplicationCommands.Open"
-							SmallImage="Resources/Images/Open_Large.png"
-							LargeImage="Resources/Images/Open_Large.png"/>
-                        </Custom:ToolHorizontalWrapPanel>
-                        <Custom:ToolHorizontalWrapPanel>
-                            <Custom:ButtonTool
-							Caption="保存"
-							Custom:RibbonGroup.MaximumSize="ImageAndTextLarge" Command="ApplicationCommands.Save"
-							SmallImage="Resources/Images/Save_Large.png"
-							LargeImage="Resources/Images/Save_Large.png"/>
-                        </Custom:ToolHorizontalWrapPanel>
-                        <Custom:ToolHorizontalWrapPanel>
-                            <Custom:ButtonTool
-							Caption="关闭"
-							Custom:RibbonGroup.MaximumSize="ImageAndTextLarge" Command="ApplicationCommands.Close"
-							SmallImage="Resources/Images/Close_Large.png"
-							LargeImage="Resources/Images/Close_Large.png"/>
-                        </Custom:ToolHorizontalWrapPanel>
-                    </Custom:RibbonGroup>
-                    <Custom:RibbonGroup Id="Clipboard" Caption="粘贴板">
-                        <Custom:ToolHorizontalWrapPanel>
-                            <Custom:ButtonTool
-							Caption="复制"
-							Custom:RibbonGroup.MaximumSize="ImageAndTextLarge"
-							SmallImage="Resources/Images/Paste_16x16.png"
-							LargeImage="Resources/Images/Paste_32x32.png"/>
-                        </Custom:ToolHorizontalWrapPanel>
-                        <Custom:ButtonGroup>
-                            <Custom:ButtonTool
-							Content="剪切" IsQatCommonTool="True"
-							Id="cutTool"
-							SmallImage="Resources/Images/EditCut.png"/>
-                            <Custom:ButtonTool
-							Content="粘贴" IsQatCommonTool="True"
-							Id="copyTool" SmallImage="Resources/Images/EditCopy.png"/>
-                        </Custom:ButtonGroup>
-                        <Custom:ButtonGroup>
-                            <Custom:ButtonTool
-							Content="撤销" IsQatCommonTool="True"
-							Id="undoTool" SmallImage="Resources/Images/EditUndo.png"/>
-                            <Custom:ButtonTool
-							Content="重复" IsQatCommonTool="True"
-							Id="redoTool" SmallImage="Resources/Images/EditRedo.png"/>
-                        </Custom:ButtonGroup>
-                    </Custom:RibbonGroup>
-                    <Custom:RibbonGroup Id="Running" Caption="运行时">
-                        <Custom:ToolHorizontalWrapPanel>
-                            <Custom:ButtonTool
-							Caption="预览" Click="ViewButtonTool_Click"
-							Custom:RibbonGroup.MaximumSize="ImageAndTextLarge" 
-                            LargeImage="Resources/Images/preview_72px.png" SmallImage="Resources/Images/preview_72px.png"
-						/>
-                        </Custom:ToolHorizontalWrapPanel>
-                        <Custom:ButtonGroup x:Name="RunningButtonGroup">
-                            <Custom:ButtonTool 
-							Content="生成" IsQatCommonTool="True" SmallImage="Resources/Images/complete_128px.png"
-							Id="Build" />
-
-
-                        </Custom:ButtonGroup>
-                    </Custom:RibbonGroup>
-                </Custom:RibbonTabItem>
-                <Custom:RibbonTabItem Header="画笔">
-                    <Custom:RibbonGroup Id="PenCustomControlGroup" Caption="画笔拓展功能">
-                        <Custom:ToolHorizontalWrapPanel>
-                            <Custom:ButtonTool
-							Caption="自定义"
-							Custom:RibbonGroup.MaximumSize="ImageAndTextLarge"
-							SmallImage="Resources/Images/Design_128px.png"
-							LargeImage="Resources/Images/Design_128px.png"/>
-                        </Custom:ToolHorizontalWrapPanel>
-                        <Custom:ToolHorizontalWrapPanel>
-                            <Custom:ButtonTool
-							Caption="导入"
-							Custom:RibbonGroup.MaximumSize="ImageAndTextLarge"
-							SmallImage="Resources/Images/boxin_128px.png"
-							LargeImage="Resources/Images/boxin_128px.png"/>
-                        </Custom:ToolHorizontalWrapPanel>
-                        <Custom:ButtonGroup x:Name="WordButtonGroup">
-                            <!--<Custom:ButtonTool
-							Content="标签" IsQatCommonTool="True"
-							Id="labelControl" SmallImage="Resources/Images/T 16X16.png"/>-->
-
-
-
-                        </Custom:ButtonGroup>
-                    </Custom:RibbonGroup>
-
-                    <Custom:RibbonGroup Id="PenControlGroup" Caption="画笔控件组" IsOpen="False">
-                        <Custom:ToolHorizontalWrapPanel>
-                            <Custom:ButtonTool
-							Caption="铅笔"
-							Custom:RibbonGroup.MaximumSize="ImageAndTextLarge"
-							SmallImage="Resources/Images/pencil_128px.png"
-							LargeImage="Resources/Images/pencil_128px.png"/>
-                        </Custom:ToolHorizontalWrapPanel>
-                        <Custom:ToolHorizontalWrapPanel>
-                            <Custom:ButtonTool
-							Caption="毛笔"
-							Custom:RibbonGroup.MaximumSize="ImageAndTextLarge"
-							SmallImage="Resources/Images/brush.png"
-							LargeImage="Resources/Images/brush.png"/>
-                        </Custom:ToolHorizontalWrapPanel>
-                        <Custom:ToolHorizontalWrapPanel>
-                            <Custom:ButtonTool
-							Caption="马克笔"
-							Custom:RibbonGroup.MaximumSize="ImageAndTextLarge"
-							SmallImage="Resources/Images/markerpen_128px.png"
-							LargeImage="Resources/Images/markerpen_128px.png"/>
-                        </Custom:ToolHorizontalWrapPanel>
-                        <Custom:ToolHorizontalWrapPanel>
-                            <Custom:ButtonTool
-							Caption="油漆桶"
-							Custom:RibbonGroup.MaximumSize="ImageAndTextLarge"
-							SmallImage="Resources/Images/bucket_128px.png"
-							LargeImage="Resources/Images/bucket_128px.png"/>
-                        </Custom:ToolHorizontalWrapPanel>
-                    </Custom:RibbonGroup>
-                </Custom:RibbonTabItem>
-                <Custom:RibbonTabItem Header="模板"/>
-
-            </Custom:XamRibbon>
-
-        </Custom:RibbonWindowContentHost.Ribbon>
-         <Grid Background="Gray">
-        <Grid.RowDefinitions>           
+    </Window.CommandBindings>
+    <Grid Background="Gray">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
             <RowDefinition/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-            <igWPF:XamDockManager Grid.Row="0"  Theme="Office2013" LayoutMode="Standard" >
+        <igWPF:XamDockManager Grid.Row="1"  Theme="Office2013" LayoutMode="Standard" >
 
             <igWPF:XamDockManager.Panes>
-                <!--<igWPF:SplitPane igWPF:XamDockManager.InitialLocation="DockedBottom" 
+                <igWPF:SplitPane igWPF:XamDockManager.InitialLocation="DockedBottom" 
 					SplitterOrientation="Vertical" Height="200">
-                    <igWPF:TabGroupPane>
-                        <igWPF:ContentPane x:Name="xmlDockPane" Header="XML"
-							Image="Resources/Images/xml.png"
-							CloseButtonVisibility="Visible"
+                    <igWPF:TabGroupPane >
+                        <igWPF:ContentPane x:Name="xmlDockPane" Header="XML"	  IsPinned="False"                                        
+							CloseButtonVisibility="Visible" 
 							PinButtonVisibility="Visible"
 							WindowPositionMenuVisibility="Visible">
+                          
                             <ig:XamSyntaxEditor Background="{x:Null}"  x:Name="xamSyntaxEditor1" 
 								SplitOptions="SplittingNotAllowed" ErrorDisplayMode="Never" BorderThickness="1"     
 								LineNumberMarginBackground="#FFD8D8D8"
@@ -210,14 +55,14 @@
                                 </ig:XamSyntaxEditor.Document>
                             </ig:XamSyntaxEditor>
                         </igWPF:ContentPane>
-                        <igWPF:ContentPane x:Name="debugDockPane" Header="Debug"
+                        <igWPF:ContentPane x:Name="debugDockPane" Header="Debug"  IsPinned="False"   
 							Image="Resources/Images/cmd_128px.png"
 							CloseButtonVisibility="Visible"
 							PinButtonVisibility="Visible"
 							WindowPositionMenuVisibility="Visible"/>
 
                     </igWPF:TabGroupPane>
-                </igWPF:SplitPane>-->
+                </igWPF:SplitPane>
                 <igWPF:SplitPane igWPF:XamDockManager.InitialLocation="DockedLeft" 
 					SplitterOrientation="Horizontal" Width="150">
                     <igWPF:TabGroupPane>
@@ -260,13 +105,13 @@
                 <igWPF:SplitPane igWPF:XamDockManager.InitialLocation="DockedRight" 
 					SplitterOrientation="Horizontal" Width="232">
                     <igWPF:TabGroupPane >
-                            <igWPF:ContentPane x:Name="propertiesDockPane" Header="属性"  IsPinned="False"
+                        <igWPF:ContentPane x:Name="propertiesDockPane" Header="属性"  IsPinned="False"
 							CloseButtonVisibility="Visible"
 							PinButtonVisibility="Visible"
 							WindowPositionMenuVisibility="Visible">
                             <DockPanel>
 
-                                <ig:XamPropertyGrid HorizontalAlignment="Left" VerticalAlignment="Top" x:Name="xamPropertyGrid"                                                    
+                                <ig:XamPropertyGrid HorizontalAlignment="Left" VerticalAlignment="Top" x:Name="xamPropertyGrid"                                                     
                                                     ScrollBarVisibility="Auto"  >
                                     <ig:XamPropertyGrid.EditorDefinitions>
                                         <ig:PropertyGridEditorDefinition>
@@ -289,28 +134,34 @@
                                             </ig:PropertyGridEditorDefinition.EditTemplate>
                                         </ig:PropertyGridEditorDefinition>
                                         <ig:PropertyGridEditorDefinition>
-                                            <ig:PropertyGridEditorDefinition.TargetProperties>                                                
+                                            <ig:PropertyGridEditorDefinition.TargetProperties>
                                                 <sys:String>BackgoundImage</sys:String>
+                                                <sys:String>ImageSource</sys:String>
                                             </ig:PropertyGridEditorDefinition.TargetProperties>
                                             <ig:PropertyGridEditorDefinition.EditTemplate>
                                                 <DataTemplate>
-                                                    <Grid>
+                                                    <Grid >
                                                         <Grid.ColumnDefinitions>
                                                             <ColumnDefinition Width="Auto" />
                                                             <ColumnDefinition Width="*" />
                                                         </Grid.ColumnDefinitions>
                                                         <ig:XamComboEditor x:Name="ImageXamComboEditor" 
-                                                                           Height="70" Width="200" 
+                                                                           Height="30" MinWidth="200" 
                                                                            IsEditable="True" AllowFiltering="True" 
+                                                                           SelectionChanged="ImageXamComboEditor_SelectionChanged"
                                                                            DisplayMemberPath="ImageName"
-                                                                           SelectedItem="{Binding Path=Value}"
-                                                                           Loaded="ImageXamComboEditor_Loaded">
+                                                                           SelectedValuePath="Path"
+                                                                          
+                                                                           ItemsSource="{Binding RelativeSource={RelativeSource   Mode= FindAncestor,  AncestorType={x:Type MyWindow:MainWindow}}, Path=ImageResourceCollection}"
+                                                                         SelectedItem="{Binding Path=Value,Converter={StaticResource RImageToStringConverter}}"  EmptyText="选择一张图片..."
+                                                                          >
+                                                           
                                                             <ig:XamComboEditor.ItemTemplate>
                                                                 <DataTemplate>
                                                                     <Grid Height="60">
                                                                         <Grid.ColumnDefinitions>
-                                                                            <ColumnDefinition Width="100" />
-                                                                            <ColumnDefinition Width="60" />
+                                                                            <ColumnDefinition Width="Auto" />
+                                                                            <ColumnDefinition Width="Auto" />
                                                                             <ColumnDefinition Width="Auto" />
                                                                         </Grid.ColumnDefinitions>
                                                                         <TextBlock Text="{Binding Path=ImageName}" Margin="3" Grid.Column="0"
@@ -323,7 +174,7 @@
                                                                 </DataTemplate>
                                                             </ig:XamComboEditor.ItemTemplate>
                                                         </ig:XamComboEditor>
-                                                        <Button Grid.Column="1" Content="设置" x:Name="SettingImageButton" Click="SettingImageButton_Click"></Button>
+                                                        <Button Grid.Column="1" Content="添加" Width="40" Height="20"  x:Name="SettingImageButton" Click="SettingImageButton_Click"></Button>
                                                     </Grid>
                                                 </DataTemplate>
                                             </ig:PropertyGridEditorDefinition.EditTemplate>
@@ -346,17 +197,176 @@
             </igWPF:DocumentContentHost>
 
         </igWPF:XamDockManager>
-        <StatusBar Grid.Row="1" Height="25" Background="#FF007ACC" x:Name="Stsbar">
-                <Grid Width="{Binding ElementName=Stsbar,Path=ActualWidth}">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" Background="{x:Null}" Foreground="White"  FontSize="12" Text="就绪" VerticalAlignment="Center"/>
-                    <ProgressBar Grid.Column="1" Width="100" Height="20" Background="Transparent" BorderThickness="0" HorizontalAlignment="Right" Margin="0,0,10,0"/>
-                </Grid>                
+        <StatusBar Grid.Row="2" Height="25" Background="#FF007ACC" x:Name="Stsbar">
+            <Grid Width="{Binding ElementName=Stsbar,Path=ActualWidth}">
+                <Grid.ColumnDefinitions>                   
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Background="{x:Null}" Foreground="White"  FontSize="12" Text="就绪" VerticalAlignment="Center"/>
+                <ProgressBar Grid.Column="1" Width="100" Height="20" Background="Transparent" BorderThickness="0" HorizontalAlignment="Right" Margin="0,0,10,0"/>
+            </Grid>
         </StatusBar>
-    </Grid>
-    </Custom:RibbonWindowContentHost>
+        <Custom:XamRibbon Height="120" Grid.Row="0" VerticalAlignment="Top" Theme="Office2013" AllowMinimize="True" AutoHideEnabled="True" >
+            <Custom:XamRibbon.ApplicationMenu>
+                <Custom:ApplicationMenu Caption="文件">
+                    <Custom:ApplicationMenu.RecentItems>
+                        <Custom:ButtonTool Caption="11111" />
+                    </Custom:ApplicationMenu.RecentItems>
+                    <Custom:ButtonTool x:Name="NewProjectButton" Caption="新建" LargeImage="Resources/Images/New_Large.png" Command="ApplicationCommands.New" />
+                    <Custom:ButtonTool x:Name="OpenProjectButton" Caption="打开" LargeImage="Resources/Images/Open_Large.png"  Command="ApplicationCommands.Open"/>
+                    <Custom:ButtonTool x:Name="SaveProjectButton" Caption="保存" LargeImage="Resources/Images/Save_Large.png" Command="ApplicationCommands.Save"/>
+                    <Custom:SeparatorTool/>
+                    <Custom:ButtonTool x:Name="ExitApplicationButton"  Caption="退出" LargeImage="Resources/Images/Close_Large.png" Command="ApplicationCommands.Close"/>
+                    <Custom:ApplicationMenu.FooterToolbar>
+                        <Custom:ApplicationMenuFooterToolbar>
+                            <Custom:ButtonTool Caption=""/>
+                        </Custom:ApplicationMenuFooterToolbar>
+                    </Custom:ApplicationMenu.FooterToolbar>
+                </Custom:ApplicationMenu>
+            </Custom:XamRibbon.ApplicationMenu>
+            <Custom:XamRibbon.QuickAccessToolbar >
+                <Custom:QuickAccessToolbar Visibility="Collapsed" />
+            </Custom:XamRibbon.QuickAccessToolbar>
+            <Custom:RibbonTabItem Header="开始">
+                <Custom:RibbonGroup Id="FileGroup" Caption="文件">
+                    <Custom:ToolHorizontalWrapPanel>
+                        <Custom:ButtonTool
+							Caption="新建"
+							Custom:RibbonGroup.MaximumSize="ImageAndTextLarge" Command="ApplicationCommands.New"
+							SmallImage="Resources/Images/New_Large.png"
+							LargeImage="Resources/Images/New_Large.png"/>
+                    </Custom:ToolHorizontalWrapPanel>
+                    <Custom:ToolHorizontalWrapPanel>
+                        <Custom:ButtonTool
+							Caption="打开"
+							Custom:RibbonGroup.MaximumSize="ImageAndTextLarge" Command="ApplicationCommands.Open"
+							SmallImage="Resources/Images/Open_Large.png"
+							LargeImage="Resources/Images/Open_Large.png"/>
+                    </Custom:ToolHorizontalWrapPanel>
+                    <Custom:ToolHorizontalWrapPanel>
+                        <Custom:ButtonTool
+							Caption="保存"
+							Custom:RibbonGroup.MaximumSize="ImageAndTextLarge" Command="ApplicationCommands.Save"
+							SmallImage="Resources/Images/Save_Large.png"
+							LargeImage="Resources/Images/Save_Large.png"/>
+                    </Custom:ToolHorizontalWrapPanel>
+                    <Custom:ToolHorizontalWrapPanel>
+                        <Custom:ButtonTool
+							Caption="关闭"
+							Custom:RibbonGroup.MaximumSize="ImageAndTextLarge" Command="ApplicationCommands.Close"
+							SmallImage="Resources/Images/Close_Large.png"
+							LargeImage="Resources/Images/Close_Large.png"/>
+                    </Custom:ToolHorizontalWrapPanel>
+                </Custom:RibbonGroup>
+                <Custom:RibbonGroup Id="Clipboard" Caption="粘贴板">
+                    <Custom:ToolHorizontalWrapPanel>
+                        <Custom:ButtonTool
+							Caption="复制"
+							Custom:RibbonGroup.MaximumSize="ImageAndTextLarge"
+							SmallImage="Resources/Images/Paste_16x16.png"
+							LargeImage="Resources/Images/Paste_32x32.png"/>
+                    </Custom:ToolHorizontalWrapPanel>
+                    <Custom:ButtonGroup>
+                        <Custom:ButtonTool
+							Content="剪切" IsQatCommonTool="True"
+							Id="cutTool"
+							SmallImage="Resources/Images/EditCut.png"/>
+                        <Custom:ButtonTool
+							Content="粘贴" IsQatCommonTool="True"
+							Id="copyTool" SmallImage="Resources/Images/EditCopy.png"/>
+                    </Custom:ButtonGroup>
+                    <Custom:ButtonGroup>
+                        <Custom:ButtonTool
+							Content="撤销" IsQatCommonTool="True"
+							Id="undoTool" SmallImage="Resources/Images/EditUndo.png"/>
+                        <Custom:ButtonTool
+							Content="重复" IsQatCommonTool="True"
+							Id="redoTool" SmallImage="Resources/Images/EditRedo.png"/>
+                    </Custom:ButtonGroup>
+                </Custom:RibbonGroup>
+                <Custom:RibbonGroup Id="Running" Caption="运行时">
+                    <Custom:ToolHorizontalWrapPanel>
+                        <Custom:ButtonTool
+							Caption="预览" Click="ViewButtonTool_Click"
+							Custom:RibbonGroup.MaximumSize="ImageAndTextLarge" 
+                            LargeImage="Resources/Images/preview_72px.png" SmallImage="Resources/Images/preview_72px.png"
+						/>
+                    </Custom:ToolHorizontalWrapPanel>
+                    <Custom:ButtonGroup x:Name="RunningButtonGroup">
+                        <Custom:ButtonTool 
+							Content="生成" IsQatCommonTool="True" SmallImage="Resources/Images/complete_128px.png"
+							Id="Build" />
 
-</Custom:XamRibbonWindow>
+
+                    </Custom:ButtonGroup>
+                </Custom:RibbonGroup>
+            </Custom:RibbonTabItem>
+            <Custom:RibbonTabItem Header="画笔">
+                <Custom:RibbonGroup Id="PenCustomControlGroup" Caption="画笔拓展功能">
+                    <Custom:ToolHorizontalWrapPanel>
+                        <Custom:ButtonTool
+							Caption="自定义"
+							Custom:RibbonGroup.MaximumSize="ImageAndTextLarge"
+							SmallImage="Resources/Images/Design_128px.png"
+							LargeImage="Resources/Images/Design_128px.png"/>
+                    </Custom:ToolHorizontalWrapPanel>
+                    <Custom:ToolHorizontalWrapPanel>
+                        <Custom:ButtonTool
+							Caption="导入"
+							Custom:RibbonGroup.MaximumSize="ImageAndTextLarge"
+							SmallImage="Resources/Images/boxin_128px.png"
+							LargeImage="Resources/Images/boxin_128px.png"/>
+                    </Custom:ToolHorizontalWrapPanel>
+                    <Custom:ButtonGroup x:Name="WordButtonGroup">
+                        <!--<Custom:ButtonTool
+							Content="标签" IsQatCommonTool="True"
+							Id="labelControl" SmallImage="Resources/Images/T 16X16.png"/>-->
+
+
+
+                    </Custom:ButtonGroup>
+                </Custom:RibbonGroup>
+
+                <Custom:RibbonGroup Id="PenControlGroup" Caption="画笔控件组" IsOpen="False">
+                    <Custom:ToolHorizontalWrapPanel>
+                        <Custom:ButtonTool
+							Caption="铅笔"
+							Custom:RibbonGroup.MaximumSize="ImageAndTextLarge"
+							SmallImage="Resources/Images/pencil_128px.png"
+							LargeImage="Resources/Images/pencil_128px.png"/>
+                    </Custom:ToolHorizontalWrapPanel>
+                    <Custom:ToolHorizontalWrapPanel>
+                        <Custom:ButtonTool
+							Caption="毛笔"
+							Custom:RibbonGroup.MaximumSize="ImageAndTextLarge"
+							SmallImage="Resources/Images/brush.png"
+							LargeImage="Resources/Images/brush.png"/>
+                    </Custom:ToolHorizontalWrapPanel>
+                    <Custom:ToolHorizontalWrapPanel>
+                        <Custom:ButtonTool
+							Caption="马克笔"
+							Custom:RibbonGroup.MaximumSize="ImageAndTextLarge"
+							SmallImage="Resources/Images/markerpen_128px.png"
+							LargeImage="Resources/Images/markerpen_128px.png"/>
+                    </Custom:ToolHorizontalWrapPanel>
+                    <Custom:ToolHorizontalWrapPanel>
+                        <Custom:ButtonTool
+							Caption="油漆桶"
+							Custom:RibbonGroup.MaximumSize="ImageAndTextLarge"
+							SmallImage="Resources/Images/bucket_128px.png"
+							LargeImage="Resources/Images/bucket_128px.png"/>
+                    </Custom:ToolHorizontalWrapPanel>
+                </Custom:RibbonGroup>
+            </Custom:RibbonTabItem>
+            <Custom:RibbonTabItem Header="模板"/>
+
+        </Custom:XamRibbon>
+
+    </Grid>
+
+      
+   
+  
+
+</Window>

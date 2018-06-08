@@ -14,7 +14,6 @@ C:\Git\WPFBoardDesigner\obj\Debug\UControl\BoardDataGrid.g.cs
 C:\Git\WPFBoardDesigner\obj\Debug\UControl\BoardDataGridColumn.g.cs
 C:\Git\WPFBoardDesigner\obj\Debug\UControl\BoardDataGridContentTexkBlock.g.cs
 C:\Git\WPFBoardDesigner\obj\Debug\UControl\BoardImage.g.cs
-C:\Git\WPFBoardDesigner\obj\Debug\UControl\BoardTable.g.cs
 C:\Git\WPFBoardDesigner\obj\Debug\CustomPage\HelpPage.g.cs
 C:\Git\WPFBoardDesigner\obj\Debug\CustomPage\MainPage.g.cs
 C:\Git\WPFBoardDesigner\obj\Debug\MainWindow.g.cs
@@ -28,7 +27,6 @@ C:\Git\WPFBoardDesigner\obj\Debug\BoardDesigner_Content.g.cs
 C:\Git\WPFBoardDesigner\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Git\WPFBoardDesigner\obj\Debug\BoardDesigner_MarkupCompile.cache
 C:\Git\WPFBoardDesigner\obj\Debug\BoardDesigner_MarkupCompile.lref
-C:\Git\WPFBoardDesigner\bin\Debug\Resources\Images\GifDemo.gif
 C:\Git\WPFBoardDesigner\bin\Debug\BoardDesigner.exe.config
 C:\Git\WPFBoardDesigner\bin\Debug\BoardDesigner.exe.manifest
 C:\Git\WPFBoardDesigner\bin\Debug\BoardDesigner.application
@@ -163,7 +161,6 @@ C:\Git\WPFBoardDesigner\obj\Debug\UControl\BoardDataGrid.baml
 C:\Git\WPFBoardDesigner\obj\Debug\UControl\BoardDataGridColumn.baml
 C:\Git\WPFBoardDesigner\obj\Debug\UControl\BoardDataGridContentTexkBlock.baml
 C:\Git\WPFBoardDesigner\obj\Debug\UControl\BoardImage.baml
-C:\Git\WPFBoardDesigner\obj\Debug\UControl\BoardTable.baml
 C:\Git\WPFBoardDesigner\obj\Debug\CustomPage\MainPage.baml
 C:\Git\WPFBoardDesigner\obj\Debug\MainWindow.baml
 C:\Git\WPFBoardDesigner\obj\Debug\CustomPage\DesignerPage.baml
@@ -292,3 +289,10 @@ G:\Git\WPFBoardDesigner\obj\Debug\BoardDesigner.pdb
 G:\Git\WPFBoardDesigner\obj\Debug\Windows\NewBoardDialog.baml
 G:\Git\WPFBoardDesigner\obj\Debug\Windows\NewBoardDialog.g.cs
 G:\Git\WPFBoardDesigner\obj\Debug\BoardDesigner.csprojResolveAssemblyReference.cache
+C:\Git\WPFBoardDesigner\bin\Debug\Properties\Resources.resx
+C:\Git\WPFBoardDesigner\bin\Debug\Properties\Resources.Designer.cs
+C:\Git\WPFBoardDesigner\bin\Debug\InfragisticsWPF4.Controls.Interactions.XamDialogWindow.v14.2.dll
+C:\Git\WPFBoardDesigner\bin\Debug\InfragisticsWPF4.Controls.Interactions.XamDialogWindow.v14.2.xml
+C:\Git\WPFBoardDesigner\obj\Debug\Windows\NewBoardDialog.baml
+C:\Git\WPFBoardDesigner\obj\Debug\Windows\NewBoardDialog.g.cs
+C:\Git\WPFBoardDesigner\obj\Debug\BoardDesigner.csprojResolveAssemblyReference.cache

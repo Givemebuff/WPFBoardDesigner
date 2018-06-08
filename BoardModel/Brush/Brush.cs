@@ -65,6 +65,8 @@ namespace BoardDesigner.Model
             get { return this._backgoundImage; }
             set
             {
+                if (value == this._backgoundImage)
+                    return;
                 this._backgoundImage = value;
                 OnPropertyChanged("BackgoundImage");
                 OnPropertyChanged("Background");

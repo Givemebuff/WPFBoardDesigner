@@ -160,6 +160,8 @@
     <Compile Include="BoardControl\BaseControl\Label.cs" />
     <Compile Include="BoardControl\BaseControl\Video.cs" />
     <Compile Include="BoardControl\BaseShape\Circle.cs" />
+    <Compile Include="Control\Converter\RImageToStringConverter.cs" />
+    <Compile Include="Control\Resource\ImageResourcesManeager.cs" />
     <Compile Include="SystemControl\ShowList.xaml.cs">
       <DependentUpon>ShowList.xaml</DependentUpon>
     </Compile>
@@ -499,7 +501,7 @@
     <Resource Include="Resources\Images\tw2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Resources\Gifs\GifDemo.gif" />
+    <Resource Include="Resources\Images\GifDemo.gif" />
     <Resource Include="Resources\Icons\web-design.ico" />
     <Resource Include="Resources\Images\areachart 24X24.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

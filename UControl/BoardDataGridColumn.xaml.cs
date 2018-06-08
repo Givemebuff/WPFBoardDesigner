@@ -43,10 +43,7 @@ namespace BoardDesigner.UControl
         void InitBinding()
         {
             this.DataContext = DesignerItem;
-            //Binding canvasLeft = new Binding("Position.Location.X") { Source = DataContext };
-            //this.SetBinding(DesignerCanvas.LeftProperty, canvasLeft);
-            //Binding canvasTop = new Binding("Position.Location.Y") { Source = DataContext };
-            //this.SetBinding(DesignerCanvas.TopProperty, canvasTop);
+       
             this.SetBinding(Grid.ColumnProperty, new Binding("Position.ColumnIndex") { Source = DataContext });           
 
         }

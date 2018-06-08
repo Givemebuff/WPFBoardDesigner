@@ -1,12 +1,14 @@
 ﻿using BoardDesigner.Base;
 using BoardDesigner.CustomPage;
 using BoardDesigner.Model;
+using BoardDesigner.Resource;
 using BoardDesigner.Windows;
 using Infragistics.Controls.Editors;
 using Infragistics.Windows.DockManager;
 using Infragistics.Windows.Ribbon;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -30,11 +32,9 @@ namespace BoardDesigner
     /// <summary>
     /// MainWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class MainWindow : XamRibbonWindow
+    public partial class MainWindow : Window
     {
-
-
-        #region 当前关注的设计页面的设计容器
+        #region 当前关注的设计页面
         public DesignerPage CurrentDesignerPage
         {
             get { return (DesignerPage)GetValue(CurrentDesignerPageProperty); }
@@ -57,20 +57,31 @@ namespace BoardDesigner
         }
         #endregion
 
+        #region 图片资源
+
+        public ObservableCollection<RImage> ImageResourceCollection
+        {
+            get { return (ObservableCollection<RImage>)GetValue(ImageResourceCollectionProperty); }
+            set { SetValue(ImageResourceCollectionProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for ImageResourceCollection.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ImageResourceCollectionProperty =
+            DependencyProperty.Register("ImageResourceCollection", typeof(ObservableCollection<RImage>), typeof(MainWindow), new PropertyMetadata( new ObservableCollection<RImage>(ImageResourcesManeager.GetImageResources())));
+
+        #endregion
 
         public MainWindow()
         {
             InitializeComponent();
             InitPage();
-            InitCommands();
-
+            InitCommands();           
         }
 
-
+    
 
         private void InitPage()
         {
-
             this.MainPage.Content = new Frame() { Content = new MainPage() };
             this.helpPage.Content = new Frame() { Content = new HelpPage() };
         }
@@ -89,11 +100,15 @@ namespace BoardDesigner
             MainTabGroupPane.Items.Add(newDesignerContentPanel);
             MainTabGroupPane.SelectedItem = newDesignerContentPanel;
             this.CurrentDesignerPage = newDesignerPage;
+            ToolGroupPane.IsPinned = true;
+            propertiesDockPane.IsPinned = true;
         }
 
         //预览
         private void ViewButtonTool_Click(object sender, RoutedEventArgs e)
         {
+            if (CurrentDesignerPage == null)
+                return;  
             DesignerBoard board = CurrentDesignerPage.MainPanel.Warp();
             BoardViewer bv = new BoardViewer(board);
             bv.Show();
@@ -101,48 +116,39 @@ namespace BoardDesigner
 
         private void SettingImageButton_Click(object sender, RoutedEventArgs e)
         {
+            //打开文件对话框，选择图片，复制到程序图片文件夹
+            string imgFolderPath = Directory.GetCurrentDirectory()+@"\Images\";
+            Microsoft.Win32.OpenFileDialog ofd = new Microsoft.Win32.OpenFileDialog();
+            ofd.InitialDirectory = imgFolderPath;
+            ofd.DefaultExt = ".*";
+            ofd.Filter = "图片文件|*.bmp;*.jpg;*.png;*.gif";
+         
+            if (ofd.ShowDialog() == true)
+            {
+                
+                string sourceImagePath = ofd.FileName;
+                RImage newImage = new RImage(new FileInfo(sourceImagePath));
+                string fileName = ofd.SafeFileName;
+                string newImagePath = imgFolderPath + fileName;
+                int i = 1;
+                while (System.IO.File.Exists(newImagePath))//已经存在相同名字
+                {
+                    string[] ss = fileName.Split('.');
+                    newImage.ImageName = ss[0] + "(" + i + ")." + ss[1];
+                    newImagePath = imgFolderPath + newImage.ImageName;
+                    newImage.Path = newImagePath;
+                   i++;
+                }                
+               
+                System.IO.File.Copy(sourceImagePath, newImagePath, true);
+                ImageResourceCollection.Add(newImage);
+            }
 
         }
 
         private void ImageXamComboEditor_Loaded(object sender, RoutedEventArgs e)
-        {
-            //加载图片资源
-            List<RImage> imgs = new List<RImage>();
-            //资源文件中图片
-            //TODO
-            //文件夹下图片
-            string curDirPath = Directory.GetCurrentDirectory() + @"\Images";
-            //若不存在文件夹则先创建
-            if (!Directory.Exists(curDirPath))
-            {
-                Directory.CreateDirectory(curDirPath);
-            }
-            DirectoryInfo di = new DirectoryInfo(curDirPath);
-            FileInfo[] fis = di.GetFiles();
-            foreach (FileInfo fi in fis)
-            {
-                string ext = fi.Extension.ToLower();
-                if (ext.IndexOf("jpg") == -1 && ext.IndexOf("png") == -1 && ext.IndexOf("gif") == -1 && ext.IndexOf("bmp") == -1)
-                    continue;
-                else
-                {
-                    RImage image = new RImage()
-                    {
-                        ImageName = fi.Name,
-                        Path = fi.FullName,
-                        ImageUri = new Uri(fi.FullName, UriKind.Absolute),
-                        Source = new BitmapImage(new Uri(fi.FullName, UriKind.Absolute))//FileSize = String.Format("{0:F}", ((double)(fi.Length / 1024)).ToString()),
-                    };
-                    image.FileSize = (double)fi.Length < 1024 ?
-                        (fi.Length.ToString() + "B") :
-                        (
-                        ((double)fi.Length / 1024) < 1024 ? String.Format("{0:F}", (((double)fi.Length / 1024)).ToString() + "KB") :
-                    String.Format("{0:F}", (((double)fi.Length / 1024 / 1024)).ToString() + "MB"));
-                    imgs.Add(image);
-                }
-            }
-            (sender as XamComboEditor).ItemsSource = imgs;
-
+        {           
+            (sender as XamComboEditor).SetBinding(XamComboEditor.ItemsSourceProperty,new Binding("ImageResourceCollection") { Source=this});
         }
 
         #region 命令
@@ -227,6 +233,12 @@ namespace BoardDesigner
             e.Handled = true;
         }
 
+
+
+
+
+
+
         #endregion
 
         #region 保存
@@ -239,13 +251,11 @@ namespace BoardDesigner
 
         #endregion
 
-
-
-
-
-
-
         #endregion
 
+        private void ImageXamComboEditor_SelectionChanged(object sender, Infragistics.Controls.Editors.SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

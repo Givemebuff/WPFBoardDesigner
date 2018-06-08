@@ -16,35 +16,38 @@
     <converter:PointMarginConverter x:Key="PointMarginConverter"/>
     <ControlTemplate x:Key="RectMoveableThumbTemplate"  TargetType="{x:Type thumb:MoveableThumb}">
         <!--透明填充矩形-->
-        <Rectangle Fill="Transparent" x:Name="MoveThumbFillRect"></Rectangle>
+        <Rectangle  x:Name="MoveThumbFillRect">
+            <Rectangle.Fill>
+                <SolidColorBrush x:Name="RectFillBrush" Color="Transparent"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        
         <ControlTemplate.Triggers>
+            <EventTrigger RoutedEvent="Rectangle.MouseEnter" SourceName="MoveThumbFillRect">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <ColorAnimation
+                Storyboard.TargetName="RectFillBrush"
+                Storyboard.TargetProperty="Color"
+                From="Transparent" To="#9987CEFF"
+                Duration="0:0:0.3" />
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+            <EventTrigger RoutedEvent="Rectangle.MouseLeave" SourceName="MoveThumbFillRect">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <ColorAnimation
+                Storyboard.TargetName="RectFillBrush"
+                Storyboard.TargetProperty="Color"
+                From="#9987CEFF" To="Transparent"
+                Duration="0:0:0.3" />
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
             <!--<Trigger Property="IsMouseOver" Value="true">                
                 <Setter Property="Fill" TargetName="MoveThumbFillRect" Value="#9987CEFF"/>
-            </Trigger>-->
-            <Trigger>
-                <Trigger.EnterActions>
-                    <BeginStoryboard x:Name="enterStory">
-
-                        <Storyboard>
-
-                            <DoubleAnimation Storyboard.TargetProperty="(FrameworkElement.Effect).(DropShadowEffect.BlurRadius)"
-                                                  BeginTime="00:00:00" Duration="00:00:01"
-                                                  From="0" To="10" 
-                                                  AutoReverse="True" RepeatBehavior="Forever">
-                            </DoubleAnimation>
-
-                            <DoubleAnimation Storyboard.TargetProperty="(FrameworkElement.Effect).(DropShadowEffect.Opacity)"
-                                                 BeginTime="00:00:00" Duration="00:00:00"
-                                                 From="0" To="1" >
-                            </DoubleAnimation>
-
-                        </Storyboard>
-
-                    </BeginStoryboard>
-
-                </Trigger.EnterActions>
-
-            </Trigger>
+            </Trigger>-->            
         </ControlTemplate.Triggers>
     </ControlTemplate>
 

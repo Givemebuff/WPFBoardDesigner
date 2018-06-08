@@ -13,7 +13,7 @@
     </ControlTemplate>
 
     <ControlTemplate x:Key="SideRectResizeableThumbTemplate"  TargetType="{x:Type thumb:ResizeableThumb}">
-        <Rectangle Fill="#00c5ff" Stroke="Transparent" StrokeThickness="2" Opacity="0.8" StrokeDashArray="1,1"  x:Name="SideRect"/>
+        <Rectangle Fill="#00c5ff" Stroke="Transparent" StrokeThickness="4" Opacity="0.8" StrokeDashArray="1,1"  x:Name="SideRect"/>
         <ControlTemplate.Triggers>
             <Trigger Property="IsMouseOver" Value="true">
                 <Setter Property="Fill" TargetName="SideRect" Value="LightGray"/>

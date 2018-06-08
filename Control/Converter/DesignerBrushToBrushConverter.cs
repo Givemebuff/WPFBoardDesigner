@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.IO;
 
 namespace BoardDesigner.Converter
 {
@@ -22,8 +23,9 @@ namespace BoardDesigner.Converter
                //若图存在，选用这张图
                if (!string.IsNullOrEmpty(values[0].ToString()))
                {
-                   if (System.IO.File.Exists(values[0].ToString()))
-                       return new ImageBrush(new BitmapImage(new Uri(values[0].ToString(), UriKind.RelativeOrAbsolute)));
+                    string filepath = Directory.GetCurrentDirectory() + "\\Images\\" + values[0].ToString();
+                   if (System.IO.File.Exists(filepath))
+                       return new ImageBrush(new BitmapImage(new Uri(filepath, UriKind.Absolute)));
                }    
            }
             //若不存在，验证画笔资源是否可用

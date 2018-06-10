@@ -11,34 +11,21 @@
       mc:Ignorable="d" 
       d:DesignHeight="2160" d:DesignWidth="3840"
 	Title="DesignerPage">
-    <Page.Resources>
-        <converter:DesignerBrushToBrushConverter x:Key="DesignerBrushToBrushConverter" />
-    </Page.Resources>
     <Grid  >
         <ScrollViewer Name="DesignerScrollViewer"                                  
                                   HorizontalScrollBarVisibility="Auto"
                                   VerticalScrollBarVisibility="Auto">
-            <Grid Width="3840" Height="2160"   >
+            <Grid Width="3840" Height="2160" x:Name="DesignerGrid"  >
                 <Grid.Background>
-                    <ImageBrush ImageSource="/BoardDesigner;component/Resources/Images/透明背景.PNG" TileMode="Tile" Viewport="0,0,16,16" ViewportUnits="Absolute"  />
+                    <ImageBrush ImageSource="/BoardDesigner;component/Resources/Images/透明背景.PNG" TileMode="Tile" Viewport="0,0,16,16" ViewportUnits="Absolute"  />                  
                 </Grid.Background>
-                <Base:DesignerCanvas x:Name="MainPanel" AllowDrop="True"
-                                     Width="{Binding Size.Width}" Height="{Binding Size.Height}" 
-                                     Opacity="{Binding Opacity}" Visibility="{Binding Visibility}"
-                                     >                  
-                    <Base:DesignerCanvas.Background>
-                        <MultiBinding Converter="{StaticResource DesignerBrushToBrushConverter}">                           
-                            <Binding Path="Background.BackgoundImage"/>
-                            <Binding Path="Background.ColorBrush"/>
-                        </MultiBinding>
-                    </Base:DesignerCanvas.Background>
-                </Base:DesignerCanvas>                
+               
             </Grid>
         </ScrollViewer>
-        <Base:OverViewMap Width="100" Height="100"
+        <!--<Base:OverViewMap Width="100" Height="100"
                                HorizontalAlignment="Left"
                                VerticalAlignment="Top"
                                ScrollViewer="{Binding ElementName=DesignerScrollViewer}"
-                                />
+                                />-->
     </Grid>
 </Page>

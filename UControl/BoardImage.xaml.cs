@@ -48,6 +48,7 @@ namespace BoardDesigner.UControl
         public void InitBinding()
         {
             this.DataContext = DesignerItem;           
+            
         }
     }
 }

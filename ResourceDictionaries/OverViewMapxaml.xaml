@@ -18,15 +18,28 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type base:OverViewMap}">
-                    <Border BorderThickness="5"
+                    <Border BorderThickness="1"
                             Background="Black"
                             BorderBrush="Black">
-                        <Canvas x:Name="Map">
-                            <Canvas.Background>  
-                                    <VisualBrush Stretch="Uniform" Visual="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ScrollViewer.Content}" />                               
-                            </Canvas.Background>
-                            <Thumb Name="ViewMoveThumb" Cursor="SizeAll" Style="{StaticResource ResourceKey=ViewMoveThumbStyle}"></Thumb>
-                        </Canvas>
+                        <Expander>
+                            <Expander.Header>
+                                <Grid>
+                                    <TextBlock Name="PART_ValueTextBlock" Text="100%" FontSize="12" FontWeight="Bold" />
+                                    <Slider Name="PART_Slider" Maximum="150" Minimum="50" TickFrequency="10" Value="100" >
+                                    </Slider>
+                                </Grid>                               
+                            </Expander.Header>
+                            <Expander.Content>
+                                <Canvas Name="PART_Map">
+                                    <Canvas.Background>
+                                        <VisualBrush Stretch="Uniform" Visual="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ScrollViewer.Content}" />
+                                    </Canvas.Background>
+                                    <Thumb Name="ViewMoveThumb" Cursor="SizeAll" Style="{StaticResource ResourceKey=ViewMoveThumbStyle}"></Thumb>
+                                </Canvas>
+                            </Expander.Content>
+                           
+                        </Expander>
+                      
                     </Border>
                 </ControlTemplate>
             </Setter.Value>

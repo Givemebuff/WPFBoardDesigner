@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
           xmlns:converter="clr-namespace:BoardDesigner.Converter"
         Title="BoardViewer"       
-         WindowStyle="None" WindowStartupLocation="CenterScreen">
+         WindowStyle="None" WindowStartupLocation="CenterScreen" >
     <Window.Resources>
         <converter:DesignerBrushToBrushConverter x:Key="DesignerBrushToBrushConverter" />
     </Window.Resources>

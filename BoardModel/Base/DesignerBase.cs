@@ -29,7 +29,9 @@ namespace BoardDesigner.Model
         Table =17,
         Label = 18,
         Chart = 19,
-        DataPoint = 20
+        DataPoint = 20,
+        Media =21
+
 
     }
     [Serializable]

@@ -186,11 +186,10 @@
                     </igWPF:TabGroupPane>
                 </igWPF:SplitPane>
             </igWPF:XamDockManager.Panes>
-            <igWPF:DocumentContentHost Background="AliceBlue" x:Name="MainContentHost" >
+            <igWPF:DocumentContentHost Background="#FFB9B9B9" x:Name="MainContentHost" ActiveDocumentChanged="MainContentHost_ActiveDocumentChanged" >
                 <igWPF:SplitPane>
                     <igWPF:TabGroupPane x:Name="MainTabGroupPane"  >
-                        <igWPF:ContentPane  x:Name="MainPage" Header="主页" CloseButtonVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
-                        <igWPF:ContentPane  x:Name="helpPage" Header="帮助" CloseButtonVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+                        <igWPF:ContentPane  x:Name="MainPage" Header="主页" CloseButtonVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto"/>                       
                     </igWPF:TabGroupPane>
 
                 </igWPF:SplitPane>
@@ -226,7 +225,7 @@
                 </Custom:ApplicationMenu>
             </Custom:XamRibbon.ApplicationMenu>
             <Custom:XamRibbon.QuickAccessToolbar >
-                <Custom:QuickAccessToolbar Visibility="Collapsed" />
+                <Custom:QuickAccessToolbar  />
             </Custom:XamRibbon.QuickAccessToolbar>
             <Custom:RibbonTabItem Header="开始">
                 <Custom:RibbonGroup Id="FileGroup" Caption="文件">

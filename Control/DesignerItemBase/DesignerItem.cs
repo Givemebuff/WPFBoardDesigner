@@ -79,38 +79,50 @@ namespace BoardDesigner.Base
         public DesignerItem(object content) 
         {
             this.Content = content;
-        }
-
-        protected override void OnPreviewMouseDown(MouseButtonEventArgs e)
+        }      
+        
+        /// <summary>
+        /// 鼠标左键按下
+        /// </summary>
+        /// <param name="e"></param>
+        protected override void OnPreviewMouseLeftButtonDown(MouseButtonEventArgs e)
         {
-            base.OnPreviewMouseDown(e);
+            base.OnPreviewMouseLeftButtonDown(e);
             DesignerCanvas designer = VisualTreeHelper.GetParent(this) as DesignerCanvas;
-
-            if (designer != null)
+            //当左键被按下
+            //若连同Control按键一起按下并且没有按其他按键，则处于多选状态
+            if ((Keyboard.Modifiers & (ModifierKeys.Shift | ModifierKeys.Control)) != ModifierKeys.None)
             {
-               
-                //选择多个时
-                if ((Keyboard.Modifiers & (ModifierKeys.Shift | ModifierKeys.Control)) != ModifierKeys.None)
+                //点击一次，修改一次选中状态
+                this.IsSelected = !this.IsSelected;
+            }
+            else //仅仅点击了鼠标左键，则可能处于单选状态或者移动选中项状态 
+            {
+                //若当前项未被选中，则取消其他所有项选中状态，只选中当前项
+                if (this.IsSelected == false) 
                 {
-                    this.IsSelected = !this.IsSelected;
-                }
-                else//单个选择时
-                {
-                    DesignerCanvas dc = this.Parent as DesignerCanvas;
-                    if(this.Content is IDesigner)
-                    {
-                        if (dc.SelectItem == (this.Content as IDesigner).GetDesignerItem())
-                            return;
-                    }
-                         
                     designer.DeselectAll();
                     this.IsSelected = true;
-                    dc.SelectItem = this;
+                }
+                else //若当前项已经被选中，则进行其他动作，不进行选项动作
+                {
                    
                 }
             }
 
+            if(this.IsSelected == true)
+                designer.SelectItem = this;
+
             e.Handled = false;
+        }
+
+        /// <summary>
+        /// 鼠标左键抬起
+        /// </summary>
+        /// <param name="e"></param>
+        protected override void OnMouseRightButtonUp(MouseButtonEventArgs e)
+        {
+            base.OnMouseRightButtonUp(e);
         }
 
         private void DesignerItem_Loaded(object sender, RoutedEventArgs e)

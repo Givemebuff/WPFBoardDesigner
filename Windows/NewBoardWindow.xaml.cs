@@ -26,7 +26,7 @@ namespace BoardDesigner.Windows
         public NewBoardWindow()
         {
             InitializeComponent();
-            Result = new DesignerBoard();
+            Result = new DesignerBoard() { Background = new DesignerBrush() { ColorBrush = new SolidColorBrush(Color.FromRgb(255, 255, 255)) } };
 
         }
 

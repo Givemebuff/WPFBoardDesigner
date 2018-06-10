@@ -1,4 +1,6 @@
-﻿using BoardDesigner.Properties;
+﻿using BoardDesigner.Model;
+using BoardDesigner.Properties;
+using BoardDesigner.UControl;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -83,13 +85,14 @@ namespace BoardDesigner.BoardControl.BaseControl
         public ControlWrapper GetCandy()
         {
             ControlWrapper cw = new ControlWrapper();
-            Image gif = new Image();            
-            
-            string path = System.IO.Directory.GetCurrentDirectory() + "\\GifDemo.gif";
-            if (System.IO.File.Exists(path))
-                gif.SetValue(AnimationBehavior.SourceUriProperty, new Uri(path, UriKind.Absolute));
-            gif.IsHitTestVisible = false;
-            cw.Protect(gif);
+            DesignerGif dg = new DesignerGif();
+            dg.Size.Width = 200;
+            dg.Size.Height = 200;
+            dg.GIFImageSource = "GifDemo.gif";
+            dg.AutoPlay = true;
+
+            BoardGif bf = new BoardGif(dg);
+            cw.Protect(bf);
             return cw;
         }
 

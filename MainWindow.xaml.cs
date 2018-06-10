@@ -1,5 +1,6 @@
 ﻿using BoardDesigner.Base;
 using BoardDesigner.CustomPage;
+using BoardDesigner.Interface;
 using BoardDesigner.Model;
 using BoardDesigner.Resource;
 using BoardDesigner.Windows;
@@ -48,14 +49,12 @@ namespace BoardDesigner
 
         private static void CurrentDesignerPagePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            MainWindow mw = d as MainWindow;
-            if (mw.CurrentDesignerPage != null)
-            {
-                DesignerCanvas dc = mw.CurrentDesignerPage.MainPanel;
-                mw.xamPropertyGrid.SetBinding(XamPropertyGrid.SelectedObjectProperty, new Binding("SelectItem") { Source = dc });
-            }
+            MainWindow mw = d as MainWindow;               
+            mw.xamPropertyGrid.SetBinding(XamPropertyGrid.SelectedObjectProperty, new Binding("SelectItem") { Source = mw.CurrentDesignerPage });            
         }
+
         #endregion
+
 
         #region 图片资源
 
@@ -67,7 +66,7 @@ namespace BoardDesigner
 
         // Using a DependencyProperty as the backing store for ImageResourceCollection.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ImageResourceCollectionProperty =
-            DependencyProperty.Register("ImageResourceCollection", typeof(ObservableCollection<RImage>), typeof(MainWindow), new PropertyMetadata( new ObservableCollection<RImage>(ImageResourcesManeager.GetImageResources())));
+            DependencyProperty.Register("ImageResourceCollection", typeof(ObservableCollection<RImage>), typeof(MainWindow), new PropertyMetadata(new ObservableCollection<RImage>(ImageResourcesManeager.GetImageResources())));
 
         #endregion
 
@@ -75,15 +74,15 @@ namespace BoardDesigner
         {
             InitializeComponent();
             InitPage();
-            InitCommands();           
+            InitCommands();
         }
 
-    
+
 
         private void InitPage()
         {
             this.MainPage.Content = new Frame() { Content = new MainPage() };
-            this.helpPage.Content = new Frame() { Content = new HelpPage() };
+            this.SetBinding(MainWindow.CurrentDesignerPageProperty, new Binding("Content.Content") { Source = MainContentHost.ActiveDocument });
         }
 
         void CreateNewBoardDesignerPage(DesignerBoard db, string fileName, string filePath)
@@ -108,8 +107,8 @@ namespace BoardDesigner
         private void ViewButtonTool_Click(object sender, RoutedEventArgs e)
         {
             if (CurrentDesignerPage == null)
-                return;  
-            DesignerBoard board = CurrentDesignerPage.MainPanel.Warp();
+                return;
+            DesignerBoard board = (CurrentDesignerPage.DesignerGrid.Children[0] as DesignerCanvas).Warp();
             BoardViewer bv = new BoardViewer(board);
             bv.Show();
         }
@@ -117,15 +116,15 @@ namespace BoardDesigner
         private void SettingImageButton_Click(object sender, RoutedEventArgs e)
         {
             //打开文件对话框，选择图片，复制到程序图片文件夹
-            string imgFolderPath = Directory.GetCurrentDirectory()+@"\Images\";
+            string imgFolderPath = Directory.GetCurrentDirectory() + @"\Images\";
             Microsoft.Win32.OpenFileDialog ofd = new Microsoft.Win32.OpenFileDialog();
             ofd.InitialDirectory = imgFolderPath;
             ofd.DefaultExt = ".*";
             ofd.Filter = "图片文件|*.bmp;*.jpg;*.png;*.gif";
-         
+
             if (ofd.ShowDialog() == true)
             {
-                
+
                 string sourceImagePath = ofd.FileName;
                 RImage newImage = new RImage(new FileInfo(sourceImagePath));
                 string fileName = ofd.SafeFileName;
@@ -137,9 +136,9 @@ namespace BoardDesigner
                     newImage.ImageName = ss[0] + "(" + i + ")." + ss[1];
                     newImagePath = imgFolderPath + newImage.ImageName;
                     newImage.Path = newImagePath;
-                   i++;
-                }                
-               
+                    i++;
+                }
+
                 System.IO.File.Copy(sourceImagePath, newImagePath, true);
                 ImageResourceCollection.Add(newImage);
             }
@@ -147,8 +146,8 @@ namespace BoardDesigner
         }
 
         private void ImageXamComboEditor_Loaded(object sender, RoutedEventArgs e)
-        {           
-            (sender as XamComboEditor).SetBinding(XamComboEditor.ItemsSourceProperty,new Binding("ImageResourceCollection") { Source=this});
+        {
+            (sender as XamComboEditor).SetBinding(XamComboEditor.ItemsSourceProperty, new Binding("ImageResourceCollection") { Source = this });
         }
 
         #region 命令
@@ -209,7 +208,7 @@ namespace BoardDesigner
                     if (exn.IndexOf("board") != -1)
                     {
                         //TODO Board文件反序列化为DesignerBoard对象进行初始化
-                        DesignerBoard db = new DesignerBoard();
+                        DesignerBoard db = new DesignerBoard() { Background = new DesignerBrush() { ColorBrush = new SolidColorBrush(Color.FromRgb(255, 255, 255)) } };
                         CreateNewBoardDesignerPage(db, "Test", "C:\\Test.Board");
                     }
                     else if (exn.IndexOf("rdlx") != -1)
@@ -226,18 +225,12 @@ namespace BoardDesigner
                     }
                 }
             }
-            else 
+            else
             {
                 //打开已经存在的文件
             }
             e.Handled = true;
         }
-
-
-
-
-
-
 
         #endregion
 
@@ -256,6 +249,25 @@ namespace BoardDesigner
         private void ImageXamComboEditor_SelectionChanged(object sender, Infragistics.Controls.Editors.SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void MainContentHost_ActiveDocumentChanged(object sender, RoutedPropertyChangedEventArgs<ContentPane> e)
+        {
+            Frame f = e.NewValue.Content as Frame;
+            if (f.Content == null)
+                return;
+            else 
+            {
+                Page p = f.Content as Page;
+                if (p is DesignerPage)
+                    CurrentDesignerPage = p as DesignerPage;
+                else 
+                {
+                    CurrentDesignerPage = null;
+                }
+
+
+            }
         }
     }
 }

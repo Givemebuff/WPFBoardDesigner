@@ -36,9 +36,9 @@ namespace BoardDesigner.Base
             set
             {
                 if (value == null)
-                    value = this.DataContext;
+                    return;
                 if (value is DesignerItem)
-                    value = ((IDesigner)(value as DesignerItem).Content).GetDesignerItem();
+                    value = ((IDesigner)(value as DesignerItem).Content).GetDesignerItem();                
                 SetValue(SelectItemProperty, value);
             }
         }
@@ -47,7 +47,7 @@ namespace BoardDesigner.Base
 
         private static void SelectItemPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            
+
         }
 
         #endregion
@@ -88,9 +88,31 @@ namespace BoardDesigner.Base
         }
 
         public DesignerCanvas()
+        {           
+            InitAndBinding();
+        }
+        public DesignerCanvas(DesignerBoard db)
+        {
+            this.Board = db;            
+            InitAndBinding();
+        }
+
+        void InitAndBinding()
         {
             this.DataContext = Board;
-        }    
+            this.AllowDrop = true;
+            this.LayoutTransform = new ScaleTransform();
+
+            this.SetBinding(Canvas.WidthProperty, new Binding("Size.Width") { Source = DataContext });
+            this.SetBinding(Canvas.HeightProperty, new Binding("Size.Height") { Source = DataContext });
+            this.SetBinding(Canvas.OpacityProperty, new Binding("Opacity") { Source = DataContext });
+            this.SetBinding(Canvas.VisibilityProperty, new Binding("Visibility") { Source = DataContext });
+            MultiBinding bkBind = new MultiBinding();
+            bkBind.Bindings.Add(new Binding("Background.BackgoundImage") { Source = DataContext });
+            bkBind.Bindings.Add(new Binding("Background.ColorBrush") { Source = DataContext });
+            bkBind.Converter = (IMultiValueConverter)(new DesignerBrushToBrushConverter());
+            this.SetBinding(Canvas.BackgroundProperty, bkBind);           
+        }
 
 
         public void DeselectAll()
@@ -109,13 +131,36 @@ namespace BoardDesigner.Base
             {
                 this.DeselectAll();
                 this.dragStartPoint = new Point?(e.GetPosition(this));
+                this.SelectItem = Board;
                 e.Handled = true;
             }
         }
 
-        protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
+        protected override void OnMouseWheel(MouseWheelEventArgs e)
         {
-            base.OnMouseLeftButtonDown(e);
+            base.OnMouseWheel(e);
+            if ((Keyboard.Modifiers & (ModifierKeys.Control)) != ModifierKeys.None)
+            {
+                if (this.LayoutTransform == null)
+                {
+                    this.LayoutTransform = new ScaleTransform();
+                }
+                ScaleTransform stf = this.LayoutTransform as ScaleTransform;
+                if (e.Delta > 0 && stf.ScaleX <1.5)
+                {
+                    stf.ScaleX += 0.1;
+                    stf.ScaleY += 0.1;
+
+                }
+                else if (e.Delta < 0 && stf.ScaleX>0.5)
+                {
+
+                    stf.ScaleX -= 0.1;
+                    stf.ScaleY -= 0.1;
+                }
+                e.Handled = true;            
+            }
+
         }
 
 
@@ -181,31 +226,33 @@ namespace BoardDesigner.Base
             DesignerItem designerItem = new DesignerItem(c);
             this.Children.Add(designerItem);
 
-            IDesigner uc = designerItem.Content as IDesigner;
-            DesignerVisualElement dc = uc.GetDesignerItem() as DesignerVisualElement;
+            IDesigner idr = designerItem.Content as IDesigner;
+            DesignerVisualElement dc = idr.GetDesignerItem() as DesignerVisualElement;
 
-            Binding canvasLeft = new Binding("Position.Location.X") { Source = dc};
-            designerItem.SetBinding(DesignerCanvas.LeftProperty, canvasLeft);
-            Binding canvasTop = new Binding("Position.Location.Y") { Source = dc};
-            designerItem.SetBinding(DesignerCanvas.TopProperty, canvasTop);
+
+            Binding canvasLeft = new Binding("Position.Location.X") { Source = dc };
+            designerItem.SetBinding(Canvas.LeftProperty, canvasLeft);
+            Binding canvasTop = new Binding("Position.Location.Y") { Source = dc };
+            designerItem.SetBinding(Canvas.TopProperty, canvasTop);
             Binding canvasZIndex = new Binding("Position.ZIndex") { Source = dc };
-            designerItem.SetBinding(DesignerCanvas.ZIndexProperty, canvasZIndex);
+            designerItem.SetBinding(Canvas.ZIndexProperty, canvasZIndex);
 
-            dc.Position.MoveTo(location.X, location.Y);          
-           
+            dc.Position.MoveTo(location.X, location.Y);
+          
+
             this.DeselectAll();
             designerItem.IsSelected = true;
             this.SelectItem = designerItem;
         }
 
-        public DesignerBoard Warp() 
-        {            
-            foreach (object obj in this.Children) 
+        public DesignerBoard Warp()
+        {
+            foreach (object obj in this.Children)
             {
-                if (obj is DesignerItem) 
+                if (obj is DesignerItem)
                 {
-                 
-                 DesignerControl clonedChild= (DesignerControl) ((obj as DesignerItem).Content as IDesigner).GetDesignerItem();
+
+                    DesignerControl clonedChild = (DesignerControl)((obj as DesignerItem).Content as IDesigner).GetDesignerItem();
                     this.Board.Children.Add(clonedChild);
                 }
             }

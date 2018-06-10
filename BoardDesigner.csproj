@@ -160,7 +160,10 @@
     <Compile Include="BoardControl\BaseControl\Label.cs" />
     <Compile Include="BoardControl\BaseControl\Video.cs" />
     <Compile Include="BoardControl\BaseShape\Circle.cs" />
+    <Compile Include="BoardModel\Control\DesignerMideoPlayer.cs" />
     <Compile Include="Control\Converter\RImageToStringConverter.cs" />
+    <Compile Include="Control\Converter\ScrollScaleConverter.cs" />
+    <Compile Include="Control\Converter\StringToUriConverter.cs" />
     <Compile Include="Control\Resource\ImageResourcesManeager.cs" />
     <Compile Include="SystemControl\ShowList.xaml.cs">
       <DependentUpon>ShowList.xaml</DependentUpon>
@@ -193,6 +196,9 @@
     </Compile>
     <Compile Include="UControl\BoardDataGridContentTexkBlock.xaml.cs">
       <DependentUpon>BoardDataGridContentTexkBlock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UControl\BoardGif.xaml.cs">
+      <DependentUpon>BoardGif.xaml</DependentUpon>
     </Compile>
     <Compile Include="UControl\BoardImage.xaml.cs">
       <DependentUpon>BoardImage.xaml</DependentUpon>
@@ -280,6 +286,9 @@
     <Compile Include="UControl\BoardLabel.xaml.cs">
       <DependentUpon>BoardLabel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UControl\BoardMediaPlayer.xaml.cs">
+      <DependentUpon>BoardMediaPlayer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\ImageResourceWindow.xaml.cs">
       <DependentUpon>ImageResourceWindow.xaml</DependentUpon>
     </Compile>
@@ -310,6 +319,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UControl\BoardDataGridContentTexkBlock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UControl\BoardGif.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -438,6 +451,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UControl\BoardLabel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UControl\BoardMediaPlayer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -791,6 +808,9 @@
     <Resource Include="Resources\Images\bucket_128px.png" />
     <Resource Include="Resources\Images\xml.png" />
     <Resource Include="Resources\Images\cmd_128px.png" />
+    <Content Include="bin\Debug\Medias\MediaDemo.wmv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Videos\VideoDemo.wmv" />
     <Content Include="dll\Indusfo.Common.dll" />
     <Content Include="dll\Indusfo.DataAccessLayer.dll" />
@@ -798,7 +818,6 @@
     <Content Include="dll\WPFVisifire.Charts.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="bin\Debug\" />
     <Folder Include="BoardModel\Board\" />
     <Folder Include="BoardModel\TextBlock\" />
     <Folder Include="NewFolder1\" />

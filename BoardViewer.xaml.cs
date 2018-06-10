@@ -46,27 +46,37 @@ namespace BoardDesigner
 
             foreach (DesignerControl cd in Board.Children) 
             {                
+                
                 switch (cd.Type)
                 {
                     case DesignerElementType.Image:
                         BoardImage bi = new BoardImage(cd as DesignerImage);
-                        MainPanel.Children.Add(bi);
+                        Add(bi, cd);
                         break;
                     case DesignerElementType.Label:
                         BoardLabel bl = new BoardLabel(cd as DesignerLabel);
-                        MainPanel.Children.Add(bl);
+                        Add(bl, cd);
                         break;
                     case DesignerElementType.Table:
                         BoardDataGrid bdg = new BoardDataGrid(cd as DesignerTable);
-                        MainPanel.Children.Add(bdg);
+                        Add(bdg, cd);
                         break;
                     case DesignerElementType.Chart:
                         BoardChart bc = new BoardChart(cd as DesignerChart);
-                        MainPanel.Children.Add(bc);
+                        Add(bc, cd);
                         break;
                     default: break;
                 }
             }
+        }
+
+
+        void Add(UserControl uc,DesignerControl dc) 
+        {
+            uc.SetBinding(Canvas.LeftProperty, new Binding("Position.Location.X") { Source = dc });
+            uc.SetBinding(Canvas.TopProperty, new Binding("Position.Location.Y") { Source = dc });
+            uc.SetBinding(Canvas.ZIndexProperty, new Binding("Position.ZIndex") { Source = dc });
+            MainPanel.Children.Add(uc);
         }
 
         void Work() 

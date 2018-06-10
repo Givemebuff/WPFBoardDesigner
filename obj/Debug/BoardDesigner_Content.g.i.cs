@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("bin/debug/medias/mediademo.wmv")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/videos/videodemo.wmv")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("dll/indusfo.common.dll")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("dll/indusfo.dataaccesslayer.dll")]

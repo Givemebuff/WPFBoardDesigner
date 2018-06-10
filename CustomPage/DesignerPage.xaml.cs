@@ -1,8 +1,9 @@
-﻿using BoardDesigner.Base;
+﻿using Board.DesignerModel;
+using BoardDesigner.Base;
 using BoardDesigner.BoardControl;
-using BoardDesigner.Converter;
-using BoardDesigner.Interface;
-using BoardDesigner.Model;
+
+
+
 using Infragistics.Controls.Editors;
 using Infragistics.Controls.Maps;
 using System;

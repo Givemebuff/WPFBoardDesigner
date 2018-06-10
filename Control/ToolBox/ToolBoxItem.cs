@@ -13,7 +13,6 @@ namespace BoardDesigner.Base
 {
     public class ToolBoxItem : ContentControl
     {
-       
 
 
         private Point? dragStartPoint = null;

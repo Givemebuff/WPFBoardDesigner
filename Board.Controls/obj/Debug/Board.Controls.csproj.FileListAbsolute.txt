@@ -1,0 +1,14 @@
+G:\Git\WPFBoardDesigner\Board.Controls\bin\Debug\Board.Controls.dll
+G:\Git\WPFBoardDesigner\Board.Controls\bin\Debug\Board.Controls.pdb
+G:\Git\WPFBoardDesigner\Board.Controls\obj\Debug\Board.Controls.dll
+G:\Git\WPFBoardDesigner\Board.Controls\obj\Debug\Board.Controls.pdb
+G:\Git\WPFBoardDesigner\Board.Controls\obj\Debug\BoardControl\BoardLabel.baml
+G:\Git\WPFBoardDesigner\Board.Controls\obj\Debug\BoardControl\BoardLabel.g.cs
+G:\Git\WPFBoardDesigner\Board.Controls\obj\Debug\Board.Controls_MarkupCompile.cache
+G:\Git\WPFBoardDesigner\Board.Controls\obj\Debug\Board.Controls.g.resources
+G:\Git\WPFBoardDesigner\Board.Controls\obj\Debug\Board.Controls.csprojResolveAssemblyReference.cache
+G:\Git\WPFBoardDesigner\Board.Controls\bin\Debug\Board.Converter.dll
+G:\Git\WPFBoardDesigner\Board.Controls\bin\Debug\BoardLibrary.dll
+G:\Git\WPFBoardDesigner\Board.Controls\bin\Debug\WPFVisifire.Charts.dll
+G:\Git\WPFBoardDesigner\Board.Controls\bin\Debug\Board.Converter.pdb
+G:\Git\WPFBoardDesigner\Board.Controls\bin\Debug\BoardLibrary.pdb

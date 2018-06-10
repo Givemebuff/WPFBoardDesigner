@@ -1,12 +1,6 @@
-﻿
+﻿G:\Git\WPFBoardDesigner\obj\Debug\GeneratedInternalTypeHelper.g.cs
 
-FG:\Git\WPFBoardDesigner\BoardViewer.xaml;;
 FG:\Git\WPFBoardDesigner\SystemControl\ShowList.xaml;;
-FG:\Git\WPFBoardDesigner\UControl\BoardChart.xaml;;
-FG:\Git\WPFBoardDesigner\UControl\BoardDataGrid.xaml;;
-FG:\Git\WPFBoardDesigner\UControl\BoardDataGridColumn.xaml;;
-FG:\Git\WPFBoardDesigner\UControl\BoardDataGridContentTexkBlock.xaml;;
-FG:\Git\WPFBoardDesigner\UControl\BoardImage.xaml;;
 FG:\Git\WPFBoardDesigner\CustomPage\MainPage.xaml;;
 FG:\Git\WPFBoardDesigner\MainWindow.xaml;;
 FG:\Git\WPFBoardDesigner\CustomPage\DesignerPage.xaml;;
@@ -14,7 +8,6 @@ FG:\Git\WPFBoardDesigner\ResourceDictionaries\DesignerItem.xaml;;
 FG:\Git\WPFBoardDesigner\ResourceDictionaries\LineChrome.xaml;;
 FG:\Git\WPFBoardDesigner\ResourceDictionaries\LineDecorator.xaml;;
 FG:\Git\WPFBoardDesigner\ResourceDictionaries\LocationInfoChrome.xaml;;
-FG:\Git\WPFBoardDesigner\ResourceDictionaries\OverViewMapxaml.xaml;;
 FG:\Git\WPFBoardDesigner\ResourceDictionaries\ResizeableChrome.xaml;;
 FG:\Git\WPFBoardDesigner\ResourceDictionaries\ResizeableDecorator.xaml;;
 FG:\Git\WPFBoardDesigner\ResourceDictionaries\RotateableChrome.xaml;;
@@ -27,8 +20,5 @@ FG:\Git\WPFBoardDesigner\ResourceDictionaries\ToolBox\Chart.xaml;;
 FG:\Git\WPFBoardDesigner\ResourceDictionaries\ToolBox\Expand.xaml;;
 FG:\Git\WPFBoardDesigner\ResourceDictionaries\TransformOriginPointChrome.xaml;;
 FG:\Git\WPFBoardDesigner\ResourceDictionaries\TransformOriginPointDecorator.xaml;;
-FG:\Git\WPFBoardDesigner\Test.xaml;;
-FG:\Git\WPFBoardDesigner\UControl\BoardLabel.xaml;;
-FG:\Git\WPFBoardDesigner\UControl\BoardMediaPlayer.xaml;;
 FG:\Git\WPFBoardDesigner\Windows\NewBoardWindow.xaml;;
 

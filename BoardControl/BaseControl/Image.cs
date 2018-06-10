@@ -1,4 +1,4 @@
-﻿using BoardDesigner.Model;
+﻿
 using BoardDesigner.Properties;
 using BoardDesigner.UControl;
 using System;

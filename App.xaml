@@ -4,10 +4,7 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="ResourceDictionaries\Brushes.xaml" />
-                <ResourceDictionary Source="ResourceDictionaries\Slider.xaml"/>
-                <ResourceDictionary Source="ResourceDictionaries\OverViewMapxaml.xaml" />
+            <ResourceDictionary.MergedDictionaries>              
                 <ResourceDictionary Source="ResourceDictionaries\DesignerItem.xaml" />
                 <ResourceDictionary Source="ResourceDictionaries\ToolBox.xaml" />
                 <ResourceDictionary Source="ResourceDictionaries\ToolBox\BaseShape.xaml" />

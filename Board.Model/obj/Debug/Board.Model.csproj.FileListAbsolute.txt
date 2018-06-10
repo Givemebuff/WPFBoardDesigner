@@ -1,0 +1,10 @@
+G:\Git\BoardLibrary\bin\Debug\BoardLibrary.dll
+G:\Git\BoardLibrary\bin\Debug\BoardLibrary.pdb
+G:\Git\BoardLibrary\bin\Debug\WPFVisifire.Charts.dll
+G:\Git\BoardLibrary\obj\Debug\BoardLibrary.dll
+G:\Git\BoardLibrary\obj\Debug\BoardLibrary.pdb
+G:\Git\WPFBoardDesigner\Board.Model\bin\Debug\BoardLibrary.dll
+G:\Git\WPFBoardDesigner\Board.Model\bin\Debug\BoardLibrary.pdb
+G:\Git\WPFBoardDesigner\Board.Model\bin\Debug\WPFVisifire.Charts.dll
+G:\Git\WPFBoardDesigner\Board.Model\obj\Debug\BoardLibrary.dll
+G:\Git\WPFBoardDesigner\Board.Model\obj\Debug\BoardLibrary.pdb

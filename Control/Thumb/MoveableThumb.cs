@@ -1,7 +1,7 @@
-﻿using BoardDesigner.Base;
+﻿using Board.DesignerModel;
+using Board.Interface;
+using BoardDesigner.Base;
 using BoardDesigner.BaseAdorner;
-using BoardDesigner.Interface;
-using BoardDesigner.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;

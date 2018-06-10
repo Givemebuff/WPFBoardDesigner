@@ -1,5 +1,5 @@
-﻿using BoardDesigner.Interface;
-using BoardDesigner.Model;
+﻿using Board.DesignerModel;
+using Board.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;

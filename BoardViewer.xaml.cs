@@ -1,5 +1,6 @@
-﻿using BoardDesigner.Interface;
-using BoardDesigner.Model;
+﻿using Board.Controls.BoardControl;
+using Board.DesignerModel;
+using Board.Interface;
 using BoardDesigner.UControl;
 using System;
 using System.Collections.Generic;

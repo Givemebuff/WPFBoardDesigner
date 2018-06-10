@@ -1,30 +1,19 @@
-﻿using BoardDesigner.Base;
+﻿using Board.DesignerModel;
+using Board.SystemModel;
+using BoardDesigner.Base;
 using BoardDesigner.CustomPage;
-using BoardDesigner.Interface;
-using BoardDesigner.Model;
 using BoardDesigner.Resource;
 using BoardDesigner.Windows;
 using Infragistics.Controls.Editors;
 using Infragistics.Windows.DockManager;
-using Infragistics.Windows.Ribbon;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Markup;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace BoardDesigner
 {

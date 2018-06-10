@@ -252,7 +252,6 @@ G:\Git\WPFBoardDesigner\obj\Debug\CustomPage\HelpPage.g.cs
 G:\Git\WPFBoardDesigner\obj\Debug\CustomPage\MainPage.g.cs
 G:\Git\WPFBoardDesigner\obj\Debug\MainWindow.g.cs
 G:\Git\WPFBoardDesigner\obj\Debug\CustomPage\DesignerPage.g.cs
-G:\Git\WPFBoardDesigner\obj\Debug\Test.g.cs
 G:\Git\WPFBoardDesigner\obj\Debug\UControl\BoardLabel.g.cs
 G:\Git\WPFBoardDesigner\obj\Debug\UControl\BoardMediaPlayer.g.cs
 G:\Git\WPFBoardDesigner\obj\Debug\Windows\ImageResourceWindow.g.cs
@@ -290,7 +289,6 @@ G:\Git\WPFBoardDesigner\obj\Debug\ResourceDictionaries\ToolBox\Chart.baml
 G:\Git\WPFBoardDesigner\obj\Debug\ResourceDictionaries\ToolBox\Expand.baml
 G:\Git\WPFBoardDesigner\obj\Debug\ResourceDictionaries\TransformOriginPointChrome.baml
 G:\Git\WPFBoardDesigner\obj\Debug\ResourceDictionaries\TransformOriginPointDecorator.baml
-G:\Git\WPFBoardDesigner\obj\Debug\Test.baml
 G:\Git\WPFBoardDesigner\obj\Debug\UControl\BoardLabel.baml
 G:\Git\WPFBoardDesigner\obj\Debug\UControl\BoardMediaPlayer.baml
 G:\Git\WPFBoardDesigner\obj\Debug\Windows\NewBoardWindow.baml
@@ -301,3 +299,5 @@ G:\Git\WPFBoardDesigner\obj\Debug\BoardDesigner.exe.manifest
 G:\Git\WPFBoardDesigner\obj\Debug\BoardDesigner.application
 G:\Git\WPFBoardDesigner\obj\Debug\BoardDesigner.exe
 G:\Git\WPFBoardDesigner\obj\Debug\BoardDesigner.pdb
+G:\Git\WPFBoardDesigner\bin\Debug\BoardLibrary.dll
+G:\Git\WPFBoardDesigner\bin\Debug\BoardLibrary.pdb

@@ -11,7 +11,7 @@
         xmlns:MyWindow="clr-namespace:BoardDesigner"
         x:Class="BoardDesigner.MainWindow"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
-        xmlns:converter="clr-namespace:BoardDesigner.Converter"
+        xmlns:converter="clr-namespace:Board.Converter;assembly=Board.Converter"
         xmlns:res="clr-namespace:BoardDesigner.Properties"
         x:Name="ThisWindow"
         Title="看板设计器" Height="768" Width="1366" WindowStyle="ThreeDBorderWindow" Icon="Resources/Icons/web-design.ico" >

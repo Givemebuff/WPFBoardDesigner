@@ -3,7 +3,7 @@
                     xmlns:thumb="clr-namespace:BoardDesigner.BaseThumb"
                     xmlns:chrome="clr-namespace:BoardDesigner.BaseChrome"
                     xmlns:base="clr-namespace:BoardDesigner.Base"
-                     xmlns:converter="clr-namespace:BoardDesigner.Converter" >
+                     >
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="..\ResourceDictionaries\ResizeableChrome.xaml"/>
@@ -12,8 +12,7 @@
         <ResourceDictionary Source="..\ResourceDictionaries\LocationInfoChrome.xaml"/>
         <ResourceDictionary Source="..\ResourceDictionaries\LineChrome.xaml"/>
     </ResourceDictionary.MergedDictionaries>
-
-    <converter:PointMarginConverter x:Key="PointMarginConverter"/>
+   
     <ControlTemplate x:Key="RectMoveableThumbTemplate"  TargetType="{x:Type thumb:MoveableThumb}">
         <!--透明填充矩形-->
         <Rectangle  x:Name="MoveThumbFillRect">

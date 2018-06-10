@@ -1,6 +1,6 @@
-﻿using BoardDesigner.Converter;
-using BoardDesigner.Interface;
-using BoardDesigner.Model;
+﻿using Board.Converter;
+using Board.DesignerModel;
+using Board.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;

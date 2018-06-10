@@ -1,4 +1,5 @@
-﻿using BoardDesigner.UControl;
+﻿using Board.Controls.BoardControl;
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

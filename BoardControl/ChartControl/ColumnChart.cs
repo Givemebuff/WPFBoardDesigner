@@ -1,5 +1,6 @@
-﻿using BoardDesigner.DemoData;
-using BoardDesigner.Model;
+﻿using Board.DesignerModel;
+using BoardDesigner.DemoData;
+
 using BoardDesigner.UControl;
 using System;
 using System.Collections.Generic;

@@ -1,7 +1,6 @@
-﻿using BoardDesigner.Converter;
+﻿using Board.DesignerModel;
+using Board.Interface;
 using BoardDesigner.DemoData;
-using BoardDesigner.Interface;
-using BoardDesigner.Model;
 using Indusfo.Common;
 using Indusfo.Data.DataAccessBaseLayer;
 using System;

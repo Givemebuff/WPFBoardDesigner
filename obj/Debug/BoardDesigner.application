@@ -7,14 +7,14 @@
     <framework targetVersion="4.5" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="BoardDesigner.exe.manifest" size="70726">
+    <dependentAssembly dependencyType="install" codebase="BoardDesigner.exe.manifest" size="70727">
       <assemblyIdentity name="BoardDesigner.exe" version="1.0.0.1" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>avqoQVZvW//2sUecCC4+RsjZYGOSUyfNqAcOg02I9Ig=</dsig:DigestValue>
+        <dsig:DigestValue>X5X97isNRvkx90oiqLg/vpjbYKoB0nh9AB/ayFcywxg=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

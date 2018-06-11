@@ -161,9 +161,6 @@
     <Compile Include="BoardControl\BaseControl\Video.cs" />
     <Compile Include="BoardControl\BaseShape\Circle.cs" />
     <Compile Include="Control\Resource\ImageResourcesManeager.cs" />
-    <Compile Include="SystemControl\ShowList.xaml.cs">
-      <DependentUpon>ShowList.xaml</DependentUpon>
-    </Compile>
     <Compile Include="CustomPage\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -178,9 +175,6 @@
     <Compile Include="BoardControl\ChartControl\SpLineChart.cs" />
     <Compile Include="BoardControl\ChartControl\Table.cs" />
     <Compile Include="BoardControl\ControlWrapper.cs" />
-    <Compile Include="BoardViewer.xaml.cs">
-      <DependentUpon>BoardViewer.xaml</DependentUpon>
-    </Compile>
     <Compile Include="CustomPage\DesignerPage.xaml.cs">
       <DependentUpon>DesignerPage.xaml</DependentUpon>
     </Compile>
@@ -216,44 +210,15 @@
     <Compile Include="Control\Thumb\RotateableThumb.cs" />
     <Compile Include="Control\ToolBox\ToolBox.cs" />
     <Compile Include="Control\ToolBox\ToolBoxItem.cs" />
-    <Compile Include="UControl\BoardChart.xaml.cs">
-      <DependentUpon>BoardChart.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UControl\BoardDataGrid.xaml.cs">
-      <DependentUpon>BoardDataGrid.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UControl\BoardDataGridColumn.xaml.cs">
-      <DependentUpon>BoardDataGridColumn.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UControl\BoardDataGridContentTexkBlock.xaml.cs">
-      <DependentUpon>BoardDataGridContentTexkBlock.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UControl\BoardGif.xaml.cs">
-      <DependentUpon>BoardGif.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UControl\BoardImage.xaml.cs">
-      <DependentUpon>BoardImage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UControl\BoardMediaPlayer.xaml.cs">
-      <DependentUpon>BoardMediaPlayer.xaml</DependentUpon>
+    <Compile Include="PreViewer.xaml.cs">
+      <DependentUpon>PreViewer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\ImageResourceWindow.xaml.cs">
       <DependentUpon>ImageResourceWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\NewBoardDialog.xaml.cs">
-      <DependentUpon>NewBoardDialog.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Windows\NewBoardWindow.xaml.cs">
       <DependentUpon>NewBoardWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="BoardViewer.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="SystemControl\ShowList.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="CustomPage\HelpPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -275,6 +240,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="CustomPage\DesignerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PreViewer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -366,39 +335,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UControl\BoardChart.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UControl\BoardDataGrid.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UControl\BoardDataGridColumn.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UControl\BoardDataGridContentTexkBlock.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UControl\BoardGif.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UControl\BoardImage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UControl\BoardMediaPlayer.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Windows\ImageResourceWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Windows\NewBoardDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

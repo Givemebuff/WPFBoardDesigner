@@ -1,5 +1,6 @@
-﻿using Board.DesignerModel;
-using BoardDesigner.UControl;
+﻿using Board.Controls.BoardControl;
+using Board.DesignerModel;
+
 using Visifire.Charts;
 
 namespace BoardDesigner.BoardControl.ChartControl

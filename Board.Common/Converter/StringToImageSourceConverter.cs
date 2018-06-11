@@ -18,7 +18,16 @@ namespace Board.Converter
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             //TODO
-            throw new NotImplementedException();
+            if (value == null)
+                return null;
+            string fileName = value.ToString();
+            string path = Directory.GetCurrentDirectory() + "\\Images\\" + fileName;
+            if (File.Exists(path))
+            {
+                return new BitmapImage(new Uri(path, UriKind.Absolute));
+            }
+            else
+                return null;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

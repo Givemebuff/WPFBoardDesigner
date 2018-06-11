@@ -1,0 +1,28 @@
+﻿<UserControl x:Class="Board.Controls.BoardControl.BoardChart"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                 xmlns:converter="clr-namespace:Board.Converter;assembly=Board.Converter"
+             xmlns:chart="clr-namespace:Visifire.Charts;assembly=WPFVisifire.Charts"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <converter:DesignerBrushToBrushConverter x:Key="DesignerBrushToBrushConverter" />
+    </UserControl.Resources>
+    <chart:Chart 
+        x:Name="uChart"
+        Width="{Binding Size.Width}" Height="{Binding Size.Height}" 
+            BorderThickness="{Binding Border.BorderThickness}"  BorderBrush="{Binding Border.BorderBrush}" 
+            CornerRadius="{Binding Border.CornerRadius}"
+            Visibility="{Binding Visibility}" 
+        Margin="{Binding Position.Margin}" Padding="{Binding Position.Padding}"
+        Opacity="{Binding Opacity}" HorizontalAlignment="{Binding HorizontalAlignment}" VerticalAlignment="{Binding VerticalAlignment}"            >
+        <chart:Chart.Background>
+            <MultiBinding Converter="{StaticResource DesignerBrushToBrushConverter}">
+                <Binding Path="Background.BackgoundImage"/>
+                <Binding Path="Background.ColorBrush"/>
+            </MultiBinding>
+        </chart:Chart.Background>
+    </chart:Chart>
+</UserControl>

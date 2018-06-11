@@ -30,6 +30,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Indusfo.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLL\Indusfo.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Indusfo.DataAccessLayer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLL\Indusfo.DataAccessLayer.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -43,18 +51,87 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
+    <Reference Include="WPFVisifire.Charts, Version=5.1.7.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLL\WPFVisifire.Charts.dll</HintPath>
+    </Reference>
+    <Reference Include="XamlAnimatedGif, Version=1.1.10.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLL\XamlAnimatedGif.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BoardControl\BoardChart.xaml.cs">
+      <DependentUpon>BoardChart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BoardControl\BoardDataGrid.xaml.cs">
+      <DependentUpon>BoardDataGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BoardControl\BoardDataGridColumn.xaml.cs">
+      <DependentUpon>BoardDataGridColumn.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BoardControl\BoardDataGridContentTexkBlock.xaml.cs">
+      <DependentUpon>BoardDataGridContentTexkBlock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BoardControl\BoardGif.xaml.cs">
+      <DependentUpon>BoardGif.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BoardControl\BoardImage.xaml.cs">
+      <DependentUpon>BoardImage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="BoardControl\BoardLabel.xaml.cs">
       <DependentUpon>BoardLabel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BoardControl\BoardMediaPlayer.xaml.cs">
+      <DependentUpon>BoardMediaPlayer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SystemControl\BoardViewer.xaml.cs">
+      <DependentUpon>BoardViewer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SystemControl\ShowList.xaml.cs">
+      <DependentUpon>ShowList.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="SystemControl\" />
-  </ItemGroup>
-  <ItemGroup>
+    <Page Include="BoardControl\BoardChart.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BoardControl\BoardDataGrid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BoardControl\BoardDataGridColumn.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BoardControl\BoardDataGridContentTexkBlock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BoardControl\BoardGif.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BoardControl\BoardImage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="BoardControl\BoardLabel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BoardControl\BoardMediaPlayer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SystemControl\BoardViewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SystemControl\ShowList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -68,6 +145,12 @@
       <Project>{3afdfe4d-80a7-4d84-a8b8-e2962afd0016}</Project>
       <Name>Board.Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DLL\Indusfo.Common.dll" />
+    <Content Include="DLL\Indusfo.DataAccessLayer.dll" />
+    <Content Include="DLL\WPFVisifire.Charts.dll" />
+    <Content Include="DLL\XamlAnimatedGif.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

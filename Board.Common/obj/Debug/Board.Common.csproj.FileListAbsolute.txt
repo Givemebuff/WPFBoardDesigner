@@ -7,3 +7,11 @@ G:\Git\WPFBoardDesigner\Board.Common\bin\Debug\BoardLibrary.pdb
 G:\Git\WPFBoardDesigner\Board.Common\obj\Debug\Board.Common.csprojResolveAssemblyReference.cache
 G:\Git\WPFBoardDesigner\Board.Common\obj\Debug\Board.Converter.dll
 G:\Git\WPFBoardDesigner\Board.Common\obj\Debug\Board.Converter.pdb
+C:\Git\WPFBoardDesigner\Board.Common\bin\Debug\Board.Converter.dll
+C:\Git\WPFBoardDesigner\Board.Common\bin\Debug\Board.Converter.pdb
+C:\Git\WPFBoardDesigner\Board.Common\bin\Debug\BoardLibrary.dll
+C:\Git\WPFBoardDesigner\Board.Common\bin\Debug\WPFVisifire.Charts.dll
+C:\Git\WPFBoardDesigner\Board.Common\bin\Debug\BoardLibrary.pdb
+C:\Git\WPFBoardDesigner\Board.Common\obj\Debug\Board.Common.csprojResolveAssemblyReference.cache
+C:\Git\WPFBoardDesigner\Board.Common\obj\Debug\Board.Converter.dll
+C:\Git\WPFBoardDesigner\Board.Common\obj\Debug\Board.Converter.pdb

@@ -1,7 +1,7 @@
-﻿using Board.DesignerModel;
+﻿using Board.Controls.BoardControl;
+using Board.DesignerModel;
 using BoardDesigner.DemoData;
 
-using BoardDesigner.UControl;
 using System;
 using System.Collections.Generic;
 using System.Data;

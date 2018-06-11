@@ -42,15 +42,12 @@ namespace BoardDesigner.CustomPage
         private void InitDocExm()
         {
             //加载文档资源库
-           DocExampleList.ItemsSource.Add("新建看板");           
+          
         }
 
         private void InitLastOpen()
         {
-            //获取最近打开的记录
-            //遍历记录，获取前十条有效记录
-            //加载
-            LastOpenList.ItemsSource.Add("新建看板");
+           
             
         }
     }

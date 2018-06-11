@@ -4,17 +4,17 @@
 library
 C#
 .cs
-G:\Git\WPFBoardDesigner\Board.Controls\obj\Debug\
+C:\Git\WPFBoardDesigner\Board.Controls\obj\Debug\
 Board.Controls
 none
 false
 DEBUG;TRACE
 
-1-1145522730
-
-6783735558
-16-247745147
-BoardControl\BoardLabel.xaml;
+10237116332
+4-323291486
+15-556231243
+20865646608
+BoardControl\BoardChart.xaml;BoardControl\BoardDataGrid.xaml;BoardControl\BoardDataGridColumn.xaml;BoardControl\BoardDataGridContentTexkBlock.xaml;BoardControl\BoardGif.xaml;BoardControl\BoardImage.xaml;BoardControl\BoardLabel.xaml;BoardControl\BoardMediaPlayer.xaml;SystemControl\BoardViewer.xaml;SystemControl\ShowList.xaml;
 
 False
 

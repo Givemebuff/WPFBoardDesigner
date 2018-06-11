@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Board.Designer", "Board.Des
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Board.Controls", "Board.Controls\Board.Controls.csproj", "{B53BAB5A-B532-4324-A358-6FA2F153F57B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Board.Viewer", "Board.Viewer\Board.Viewer.csproj", "{8CE533FD-0A3F-4423-9DD2-875D8014FB92}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Board.Runner", "Board.Viewer\Board.Runner.csproj", "{8CE533FD-0A3F-4423-9DD2-875D8014FB92}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Board.Common", "Board.Common\Board.Common.csproj", "{63250CF1-0D0F-4A4B-8089-4F7F9DCD2E72}"
 EndProject

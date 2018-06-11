@@ -87,12 +87,13 @@ namespace Board.DesignerModel
 
         #region 数据
 
+
         #region 数据线
 
         [Browsable(false)]
         public ObservableCollection<DesignerChartDataSeries> _series { get; set; }
 
-        [Category("图表数据")]
+        [Category("数据")]
         [DisplayName("数据线集合")]
         [Description("数据线集合")]
         public ObservableCollection<DesignerChartDataSeries> Series
@@ -303,12 +304,12 @@ namespace Board.DesignerModel
 
         #region 轴数据
         [Browsable(false)]
-        public object _axisMaximum { get; set; }
+        public double _axisMaximum { get; set; }
 
         [Category("轴")]
         [DisplayName("轴最大值")]
         [Description("设置轴最大值")]
-        public object AxisMaximum
+        public double AxisMaximum
         {
             get
             {
@@ -321,11 +322,11 @@ namespace Board.DesignerModel
             }
         }
         [Browsable(false)]
-        public object _axisMinimum { get; set; }
+        public double _axisMinimum { get; set; }
         [Category("轴")]
         [DisplayName("轴最小值")]
         [Description("设置轴最小值")]
-        public object AxisMinimum
+        public double AxisMinimum
         {
             get
             {
@@ -1032,6 +1033,7 @@ namespace Board.DesignerModel
 
         #region 数据
 
+        #region 数据源
         [Browsable(false)]
         public DesignerDataSource _dataSource { get; set; }
 
@@ -1062,6 +1064,57 @@ namespace Board.DesignerModel
                 return this._dataPoints;
             }
         }
+        #endregion
+
+        #region 数据绑定
+        [Browsable(false)]
+        public string _xValueBindName { get; set; }
+        [Category("数据")]
+        [DisplayName("X轴值绑定数据字段名")]
+        [Description("X轴值绑定")]
+        public string XValueBindName
+        {
+            get { return this._xValueBindName; }
+            set
+            {
+                this._xValueBindName = value;
+                OnPropertyChanged("XValueBindName");
+            }
+        }
+        [Browsable(false)]
+        public string _yValueBindName { get; set; }
+        [Category("数据")]
+        [DisplayName("Y轴值绑定数据字段名")]
+        [Description("Y轴值绑定")]
+        public string YValueBindName
+        {
+            get { return this._yValueBindName; }
+            set
+            {
+                this._yValueBindName = value;
+                OnPropertyChanged("YValueBindName");
+            }
+        }
+
+        #endregion
+
+        #region 数据访问时间
+         [Browsable(false)]
+        public int _dataAccessTimeSpan { get; set; }
+         [Category("定时器")]
+         [DisplayName("数据访问时间间隔")]
+         [Description("单位毫秒")]
+        public int DataAccessTimeSpan 
+        {
+            get { return this._dataAccessTimeSpan; }
+            set 
+            {
+                this._dataAccessTimeSpan = value;
+                OnPropertyChanged("DataAccessTimeSpan");
+            }
+        }
+
+        #endregion
 
         #region 数据种类
         [Browsable(false)]
@@ -1662,7 +1715,6 @@ namespace Board.DesignerModel
 
 
     }
-
     public class DesignerDataPointCollection : ObservableCollection<DesignerDataPoint>
     {
 

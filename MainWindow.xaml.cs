@@ -1,4 +1,5 @@
-﻿using Board.DesignerModel;
+﻿using Board.Controls.SystemControl;
+using Board.DesignerModel;
 using Board.SystemModel;
 using BoardDesigner.Base;
 using BoardDesigner.CustomPage;
@@ -98,8 +99,8 @@ namespace BoardDesigner
             if (CurrentDesignerPage == null)
                 return;
             DesignerBoard board = (CurrentDesignerPage.DesignerGrid.Children[0] as DesignerCanvas).Warp();
-            BoardViewer bv = new BoardViewer(board);
-            bv.Show();
+            PreViewer pv = new PreViewer(board);
+            pv.ShowDialog();           
         }
 
         private void SettingImageButton_Click(object sender, RoutedEventArgs e)

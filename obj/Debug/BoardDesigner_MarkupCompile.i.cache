@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-G:\Git\WPFBoardDesigner\obj\Debug\
+C:\Git\WPFBoardDesigner\obj\Debug\
 BoardDesigner
 none
 false
 DEBUG;TRACE
-G:\Git\WPFBoardDesigner\App.xaml
-38903873054
+C:\Git\WPFBoardDesigner\App.xaml
+29-871452300
 6-1936996747
-70-1899037910
-531453581240
-BoardViewer.xaml;SystemControl\ShowList.xaml;CustomPage\HelpPage.xaml;CustomPage\MainPage.xaml;MainWindow.xaml;CustomPage\DesignerPage.xaml;ResourceDictionaries\AngleInfoChrome.xaml;ResourceDictionaries\Brushes.xaml;ResourceDictionaries\DataGrid.xaml;ResourceDictionaries\DesignerItem.xaml;ResourceDictionaries\Expander.xaml;ResourceDictionaries\LineChrome.xaml;ResourceDictionaries\LineDecorator.xaml;ResourceDictionaries\LocationInfoChrome.xaml;ResourceDictionaries\ResizeableChrome.xaml;ResourceDictionaries\ResizeableDecorator.xaml;ResourceDictionaries\RotateableChrome.xaml;ResourceDictionaries\RotateableDecorator.xaml;ResourceDictionaries\SizeInfoChrome.xaml;ResourceDictionaries\Slider.xaml;ResourceDictionaries\ToolBar.xaml;ResourceDictionaries\ToolBox.xaml;ResourceDictionaries\ToolBox\BaseControl.xaml;ResourceDictionaries\ToolBox\BaseShape.xaml;ResourceDictionaries\ToolBox\Chart.xaml;ResourceDictionaries\ToolBox\Expand.xaml;ResourceDictionaries\TransformOriginPointChrome.xaml;ResourceDictionaries\TransformOriginPointDecorator.xaml;UControl\BoardChart.xaml;UControl\BoardDataGrid.xaml;UControl\BoardDataGridColumn.xaml;UControl\BoardDataGridContentTexkBlock.xaml;UControl\BoardGif.xaml;UControl\BoardImage.xaml;UControl\BoardMediaPlayer.xaml;Windows\ImageResourceWindow.xaml;Windows\NewBoardDialog.xaml;Windows\NewBoardWindow.xaml;
+611596967098
+53-1647837513
+CustomPage\HelpPage.xaml;CustomPage\MainPage.xaml;MainWindow.xaml;CustomPage\DesignerPage.xaml;PreViewer.xaml;ResourceDictionaries\AngleInfoChrome.xaml;ResourceDictionaries\Brushes.xaml;ResourceDictionaries\DataGrid.xaml;ResourceDictionaries\DesignerItem.xaml;ResourceDictionaries\Expander.xaml;ResourceDictionaries\LineChrome.xaml;ResourceDictionaries\LineDecorator.xaml;ResourceDictionaries\LocationInfoChrome.xaml;ResourceDictionaries\ResizeableChrome.xaml;ResourceDictionaries\ResizeableDecorator.xaml;ResourceDictionaries\RotateableChrome.xaml;ResourceDictionaries\RotateableDecorator.xaml;ResourceDictionaries\SizeInfoChrome.xaml;ResourceDictionaries\Slider.xaml;ResourceDictionaries\ToolBar.xaml;ResourceDictionaries\ToolBox.xaml;ResourceDictionaries\ToolBox\BaseControl.xaml;ResourceDictionaries\ToolBox\BaseShape.xaml;ResourceDictionaries\ToolBox\Chart.xaml;ResourceDictionaries\ToolBox\Expand.xaml;ResourceDictionaries\TransformOriginPointChrome.xaml;ResourceDictionaries\TransformOriginPointDecorator.xaml;Windows\ImageResourceWindow.xaml;Windows\NewBoardWindow.xaml;
 
 True
 

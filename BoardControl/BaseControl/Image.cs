@@ -1,6 +1,6 @@
 ﻿
+using Board.Controls.BoardControl;
 using BoardDesigner.Properties;
-using BoardDesigner.UControl;
 using System;
 using System.Collections.Generic;
 using System.Linq;

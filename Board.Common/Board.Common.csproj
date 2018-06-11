@@ -54,6 +54,7 @@
     <Compile Include="Converter\DoubleFormatConverter.cs" />
     <Compile Include="Converter\Int100ToDoubleConverter.cs" />
     <Compile Include="Converter\LocationFormatConverter.cs" />
+    <Compile Include="Converter\NameToDataSourceConverter.cs" />
     <Compile Include="Converter\RImageToStringConverter.cs" />
     <Compile Include="Converter\ScrollScaleConverter.cs" />
     <Compile Include="Converter\SetterValueConvert.cs" />
@@ -62,6 +63,8 @@
     <Compile Include="Interface\IDesigner.cs" />
     <Compile Include="Interface\IWorker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResourceManager\DataSourceManager.cs" />
+    <Compile Include="ResourceManager\ImageResourcesManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="DLL\WPFVisifire.Charts.dll" />
@@ -72,6 +75,7 @@
       <Name>Board.Model</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

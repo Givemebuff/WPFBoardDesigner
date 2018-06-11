@@ -9,22 +9,81 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"  
       mc:Ignorable="d" 
       d:DesignHeight="2160" d:DesignWidth="3840"
-	Title="DesignerPage">
-    <Grid  >
+	Title="DesignerPage" Background="White">
+    <Page.Resources>
+        
+    </Page.Resources>
+    
+    <Grid>       
         <ScrollViewer Name="DesignerScrollViewer"                                  
                                   HorizontalScrollBarVisibility="Auto"
                                   VerticalScrollBarVisibility="Auto">
-            <Grid Width="3840" Height="2160" x:Name="DesignerGrid"  >
+            <Grid Width="3840" Height="2160" x:Name="DesignerGrid" >   
+                <Grid.ContextMenu>
+                    <ContextMenu >
+                        <TextBlock x:Name="NameTB" />
+                        <MenuItem Header="剪切" >
+                            <MenuItem.Icon>
+                                <Image Source="/BoardDesigner;component/Resources/Images/EditCut.png"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="复制">
+                            <MenuItem.Icon>
+                                <Image Source="/BoardDesigner;component/Resources/Images/EditCopy.png"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="粘贴">
+                            <MenuItem.Icon>
+                                <Image Source="/BoardDesigner;component/Resources/Images/Paste_16x16.png"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="删除">
+                            <MenuItem.Icon>
+                                <Image Source="/BoardDesigner;component/Resources/Images/delete.png"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="合并">
+                            <MenuItem.Icon>
+                                <Image Source="/BoardDesigner;component/Resources/Images/Group.png"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="拆分">
+                            <MenuItem.Icon>
+                                <Image Source="/BoardDesigner;component/Resources/Images/Ungroup.png"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="上移一层">
+                            <MenuItem.Icon>
+                                <Image Source="/BoardDesigner;component/Resources/Images/BringForward.png"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="下移一层">
+                            <MenuItem.Icon>
+                                <Image Source="/BoardDesigner;component/Resources/Images/SendBackward.png"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="置于顶层">
+                            <MenuItem.Icon>
+                                <Image Source="/BoardDesigner;component/Resources/Images/BringToFront.png"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="置于底层">
+                            <MenuItem.Icon>
+                                <Image Source="/BoardDesigner;component/Resources/Images/SendToBack.png"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="设计数据源">
+                            <MenuItem.Icon>
+                                <Image Source="/BoardDesigner;component/Resources/Images/Database_24px.png"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                    </ContextMenu>
+                </Grid.ContextMenu>
                 <Grid.Background>
                     <ImageBrush ImageSource="/BoardDesigner;component/Resources/Images/透明背景.PNG" TileMode="Tile" Viewport="0,0,16,16" ViewportUnits="Absolute"  />                  
                 </Grid.Background>
-               
+              
             </Grid>
         </ScrollViewer>
-        <!--<Base:OverViewMap Width="100" Height="100"
-                               HorizontalAlignment="Left"
-                               VerticalAlignment="Top"
-                               ScrollViewer="{Binding ElementName=DesignerScrollViewer}"
-                                />-->
     </Grid>
 </Page>

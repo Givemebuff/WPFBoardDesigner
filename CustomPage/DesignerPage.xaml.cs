@@ -89,7 +89,11 @@ namespace BoardDesigner.CustomPage
             this.SetBinding(DesignerPage.SelectItemProperty, new Binding("SelectItem") { Source = dc });
             DesignerGrid.Children.Add(dc);
             this.DataContext = Board;
+
+            NameTB.SetBinding(TextBlock.TextProperty, new Binding("SelectItem.Name") { Source = dc });
            
         }
+      
+      
     }
 }

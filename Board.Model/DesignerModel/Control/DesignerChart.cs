@@ -492,7 +492,7 @@ namespace Board.DesignerModel
             this.ShowInLegend = true;
             this.ZIndex = 0;
             this.XValueType = ChartValueTypes.Auto;
-            this.LegendMarkerColor = null;
+            this.LegendMarkerColor = null;         
 
             this.DataAccessTimeSpan = 10000;
         }

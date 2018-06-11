@@ -160,8 +160,6 @@
     <Compile Include="BoardControl\BaseControl\Label.cs" />
     <Compile Include="BoardControl\BaseControl\Video.cs" />
     <Compile Include="BoardControl\BaseShape\Circle.cs" />
-    <Compile Include="Control\Resource\DataSourceManager.cs" />
-    <Compile Include="Control\Resource\ImageResourcesManeager.cs" />
     <Compile Include="CustomPage\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -688,6 +686,14 @@
     <Content Include="bin\Debug\Medias\MediaDemo.wmv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Resources\Images\delete.png" />
+    <Resource Include="Resources\Images\Group.png" />
+    <Resource Include="Resources\Images\Ungroup.png" />
+    <Resource Include="Resources\Images\BringToFront.png" />
+    <Resource Include="Resources\Images\BringForward.png" />
+    <Resource Include="Resources\Images\SendToBack.png" />
+    <Resource Include="Resources\Images\SendBackward.png" />
+    <Resource Include="Resources\Images\Database_24px.png" />
     <Content Include="Resources\Videos\VideoDemo.wmv" />
     <Content Include="dll\Indusfo.Common.dll" />
     <Content Include="dll\Indusfo.DataAccessLayer.dll" />

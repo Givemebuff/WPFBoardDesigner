@@ -1,5 +1,5 @@
 ﻿using Board.DesignerModel;
-using BoardDesigner.Resource;
+using Board.Resource;
 using Indusfo.Common;
 using Indusfo.Data.DataAccessBaseLayer;
 using System;

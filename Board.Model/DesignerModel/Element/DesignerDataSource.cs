@@ -29,7 +29,6 @@ namespace Board.DesignerModel
                 this._address = value;
                 OnPropertyChanged("Address");
                 OnPropertyChanged("ConnectionString");
-
             }
         }
         [Browsable(false)]

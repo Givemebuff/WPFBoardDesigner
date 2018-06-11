@@ -1,9 +1,9 @@
 ﻿using Board.Controls.SystemControl;
 using Board.DesignerModel;
+using Board.Resource;
 using Board.SystemModel;
 using BoardDesigner.Base;
 using BoardDesigner.CustomPage;
-using BoardDesigner.Resource;
 using BoardDesigner.Windows;
 using Infragistics.Controls.Editors;
 using Infragistics.Windows.DockManager;
@@ -56,7 +56,7 @@ namespace BoardDesigner
 
         // Using a DependencyProperty as the backing store for ImageResourceCollection.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ImageResourceCollectionProperty =
-            DependencyProperty.Register("ImageResourceCollection", typeof(ObservableCollection<RImage>), typeof(MainWindow), new PropertyMetadata(new ObservableCollection<RImage>(ImageResourcesManeager.GetImageResources())));
+            DependencyProperty.Register("ImageResourceCollection", typeof(ObservableCollection<RImage>), typeof(MainWindow), new PropertyMetadata(new ObservableCollection<RImage>(ImageResourcesManager.GetImageResources())));
 
         #endregion
 
@@ -255,19 +255,17 @@ namespace BoardDesigner
                 {
                     CurrentDesignerPage = null;
                 }
-
-
             }
         }
 
         private void DataSourceEditButton_Click(object sender, RoutedEventArgs e)
-        {
-            TextBox tb = ((sender as Button).Parent as Grid).FindName("DSNameTb") as TextBox;
+        {            
+            TextBlock tb = ((sender as Button).Parent as Grid).FindName("DSNameTb") as TextBlock;
             string name = tb.Text;
             DataSourceSettingWindow win = new DataSourceSettingWindow(name);
             if (win.ShowDialog() == true) 
             {
-                tb.Text = win.SelectedItem.Name;
+                tb.Text = win.SelectedItem.Name;               
             }
         }
     }

@@ -3,6 +3,7 @@
                     xmlns:thumb="clr-namespace:BoardDesigner.BaseThumb"
                     xmlns:chrome="clr-namespace:BoardDesigner.BaseChrome"
                     xmlns:base="clr-namespace:BoardDesigner.Base"
+                       xmlns:ig="http://schemas.infragistics.com/xaml" 
                      >
 
     <ResourceDictionary.MergedDictionaries>
@@ -13,14 +14,17 @@
         <ResourceDictionary Source="..\ResourceDictionaries\LineChrome.xaml"/>
     </ResourceDictionary.MergedDictionaries>
    
-    <ControlTemplate x:Key="RectMoveableThumbTemplate"  TargetType="{x:Type thumb:MoveableThumb}">
+    <ControlTemplate x:Key="RectMoveableThumbTemplate"  TargetType="{x:Type thumb:MoveableThumb}" >
+        <ControlTemplate.Resources>
+            
+        </ControlTemplate.Resources>
+        
         <!--透明填充矩形-->
         <Rectangle  x:Name="MoveThumbFillRect">
             <Rectangle.Fill>
                 <SolidColorBrush x:Name="RectFillBrush" Color="Transparent"/>
             </Rectangle.Fill>
-        </Rectangle>
-        
+        </Rectangle>        
         <ControlTemplate.Triggers>
             <EventTrigger RoutedEvent="Rectangle.MouseEnter" SourceName="MoveThumbFillRect">
                 <BeginStoryboard>
@@ -63,18 +67,20 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type base:DesignerItem}">
-                    <Grid DataContext="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=.}" >
+                    <Grid DataContext="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=.}" >                        
+                              
                         <ContentPresenter x:Name="CC"
                                           Content="{TemplateBinding ContentControl.Content}"
                                           Margin="{TemplateBinding Padding}" />
                         <thumb:MoveableThumb Cursor="SizeAll" Template="{StaticResource RectMoveableThumbTemplate}" x:Name="MoveThumb"/>
 
                         <base:DesignerItemDecorator x:Name="DesignerDecorator" ShowDecorator="{Binding RelativeSource={RelativeSource TemplatedParent},Path=IsSelected}" />
+                      
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
-
+    
 </ResourceDictionary>

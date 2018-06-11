@@ -259,5 +259,16 @@ namespace BoardDesigner
 
             }
         }
+
+        private void DataSourceEditButton_Click(object sender, RoutedEventArgs e)
+        {
+            TextBox tb = ((sender as Button).Parent as Grid).FindName("DSNameTb") as TextBox;
+            string name = tb.Text;
+            DataSourceSettingWindow win = new DataSourceSettingWindow(name);
+            if (win.ShowDialog() == true) 
+            {
+                tb.Text = win.SelectedItem.Name;
+            }
+        }
     }
 }

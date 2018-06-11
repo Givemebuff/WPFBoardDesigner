@@ -20,7 +20,7 @@ namespace Board.Controls.BoardControl
     /// <summary>
     /// BoardChart.xaml 的交互逻辑
     /// </summary>
-    public partial class BoardChart : UserControl, IDesigner,IWorker
+    public partial class BoardChart : UserControl, IDesigner, IWorker
     {
         public DesignerChart DesignerItem { get; set; }
 
@@ -422,7 +422,17 @@ namespace Board.Controls.BoardControl
             for (int i = 0; i < uChart.Series.Count; i++)
             {
                 if (uChart.Series[i].Uid == s.ID.ToString())
+                {
                     uChart.Series.Remove(uChart.Series[i]);
+                    if (Timers.Keys.Contains(s.Name))
+                        Timers.Remove(s.Name);
+                    if (DataCache.Keys.Contains(s.Name))
+                        DataCache.Remove(s.Name);
+                    if (DataPointsCache.Keys.Contains(s.Name))
+                        DataPointsCache.Remove(s.Name);
+
+                }
+
             }
         }
 
@@ -583,7 +593,7 @@ namespace Board.Controls.BoardControl
             ChartAxesY.CollectionChanged += ChartAxesY_CollectionChanged;
             ChartDataSeries.CollectionChanged += ChartDataSeries_CollectionChanged;
 
-         
+
         }
 
         public void StartWork()
@@ -593,7 +603,7 @@ namespace Board.Controls.BoardControl
                 GetData(s);
                 BindData(s);
             }
-            foreach (DispatcherTimer dt in Timers.Values) 
+            foreach (DispatcherTimer dt in Timers.Values)
             {
                 dt.Start();
             }
@@ -607,11 +617,15 @@ namespace Board.Controls.BoardControl
         /// <param name="s"></param>
         private void GetData(DesignerChartDataSeries s)
         {
-            try 
+            try
             {
+                DataTable newData = new DataTable();
+                if (s.DataSource == null)
+                    return;
+                
                 using (SqlExcuter se = new SqlExcuter(DataBaseType.SqlServer, s.DataSource.ConnectionString))
                 {
-                    DataTable newData = se.ExecuteSelectSql(s.DataSource.SqlString);
+                     newData = se.ExecuteSelectSql(s.DataSource.SqlString);
                     if (DataCache == null)
                     {
                         DataCache = new Dictionary<string, DataTable>();
@@ -636,11 +650,11 @@ namespace Board.Controls.BoardControl
                     }
                 }
             }
-            catch (Exception e) 
+            catch (Exception e)
             {
                 MessageBox.Show(e.Message);
             }
-            
+
 
         }
         private List<DataPoint> BuiltDataPoints(DesignerChartDataSeries s)
@@ -716,5 +730,7 @@ namespace Board.Controls.BoardControl
         private Dictionary<string, List<DataPoint>> DataPointsCache { get; set; }
 
         #endregion
+
+        
     }
 }

@@ -160,6 +160,7 @@
     <Compile Include="BoardControl\BaseControl\Label.cs" />
     <Compile Include="BoardControl\BaseControl\Video.cs" />
     <Compile Include="BoardControl\BaseShape\Circle.cs" />
+    <Compile Include="Control\Resource\DataSourceManager.cs" />
     <Compile Include="Control\Resource\ImageResourcesManeager.cs" />
     <Compile Include="CustomPage\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -212,6 +213,9 @@
     <Compile Include="Control\ToolBox\ToolBoxItem.cs" />
     <Compile Include="PreViewer.xaml.cs">
       <DependentUpon>PreViewer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\DataSourceSettingWindow.xaml.cs">
+      <DependentUpon>DataSourceSettingWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\ImageResourceWindow.xaml.cs">
       <DependentUpon>ImageResourceWindow.xaml</DependentUpon>
@@ -332,6 +336,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ResourceDictionaries\TransformOriginPointDecorator.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\DataSourceSettingWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -686,9 +694,7 @@
     <Content Include="dll\XamlAnimatedGif.dll" />
     <Content Include="dll\WPFVisifire.Charts.dll" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Control\Converter\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
       <Visible>False</Visible>

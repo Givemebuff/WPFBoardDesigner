@@ -13,4 +13,3 @@ C:\Git\WPFBoardDesigner\Board.Model\bin\Debug\BoardLibrary.pdb
 C:\Git\WPFBoardDesigner\Board.Model\bin\Debug\WPFVisifire.Charts.dll
 C:\Git\WPFBoardDesigner\Board.Model\obj\Debug\BoardLibrary.dll
 C:\Git\WPFBoardDesigner\Board.Model\obj\Debug\BoardLibrary.pdb
-C:\Git\WPFBoardDesigner\Board.Model\obj\Debug\Board.Model.csprojResolveAssemblyReference.cache

@@ -1,4 +1,5 @@
 C:\Git\WPFBoardDesigner\Board.Viewer\bin\Debug\Board.Viewer.dll
 C:\Git\WPFBoardDesigner\Board.Viewer\bin\Debug\Board.Viewer.pdb
+C:\Git\WPFBoardDesigner\Board.Viewer\obj\Debug\Board.Runner.csprojResolveAssemblyReference.cache
 C:\Git\WPFBoardDesigner\Board.Viewer\obj\Debug\Board.Viewer.dll
 C:\Git\WPFBoardDesigner\Board.Viewer\obj\Debug\Board.Viewer.pdb

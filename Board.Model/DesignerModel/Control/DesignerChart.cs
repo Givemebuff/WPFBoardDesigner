@@ -493,6 +493,8 @@ namespace Board.DesignerModel
             this.ZIndex = 0;
             this.XValueType = ChartValueTypes.Auto;
             this.LegendMarkerColor = null;
+
+            this.DataAccessTimeSpan = 10000;
         }
 
         #region 颜色

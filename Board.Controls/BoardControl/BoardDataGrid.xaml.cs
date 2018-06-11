@@ -351,25 +351,6 @@ namespace Board.Controls.BoardControl
             {
                 data.Columns.Add(Columns[i].BindingName);
             }
-            //foreach (DataColumn column in ItemSource.Columns)
-            //{
-            //    foreach (DesignerDataGridColumn dcol in Columns)
-            //    {
-            //        if (dcol.Position.ColumnIndex == index)
-            //        {
-            //            if (column.ColumnName == dcol.BindingName)
-            //            {
-            //                DataColumn newColumn = new DataColumn() { ColumnName = column.ColumnName, DataType = column.DataType };
-            //                data.Columns.Add(newColumn);
-            //                index++;
-            //                break;
-            //            }
-            //        }
-            //    }
-            //}
-
-
-
 
             int beginRowIndex = PageIndex * RowCount;
             int endRowIndex = beginRowIndex + RowCount;

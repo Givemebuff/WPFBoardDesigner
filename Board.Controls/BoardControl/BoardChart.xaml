@@ -11,13 +11,14 @@
         <converter:DesignerBrushToBrushConverter x:Key="DesignerBrushToBrushConverter" />
     </UserControl.Resources>
     <chart:Chart 
+        
         x:Name="uChart"
         Width="{Binding Size.Width}" Height="{Binding Size.Height}" 
             BorderThickness="{Binding Border.BorderThickness}"  BorderBrush="{Binding Border.BorderBrush}" 
             CornerRadius="{Binding Border.CornerRadius}"
             Visibility="{Binding Visibility}" 
         Margin="{Binding Position.Margin}" Padding="{Binding Position.Padding}"
-        Opacity="{Binding Opacity}" HorizontalAlignment="{Binding HorizontalAlignment}" VerticalAlignment="{Binding VerticalAlignment}"            >
+        Opacity="{Binding Opacity}" HorizontalAlignment="{Binding HorizontalAlignment}" VerticalAlignment="{Binding VerticalAlignment}" AxisIndicatorBackground="{x:Null}" AnimatedUpdate="True" AnimationEnabled="True"            >
         <chart:Chart.Background>
             <MultiBinding Converter="{StaticResource DesignerBrushToBrushConverter}">
                 <Binding Path="Background.BackgoundImage"/>

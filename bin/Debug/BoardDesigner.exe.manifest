@@ -167,14 +167,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Board.Controls.dll" size="70656">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Board.Controls.dll" size="71168">
       <assemblyIdentity name="Board.Controls" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>Gf8y9NWqxT/xZ1W9aJD1TYQaNrFuShAMuOyvMSDdfYo=</dsig:DigestValue>
+        <dsig:DigestValue>EpOp1B4a1JEi7TWJaEpsGlVvOX/QDC3VDIovGylxBbg=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -186,31 +186,31 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>V1BsQyfQzYn0/Eo/QpCcy2t6C63OVB4u7u5FyhzDN+4=</dsig:DigestValue>
+        <dsig:DigestValue>ur6sjo+fEZunF9oFKMOhmfl54OBt4WMO9hk97c/PAd0=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BoardDesigner.exe" size="5049344">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BoardDesigner.exe" size="5061120">
       <assemblyIdentity name="BoardDesigner" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>1UZqDMJvBgqlnsom8NXMGMasEMVvknQ8REYiWKuFHYQ=</dsig:DigestValue>
+        <dsig:DigestValue>H80BpmRxAGgSGGaX98jL81WsXr9HRi2r7K9o8WUstao=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BoardLibrary.dll" size="87552">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BoardLibrary.dll" size="88064">
       <assemblyIdentity name="BoardLibrary" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>hcaRDMRsU/A6e73w/Urfh4jExUeaDWiMofJWwD7kNNg=</dsig:DigestValue>
+        <dsig:DigestValue>iiBusKWmCkYpkvHJPjzS9wSkT6Yhcvm/uYLaj+vpb4Q=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

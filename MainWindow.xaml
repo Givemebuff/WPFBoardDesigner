@@ -45,7 +45,7 @@
 							CloseButtonVisibility="Visible" 
 							PinButtonVisibility="Visible"
 							WindowPositionMenuVisibility="Visible">
-                          
+
                             <ig:XamSyntaxEditor Background="{x:Null}"  x:Name="xamSyntaxEditor1" 
 								SplitOptions="SplittingNotAllowed" ErrorDisplayMode="Never" BorderThickness="1"     
 								LineNumberMarginBackground="#FFD8D8D8"
@@ -150,12 +150,11 @@
                                                                            IsEditable="True" AllowFiltering="True" 
                                                                            SelectionChanged="ImageXamComboEditor_SelectionChanged"
                                                                            DisplayMemberPath="ImageName"
-                                                                           SelectedValuePath="Path"
-                                                                          
+                                                                           SelectedValuePath="Path"                                                                          
                                                                            ItemsSource="{Binding RelativeSource={RelativeSource   Mode= FindAncestor,  AncestorType={x:Type MyWindow:MainWindow}}, Path=ImageResourceCollection}"
                                                                          SelectedItem="{Binding Path=Value,Converter={StaticResource RImageToStringConverter}}"  EmptyText="选择一张图片..."
                                                                           >
-                                                           
+
                                                             <ig:XamComboEditor.ItemTemplate>
                                                                 <DataTemplate>
                                                                     <Grid Height="60">
@@ -179,6 +178,23 @@
                                                 </DataTemplate>
                                             </ig:PropertyGridEditorDefinition.EditTemplate>
                                         </ig:PropertyGridEditorDefinition>
+                                        <ig:PropertyGridEditorDefinition>
+                                            <ig:PropertyGridEditorDefinition.TargetProperties>
+                                                <sys:String>DataSource</sys:String>
+                                            </ig:PropertyGridEditorDefinition.TargetProperties>
+                                            <ig:PropertyGridEditorDefinition.EditTemplate>
+                                                <DataTemplate>
+                                                    <Grid >
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="Auto" />
+                                                            <ColumnDefinition Width="*" />
+                                                        </Grid.ColumnDefinitions>
+                                                        <TextBox Grid.Column="1" x:Name="DSNameTb" Width="200" Height="30" IsReadOnly="True" ></TextBox>
+                                                        <Button Grid.Column="0" x:Name="DataSourceEditButton" Click="DataSourceEditButton_Click" Width="80" Height="20" VerticalAlignment="Center" >编辑</Button>
+                                                    </Grid>
+                                                </DataTemplate>
+                                            </ig:PropertyGridEditorDefinition.EditTemplate>
+                                        </ig:PropertyGridEditorDefinition>
                                     </ig:XamPropertyGrid.EditorDefinitions>
                                 </ig:XamPropertyGrid>
                             </DockPanel>
@@ -189,7 +205,7 @@
             <igWPF:DocumentContentHost Background="#FFB9B9B9" x:Name="MainContentHost" ActiveDocumentChanged="MainContentHost_ActiveDocumentChanged" >
                 <igWPF:SplitPane>
                     <igWPF:TabGroupPane x:Name="MainTabGroupPane"  >
-                        <igWPF:ContentPane  x:Name="MainPage" Header="主页" CloseButtonVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto"/>                       
+                        <igWPF:ContentPane  x:Name="MainPage" Header="主页" CloseButtonVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
                     </igWPF:TabGroupPane>
 
                 </igWPF:SplitPane>
@@ -198,7 +214,7 @@
         </igWPF:XamDockManager>
         <StatusBar Grid.Row="2" Height="25" Background="#FF007ACC" x:Name="Stsbar">
             <Grid Width="{Binding ElementName=Stsbar,Path=ActualWidth}">
-                <Grid.ColumnDefinitions>                   
+                <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
@@ -364,8 +380,8 @@
 
     </Grid>
 
-      
-   
-  
+
+
+
 
 </Window>

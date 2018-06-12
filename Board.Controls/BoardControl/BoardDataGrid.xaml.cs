@@ -29,7 +29,7 @@ namespace Board.Controls.BoardControl
     /// </summary>
     public partial class BoardDataGrid : UserControl, IDesigner, IWorker
     {
-        public DesignerTable DesignerItem { get; set; }
+        public DesignerTable DesignerModel { get; set; }
 
 
         #region 数据源
@@ -208,7 +208,7 @@ namespace Board.Controls.BoardControl
         public BoardDataGrid(DesignerTable dt)
         {
             InitializeComponent();
-            DesignerItem = dt;
+            DesignerModel = dt;
             InitBinding();
             InitTimer();
 
@@ -216,7 +216,7 @@ namespace Board.Controls.BoardControl
         public BoardDataGrid()
         {
             InitializeComponent();
-            DesignerItem = new DesignerTable()
+            DesignerModel = new DesignerTable()
             {
                 Size = new DesignerSize(300, 180),
                 Border = new DesignerBorder(),
@@ -244,9 +244,9 @@ namespace Board.Controls.BoardControl
 
         }
 
-        public object GetDesignerItem()
+        public object GetDesignerModel()
         {
-            return this.DesignerItem;
+            return this.DesignerModel;
         }
 
         public void InitTimer()
@@ -254,16 +254,16 @@ namespace Board.Controls.BoardControl
 
             DataAccrssTimer = new DispatcherTimer();
             DataAccrssTimer.Tick += DataAccrssTimer_Tick;
-            DataAccrssTimer.Interval = new TimeSpan(0, 0, 0, 0, DesignerItem.DataAccrssTimeSpan);
+            DataAccrssTimer.Interval = new TimeSpan(0, 0, 0, 0, DesignerModel.DataAccrssTimeSpan);
 
             PaggingTimer = new DispatcherTimer();
             PaggingTimer.Tick += PaggingTimer_Tick;
-            PaggingTimer.Interval = new TimeSpan(0, 0, 0, 0, DesignerItem.PaggingTimeSpan);
+            PaggingTimer.Interval = new TimeSpan(0, 0, 0, 0, DesignerModel.PaggingTimeSpan);
         }
 
         public void InitBinding()
         {
-            this.DataContext = DesignerItem;
+            this.DataContext = DesignerModel;
 
             this.SetBinding(ColumnsProperty, new Binding("Columns") { Source = DataContext });
             this.SetBinding(RowCountProperty, new Binding("DisplayRowCount") { Source = DataContext });
@@ -381,7 +381,7 @@ namespace Board.Controls.BoardControl
             {
                 for (int j = 0; j < data.Columns.Count; j++)
                 {
-                    BoardDataGridContentTexkBlock tb = new BoardDataGridContentTexkBlock(this.DesignerItem, data.Rows[i][j].ToString());
+                    BoardDataGridContentTexkBlock tb = new BoardDataGridContentTexkBlock(this.DesignerModel, data.Rows[i][j].ToString());
 
                     foreach (DesignerAlterRow ar in AlterRows)
                     {

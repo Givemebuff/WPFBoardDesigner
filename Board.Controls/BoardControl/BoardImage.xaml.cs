@@ -22,32 +22,32 @@ namespace Board.Controls.BoardControl
     /// </summary>
     public partial class BoardImage : UserControl, IDesigner
     {
-        public DesignerImage DesignerItem { get; set; }
+        public DesignerImage DesignerModel { get; set; }
         public BoardImage()
         {
             InitializeComponent();
-            DesignerItem = new DesignerImage();
-            DesignerItem.Size.Width = 200;
-            DesignerItem.Size.Height = 200;
+            DesignerModel = new DesignerImage();
+            DesignerModel.Size.Width = 200;
+            DesignerModel.Size.Height = 200;
             InitBinding();
 
         }
         public BoardImage(DesignerImage di)
         {
             InitializeComponent();
-            DesignerItem = di;
+            DesignerModel = di;
             InitBinding();
         }
 
-        public object GetDesignerItem()
+        public object GetDesignerModel()
         {
-            return this.DesignerItem;
+            return this.DesignerModel;
         }
 
 
         public void InitBinding()
         {
-            this.DataContext = DesignerItem;
+            this.DataContext = DesignerModel;
 
         }
     }

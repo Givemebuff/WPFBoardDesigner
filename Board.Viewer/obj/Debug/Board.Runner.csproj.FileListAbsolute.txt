@@ -7,3 +7,4 @@ G:\Git\WPFBoardDesigner\Board.Viewer\bin\Debug\Board.Viewer.dll
 G:\Git\WPFBoardDesigner\Board.Viewer\bin\Debug\Board.Viewer.pdb
 G:\Git\WPFBoardDesigner\Board.Viewer\obj\Debug\Board.Viewer.dll
 G:\Git\WPFBoardDesigner\Board.Viewer\obj\Debug\Board.Viewer.pdb
+G:\Git\WPFBoardDesigner\Board.Viewer\obj\Debug\Board.Runner.csprojResolveAssemblyReference.cache

@@ -38,7 +38,7 @@ namespace BoardDesigner.Windows
 
         // Using a DependencyProperty as the backing store for DataSourceList.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty DataSourceListProperty =
-            DependencyProperty.Register("DataSourceList", typeof(ObservableCollection<DesignerDataSource>), typeof(DataSourceSettingWindow), new PropertyMetadata(DataSourceManager.GetDataSources()));
+            DependencyProperty.Register("DataSourceList", typeof(ObservableCollection<DesignerDataSource>), typeof(DataSourceSettingWindow), new PropertyMetadata(DataBaseDataSourceManager.GetDataSources()));
 
         
 

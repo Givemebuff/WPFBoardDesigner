@@ -174,7 +174,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>ApBb9BhEC47laN1vWWUj2z8w1l06mGaRnAVCczoaPqM=</dsig:DigestValue>
+        <dsig:DigestValue>AChf3OLkiV0cngMDOnNpV9opZNky1QkovctfI7WFZrU=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -186,19 +186,19 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>/zlV986JBpsvFd9g/GEANmn367krIFzCKpt5ISUnXI0=</dsig:DigestValue>
+        <dsig:DigestValue>aC3wCmbQLyjhVN7N+UTyJhmf8H3mP5UUNt0pYTP2DwM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BoardDesigner.exe" size="5072384">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BoardDesigner.exe" size="5104128">
       <assemblyIdentity name="BoardDesigner" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>A1OVsfFSkYAq9MFq23OOeas3zUTWPYAyhzxDwmvnM2s=</dsig:DigestValue>
+        <dsig:DigestValue>fUoDbth+mi+tvMy4jEDbonekR08kIniS4BtK9txKuQc=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -210,7 +210,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>CVtuoHXF7G/1C2S2UGs+53tYRV+SN7j7SwvoIRJ2Fg0=</dsig:DigestValue>
+        <dsig:DigestValue>OTP4lUX3FaEdRBaONSh5epm9B/y5FaQhPIChInwljRQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

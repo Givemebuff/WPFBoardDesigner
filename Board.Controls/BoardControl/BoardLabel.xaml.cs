@@ -22,7 +22,7 @@ namespace Board.Controls.BoardControl
     /// </summary>
     public partial class BoardLabel : UserControl,IDesigner
     {
-        public DesignerLabel DesignerItem
+        public DesignerLabel DesignerModel
         {
             get;
             set;
@@ -31,26 +31,26 @@ namespace Board.Controls.BoardControl
         public BoardLabel()
         {
             InitializeComponent();
-            DesignerItem = new DesignerLabel();
+            DesignerModel = new DesignerLabel();
             InitBinding();
         }
 
         public BoardLabel(DesignerLabel tb)
         {
             InitializeComponent();
-            DesignerItem = tb;
+            DesignerModel = tb;
             InitBinding();
         }
 
         public void InitBinding()
         {
-            this.DataContext = DesignerItem;
+            this.DataContext = DesignerModel;
 
         }
 
-        public object GetDesignerItem()
+        public object GetDesignerModel()
         {
-            return this.DesignerItem;
+            return this.DesignerModel;
         }
     }
 }

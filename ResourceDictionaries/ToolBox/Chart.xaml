@@ -9,19 +9,7 @@
                    Source="pack://application:,,,/Resources/Images/table 24X24.png" />
             <Image IsHitTestVisible="False" x:Name="LineChart"
                    Stretch="Fill"
-                   Source="pack://application:,,,/Resources/Images/linechart 24X24.png" />
-            <Image IsHitTestVisible="False" x:Name="SpLineChart"
-                   Stretch="Fill"
-                   Source="pack://application:,,,/Resources/Images/splinechart 24X24.png" />
-            <Image IsHitTestVisible="False" x:Name="ColumnChart"
-                   Stretch="Fill"
-                   Source="pack://application:,,,/Resources/Images/columnchart 24X24.png" />
-            <Image IsHitTestVisible="False" x:Name="PieChart"
-                   Stretch="Fill"
-                   Source="pack://application:,,,/Resources/Images/piechart 24X24.png" />
-            <Image IsHitTestVisible="False" x:Name="AreaChart"
-                   Stretch="Fill"
-                   Source="pack://application:,,,/Resources/Images/areachart 24X24.png" />
+                   Source="pack://application:,,,/Resources/Images/linechart 24X24.png" />         
 
         </ItemsControl.Items>
     </base:ToolBox>

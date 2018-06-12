@@ -1,5 +1,5 @@
-﻿using BoardDesigner.BaseThumb;
-
+﻿using Board.Interface;
+using BoardDesigner.BaseThumb;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +12,7 @@ using System.Windows.Media;
 
 namespace BoardDesigner.Base
 {
-    public class DesignerItem : ContentControl
+    public class DesignerItem : ContentControl,IDesigner
     {
 
         public double Left 
@@ -38,6 +38,8 @@ namespace BoardDesigner.Base
             }
         }
 
+
+       
 
         public bool IsSelected
         {
@@ -111,7 +113,7 @@ namespace BoardDesigner.Base
             }
 
             if(this.IsSelected == true)
-                designer.SelectItem = this;
+                designer.SelectItem = this.Content;
 
             e.Handled = false;
         }
@@ -152,6 +154,11 @@ namespace BoardDesigner.Base
                     }
                 }
             }
+        }
+
+        object IDesigner.GetDesignerModel()
+        {
+            return (this.Content as IDesigner).GetDesignerModel();
         }
     }
 }

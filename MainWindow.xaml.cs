@@ -39,8 +39,10 @@ namespace BoardDesigner
 
         private static void CurrentDesignerPagePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            MainWindow mw = d as MainWindow;               
-            mw.xamPropertyGrid.SetBinding(XamPropertyGrid.SelectedObjectProperty, new Binding("SelectItem") { Source = mw.CurrentDesignerPage });            
+            MainWindow mw = d as MainWindow;           
+            
+            
+            mw.xamPropertyGrid.SetBinding(XamPropertyGrid.SelectedObjectProperty, new Binding("SelectItem") { Source = mw.CurrentDesignerPage });
         }
 
         #endregion
@@ -100,7 +102,7 @@ namespace BoardDesigner
                 return;
             DesignerBoard board = (CurrentDesignerPage.DesignerGrid.Children[0] as DesignerCanvas).Warp();
             PreViewer pv = new PreViewer(board);
-            pv.ShowDialog();           
+            pv.ShowDialog();
         }
 
         private void SettingImageButton_Click(object sender, RoutedEventArgs e)
@@ -226,11 +228,116 @@ namespace BoardDesigner
 
         #region 保存
 
+        void SaveProCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+            e.Handled = true;
+        }
+        private void SaveProCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            e.Handled = true;
+        }
+
         #endregion
 
-        #region 退出
+        #region 关闭
 
 
+        void CloseProCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            if (this.CurrentDesignerPage != null)
+                e.CanExecute = true;
+            else
+                e.CanExecute = false;
+            e.Handled = true;
+        }
+        private void CloseProCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        #endregion
+
+        #region 复制
+
+        void CopyCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            if (this.CurrentDesignerPage == null)
+                e.CanExecute = false;
+            else 
+            {
+                if (this.CurrentDesignerPage.SelectItem != null && this.CurrentDesignerPage.SelectItem is DesignerItem)
+                    e.CanExecute = true;
+                else
+                    e.CanExecute = false;
+            }
+           
+            e.Handled = true;
+        }
+        private void CopyCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        #endregion
+
+        #region 粘贴
+        void PasteCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            if (this.CurrentDesignerPage != null)//粘贴板不为空TODO
+                e.CanExecute = true;
+            else
+                e.CanExecute = false;
+            e.Handled = true;
+        }
+        private void PasteCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        #endregion
+
+        #region 剪切
+
+        void CutCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            if (this.CurrentDesignerPage == null)
+                e.CanExecute = false;
+            else
+            {
+                if (this.CurrentDesignerPage.SelectItem != null && this.CurrentDesignerPage.SelectItem is DesignerItem)
+                    e.CanExecute = true;
+                else
+                    e.CanExecute = false;
+            }
+            e.Handled = true;
+        }
+        private void CutCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        #endregion
+
+        #region 删除
+
+        void DeleteCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            if (this.CurrentDesignerPage == null)
+                e.CanExecute = false;
+            else
+            {
+                if (this.CurrentDesignerPage.SelectItem != null && this.CurrentDesignerPage.SelectItem is DesignerItem)
+                    e.CanExecute = true;
+                else
+                    e.CanExecute = false;
+            }
+            e.Handled = true;
+        }
+        private void DeleteCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            e.Handled = true;
+        }
 
         #endregion
 
@@ -246,12 +353,12 @@ namespace BoardDesigner
             Frame f = e.NewValue.Content as Frame;
             if (f.Content == null)
                 return;
-            else 
+            else
             {
                 Page p = f.Content as Page;
                 if (p is DesignerPage)
                     CurrentDesignerPage = p as DesignerPage;
-                else 
+                else
                 {
                     CurrentDesignerPage = null;
                 }
@@ -259,13 +366,13 @@ namespace BoardDesigner
         }
 
         private void DataSourceEditButton_Click(object sender, RoutedEventArgs e)
-        {            
+        {
             TextBlock tb = ((sender as Button).Parent as Grid).FindName("DSNameTb") as TextBlock;
             string name = tb.Text;
             DataSourceSettingWindow win = new DataSourceSettingWindow(name);
-            if (win.ShowDialog() == true) 
+            if (win.ShowDialog() == true)
             {
-                tb.Text = win.SelectedItem.Name;               
+                tb.Text = win.SelectedItem.Name;
             }
         }
     }

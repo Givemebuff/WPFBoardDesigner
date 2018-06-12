@@ -31,10 +31,10 @@ namespace BoardDesigner.Factory
         {
             ClassDictionary = new Dictionary<string, Type>();
             //基本图形
-            ClassDictionary.Add("Line", typeof(LineCandy));
-            ClassDictionary.Add("SpLine", typeof(SpLineCandy));
-            ClassDictionary.Add("Rect", typeof(RectCandy));
-            ClassDictionary.Add("Circle", typeof(CircleCandy));
+            //ClassDictionary.Add("Line", typeof(LineCandy));
+            //ClassDictionary.Add("SpLine", typeof(SpLineCandy));
+            //ClassDictionary.Add("Rect", typeof(RectCandy));
+            //ClassDictionary.Add("Circle", typeof(CircleCandy));
             //ClassDictionary.Add("Triangle", typeof(LineCandy));
             //ClassDictionary.Add("Star", typeof(LineCandy));
             //ClassDictionary.Add("Heart", typeof(LineCandy));
@@ -46,11 +46,8 @@ namespace BoardDesigner.Factory
            // ClassDictionary.Add("Video", typeof(VideoCandy));//浏览器
             //图表控件
             ClassDictionary.Add("Table", typeof(TableCandy));
-            ClassDictionary.Add("LineChart", typeof(LineChartCandy));
-            ClassDictionary.Add("SpLineChart", typeof(SpLineChartCandy));
-            ClassDictionary.Add("ColumnChart", typeof(ColumnChartCandy));
-            ClassDictionary.Add("PieChart", typeof(PieChartCandy));
-            ClassDictionary.Add("AreaChart", typeof(AreaChartCandy));
+            ClassDictionary.Add("Chart", typeof(LineChartCandy));
+           
         }
     }
 }

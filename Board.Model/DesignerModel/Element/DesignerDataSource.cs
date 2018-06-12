@@ -8,14 +8,36 @@ using System.Xml.Serialization;
 
 namespace Board.DesignerModel
 {
-    [XmlRoot("DataSource")]
-    public class DesignerDataSource:DesignerElement
+    public enum DesignerDataSourceType
     {
+        Default = 0,
+        DataBase = 1,
+        LocalFile = 2,
+        RemoteURL = 3
+    }
+
+    [XmlRoot("DataSource")]
+    public class DesignerDataSource : DesignerElement
+    {
+        public DesignerDataSourceType _dataSourceType { get; set; }
+        public DesignerDataSourceType DataSourceType
+        {
+            get { return this._dataSourceType; }            
+        }
+    }
+
+    public class DesignerDataBaseDataSource : DesignerDataSource
+    {
+        public DesignerDataBaseDataSource()
+        {
+            this._dataSourceType = DesignerDataSourceType.DataBase;
+        }
         [Browsable(false)]
         [XmlIgnore]
         public string _address
         {
-            get;set;
+            get;
+            set;
         }
         [Category("数据源")]
         [DisplayName("IPV4地址")]
@@ -72,7 +94,8 @@ namespace Board.DesignerModel
         [XmlIgnore]
         public string _passWord
         {
-            get;set;
+            get;
+            set;
         }
 
         [Category("数据源")]
@@ -98,7 +121,8 @@ namespace Board.DesignerModel
         [XmlIgnore]
         public string _sqlString
         {
-            get; set;
+            get;
+            set;
         }
 
         [Category("数据源")]
@@ -131,6 +155,22 @@ namespace Board.DesignerModel
             {
                 return string.Format("Server={0};database={1};uid={2};pwd={3}", this.Address, this.DataBaseName, this.UserName, this.PassWord);
             }
+        }
+    }
+
+    public class DesignerLocalFileDataSource : DesignerDataSource
+    {
+        public DesignerLocalFileDataSource()
+        {
+            this._dataSourceType = DesignerDataSourceType.LocalFile;
+        }
+    }
+
+    public class DesignerRemoteURIDataSource : DesignerDataSource
+    {
+        public DesignerRemoteURIDataSource()
+        {
+            this._dataSourceType = DesignerDataSourceType.RemoteURL;
         }
     }
 }

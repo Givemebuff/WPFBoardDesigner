@@ -22,11 +22,11 @@ namespace Board.Controls.BoardControl
     /// </summary>
     public partial class BoardDataGridContentTexkBlock : UserControl, IDesigner
     {
-        public DesignerTable DesignerItem { get; set; }
+        public DesignerTable DesignerModel { get; set; }
         public BoardDataGridContentTexkBlock()
         {
             InitializeComponent();
-            DesignerItem = new DesignerTable()
+            DesignerModel = new DesignerTable()
             {
                 HorizontalContentAlignment = HorizontalAlignment.Center,
                 VerticalContentAlignment = VerticalAlignment.Center
@@ -37,18 +37,18 @@ namespace Board.Controls.BoardControl
         public BoardDataGridContentTexkBlock(DesignerTable dt, string text)
         {
             InitializeComponent();
-            DesignerItem = dt;
+            DesignerModel = dt;
             uTextBlock.Text = text;
             InitBinding();
         }
 
         void InitBinding()
         {
-            this.DataContext = DesignerItem;
+            this.DataContext = DesignerModel;
         }
-        public object GetDesignerItem()
+        public object GetDesignerModel()
         {
-            return this.DesignerItem;
+            return this.DesignerModel;
         }
 
 

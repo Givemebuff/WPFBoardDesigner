@@ -73,7 +73,7 @@ namespace BoardDesigner.BaseThumb
                 }
                 foreach (DesignerItem item in this._parent.SelectedItems)
                 {
-                    DesignerVisualElement dc = (item.Content  as IDesigner).GetDesignerItem() as DesignerVisualElement;
+                    DesignerVisualElement dc = (item.Content  as IDesigner).GetDesignerModel() as DesignerVisualElement;
                   
                     dc.Position.MoveOffset(offsetPoint.X,offsetPoint.Y);                   
                    // DesignerCanvas.SetLeft(item, DesignerCanvas.GetLeft(item) + );

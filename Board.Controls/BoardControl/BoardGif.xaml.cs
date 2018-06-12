@@ -24,16 +24,16 @@ namespace Board.Controls.BoardControl
     /// </summary>
     public partial class BoardGif : UserControl, IDesigner
     {
-        public DesignerGif DesignerItem { get; set; }
+        public DesignerGif DesignerModel { get; set; }
 
 
 
         public BoardGif()
         {
             InitializeComponent();
-            DesignerItem = new DesignerGif();
-            DesignerItem.Size.Width = 200;
-            DesignerItem.Size.Height = 200;
+            DesignerModel = new DesignerGif();
+            DesignerModel.Size.Width = 200;
+            DesignerModel.Size.Height = 200;
 
             InitBindind();
         }
@@ -41,21 +41,21 @@ namespace Board.Controls.BoardControl
         public BoardGif(DesignerGif dg)
         {
             InitializeComponent();
-            DesignerItem = dg;
+            DesignerModel = dg;
             InitBindind();
         }
 
 
         private void InitBindind()
         {
-            this.DataContext = DesignerItem;
+            this.DataContext = DesignerModel;
             uImage.SetBinding(AnimationBehavior.AutoStartProperty, new Binding("AutoPlay") { Source = DataContext });
             uImage.SetBinding(AnimationBehavior.SourceUriProperty, new Binding("GIFImageSource") { Source = DataContext, Converter = (IValueConverter)(new StringToUriConverterForImage()) });
         }
 
-        public object GetDesignerItem()
+        public object GetDesignerModel()
         {
-            return this.DesignerItem;
+            return this.DesignerModel;
         }
 
     }

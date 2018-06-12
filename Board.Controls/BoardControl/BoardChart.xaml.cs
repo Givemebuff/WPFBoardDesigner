@@ -14,6 +14,7 @@ using System.Data;
 using Indusfo.Data.DataAccessBaseLayer;
 using Indusfo.Common;
 using System.Windows.Threading;
+using System.Threading;
 
 namespace Board.Controls.BoardControl
 {
@@ -22,7 +23,7 @@ namespace Board.Controls.BoardControl
     /// </summary>
     public partial class BoardChart : UserControl, IDesigner, IWorker
     {
-        public DesignerChart DesignerItem { get; set; }
+        public DesignerChart DesignerModel { get; set; }
 
         #region 标题
 
@@ -556,22 +557,22 @@ namespace Board.Controls.BoardControl
 
 
         #endregion
-        public object GetDesignerItem()
+        public object GetDesignerModel()
         {
-            return this.DesignerItem;
+            return this.DesignerModel;
         }
 
         public BoardChart()
         {
             InitializeComponent();
-            DesignerItem = new DesignerChart();
+            DesignerModel = new DesignerChart();
             Init();
         }
 
         public BoardChart(DesignerChart dc)
         {
             InitializeComponent();
-            DesignerItem = dc;
+            DesignerModel = dc;
             Init();
         }
         public void Init()
@@ -580,7 +581,7 @@ namespace Board.Controls.BoardControl
             DataPointsCache = new Dictionary<string, List<DataPoint>>();
             Timers = new Dictionary<string, DispatcherTimer>();
 
-            this.DataContext = DesignerItem;
+            this.DataContext = DesignerModel;
 
             this.SetBinding(ChartTitlesProperty, new Binding("ChartTitles") { Source = DataContext });
             this.SetBinding(ChartAxesXProperty, new Binding("ChartAxesX") { Source = DataContext });
@@ -698,8 +699,13 @@ namespace Board.Controls.BoardControl
             dt = new DispatcherTimer();
             dt.Tick += (object sender, EventArgs e) =>
             {
-                GetData(s);
-                BindData(s);
+                this.Dispatcher.BeginInvoke(DispatcherPriority.Normal, (ThreadStart)delegate()
+                    {
+                        GetData(s);
+                        BindData(s);
+                      }
+                 );
+               
             };
             dt.Interval = new TimeSpan(0, 0, 0, 0, s.DataAccessTimeSpan);
             if (Timers == null)

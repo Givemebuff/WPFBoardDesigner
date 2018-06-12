@@ -30,6 +30,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Indusfo.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLL\Indusfo.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Indusfo.DataAccessLayer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLL\Indusfo.DataAccessLayer.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -67,6 +75,8 @@
     <Compile Include="ResourceManager\ImageResourcesManager.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DLL\Indusfo.Common.dll" />
+    <Content Include="DLL\Indusfo.DataAccessLayer.dll" />
     <Content Include="DLL\WPFVisifire.Charts.dll" />
   </ItemGroup>
   <ItemGroup>
@@ -75,7 +85,9 @@
       <Name>Board.Model</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="DataAccess\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

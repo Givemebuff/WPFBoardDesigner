@@ -27,7 +27,7 @@ namespace Board.Converter
         {
             if (value == null)
                 return null;
-            List<DesignerDataSource> dss = new List<DesignerDataSource>(DataSourceManager.GetDataSources());
+            List<DesignerDataSource> dss = new List<DesignerDataSource>(DataBaseDataSourceManager.GetDataSources());
             string name = value.ToString();
             foreach (DesignerDataSource ds in dss)
             {

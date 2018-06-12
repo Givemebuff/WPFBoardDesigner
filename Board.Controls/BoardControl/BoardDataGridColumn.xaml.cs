@@ -22,7 +22,7 @@ namespace Board.Controls.BoardControl
     /// </summary>
     public partial class BoardDataGridColumn : UserControl, IDesigner
     {
-        public DesignerDataGridColumn DesignerItem
+        public DesignerDataGridColumn DesignerModel
         {
             get;
             set;
@@ -30,25 +30,25 @@ namespace Board.Controls.BoardControl
         public BoardDataGridColumn()
         {
             InitializeComponent();
-            DesignerItem = new DesignerDataGridColumn();
+            DesignerModel = new DesignerDataGridColumn();
             InitBinding();
         }
         public BoardDataGridColumn(DesignerDataGridColumn column)
         {
             InitializeComponent();
-            DesignerItem = column;
+            DesignerModel = column;
             InitBinding();
         }
         void InitBinding()
         {
-            this.DataContext = DesignerItem;
+            this.DataContext = DesignerModel;
 
             this.SetBinding(Grid.ColumnProperty, new Binding("Position.ColumnIndex") { Source = DataContext });
 
         }
-        public object GetDesignerItem()
+        public object GetDesignerModel()
         {
-            return this.DesignerItem;
+            return this.DesignerModel;
         }
     }
 }

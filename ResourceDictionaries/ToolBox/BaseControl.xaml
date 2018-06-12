@@ -2,23 +2,33 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:base="clr-namespace:BoardDesigner.Base">
     <base:ToolBox x:Key="BaseControlToolBox"
-               DefaultItemSize="50,50">
+               DefaultItemSize="32,32">
         <ItemsControl.Items>
             <Image IsHitTestVisible="False" x:Name="Label"
                    Stretch="Fill"
                    Source="pack://application:,,,/Resources/Images/label_128px.png" />
             <Image IsHitTestVisible="False" x:Name="Image"
                    Stretch="Fill"
-                   Source="pack://application:,,,/Resources/Images/picture 128X128.png" />
+                   Source="pack://application:,,,/Resources/Images/Picture_32px.png" />
             <Image IsHitTestVisible="False" x:Name="GIF"
                    Stretch="Fill"
-                   Source="pack://application:,,,/Resources/Images/gif_128px.png" />
+                   Source="pack://application:,,,/Resources/Images/Sharpen_32px.png" />
             <Image IsHitTestVisible="False" x:Name="Video"
                    Stretch="Fill"
-                   Source="pack://application:,,,/Resources/Images/video_128px.png" />
+                   Source="pack://application:,,,/Resources/Images/Video_32px.png" />
             <Image IsHitTestVisible="False" x:Name="WebBrowser"
                    Stretch="Fill"   
-                   Source="pack://application:,,,/Resources/Images/browser_128px.png" />
+                   Source="pack://application:,,,/Resources/Images/World_32px.png" />
+            <Image IsHitTestVisible="False" x:Name="Table"
+                   Stretch="Fill"   
+                   Source="pack://application:,,,/Resources/Images/table.png" />
+            <Image IsHitTestVisible="False" x:Name="Chart"
+                   Stretch="Fill"   
+                   Source="pack://application:,,,/Resources/Images/LineChart_32px.png" />
+            <Image IsHitTestVisible="False" x:Name="Timer"
+                   Stretch="Fill"   
+                   Source="pack://application:,,,/Resources/Images/Time_32px.png" />
+            
         </ItemsControl.Items>
     </base:ToolBox>
 </ResourceDictionary>

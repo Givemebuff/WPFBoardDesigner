@@ -7,6 +7,6 @@ namespace Board.Interface
 {
     public interface IDesigner
     {
-        object GetDesignerItem();
+        object GetDesignerModel();
     }
 }

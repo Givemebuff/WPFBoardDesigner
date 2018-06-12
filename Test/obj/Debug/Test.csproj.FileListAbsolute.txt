@@ -1,0 +1,11 @@
+G:\Git\Test\bin\Debug\Test.exe.config
+G:\Git\Test\bin\Debug\Test.exe
+G:\Git\Test\bin\Debug\Test.pdb
+G:\Git\Test\bin\Debug\Board.Converter.dll
+G:\Git\Test\bin\Debug\BoardLibrary.dll
+G:\Git\Test\bin\Debug\WPFVisifire.Charts.dll
+G:\Git\Test\bin\Debug\Board.Converter.pdb
+G:\Git\Test\bin\Debug\BoardLibrary.pdb
+G:\Git\Test\obj\Debug\Test.csprojResolveAssemblyReference.cache
+G:\Git\Test\obj\Debug\Test.exe
+G:\Git\Test\obj\Debug\Test.pdb

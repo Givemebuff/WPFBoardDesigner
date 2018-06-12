@@ -22,7 +22,7 @@ namespace Board.Controls.BoardControl
     /// </summary>
     public partial class BoardMediaPlayer : UserControl, IDesigner, IWorker
     {
-        public DesignerMedia DesignerItem { get; set; }
+        public DesignerMedia DesignerModel { get; set; }
 
 
 
@@ -65,28 +65,28 @@ namespace Board.Controls.BoardControl
         public BoardMediaPlayer()
         {
             InitializeComponent();
-            DesignerItem = new DesignerMedia();
+            DesignerModel = new DesignerMedia();
             InitBinding();
         }
         public BoardMediaPlayer(DesignerMedia dm)
         {
             InitializeComponent();
-            DesignerItem = dm;
+            DesignerModel = dm;
             InitBinding();
         }
 
-        public object GetDesignerItem()
+        public object GetDesignerModel()
         {
-            return this.DesignerItem;
+            return this.DesignerModel;
         }
 
 
         public void InitBinding()
         {
-            this.DataContext = DesignerItem;
+            this.DataContext = DesignerModel;
             this.SetBinding(MediaSourceUriProperty, new Binding("Source") { Source = uMedio, Mode = BindingMode.OneWay });
             this.SetBinding(SpeedProperty, new Binding("SpeedRatio") { Source = DataContext });
-            this.uMedio.Source = new Uri(System.IO.Directory.GetCurrentDirectory() + "\\Medias\\" + DesignerItem.MediaSource, UriKind.Absolute);
+            this.uMedio.Source = new Uri(System.IO.Directory.GetCurrentDirectory() + "\\Medias\\" + DesignerModel.MediaSource, UriKind.Absolute);
         }
 
         private void uMedio_MediaEnded(object sender, RoutedEventArgs e)

@@ -15,3 +15,5 @@ C:\Git\WPFBoardDesigner\Board.Common\bin\Debug\BoardLibrary.pdb
 C:\Git\WPFBoardDesigner\Board.Common\obj\Debug\Board.Common.csprojResolveAssemblyReference.cache
 C:\Git\WPFBoardDesigner\Board.Common\obj\Debug\Board.Converter.dll
 C:\Git\WPFBoardDesigner\Board.Common\obj\Debug\Board.Converter.pdb
+G:\Git\WPFBoardDesigner\Board.Common\bin\Debug\Indusfo.Common.dll
+G:\Git\WPFBoardDesigner\Board.Common\bin\Debug\Indusfo.DataAccessLayer.dll

@@ -29,6 +29,30 @@
                           CanExecute="NewProCommand_CanExecute"
                          Executed="NewProCommand_Executed">
         </CommandBinding>
+        <CommandBinding Command="ApplicationCommands.Save"
+                          CanExecute="SaveProCommand_CanExecute"
+                         Executed="SaveProCommand_Executed">
+        </CommandBinding>
+        <CommandBinding Command="ApplicationCommands.Close"
+                          CanExecute="CloseProCommand_CanExecute"
+                         Executed="CloseProCommand_Executed">
+        </CommandBinding>
+        <CommandBinding Command="ApplicationCommands.Copy"
+                          CanExecute="CopyCommand_CanExecute"
+                         Executed="CopyCommand_Executed">
+        </CommandBinding>
+        <CommandBinding Command="ApplicationCommands.Paste"
+                          CanExecute="PasteCommand_CanExecute"
+                         Executed="PasteCommand_Executed">
+        </CommandBinding>
+        <CommandBinding Command="ApplicationCommands.Cut"
+                          CanExecute="CutCommand_CanExecute"
+                         Executed="CutCommand_Executed">
+        </CommandBinding>       
+        <CommandBinding Command="ApplicationCommands.Delete"
+                          CanExecute="DeleteCommand_CanExecute"
+                         Executed="DeleteCommand_Executed">
+        </CommandBinding>
     </Window.CommandBindings>
     <Grid Background="Gray">
         <Grid.RowDefinitions>
@@ -73,22 +97,10 @@
                             <Border Grid.Column="0"
                     BorderBrush="LightGray"
                     BorderThickness="1">
-                                <StackPanel>
-                                    <Expander IsExpanded="True"  Header="基本图形"
-                              Margin="0,1,0,0"
-                              Content="{StaticResource BaseShapeToolBox}" >
-                                    </Expander>
-                                    <Expander IsExpanded="True"  Header="基本控件"
+                                <StackPanel>                                   
+                                    <Expander IsExpanded="True"  Header="控件"
                               Margin="0,1,0,0"
                               Content="{StaticResource BaseControlToolBox}" >
-                                    </Expander>
-                                    <Expander IsExpanded="True"  Header="图表控件"
-                              Margin="0,1,0,0"
-                              Content="{StaticResource ChartToolBox}" >
-                                    </Expander>
-                                    <Expander IsExpanded="True"  Header="扩展控件"
-                              Margin="0,1,0,0"
-                              Content="{StaticResource ExpandToolBox}" >
                                     </Expander>
                                 </StackPanel>
                             </Border>
@@ -261,44 +273,94 @@
                 <Custom:RibbonGroup Id="Clipboard" Caption="粘贴板">
                     <Custom:ToolHorizontalWrapPanel>
                         <Custom:ButtonTool
-							Caption="复制"
+							Caption="全选" 
+							Custom:RibbonGroup.MaximumSize="ImageAndTextLarge"							
+							LargeImage="Resources/Images/selectAll.png"/>
+                    </Custom:ToolHorizontalWrapPanel>
+                    <Custom:ToolHorizontalWrapPanel>
+                        <Custom:ButtonTool
+							Caption="复制" Command="ApplicationCommands.Copy"
 							Custom:RibbonGroup.MaximumSize="ImageAndTextLarge"
 							SmallImage="Resources/Images/Paste_16x16.png"
 							LargeImage="Resources/Images/Paste_32x32.png"/>
                     </Custom:ToolHorizontalWrapPanel>
+                    <Custom:ToolHorizontalWrapPanel>
+                        <Custom:ButtonTool
+							Caption="删除" Command="ApplicationCommands.Delete"
+							Custom:RibbonGroup.MaximumSize="ImageAndTextLarge"
+							SmallImage="Resources/Images/Delete.png"
+							LargeImage="Resources/Images/delete32.png"/>
+                    </Custom:ToolHorizontalWrapPanel>
                     <Custom:ButtonGroup>
                         <Custom:ButtonTool
-							Content="剪切" IsQatCommonTool="True"
+							Content="剪切" IsQatCommonTool="True" Command="ApplicationCommands.Cut"
 							Id="cutTool"
 							SmallImage="Resources/Images/EditCut.png"/>
                         <Custom:ButtonTool
-							Content="粘贴" IsQatCommonTool="True"
+							Content="粘贴" IsQatCommonTool="True" Command="ApplicationCommands.Paste"
 							Id="copyTool" SmallImage="Resources/Images/EditCopy.png"/>
                     </Custom:ButtonGroup>
                     <Custom:ButtonGroup>
                         <Custom:ButtonTool
-							Content="撤销" IsQatCommonTool="True"
+							Content="撤销" IsQatCommonTool="True" Command="ApplicationCommands.Undo"
 							Id="undoTool" SmallImage="Resources/Images/EditUndo.png"/>
                         <Custom:ButtonTool
-							Content="重复" IsQatCommonTool="True"
+							Content="重复" IsQatCommonTool="True" Command="ApplicationCommands.Redo"
 							Id="redoTool" SmallImage="Resources/Images/EditRedo.png"/>
                     </Custom:ButtonGroup>
+                </Custom:RibbonGroup>
+                <Custom:RibbonGroup Id="Layer" Caption="层">
+                    <Custom:ToolHorizontalWrapPanel>
+                        <Custom:ButtonTool
+							Caption="组合" 
+							Custom:RibbonGroup.MaximumSize="ImageAndTextLarge"
+							SmallImage="Resources/Images/Layer_Group_32px.png"
+							LargeImage="Resources/Images/Layer_Group_32px.png"/>
+                    </Custom:ToolHorizontalWrapPanel>
+                    <Custom:ToolHorizontalWrapPanel>
+                        <Custom:ButtonTool
+							Caption="拆分" 
+							Custom:RibbonGroup.MaximumSize="ImageAndTextLarge"
+							SmallImage="Resources/Images/Shape_Ungroup_32px.png"
+							LargeImage="Resources/Images/Shape_Ungroup_32px.png"/>
+                    </Custom:ToolHorizontalWrapPanel>
+                    <Custom:ButtonGroup>                       
+                            <Custom:ButtonTool
+							Caption="上移"							
+                            SmallImage="Resources/Images/BringForward.png" Custom:RibbonGroup.MinimumSize="ImageOnly"/>
+                        <Custom:ButtonTool
+							Caption="置于顶层" 
+							Custom:RibbonGroup.MinimumSize="ImageOnly"
+                            SmallImage="Resources/Images/BringToFront.png"/>
+                    
+                    </Custom:ButtonGroup>
+                    <Custom:ButtonGroup>
+                        <Custom:ButtonTool
+							Caption="下移" 
+							Custom:RibbonGroup.MinimumSize="ImageOnly"
+                            SmallImage="Resources/Images/SendBackward.png"/>
+                        <Custom:ButtonTool
+							Caption="置于底层" 
+							Custom:RibbonGroup.MinimumSize="ImageOnly"
+                            SmallImage="Resources/Images/SendToBack.png"/>                        
+                    </Custom:ButtonGroup>
+                    
+
                 </Custom:RibbonGroup>
                 <Custom:RibbonGroup Id="Running" Caption="运行时">
                     <Custom:ToolHorizontalWrapPanel>
                         <Custom:ButtonTool
 							Caption="预览" Click="ViewButtonTool_Click"
 							Custom:RibbonGroup.MaximumSize="ImageAndTextLarge" 
-                            LargeImage="Resources/Images/preview_72px.png" SmallImage="Resources/Images/preview_72px.png"
+                            LargeImage="Resources/Images/Zoom_Selection_32px.png" SmallImage="Resources/Images/Zoom_Selection_32px.png"
 						/>
                     </Custom:ToolHorizontalWrapPanel>
-                    <Custom:ButtonGroup x:Name="RunningButtonGroup">
+                    <Custom:ToolHorizontalWrapPanel>
                         <Custom:ButtonTool 
-							Content="生成" IsQatCommonTool="True" SmallImage="Resources/Images/complete_128px.png"
-							Id="Build" />
-
-
-                    </Custom:ButtonGroup>
+						Caption="生成" Click="ViewButtonTool_Click"
+							Custom:RibbonGroup.MaximumSize="ImageAndTextLarge" 
+                            LargeImage="Resources/Images/Application_Get.png" SmallImage="Resources/Images/Application_Get.png"/>
+                        </Custom:ToolHorizontalWrapPanel>
                 </Custom:RibbonGroup>
             </Custom:RibbonTabItem>
             <Custom:RibbonTabItem Header="画笔">

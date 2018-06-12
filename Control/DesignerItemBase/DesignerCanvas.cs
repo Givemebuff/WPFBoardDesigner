@@ -24,21 +24,24 @@ using System.Xml;
 
 namespace BoardDesigner.Base
 {
-    public class DesignerCanvas : Canvas
+    public class DesignerCanvas : Canvas,IDesigner
     {
         private Point? dragStartPoint = null;
-
+        public object GetDesignerModel()
+        {
+            return this.Board;
+        }
 
         #region 选中项
         public object SelectItem
         {
             get { return (object)GetValue(SelectItemProperty); }
             set
-            {
-                if (value == null)
-                    return;
-                if (value is DesignerItem)
-                    value = ((IDesigner)(value as DesignerItem).Content).GetDesignerItem();                
+            {            
+                if(value==null)
+                    value= this.Board;
+                if (value is IDesigner)
+                    value = (value as IDesigner).GetDesignerModel();
                 SetValue(SelectItemProperty, value);
             }
         }
@@ -227,7 +230,7 @@ namespace BoardDesigner.Base
             this.Children.Add(designerItem);
 
             IDesigner idr = designerItem.Content as IDesigner;
-            DesignerVisualElement dc = idr.GetDesignerItem() as DesignerVisualElement;
+            DesignerVisualElement dc = idr.GetDesignerModel() as DesignerVisualElement;
 
 
             Binding canvasLeft = new Binding("Position.Location.X") { Source = dc };
@@ -252,7 +255,7 @@ namespace BoardDesigner.Base
                 if (obj is DesignerItem)
                 {
 
-                    DesignerControl clonedChild = (DesignerControl)((obj as DesignerItem).Content as IDesigner).GetDesignerItem();
+                    DesignerControl clonedChild = (DesignerControl)((obj as DesignerItem).Content as IDesigner).GetDesignerModel();
                     this.Board.Children.Add(clonedChild);
                 }
             }
@@ -284,5 +287,7 @@ namespace BoardDesigner.Base
         //    //size.Height += 5;
         //    return size;
         //}
+
+       
     }
 }

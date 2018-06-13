@@ -736,10 +736,6 @@
       <Project>{b53bab5a-b532-4324-a358-6fa2f153f57b}</Project>
       <Name>Board.Controls</Name>
     </ProjectReference>
-    <ProjectReference Include="Board.Model\Board.Model.csproj">
-      <Project>{3afdfe4d-80a7-4d84-a8b8-e2962afd0016}</Project>
-      <Name>Board.Model</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

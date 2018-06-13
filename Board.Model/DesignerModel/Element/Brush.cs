@@ -46,13 +46,13 @@ namespace Board.DesignerModel
                 OnPropertyChanged("Background");
             }
         }
-        [XmlElement("BackgroundColor")]
+        [XmlAttribute("Color")]
         public string XmlColorBrush
         {
             get { return this._colorBrush.ToString(); }
             set 
             {
-                this.ColorBrush = ColorConverter.ConvertFromString(value) as Brush;
+                this.ColorBrush = Board.Converter.XmlConverter.ColorConverter.ConvertFromString(value) as Brush;
             }
         }
 
@@ -66,7 +66,7 @@ namespace Board.DesignerModel
         [Category("视图")]
         [DisplayName("背景图片")]
         [Description("背景图片路径设置")]
-        [XmlElement("BackgroundImage")]
+        [XmlAttribute("Path")]
         public string BackgoundImage
         {
             get { return this._backgoundImage; }

@@ -57,34 +57,53 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Converter\DesignerBrushToBrushConverter.cs" />
-    <Compile Include="Converter\DesignerDataPointCollectionToVisifireDataPointCollectionConverter.cs" />
-    <Compile Include="Converter\DoubleFormatConverter.cs" />
-    <Compile Include="Converter\Int100ToDoubleConverter.cs" />
-    <Compile Include="Converter\LocationFormatConverter.cs" />
-    <Compile Include="Converter\NameToDataSourceConverter.cs" />
-    <Compile Include="Converter\RImageToStringConverter.cs" />
-    <Compile Include="Converter\ScrollScaleConverter.cs" />
-    <Compile Include="Converter\SetterValueConvert.cs" />
-    <Compile Include="Converter\StringToImageSourceConverter.cs" />
-    <Compile Include="Converter\StringToUriConverter.cs" />
+    <Compile Include="Converter\BindConverter\DesignerBrushToBrushConverter.cs" />
+    <Compile Include="Converter\BindConverter\DesignerDataPointCollectionToVisifireDataPointCollectionConverter.cs" />
+    <Compile Include="Converter\BindConverter\DoubleFormatConverter.cs" />
+    <Compile Include="Converter\BindConverter\Int100ToDoubleConverter.cs" />
+    <Compile Include="Converter\BindConverter\LocationFormatConverter.cs" />
+    <Compile Include="Converter\BindConverter\NameToDataSourceConverter.cs" />
+    <Compile Include="Converter\BindConverter\RImageToStringConverter.cs" />
+    <Compile Include="Converter\BindConverter\ScrollScaleConverter.cs" />
+    <Compile Include="Converter\BindConverter\SetterValueConvert.cs" />
+    <Compile Include="Converter\BindConverter\StringToImageSourceConverter.cs" />
+    <Compile Include="Converter\BindConverter\StringToUriConverter.cs" />
+    <Compile Include="Converter\XmlConverter\ThicknessConverter.cs" />
+    <Compile Include="Model\DesignerModel\Base\DesignerBase.cs" />
+    <Compile Include="Model\DesignerModel\Container\Container.cs" />
+    <Compile Include="Model\DesignerModel\Control\DesignerBoard.cs" />
+    <Compile Include="Model\DesignerModel\Control\DesignerChart.cs" />
+    <Compile Include="Model\DesignerModel\Control\DesignerControl.cs" />
+    <Compile Include="Model\DesignerModel\Control\DesignerDataGridColumn.cs" />
+    <Compile Include="Model\DesignerModel\Control\DesignerImage.cs" />
+    <Compile Include="Model\DesignerModel\Control\DesignerLabel.cs" />
+    <Compile Include="Model\DesignerModel\Control\DesignerMidea.cs" />
+    <Compile Include="Model\DesignerModel\Control\DesignerTable.cs" />
+    <Compile Include="Model\DesignerModel\Element\Border.cs" />
+    <Compile Include="Model\DesignerModel\Element\Brush.cs" />
+    <Compile Include="Model\DesignerModel\Element\DesignerAlterRow.cs" />
+    <Compile Include="Model\DesignerModel\Element\DesignerDataSource.cs" />
+    <Compile Include="Model\DesignerModel\Element\Font.cs" />
+    <Compile Include="Model\DesignerModel\Element\Position.cs" />
+    <Compile Include="Model\DesignerModel\Element\Size.cs" />
+    <Compile Include="Model\DesignerModel\Panel\DesignerCanvasPanel.cs" />
+    <Compile Include="Model\DesignerModel\Panel\DesignerDockPanel.cs" />
+    <Compile Include="Model\DesignerModel\Panel\DesignerPanel.cs" />
+    <Compile Include="Model\DesignerModel\Panel\DesignerStackPanel.cs" />
+    <Compile Include="Model\DesignerModel\Panel\DisignerGridPanel.cs" />
+    <Compile Include="Model\DesignerModel\Shape\DesignerShape.cs" />
     <Compile Include="Interface\IDesigner.cs" />
     <Compile Include="Interface\IWorker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResourceManager\DataSourceManager.cs" />
     <Compile Include="ResourceManager\ImageResourcesManager.cs" />
-    <Compile Include="XmlConverter\ColorConverter.cs" />
+    <Compile Include="Model\SystemModel\RImage.cs" />
+    <Compile Include="Converter\XmlConverter\ColorConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="DLL\Indusfo.Common.dll" />
     <Content Include="DLL\Indusfo.DataAccessLayer.dll" />
     <Content Include="DLL\WPFVisifire.Charts.dll" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Board.Model\Board.Model.csproj">
-      <Project>{3afdfe4d-80a7-4d84-a8b8-e2962afd0016}</Project>
-      <Name>Board.Model</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DataAccess\" />

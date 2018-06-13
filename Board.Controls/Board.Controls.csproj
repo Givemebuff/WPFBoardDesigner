@@ -141,10 +141,6 @@
       <Project>{63250cf1-0d0f-4a4b-8089-4f7f9dcd2e72}</Project>
       <Name>Board.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Board.Model\Board.Model.csproj">
-      <Project>{3afdfe4d-80a7-4d84-a8b8-e2962afd0016}</Project>
-      <Name>Board.Model</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="DLL\Indusfo.Common.dll" />

@@ -9,6 +9,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using Board.Controls.SystemControl;
 using Board.Converter;
 using BoardDesigner;
 using BoardDesigner.BoardControl;

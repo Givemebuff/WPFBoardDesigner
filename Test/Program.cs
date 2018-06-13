@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Media;
 using System.Xml.Serialization;
 
@@ -16,28 +17,22 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            //DesignerDataBaseDataSource ds = new DesignerDataBaseDataSource()
-            //{
-            //    SqlString = "select * from Chart",
-            //    Address = "192.168.1.103",
-            //    DataBaseName = "test",
-            //    UserName = "sa",
-            //    PassWord = "123456"
-            //};          
-
             //DataSourceManager.Register(ds.Name, DesignerDataSourceType.DataBase, ds);
 
             //DataTable data = DataSourceManager.GetDataAsync(ds.Name) as DataTable;
 
             //Console.WriteLine("我在下面");
 
+            Console.WriteLine(new Thickness(2).ToString());
+
             DesignerBoard b = new DesignerBoard();
-            DesignerLabel l = new DesignerLabel();
+            DesignerChart l = new DesignerChart();
+          
             b.Children.Add(l);
-            DesignerBrush db = new DesignerBrush() { ColorBrush = new SolidColorBrush(Color.FromArgb(10, 23, 45, 67)) };
-            string ss = db.ToString();
-            string s = XmlSerialize(db);
-            
+          
+          
+            string s = XmlSerialize(b);
+            DesignerBoard dd = XmlDerialize<DesignerBoard>(s);
             Console.Read();
         }
 
@@ -53,5 +48,17 @@ namespace Test
             sr.Dispose();
             return str;
         }
+
+        static T XmlDerialize<T>(string xml) 
+        {
+            using (StringReader sr = new StringReader(xml))
+            {
+                XmlSerializer xmldes = new XmlSerializer(typeof(T));
+                return  (T)xmldes.Deserialize(sr);
+            }
+        }
     }
+
+
+
 }

@@ -1,76 +1,93 @@
-﻿<Window x:Class="BoardDesigner.Windows.DataSourceSettingWindow"
+﻿<Window xmlns:igWPF="http://schemas.infragistics.com/xaml/wpf"  x:Class="BoardDesigner.Windows.DataSourceSettingWindow"
         xmlns:windows="clr-namespace:BoardDesigner.Windows"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="设置数据源" Height="600" Width="800" WindowStyle="ToolWindow">
+        Title="设置数据源" Height="600" Width="800" WindowStyle="ToolWindow" WindowStartupLocation="CenterOwner">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <igWPF:XamTabControl x:Name="MainTab" Theme="Office2013" TabStripPlacement="Left" >
+            <igWPF:TabItemEx Header="数据库">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <ListBox x:Name="DSList" SelectionChanged="DSList_SelectionChanged" Grid.Column="0" DisplayMemberPath="Name" ItemsSource="{Binding DataBaseDataSourceList, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type windows:DataSourceSettingWindow}}}"/>
+                    <GridSplitter Width="3"></GridSplitter>
+                    <Grid Grid.Column="1" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="40"/>
+                        </Grid.RowDefinitions>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition  Width="Auto"/>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition  Width="3*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Content="名称：" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"></Label>
+                            <Label Content="地址：" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"></Label>
+                            <Label Content="用户名：" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"></Label>
+                            <Label Content="密码：" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"></Label>
+                            <Label Content="数据库：" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"></Label>
+                            <TextBox  x:Name="DSNameTB" Grid.Column="1" Grid.Row="0" Margin="15" Text="{Binding RelativeSource={RelativeSource   Mode= FindAncestor,  AncestorType={x:Type windows:DataSourceSettingWindow}}, Path=SelectedItem.Name}"></TextBox>
+                            <TextBox x:Name="DSIPTB" Grid.Column="3" Grid.Row="0" Margin="15" Text="{Binding RelativeSource={RelativeSource   Mode= FindAncestor,  AncestorType={x:Type windows:DataSourceSettingWindow}}, Path=SelectedItem.Address}" ></TextBox>
+                            <TextBox x:Name="DSUNTB" Grid.Column="1" Grid.Row="1" Margin="15" Text="{Binding RelativeSource={RelativeSource   Mode= FindAncestor,  AncestorType={x:Type windows:DataSourceSettingWindow}}, Path=SelectedItem.UserName}"></TextBox>
+                            <TextBox x:Name="DSPWB" Grid.Column="3" Grid.Row="1" Margin="15" Text="{Binding RelativeSource={RelativeSource   Mode= FindAncestor,  AncestorType={x:Type windows:DataSourceSettingWindow}}, Path=SelectedItem.PassWord}"></TextBox>
+                            <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal">                                
+                                <ComboBox HorizontalAlignment="Left"  x:Name="DSDBCB"  Margin="15,15,0,15" Text="{Binding RelativeSource={RelativeSource   Mode= FindAncestor,  AncestorType={x:Type windows:DataSourceSettingWindow}}, Path=SelectedItem.DataBaseName}" IsEditable="True" DropDownOpened="DSDBCB_DropDownOpened"></ComboBox>   
+                                <Button   Grid.Column="1" x:Name="TestConnectionButton" Click="TestConnectionButton_Click" Width="50"  Height="20" HorizontalAlignment="Left" Margin="0,0,0,0">测试连接</Button>
+                            </StackPanel>
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Center">SQL语句：</TextBlock>
+                            <TextBox x:Name="DSSQLTB" Grid.Column="1" Margin="10" BorderBrush="#FF1C4DE0" 
+                         Text="{Binding RelativeSource={RelativeSource   Mode= FindAncestor,  AncestorType={x:Type windows:DataSourceSettingWindow}}, Path=SelectedItem.SqlString}" >
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-        <ListBox x:Name="DSList" Grid.Column="0">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding Name}" />
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        <GridSplitter Width="3"></GridSplitter>
-        <Grid Grid.Column="1" >
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition Height="2*"/>
-                <RowDefinition Height="40"/>                
-            </Grid.RowDefinitions>
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition  Width="Auto"/>
-                    <ColumnDefinition Width="3*"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition  Width="3*"/>
-                </Grid.ColumnDefinitions>
-                <Label Content="名称：" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"></Label>
-                <Label Content="地址：" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"></Label>
-                <Label Content="用户名：" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"></Label>
-                <Label Content="密码：" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"></Label>
-                <Label Content="数据库：" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"></Label>
-                <TextBox  x:Name="DSNameTB" Grid.Column="1" Grid.Row="0" Margin="15" Text="{Binding RelativeSource={RelativeSource   Mode= FindAncestor,  AncestorType={x:Type windows:DataSourceSettingWindow}}, Path=SelectedItem.Name}"></TextBox>
-                <TextBox x:Name="DSIPTB" Grid.Column="3" Grid.Row="0" Margin="15" Text="{Binding RelativeSource={RelativeSource   Mode= FindAncestor,  AncestorType={x:Type windows:DataSourceSettingWindow}}, Path=SelectedItem.Address}" ></TextBox>
-                <TextBox x:Name="DSUNTB" Grid.Column="1" Grid.Row="1" Margin="15" Text="{Binding RelativeSource={RelativeSource   Mode= FindAncestor,  AncestorType={x:Type windows:DataSourceSettingWindow}}, Path=SelectedItem.UserName}"></TextBox>
-                <TextBox x:Name="DSPWB" Grid.Column="3" Grid.Row="1" Margin="15" Text="{Binding RelativeSource={RelativeSource   Mode= FindAncestor,  AncestorType={x:Type windows:DataSourceSettingWindow}}, Path=SelectedItem.PassWord}"></TextBox>
-                <ComboBox  x:Name="DSDBCB" Grid.Column="1" Grid.Row="2" Margin="15" Text="{Binding RelativeSource={RelativeSource   Mode= FindAncestor,  AncestorType={x:Type windows:DataSourceSettingWindow}}, Path=SelectedItem.DataBaseName}" IsEditable="True" DropDownOpened="DSDBCB_DropDownOpened"></ComboBox>
-                <Button x:Name="TestConnectionButton" Click="TestConnectionButton_Click" Grid.Column="3" Grid.Row="2" Width="80" Height="20" HorizontalAlignment="Left" Margin="15,0,0,0">测试连接</Button>
-            </Grid>
-            <Grid Grid.Row="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition Width="auto"/>
-                </Grid.ColumnDefinitions>
-                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" >SQL语句：</TextBlock>
-                <TextBox x:Name="DSSQLTB" Grid.Column="1" Margin="10" BorderBrush="#FF1C4DE0" 
-                         Text="{Binding RelativeSource={RelativeSource   Mode= FindAncestor,  AncestorType={x:Type windows:DataSourceSettingWindow}}, Path=SelectedItem.SqlString}">
-                    
-                </TextBox>
-                <StackPanel Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Button Margin="10" x:Name="DataViewButton" Click="DataViewButton_Click"  Width="80" Height="30">预览</Button>
-                    <Button Margin="10" x:Name="SQLDeButton" Click="SQLDeButton_Click"  Width="80" Height="30">设计</Button>
-                    <Button Margin="10" x:Name="CopyButton" Click="CopyButton_Click" Width="80" Height="30">复制</Button>
-                    <Button Margin="10" Width="80" x:Name="SQLClearButton" Click="SQLClearButton_Click" Height="30">清空</Button>
-                </StackPanel>               
-            </Grid>
-            <StackPanel Grid.Row="2" Orientation="Horizontal">
-                <Button Width="80" Height="20" Margin="60,0,20,0" x:Name="AddButton" Click="AddButton_Click">添加</Button>
-                <Button Width="80" Height="20" Margin="10,0,10,0" x:Name="DeleteButton" Click="DeleteButton_Click">删除</Button>
-                <Button Width="80" Height="20" Margin="10,0,10,0" x:Name="OKButton" Click="OKButton_Click">确定</Button>
-                <Button Width="80" Height="20" Margin="10,0,10,0" x:Name="CancleButton" Click="CancleButton_Click">取消</Button>
-            </StackPanel>
-        </Grid>
+                            </TextBox>
+                            <StackPanel Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,56,0,57">
+                                <Button Margin="10" x:Name="DataViewButton" Click="DataViewButton_Click"  Width="80" Height="30">预览</Button>
+                                <Button Margin="10" x:Name="SQLDeButton" Click="SQLDeButton_Click"  Width="80" Height="30">设计</Button>
+                                <Button Margin="10" x:Name="CopyButton" Click="CopyButton_Click" Width="80" Height="30">复制</Button>
+                                <Button Margin="10" Width="80" x:Name="SQLClearButton" Click="SQLClearButton_Click" Height="30">清空</Button>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </igWPF:TabItemEx>
+            <igWPF:TabItemEx Header="本地文件">
+
+            </igWPF:TabItemEx>
+            <igWPF:TabItemEx Header="网络资源">
+
+            </igWPF:TabItemEx>
+            <igWPF:TabItemEx Header="静态文本">
+
+            </igWPF:TabItemEx>
+        </igWPF:XamTabControl>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Width="80" Height="20" Margin="10" x:Name="ImportButton" Click="ImportButton_Click">导入</Button>
+            <Button Width="80" Height="20" Margin="10" x:Name="AddButton" Click="AddButton_Click">新建</Button>
+            <Button Width="80" Height="20" Margin="10" x:Name="DeleteButton" Click="DeleteButton_Click">删除</Button>
+            <Button Width="80" Height="20" Margin="10" x:Name="OKButton" Click="OKButton_Click">确定</Button>
+            <Button Width="80" Height="20" Margin="10" x:Name="CancleButton" Click="CancleButton_Click">取消</Button>
+        </StackPanel>
     </Grid>
+
+
 </Window>

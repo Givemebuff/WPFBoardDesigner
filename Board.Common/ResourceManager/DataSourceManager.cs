@@ -28,22 +28,6 @@ namespace Board.Resource
 
 
         }
-        //实例接口
-        //public static DataSourceManager GetInstance()
-        //{
-        //    if (uniqueInstance == null)
-        //    {
-        //        lock (locker)
-        //        {
-        //            // 如果类的实例不存在则创建，否则直接返回
-        //            if (uniqueInstance == null)
-        //            {
-        //                uniqueInstance = new DataSourceManager();
-        //            }
-        //        }
-        //    }
-        //    return uniqueInstance;
-        //}
 
         //数据源集合
         static Dictionary<string, DesignerDataSource> _dataSourceList { get; set; }
@@ -145,12 +129,9 @@ namespace Board.Resource
 
         }
 
-
-        public static object GetDataAsync(string key) 
+        public static async Task<object> GetDataAsync(string key)
         {
-            Func<string, object> action = GetData;//声明一个委托
-            IAsyncResult ret = action.BeginInvoke(key, null, null);
-            return action.EndInvoke(ret);
+            return await GetData(key);
         }
 
         /// <summary>
@@ -158,12 +139,11 @@ namespace Board.Resource
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        public static object GetData(string key)
+        public static async Task<object> GetData(string key)
         {
             if (DatasList.Keys.Contains(key))
             {
-                Thread.Sleep(1000);
-                ExcuteDataSource(key);               
+                ExcuteDataSource(key);
                 return DatasList[key];
             }
             else
@@ -192,11 +172,11 @@ namespace Board.Resource
         /// </summary>
         /// <param name="key"></param>
         /// <param name="ds"></param>
-        private static void UpdateDataSource(string key,DesignerDataSource ds)
+        private static void UpdateDataSource(string key, DesignerDataSource ds)
         {
             if (DataSourceList.Keys.Contains(key))
             {
-                DataSourceList[key] = ds;                
+                DataSourceList[key] = ds;
             }
             else
             {
@@ -249,9 +229,9 @@ namespace Board.Resource
 
     public class DataBaseDataSourceManager
     {
-        public static IEnumerable<DesignerDataSource> GetDataSources()
+        public static IEnumerable<DesignerDataBaseDataSource> GetDataSources()
         {
-            ObservableCollection<DesignerDataSource> dss = new ObservableCollection<DesignerDataSource>();
+            ObservableCollection<DesignerDataBaseDataSource> dss = new ObservableCollection<DesignerDataBaseDataSource>();
             string curDirPath = Directory.GetCurrentDirectory() + @"\DataSources";
             //若不存在文件夹则先创建
             if (!Directory.Exists(curDirPath))
@@ -260,31 +240,62 @@ namespace Board.Resource
             }
             DirectoryInfo di = new DirectoryInfo(curDirPath);
             FileInfo[] fis = di.GetFiles();
-            foreach (FileInfo fi in fis)
+            try
             {
-                string ext = fi.Extension.ToLower();
-                if (ext.IndexOf("bds") == -1 && ext.IndexOf("xml") == -1)
-                    continue;
-                else
+                foreach (FileInfo fi in fis)
                 {
-                    try
+                    string ext = fi.Extension.ToLower();
+                    if (ext.IndexOf("bds") == -1 && ext.IndexOf("xml") == -1)
+                        continue;
+                    else
                     {
+
                         string xml = File.ReadAllText(fi.FullName);
                         using (StringReader sr = new StringReader(xml))
                         {
-                            XmlSerializer xmldes = new XmlSerializer(typeof(DesignerDataSource));
-                            DesignerDataSource ds = xmldes.Deserialize(sr) as DesignerDataSource;
+                            XmlSerializer xmldes = new XmlSerializer(typeof(DesignerDataBaseDataSource));
+                            DesignerDataBaseDataSource ds = xmldes.Deserialize(sr) as DesignerDataBaseDataSource;
                             dss.Add(ds);
                         }
-                    }
-                    catch (Exception e)
-                    {
-                        throw new Exception("读取DataSources时出错：" + e.Message);
-                    }
 
+
+                    }
                 }
+                return dss;
             }
-            return dss;
+            catch (Exception e)
+            {
+                throw new Exception("读取DataSources时出错：" + e.Message);
+            }
+            
+        }
+        public static string AddDataBaseDataSource(DesignerDataBaseDataSource ds) 
+        {
+            string path = Directory.GetCurrentDirectory() + @"\DataSources\"+ds.Name+".bds";
+            try 
+            {
+                MemoryStream Stream = new MemoryStream();
+                XmlSerializer xml = new XmlSerializer(typeof(DesignerDataBaseDataSource));
+                //序列化对象  
+                xml.Serialize(Stream, ds);
+                Stream.Position = 0;
+                StreamReader sr = new StreamReader(Stream);
+                string str = sr.ReadToEnd();
+                //存到文件
+               
+                FileStream fs = new FileStream(path, FileMode.OpenOrCreate, FileAccess.ReadWrite);
+                StreamWriter sw = new StreamWriter(fs); // 创建写入流
+                sw.Write(str);
+                sw.Close(); 
+                sr.Dispose();
+                Stream.Dispose();
+                return path;
+            }
+            catch (Exception e)
+            {
+                throw new Exception("增加数据库数据源时出错：" + e.Message);
+            }
+            
         }
     }
 }

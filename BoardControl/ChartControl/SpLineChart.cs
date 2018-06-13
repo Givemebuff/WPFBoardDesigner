@@ -31,12 +31,12 @@ namespace BoardDesigner.BoardControl.ChartControl
             for(int i=0;i<12;i++)
             {
                 DesignerDataPoint dp = new DesignerDataPoint();
-                dp.XValue = data.Rows[i]["Month"];
+                dp.XValue = Convert.ToDouble( data.Rows[i]["Month"]);
                 dp.YValue = Convert.ToDouble(data.Rows[i]["Turnover"]);
                 dps.Add(dp);
             }
 
-            dc.Series[0].DataPoints = new DesignerDataPointCollection(dps, dc.Series[0]);
+            dc.Series[0].DataPoints = new DesignerDataPointCollection(dps, dc.Series[0].Name);
             BoardChart chart = new BoardChart(dc);
             cw.Protect(chart);
             

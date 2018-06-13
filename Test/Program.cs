@@ -17,46 +17,66 @@ namespace Test
     {
         static void Main(string[] args)
         {
+            //DesignerDataBaseDataSource ds = new DesignerDataBaseDataSource()
+            //{
+            //    SqlString = "select * from Money",
+            //    UserName = "Indusfo",
+            //    PassWord = "Indusfo123456",
+            //    DataBaseName = "Test",
+            //    Address = "Factory.indusfo.club"
+            //};
+
             //DataSourceManager.Register(ds.Name, DesignerDataSourceType.DataBase, ds);
 
-            //DataTable data = DataSourceManager.GetDataAsync(ds.Name) as DataTable;
+            //DataTable data = DataSourceManager.GetDataAsync(ds.Name).Result as DataTable;
 
             //Console.WriteLine("我在下面");
+          
 
-            Console.WriteLine(new Thickness(2).ToString());
-
-            DesignerBoard b = new DesignerBoard();
-            DesignerChart l = new DesignerChart();
-          
-            b.Children.Add(l);
-          
-          
-            string s = XmlSerialize(b);
-            DesignerBoard dd = XmlDerialize<DesignerBoard>(s);
+            //while (true) 
+            //{
+            //    string s = Console.ReadLine();
+            //    Console.WriteLine("异步的同时输入了：" + s);
+            //}
             Console.Read();
         }
 
-        static string XmlSerialize<T>(T obj) 
+        public static async Task<int> Methond1()
         {
-            MemoryStream Stream = new MemoryStream();
-            XmlSerializer xml = new XmlSerializer(typeof(T));
-            //序列化对象  
-            xml.Serialize(Stream, obj);
-            Stream.Position = 0;
-            StreamReader sr = new StreamReader(Stream);
-            string str = sr.ReadToEnd();
-            sr.Dispose();
-            return str;
+            int i = 0;
+            while (i < 10)
+            {
+                i++;
+                await Task.Delay(1000);
+                Console.WriteLine("M1：" + i.ToString());
+            }
+            return i;
+        }
+        public static async Task<int> Methond2()
+        {
+            int i = 0;
+            while (i < 20)
+            {
+                i++;
+                await Task.Delay(500);
+                Console.WriteLine("M2：" + i.ToString());
+            }
+            return i;
         }
 
-        static T XmlDerialize<T>(string xml) 
+        private static async void Cal()
         {
-            using (StringReader sr = new StringReader(xml))
-            {
-                XmlSerializer xmldes = new XmlSerializer(typeof(T));
-                return  (T)xmldes.Deserialize(sr);
-            }
+            Task<int> a = Methond1();
+            //此处可继续执行其他代码
+            await a;//等待任务a完成
+            Task<int> b = Methond2();
+            //此处可继续执行其他代码
+            int c = await b;//等待任务b完成，且可以拿到任务b的返回值
+            Console.Write("Result:" + c);
         }
+
+
+       
     }
 
 

@@ -1,9 +1,11 @@
-﻿using Board.DesignerModel;
+﻿using Board.Controls.BoardControl;
+using Board.DataHelper;
+using Board.DesignerModel;
+using Board.Interface;
+using Board.Resource;
 using BoardDesigner.Base;
 using BoardDesigner.BoardControl;
-
-
-
+using BoardDesigner.Windows;
 using Infragistics.Controls.Editors;
 using Infragistics.Controls.Maps;
 using System;
@@ -73,15 +75,77 @@ namespace BoardDesigner.CustomPage
        
         public DesignerPage()
         {
-            InitializeComponent();           
+            InitializeComponent();
             CreateBoardDesignerPanel(Board);
+            InitCustomCommand();
         }
         public DesignerPage(DesignerBoard db)
         {
-            InitializeComponent();           
-            CreateBoardDesignerPanel(db);           
+           
+            InitializeComponent();
+            CreateBoardDesignerPanel(db);
+            InitCustomCommand();          
+        }
+        #region 自定义命令
+        private void InitCustomCommand()
+        {
+            //把命令赋值给命令源,并定义快捷键
+            this.DataSourceSelectMenuItem.Command = DesignDataSourceCommand;
+            //定义快捷键 gesture 手势
+            //this.DesignDataSourceCommand.InputGestures.Add(new KeyGesture(Key.C, ModifierKeys.Alt));
+            //指定命令目标
+            this.DataSourceSelectMenuItem.CommandTarget = this;
+
+            //创建命令关联
+            CommandBinding dsCommandBinding = new CommandBinding();
+            //把命令rouutedCommand和具体的逻辑事件绑定起来。
+            dsCommandBinding.Command = DesignDataSourceCommand;//只关注与rouutedCommand相关的命令
+            dsCommandBinding.CanExecute += new CanExecuteRoutedEventHandler(DesignDataSource_CanExecute);
+            dsCommandBinding.Executed += new ExecutedRoutedEventHandler(DesignDataSource_Execute);
+            //把命令关联安置在外围控件上
+            //MainWindow main = ControlHelper.GetParentObject<MainWindow>(this,"ThisWindow");
+            this.CommandBindings.Add(dsCommandBinding);
         }
 
+        private RoutedCommand DesignDataSourceCommand = new RoutedCommand("DataSource", typeof(MainWindow));
+        void DesignDataSource_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            if (this.SelectItem == null)
+                e.CanExecute = false;
+            else if (this.SelectItem is DesignerBoard)
+                e.CanExecute = false;
+            else if (this.SelectItem  is IDynamicData)
+            {
+                e.CanExecute = true;
+            }
+            else
+                e.CanExecute = false;
+            e.Handled = true;
+        }
+        private void DesignDataSource_Execute(object sender, ExecutedRoutedEventArgs e)
+        {           
+            string key = null;
+            if (this.SelectItem is DesignerChart) 
+            {
+
+            }
+            else 
+            {
+                key = (this.SelectItem as IDynamicData).DataSourceKey;
+            }
+
+            DataSourceSettingWindow win = new DataSourceSettingWindow(key);
+            if (win.ShowDialog() == true)
+            {
+                //更改Key，并通过管理器获取对象添加至数据源集合
+                key = win.SelectedItem.Name;
+                (this.SelectItem as IDynamicData).DataSourceKey = key;
+                this.Board.BackWorkers.Add(DataSourceManager.GetDataSourceByKey(key));
+            }
+         
+        }
+
+        #endregion
         void CreateBoardDesignerPanel(DesignerBoard db)
         {
             DesignerCanvas dc = new DesignerCanvas(db);
@@ -92,8 +156,7 @@ namespace BoardDesigner.CustomPage
 
             NameTB.SetBinding(TextBlock.TextProperty, new Binding("SelectItem.Name") { Source = dc });
            
-        }
-      
+        }      
       
     }
 }

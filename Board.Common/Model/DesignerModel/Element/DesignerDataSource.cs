@@ -13,19 +13,29 @@ namespace Board.DesignerModel
         Default = 0,
         DataBase = 1,
         LocalFile = 2,
-        RemoteURL = 3
+        RemoteURL = 3,
+        Static = 4
     }
-
-    [XmlRoot("DataSource")]
+    [XmlType("DataSource")]
+    [XmlInclude(typeof(DesignerDataBaseDataSource))]
+    [XmlInclude(typeof(DesignerLocalFileDataSource))]
+    [XmlInclude(typeof(DesignerRemoteURIDataSource))]
+    [XmlInclude(typeof(DesignerStaticDataSource))]
     public class DesignerDataSource : DesignerElement
     {
+        [Browsable(false)]
+        [XmlIgnore]
         public DesignerDataSourceType _dataSourceType { get; set; }
+        [ReadOnly(true)]
+        [Category("类别")]
+        [DisplayName("数据源类别")]
+        [XmlAttribute("DataSourceType")]
         public DesignerDataSourceType DataSourceType
         {
-            get { return this._dataSourceType; }            
+            get { return this._dataSourceType; }
         }
     }
-
+    [XmlType("DBDataSource")]
     public class DesignerDataBaseDataSource : DesignerDataSource
     {
         public DesignerDataBaseDataSource()
@@ -157,7 +167,7 @@ namespace Board.DesignerModel
             }
         }
     }
-
+    [XmlType("LFDataSource")]
     public class DesignerLocalFileDataSource : DesignerDataSource
     {
         public DesignerLocalFileDataSource()
@@ -165,12 +175,20 @@ namespace Board.DesignerModel
             this._dataSourceType = DesignerDataSourceType.LocalFile;
         }
     }
-
+    [XmlType("RUDataSource")]
     public class DesignerRemoteURIDataSource : DesignerDataSource
     {
         public DesignerRemoteURIDataSource()
         {
             this._dataSourceType = DesignerDataSourceType.RemoteURL;
+        }
+    }
+    [XmlType("STDataSource")]
+    public class DesignerStaticDataSource : DesignerDataSource
+    {
+        public DesignerStaticDataSource()
+        {
+            this._dataSourceType = DesignerDataSourceType.Static;
         }
     }
 }

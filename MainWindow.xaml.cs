@@ -47,7 +47,6 @@ namespace BoardDesigner
 
         #endregion
 
-
         #region 图片资源
 
         public ObservableCollection<RImage> ImageResourceCollection
@@ -68,8 +67,6 @@ namespace BoardDesigner
             InitPage();
             InitCommands();
         }
-
-
 
         private void InitPage()
         {
@@ -156,7 +153,13 @@ namespace BoardDesigner
             CommandBinding openProCmdBinding = new CommandBinding(ApplicationCommands.Open);
             openProCmdBinding.Executed += new ExecutedRoutedEventHandler(OpenProCommand_Executed);
             openProCmdBinding.CanExecute += OpenProCommand_CanExecute;
+            //打开数据库数据源窗口
+
         }
+
+      
+
+        #region 系统命令
 
         #region 新建
         void NewProCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
@@ -238,7 +241,7 @@ namespace BoardDesigner
             e.Handled = true;
         }
 
-        #endregion
+        #endregion     
 
         #region 关闭
 
@@ -343,6 +346,14 @@ namespace BoardDesigner
 
         #endregion
 
+        #region 自定义命令
+
+      
+
+        #endregion
+
+        #endregion
+
         private void ImageXamComboEditor_SelectionChanged(object sender, Infragistics.Controls.Editors.SelectionChangedEventArgs e)
         {
 
@@ -350,6 +361,12 @@ namespace BoardDesigner
 
         private void MainContentHost_ActiveDocumentChanged(object sender, RoutedPropertyChangedEventArgs<ContentPane> e)
         {
+            if (e.NewValue == null) 
+            {
+                CurrentDesignerPage = null;
+                return;
+            }
+                
             Frame f = e.NewValue.Content as Frame;
             if (f.Content == null)
                 return;
@@ -364,16 +381,6 @@ namespace BoardDesigner
                 }
             }
         }
-
-        private void DataSourceEditButton_Click(object sender, RoutedEventArgs e)
-        {
-            TextBlock tb = ((sender as Button).Parent as Grid).FindName("DSNameTb") as TextBlock;
-            string name = tb.Text;
-            DataSourceSettingWindow win = new DataSourceSettingWindow(name);
-            if (win.ShowDialog() == true)
-            {
-                tb.Text = win.SelectedItem.Name;
-            }
-        }
+      
     }
 }

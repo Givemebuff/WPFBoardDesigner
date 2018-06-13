@@ -24,8 +24,6 @@ namespace Board.Controls.BoardControl
     {
         public DesignerMedia DesignerModel { get; set; }
 
-
-
         public Uri MediaSourceUri
         {
             get { return (Uri)GetValue(MediaSourceUriProperty); }

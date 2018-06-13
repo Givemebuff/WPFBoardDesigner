@@ -278,18 +278,7 @@ namespace Board.Controls.BoardControl
 
         public void GetData()
         {
-            try
-            {
-                using (SqlExcuter se = new SqlExcuter(DataBaseType.SqlServer, DataSource.ConnectionString))
-                {
-                    ItemSource = se.ExecuteSelectSql(DataSource.SqlString);
-                }
-            }
-            catch (Exception e)
-            {
-                //TODO
-                MessageBox.Show(e.Message);
-            }
+            
         }
 
         public void StartBind()

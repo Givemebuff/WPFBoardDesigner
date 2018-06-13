@@ -13,6 +13,7 @@ using BoardDesigner.Windows;
 using Infragistics;
 using Infragistics.Collections;
 using Infragistics.Controls;
+using Infragistics.Controls.Barcodes;
 using Infragistics.Controls.Charts;
 using Infragistics.Controls.Editors;
 using Infragistics.Controls.Gauges;

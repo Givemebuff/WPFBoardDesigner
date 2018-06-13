@@ -14,7 +14,7 @@ using Visifire.Commons;
 
 namespace Board.DesignerModel
 {
-    [XmlType("Chart")] 
+    [XmlType("Chart")]
     public class DesignerChart : DesignerControl
     {
         public DesignerChart()
@@ -26,8 +26,8 @@ namespace Board.DesignerModel
             this.ChartAxesX.Add(new DesignerChartAxis());
             this.ChartAxesY = new ObservableCollection<DesignerChartAxis>();
             this.ChartAxesY.Add(new DesignerChartAxis());
-            this.Series = new ObservableCollection<DesignerChartDataSeries>();
-            this.Series.Add(new DesignerChartDataSeries());
+            this.Series = new ObservableCollection<DesignerChartDataSerie>();
+            this.Series.Add(new DesignerChartDataSerie());
         }
         #region 标题
         [Browsable(false)]
@@ -37,7 +37,7 @@ namespace Board.DesignerModel
         [Category("图表")]
         [DisplayName("标题集合")]
         [Description("设置标题")]
-        [XmlArray("Titles"),XmlArrayItem("Title")]
+        [XmlArray("Titles"), XmlArrayItem("Title")]
         public ObservableCollection<DesignerChartTitle> ChartTitles
         {
             get { return this._chartTitles; }
@@ -100,13 +100,13 @@ namespace Board.DesignerModel
 
         [Browsable(false)]
         [XmlIgnore]
-        public ObservableCollection<DesignerChartDataSeries> _series { get; set; }
+        public ObservableCollection<DesignerChartDataSerie> _series { get; set; }
 
         [Category("数据")]
         [DisplayName("数据线集合")]
         [Description("数据线集合")]
         [XmlArray("DataSeries"), XmlArrayItem("Serie")]
-        public ObservableCollection<DesignerChartDataSeries> Series
+        public ObservableCollection<DesignerChartDataSerie> Series
         {
             get { return this._series; }
             set
@@ -168,6 +168,7 @@ namespace Board.DesignerModel
         [Category("基础")]
         [DisplayName("标题文本")]
         [Description("设置标题文本")]
+        [XmlElement("Text")]
         public string Text
         {
             get { return this._text; }
@@ -188,6 +189,7 @@ namespace Board.DesignerModel
         [Category("基础")]
         [DisplayName("标题边框")]
         [Description("设置标题边框")]
+        [XmlElement("TitleBorder")]
         public DesignerBorder TitleBorder
         {
             get { return this._titleBorder; }
@@ -207,6 +209,7 @@ namespace Board.DesignerModel
         [Category("基础")]
         [DisplayName("标题背景")]
         [Description("设置标题背景")]
+        [XmlIgnore]
         public Brush TitleBackground
         {
             get
@@ -217,6 +220,18 @@ namespace Board.DesignerModel
             {
                 this._titleBackground = value;
                 OnPropertyChanged("TitleBackground");
+            }
+        }
+        [XmlAttribute("TitleBackground")]
+        public string XmlTitleBackground
+        {
+            get
+            {
+                return this.TitleBackground == null ? null : TitleBackground.ToString();
+            }
+            set
+            {
+                this.TitleBackground = Board.XmlConverter.ColorConverter.XmlToBrush(value);
             }
         }
     }
@@ -248,6 +263,7 @@ namespace Board.DesignerModel
         [Category("轴")]
         [DisplayName("轴类型")]
         [Description("设置轴类型")]
+        [XmlAttribute("AxisType")]
         public AxisTypes AxisType
         {
             get { return this._axisType; }
@@ -270,6 +286,7 @@ namespace Board.DesignerModel
         [Category("轴")]
         [DisplayName("轴颜色")]
         [Description("设置轴颜色")]
+        [XmlIgnore]
         public Brush LineColor
         {
             get { return this._lineColor; }
@@ -279,7 +296,15 @@ namespace Board.DesignerModel
                 OnPropertyChanged("LineColor");
             }
         }
-
+        [XmlAttribute("LineColor")]
+        public string XmlLineColor
+        {
+            get { return this.LineColor == null ? null : LineColor.ToString(); }
+            set 
+            {
+                this.LineColor = Board.XmlConverter.ColorConverter.XmlToBrush(value);
+            }
+        }
         [Browsable(false)]
         [XmlIgnore]
         public LineStyles _lineStyle
@@ -290,6 +315,7 @@ namespace Board.DesignerModel
         [Category("轴")]
         [DisplayName("轴线类型")]
         [Description("设置轴线类型")]
+        [XmlAttribute("LineStyle")]
         public LineStyles LineStyle
         {
             get { return this._lineStyle; }
@@ -310,6 +336,7 @@ namespace Board.DesignerModel
         [Category("轴")]
         [DisplayName("轴线粗细")]
         [Description("设置轴线粗细")]
+        [XmlAttribute("LineThickness")]
         public double LineThickness
         {
             get { return this._lineThickness; }
@@ -332,6 +359,7 @@ namespace Board.DesignerModel
         [Category("轴")]
         [DisplayName("轴最大值")]
         [Description("设置轴最大值")]
+        [XmlAttribute("AxisMaximum")]
         public double AxisMaximum
         {
             get
@@ -350,6 +378,7 @@ namespace Board.DesignerModel
         [Category("轴")]
         [DisplayName("轴最小值")]
         [Description("设置轴最小值")]
+        [XmlAttribute("AxisMinimum")]
         public double AxisMinimum
         {
             get
@@ -368,6 +397,7 @@ namespace Board.DesignerModel
         [Category("轴")]
         [DisplayName("轴坐标间隔")]
         [Description("设置轴坐标间隔")]
+        [XmlAttribute("Interval")]
         public double Interval
         {
             get { return this._interval; }
@@ -383,6 +413,7 @@ namespace Board.DesignerModel
         [Category("轴")]
         [DisplayName("轴坐标间隔类型")]
         [Description("设置轴坐标间隔类型")]
+        [XmlAttribute("IntervalType")]
         public IntervalTypes IntervalType
         {
             get { return this._intervalType; }
@@ -405,8 +436,9 @@ namespace Board.DesignerModel
             set;
         }
         [Category("轴")]
-        [DisplayName("包括零点")]
+        [DisplayName("零点")]
         [Description("是否包括零点")]
+        [XmlAttribute("IncludeZero")]
         public bool IncludeZero
         {
             get { return this._includeZero; }
@@ -422,6 +454,7 @@ namespace Board.DesignerModel
         [Category("轴")]
         [DisplayName("修饰字符")]
         [Description("单位之类的")]
+        [XmlAttribute("Suffix")]
         public string Suffix
         {
             get
@@ -440,6 +473,7 @@ namespace Board.DesignerModel
         [Category("轴")]
         [DisplayName("对数形式")]
         [Description("对数形式")]
+        [XmlAttribute("Logarithmic")]
         public bool Logarithmic
         {
             get { return this._logarithmic; }
@@ -459,6 +493,7 @@ namespace Board.DesignerModel
         [Category("轴")]
         [DisplayName("背景")]
         [Description("背景设置")]
+        [XmlIgnore]
         public Brush AxisBackground
         {
             get { return this._axisbackground; }
@@ -468,7 +503,19 @@ namespace Board.DesignerModel
                 OnPropertyChanged("AxisBackground");
             }
         }
+        [XmlAttribute("AxisBackground")]
+        public string XmlAxisBackground 
+        {
+            get 
+            {
+                return this.AxisBackground == null ? null : AxisBackground.ToString();
+            }
 
+            set 
+            {
+                this.AxisBackground = Board.XmlConverter.ColorConverter.XmlToBrush(value);
+            }
+        }
         #endregion
 
 
@@ -476,9 +523,9 @@ namespace Board.DesignerModel
     }
 
     [XmlType("Serie")]
-    public class DesignerChartDataSeries : DesignerVisualElement
+    public class DesignerChartDataSerie : DesignerVisualElement
     {
-        public DesignerChartDataSeries()
+        public DesignerChartDataSerie()
         {
             this.AutoFitToPlotArea = false;
             this.AxisXType = AxisTypes.Primary;
@@ -486,7 +533,7 @@ namespace Board.DesignerModel
             this.SeriesBorder = new DesignerBorder() { BorderThickness = new Thickness(0) };
             this.BorderStyle = BorderStyles.Solid;
             this.Color = new SolidColorBrush(System.Windows.Media.Color.FromRgb(74, 134, 232));
-            this.DataPoints = new DesignerDataPointCollection(new List<DesignerDataPoint>(), this);
+            this.DataPoints = new DesignerDataPointCollection(new List<DesignerDataPoint>(), this.Name);
             this.HighLightColor = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 255, 255));
             this.IncludeDataPointsInLegend = false;
             this.IncludePercentageInLegend = false;
@@ -524,7 +571,7 @@ namespace Board.DesignerModel
             this.ShowInLegend = true;
             this.ZIndex = 0;
             this.XValueType = ChartValueTypes.Auto;
-            this.LegendMarkerColor = null;         
+            this.LegendMarkerColor = null;
 
             this.DataAccessTimeSpan = 10000;
         }
@@ -538,6 +585,7 @@ namespace Board.DesignerModel
         [Category("表现")]
         [DisplayName("呈现颜色")]
         [Description("颜色")]
+        [XmlIgnore]
         public Brush Color
         {
             set
@@ -549,6 +597,23 @@ namespace Board.DesignerModel
             }
             get { return this._color; }
         }
+        [XmlAttribute("Color")]
+        public string XmlColor
+        {
+            get
+            {
+                if (this.Color == null)
+                    return null;
+                else
+                {
+                    return this.Color.ToString();
+                }
+            }
+            set
+            {
+                this.Color = Board.XmlConverter.ColorConverter.XmlToBrush(value);
+            }
+        }
 
         #region Radius
 
@@ -559,6 +624,7 @@ namespace Board.DesignerModel
         [Category("表现")]
         [DisplayName("RadiusX")]
         [Description("RadiusX")]
+        [XmlElement("RadiusX")]
         public System.Windows.CornerRadius RadiusX
         {
             set { this._radiusX = value; OnPropertyChanged("RadiusX"); }
@@ -567,11 +633,13 @@ namespace Board.DesignerModel
 
         [Browsable(false)]
         [XmlIgnore]
-        public System.Windows.CornerRadius _radiusY { set; get; } [XmlIgnore]
+        public System.Windows.CornerRadius _radiusY { set; get; }
+        [XmlIgnore]
 
         [Category("表现")]
         [DisplayName("RadiusY")]
         [Description("RadiusY")]
+        [XmlElement("RadiusY")]
         public System.Windows.CornerRadius RadiusY
         {
             set { this._radiusY = value; OnPropertyChanged("RadiusY"); }
@@ -597,6 +665,7 @@ namespace Board.DesignerModel
         [Category("线边框")]
         [DisplayName("线边框")]
         [Description("设置线边框")]
+        [XmlElement("SeriesBorder")]
 
         public DesignerBorder SeriesBorder
         {
@@ -619,6 +688,7 @@ namespace Board.DesignerModel
         [Category("线边框")]
         [DisplayName("线边框线条类型")]
         [Description("线边框线条类型")]
+        [XmlAttribute("BorderStyle")]
         public Visifire.Commons.BorderStyles BorderStyle
         {
             get { return this._borderStyle; }
@@ -640,6 +710,7 @@ namespace Board.DesignerModel
         [Category("标签")]
         [DisplayName("标签字体")]
         [Description("标签字体")]
+        [XmlElement("LabelFont")]
         public DesignerFont LabelFont
         {
             get { return this._labelFont; }
@@ -656,6 +727,7 @@ namespace Board.DesignerModel
         [Category("标签")]
         [DisplayName("标签角度")]
         [Description("标签角度")]
+        [XmlAttribute("LabelAngle")]
         public double LabelAngle
         {
             get { return this._labelAngle; }
@@ -672,6 +744,8 @@ namespace Board.DesignerModel
         [Category("标签")]
         [DisplayName("标签背景")]
         [Description("标签背景")]
+        [XmlIgnore]
+
         public Brush LabelBackground
         {
             get { return this._labelBackground; }
@@ -681,6 +755,18 @@ namespace Board.DesignerModel
                 OnPropertyChanged("LabelBackground");
             }
         }
+        [XmlAttribute("LabelBackground")]
+        public string XmlLabelBackground
+        {
+            get
+            {
+                return this.LabelBackground == null ? null : LabelBackground.ToString();
+            }
+            set
+            {
+                this.LabelBackground = Board.XmlConverter.ColorConverter.XmlToBrush(value);
+            }
+        }
 
         [Browsable(false)]
         [XmlIgnore]
@@ -688,6 +774,7 @@ namespace Board.DesignerModel
         [Category("标签")]
         [DisplayName("标签文本")]
         [Description("标签文本")]
+        [XmlAttribute("LabelText")]
         public string LabelText
         {
             get { return this._labelText; }
@@ -704,6 +791,7 @@ namespace Board.DesignerModel
         [Category("标签")]
         [DisplayName("标签类型")]
         [Description("标签类型")]
+        [XmlAttribute("LabelStyle")]
         public LabelStyles LabelStyle
         {
             get { return this._labelStyle; }
@@ -717,8 +805,9 @@ namespace Board.DesignerModel
         [XmlIgnore]
         public bool _labelEnabled { get; set; }
         [Category("标签")]
-        [DisplayName("呈现标签")]
+        [DisplayName("标签")]
         [Description("呈现标签")]
+        [XmlAttribute("LabelEnabled")]
         public bool LabelEnabled
         {
             get { return this._labelEnabled; }
@@ -734,6 +823,7 @@ namespace Board.DesignerModel
         [Category("标签线")]
         [DisplayName("标签线颜色")]
         [Description("标签线颜色")]
+        [XmlIgnore]
         public Brush LabelLineColor
         {
             get { return this._labelLineColor; }
@@ -743,12 +833,27 @@ namespace Board.DesignerModel
                 OnPropertyChanged("LabelLineColor");
             }
         }
+
+        [XmlAttribute("LabelLineColor")]
+        public string XmlLabelLineColor
+        {
+            get
+            {
+                return this.LabelLineColor == null ? null : LabelLineColor.ToString();
+            }
+            set
+            {
+                this.LabelLineColor = Board.XmlConverter.ColorConverter.XmlToBrush(value);
+            }
+        }
+
         [Browsable(false)]
         [XmlIgnore]
         public LineStyles _labelLineStyle { get; set; }
         [Category("标签线")]
         [DisplayName("标签线类型")]
         [Description("标签线类型")]
+        [XmlAttribute("LabelLineStyle")]
         public LineStyles LabelLineStyle
         {
             get { return this._labelLineStyle; }
@@ -764,6 +869,7 @@ namespace Board.DesignerModel
         [Category("标签线")]
         [DisplayName("标签线粗细")]
         [Description("标签线粗细")]
+        [XmlAttribute("LabelLineThickness")]
         public double LabelLineThickness
         {
             get { return this._labelLineThickness; }
@@ -777,8 +883,9 @@ namespace Board.DesignerModel
         [XmlIgnore]
         public bool _labelLineEnabled { get; set; }
         [Category("标签线")]
-        [DisplayName("呈现标签线")]
+        [DisplayName("标签线")]
         [Description("呈现标签线")]
+        [XmlAttribute("LabelLineEnabled")]
         public bool LabelLineEnabled
         {
             get { return this._labelLineEnabled; }
@@ -799,6 +906,7 @@ namespace Board.DesignerModel
         [Category("图例")]
         [DisplayName("数据项名称")]
         [Description("数据项名称")]
+        [XmlAttribute("SeriesName")]
         public string SeriesName
         {
             set { this._seriesName = value; OnPropertyChanged("SeriesName"); }
@@ -807,8 +915,9 @@ namespace Board.DesignerModel
         [Browsable(false)]
         public bool _showInLegend { set; get; }
         [Category("图例")]
-        [DisplayName("呈现图例")]
+        [DisplayName("图例")]
         [Description("在图例中呈现")]
+        [XmlAttribute("ShowInLegend")]
         public bool ShowInLegend
         {
             set { this._showInLegend = value; OnPropertyChanged("ShowInLegend"); }
@@ -820,8 +929,9 @@ namespace Board.DesignerModel
         [XmlIgnore]
         public string _legendText { get; set; }
         [Category("图例")]
-        [DisplayName("图例内文本")]
-        [Description("图例内文本")]
+        [DisplayName("图例文本")]
+        [Description("图例文本")]
+        [XmlAttribute("LegendText")]
         public string LegendText
         {
             get { return this._legendText; }
@@ -834,17 +944,33 @@ namespace Board.DesignerModel
         [Category("图例")]
         [DisplayName("图例标记颜色")]
         [Description("图例标记颜色")]
+        [XmlIgnore]
         public Brush LegendMarkerColor
         {
             get { return this._legendMarkerColor; }
             set { this._legendMarkerColor = value; OnPropertyChanged("LegendMarkerColor"); }
         }
+
+        [XmlAttribute("LegendMarkerColor")]
+        public string XmlLegendMarkerColor
+        {
+            get
+            {
+                return this.LegendMarkerColor == null ? null : LegendMarkerColor.ToString();
+            }
+            set
+            {
+                this.LegendMarkerColor = Board.XmlConverter.ColorConverter.XmlToBrush(value);
+            }
+        }
+
         [Browsable(false)]
         [XmlIgnore]
         public MarkerTypes _legendMarkerType { get; set; }
         [Category("图例")]
         [DisplayName("图例标记类型")]
         [Description("图例标记类型")]
+        [XmlAttribute("LegendMarkerType")]
         public MarkerTypes LegendMarkerType
         {
             get { return this._legendMarkerType; }
@@ -861,6 +987,7 @@ namespace Board.DesignerModel
         [Category("高亮")]
         [DisplayName("高亮颜色")]
         [Description("高亮颜色")]
+        [XmlIgnore]
         public Brush HighLightColor
         {
             get { return this._highLightColor; }
@@ -870,6 +997,19 @@ namespace Board.DesignerModel
                 OnPropertyChanged("HighLightColor");
             }
         }
+        [XmlAttribute("HighLightColor")]
+        public string XmlHighLightColor
+        {
+            get
+            {
+                return this.HighLightColor == null ? null : HighLightColor.ToString();
+            }
+            set
+            {
+                this.HighLightColor = Board.XmlConverter.ColorConverter.XmlToBrush(value);
+            }
+        }
+
 
         [Browsable(false)]
         [XmlIgnore]
@@ -877,6 +1017,7 @@ namespace Board.DesignerModel
         [Category("高亮")]
         [DisplayName("呈现高亮")]
         [Description("呈现高亮")]
+        [XmlAttribute("LightingEnabled")]
         public bool LightingEnabled
         {
             set { this._lightingEnabled = value; OnPropertyChanged("LightingEnabled"); }
@@ -890,6 +1031,7 @@ namespace Board.DesignerModel
         [Category("高亮")]
         [DisplayName("LightWeight")]
         [Description("LightWeight")]
+        [XmlAttribute("LightWeight")]
         public bool LightWeight
         {
             get { return this._lightWeight; }
@@ -907,6 +1049,7 @@ namespace Board.DesignerModel
         [Category("线条")]
         [DisplayName("LineCap")]
         [Description("LineCap")]
+        [XmlAttribute("LineCap")]
         public PenLineCap LineCap
         {
             set { this._lineCap = value; OnPropertyChanged("LineCap"); }
@@ -919,18 +1062,31 @@ namespace Board.DesignerModel
         [Category("线条")]
         [DisplayName("LineFill")]
         [Description("LineFill")]
+        [XmlIgnore]
         public Brush LineFill
         {
             set { this._lineFill = value; OnPropertyChanged("LineFill"); }
             get { return this._lineFill; }
         }
-
+        [XmlAttribute("LineFill")]
+        public string XmlLineFill
+        {
+            get
+            {
+                return this.LineFill == null ? null : LineFill.ToString();
+            }
+            set
+            {
+                this.LineFill = Board.XmlConverter.ColorConverter.XmlToBrush(value);
+            }
+        }
         [Browsable(false)]
         [XmlIgnore]
         public LineStyles _lineStyle { set; get; }
         [Category("线条")]
         [DisplayName("LineStyle")]
         [Description("LineStyle")]
+        [XmlAttribute("LineStyle")]
         public LineStyles LineStyle
         {
             set { this._lineStyle = value; OnPropertyChanged("LineStyle"); }
@@ -943,6 +1099,7 @@ namespace Board.DesignerModel
         [Category("线条")]
         [DisplayName("LineTension")]
         [Description("LineTension")]
+        [XmlAttribute("LineTension")]
         public double LineTension
         {
             set { this._lineTension = value; OnPropertyChanged("LineTension"); }
@@ -956,6 +1113,7 @@ namespace Board.DesignerModel
         [Category("线条")]
         [DisplayName("LineThickness")]
         [Description("LineThickness")]
+        [XmlAttribute("LineThickness")]
         public double LineThickness
         {
             set { this._lineThickness = value; OnPropertyChanged("LineThickness"); }
@@ -972,18 +1130,31 @@ namespace Board.DesignerModel
         [Category("标记")]
         [DisplayName("标记边框颜色")]
         [Description("标记边框颜色")]
+        [XmlIgnore]
         public System.Windows.Media.Brush MarkerBorderColor
         {
             set { this._markerBorderColor = value; OnPropertyChanged("MarkerBorderColor"); }
             get { return this._markerBorderColor; }
         }
-
+        [XmlAttribute("MarkerBorderColor")]
+        public string XmlMarkerBorderColor
+        {
+            get
+            {
+                return this.MarkerBorderColor == null ? null : MarkerBorderColor.ToString();
+            }
+            set
+            {
+                this.MarkerBorderColor = Board.XmlConverter.ColorConverter.XmlToBrush(value);
+            }
+        }
         [Browsable(false)]
         [XmlIgnore]
         public Thickness _markerBorderThickness { set; get; }
         [Category("标记")]
         [DisplayName("标记边框粗细")]
         [Description("标记边框粗细")]
+        [XmlElement("MarkerBorderThickness")]
         public Thickness MarkerBorderThickness
         {
             set { this._markerBorderThickness = value; OnPropertyChanged("MarkerBorderThickness"); }
@@ -996,18 +1167,31 @@ namespace Board.DesignerModel
         [Category("标记")]
         [DisplayName("标记颜色")]
         [Description("标记颜色")]
+        [XmlIgnore]
         public System.Windows.Media.Brush MarkerColor
         {
             set { this._markerColor = value; OnPropertyChanged("MarkerColor"); }
             get { return this._markerColor; }
         }
-
+        [XmlAttribute("MarkerColor")]
+        public string XmlMarkerColor
+        {
+            get
+            {
+                return this.MarkerColor == null ? null : MarkerColor.ToString();
+            }
+            set
+            {
+                this.MarkerColor = Board.XmlConverter.ColorConverter.XmlToBrush(value);
+            }
+        }
         [Browsable(false)]
         [XmlIgnore]
         public bool _markerEnabled { set; get; }
         [Category("标记")]
-        [DisplayName("呈现标记")]
-        [Description("呈现标记")]
+        [DisplayName("标记")]
+        [Description("标记")]
+        [XmlAttribute("MarkerEnabled")]
         public bool MarkerEnabled
         {
             set { this._markerEnabled = value; OnPropertyChanged("MarkerEnabled"); }
@@ -1018,8 +1202,9 @@ namespace Board.DesignerModel
         [XmlIgnore]
         public double _markerScale { set; get; }
         [Category("标记")]
-        [DisplayName("MarkerScale")]
-        [Description("MarkerScale")]
+        [DisplayName("标记缩放")]
+        [Description("标记缩放")]
+        [XmlAttribute("MarkerScale")]
         public double MarkerScale
         {
             set { this._markerScale = value; OnPropertyChanged("MarkerScale"); }
@@ -1033,6 +1218,7 @@ namespace Board.DesignerModel
         [Category("标记")]
         [DisplayName("标记大小")]
         [Description("标记大小")]
+        [XmlAttribute("MarkerSize")]
         public double MarkerSize
         {
             set { this._markerSize = value; OnPropertyChanged("MarkerSize"); }
@@ -1046,6 +1232,7 @@ namespace Board.DesignerModel
         [Category("标记")]
         [DisplayName("标记类型")]
         [Description("标记类型")]
+        [XmlAttribute("MarkerType")]
         public MarkerTypes MarkerType
         {
             set { this._markerType = value; OnPropertyChanged("MarkerType"); }
@@ -1064,6 +1251,7 @@ namespace Board.DesignerModel
         [Category("表现")]
         [DisplayName("图表类型")]
         [Description("图表类型")]
+        [XmlAttribute("RenderAs")]
         public RenderAs RenderAs
         {
             set { this._renderAs = value; OnPropertyChanged("RenderAs"); }
@@ -1078,6 +1266,7 @@ namespace Board.DesignerModel
         [Category("表现")]
         [DisplayName("层")]
         [Description("层")]
+        [XmlAttribute("ChartZIndex")]
         public int ZIndex
         {
             set { this._zIndex = value; OnPropertyChanged("ZIndex"); }
@@ -1094,8 +1283,9 @@ namespace Board.DesignerModel
         public bool _shadowEnabled { set; get; }
 
         [Category("表现")]
-        [DisplayName("呈现阴影")]
-        [Description("呈现阴影")]
+        [DisplayName("阴影")]
+        [Description("阴影")]
+        [XmlAttribute("ShadowEnabled")]
         public bool ShadowEnabled
         {
             set { this._shadowEnabled = value; OnPropertyChanged("ShadowEnabled"); }
@@ -1111,16 +1301,21 @@ namespace Board.DesignerModel
         #region 数据源
         [Browsable(false)]
         [XmlIgnore]
-        public DesignerDataSource _dataSource { get; set; }
+        public string _dataSourceKey { get; set; }
 
-
-        [Category("数据")]
+        [ReadOnly(true)]
+        [Category("数据")]        
         [DisplayName("数据源")]
         [Description("数据源")]
-        public DesignerDataSource DataSource
+        [XmlElement("DataSourceKey")]
+        public string DataSourceKey
         {
-            get { return this._dataSource; }
-            set { this._dataSource = value; OnPropertyChanged("DataSource"); }
+            get { return this._dataSourceKey; }
+            set
+            {
+                this._dataSourceKey = value;
+                OnPropertyChanged("DataSourceKey");
+            }
         }
 
         [Browsable(false)]
@@ -1129,6 +1324,7 @@ namespace Board.DesignerModel
         [Category("数据")]
         [DisplayName("数据点集合")]
         [Description("数据点集合")]
+        [XmlArray("DataPoints"), XmlArrayItem("DataPoint")]
         public DesignerDataPointCollection DataPoints
         {
             set
@@ -1150,6 +1346,7 @@ namespace Board.DesignerModel
         [Category("数据")]
         [DisplayName("X轴值绑定数据字段名")]
         [Description("X轴值绑定")]
+        [XmlAttribute("XValueBindName")]
         public string XValueBindName
         {
             get { return this._xValueBindName; }
@@ -1165,6 +1362,7 @@ namespace Board.DesignerModel
         [Category("数据")]
         [DisplayName("Y轴值绑定数据字段名")]
         [Description("Y轴值绑定")]
+        [XmlAttribute("YValueBindName")]
         public string YValueBindName
         {
             get { return this._yValueBindName; }
@@ -1181,13 +1379,14 @@ namespace Board.DesignerModel
         [Browsable(false)]
         [XmlIgnore]
         public int _dataAccessTimeSpan { get; set; }
-         [Category("定时器")]
-         [DisplayName("数据访问时间间隔")]
-         [Description("单位毫秒")]
-        public int DataAccessTimeSpan 
+        [Category("定时器")]
+        [DisplayName("数据访问时间间隔")]
+        [Description("单位毫秒")]
+        [XmlAttribute("DataAccessTimeSpan")]
+        public int DataAccessTimeSpan
         {
             get { return this._dataAccessTimeSpan; }
-            set 
+            set
             {
                 this._dataAccessTimeSpan = value;
                 OnPropertyChanged("DataAccessTimeSpan");
@@ -1197,13 +1396,14 @@ namespace Board.DesignerModel
         #endregion
 
         #region 数据种类
-         [Browsable(false)]
-         [XmlIgnore]
+        [Browsable(false)]
+        [XmlIgnore]
         public ChartValueTypes _xValueType { set; get; }
 
         [Category("数据")]
         [DisplayName("XValueType")]
         [Description("XValueType")]
+        [XmlAttribute("XValueType")]
         public ChartValueTypes XValueType
         {
             set
@@ -1239,6 +1439,7 @@ namespace Board.DesignerModel
         [Category("轴")]
         [DisplayName("依赖X轴")]
         [Description("依赖X轴")]
+        [XmlAttribute("AxisXType")]
         public AxisTypes AxisXType
         {
             get { return this._axisXType; }
@@ -1259,6 +1460,7 @@ namespace Board.DesignerModel
         [Category("轴")]
         [DisplayName("依赖Y轴")]
         [Description("依赖Y轴")]
+        [XmlAttribute("AxisYType")]
         public AxisTypes AxisYType
         {
             get { return this._axisYType; }
@@ -1287,6 +1489,7 @@ namespace Board.DesignerModel
         [Category("其他")]
         [DisplayName("自动填充到区域")]
         [Description("自动填充到区域")]
+        [XmlAttribute("AutoFitToPlotArea")]
         public bool AutoFitToPlotArea
         {
             get { return this._autoFitToPlotArea; }
@@ -1311,9 +1514,9 @@ namespace Board.DesignerModel
             get;
         }
         [Category("图例")]
-        [DisplayName("图例包含数据点")]
-        [Description("图例包含数据点")]
-
+        [DisplayName("图例数据点")]
+        [Description("图例数据点")]
+        [XmlAttribute("IncludeDataPointsInLegend")]
         public bool IncludeDataPointsInLegend
         {
             get { return this._includeDataPointsInLegend; }
@@ -1334,8 +1537,9 @@ namespace Board.DesignerModel
             get;
         }
         [Category("图例")]
-        [DisplayName("图例包含百分比")]
-        [Description("图例包含百分比")]
+        [DisplayName("图例百分比")]
+        [Description("图例百分比")]
+        [XmlAttribute("IncludePercentageInLegend")]
         public bool IncludePercentageInLegend
         {
             get { return this._includePercentageInLegend; }
@@ -1358,6 +1562,7 @@ namespace Board.DesignerModel
         [Category("图例")]
         [DisplayName("图例包含值")]
         [Description("图例包含值")]
+        [XmlAttribute("IncludeYValueInLegend")]
         public bool IncludeYValueInLegend
         {
             get { return this._includeYValueInLegend; }
@@ -1429,16 +1634,16 @@ namespace Board.DesignerModel
             }
         }
         [XmlAttribute("Color")]
-        public string XmlColor 
+        public string XmlColor
         {
-            get 
+            get
             {
                 if (this.Color == null)
                     return null;
                 else
                     return this.Color.ToString();
             }
-            set 
+            set
             {
                 this.Color = Board.XmlConverter.ColorConverter.XmlToBrush(value);
             }
@@ -1587,10 +1792,10 @@ namespace Board.DesignerModel
                 OnPropertyChanged("LabelLineColor");
             }
         }
-         [XmlAttribute("LabelLineColor")]
-        public string XmlLabelLineColor 
+        [XmlAttribute("LabelLineColor")]
+        public string XmlLabelLineColor
         {
-            get 
+            get
             {
                 if (this.LabelLineColor == null)
                     return null;
@@ -1598,7 +1803,7 @@ namespace Board.DesignerModel
                     return this.LabelLineColor.ToString();
             }
 
-            set 
+            set
             {
                 this.LabelLineColor = Board.XmlConverter.ColorConverter.XmlToBrush(value);
             }
@@ -1684,8 +1889,8 @@ namespace Board.DesignerModel
                 OnPropertyChanged("LegendMarkerColor");
             }
         }
-         [XmlAttribute("LegendMarkerColor")]
-        public string XmlLegendMarkerColor 
+        [XmlAttribute("LegendMarkerColor")]
+        public string XmlLegendMarkerColor
         {
             get
             {
@@ -1695,7 +1900,7 @@ namespace Board.DesignerModel
                     return this.LegendMarkerColor.ToString();
             }
 
-            set 
+            set
             {
                 this.LegendMarkerColor = Board.XmlConverter.ColorConverter.XmlToBrush(value);
             }
@@ -1720,7 +1925,7 @@ namespace Board.DesignerModel
         public string _legendText { get; set; }
         [Category("数据点基础")]
         [DisplayName("图例文本")]
-        [XmlAttribute("LightingEnabled")]
+        [XmlAttribute("LegendText")]
         public string LegendText
         {
             get { return this._legendText; }
@@ -1760,10 +1965,10 @@ namespace Board.DesignerModel
                 OnPropertyChanged("MarkerBorderColor");
             }
         }
-         [XmlAttribute("MarkerBorderColor")]
-        public string XmlMarkerBorderColor 
+        [XmlAttribute("MarkerBorderColor")]
+        public string XmlMarkerBorderColor
         {
-            get 
+            get
             {
                 if (this.MarkerBorderColor == null)
                     return null;
@@ -1771,7 +1976,7 @@ namespace Board.DesignerModel
                     return this.MarkerBorderColor.ToString();
             }
 
-            set 
+            set
             {
                 this.MarkerBorderColor = Board.XmlConverter.ColorConverter.XmlToBrush(value);
             }
@@ -1808,20 +2013,20 @@ namespace Board.DesignerModel
                 OnPropertyChanged("MarkerColor");
             }
         }
-         [XmlAttribute("MarkerColor")]
-        public string XmlMarkerColor 
+        [XmlAttribute("MarkerColor")]
+        public string XmlMarkerColor
         {
-            get 
+            get
             {
                 if (this.MarkerColor == null)
                     return null;
-                else 
+                else
                 {
                     return MarkerColor.ToString();
                 }
             }
 
-            set 
+            set
             {
                 this.MarkerColor = Board.XmlConverter.ColorConverter.XmlToBrush(value);
             }
@@ -1951,7 +2156,7 @@ namespace Board.DesignerModel
         [Browsable(false)]
         [XmlIgnore]
         public bool _showInLegend { get; set; }
-        
+
         [Category("数据点基础")]
         [DisplayName("包含于图例")]
         [XmlAttribute("ShowInLegend")]
@@ -1981,7 +2186,7 @@ namespace Board.DesignerModel
             }
         }
         [XmlAttribute("StickColor")]
-        public string XmlStickColor 
+        public string XmlStickColor
         {
             get
             {
@@ -1989,7 +2194,7 @@ namespace Board.DesignerModel
                     return null;
                 else return StickColor.ToString();
             }
-            set 
+            set
             {
                 this.StickColor = Board.XmlConverter.ColorConverter.XmlToBrush(value);
             }
@@ -1998,11 +2203,11 @@ namespace Board.DesignerModel
 
         [Browsable(false)]
         [XmlIgnore]
-        public object _xValue { get; set; }
+        public double _xValue { get; set; }
         [Category("数据点")]
         [DisplayName("X轴数据")]
         [XmlAttribute("XValue")]
-        public object XValue
+        public double XValue
         {
             get { return this._xValue; }
             set
@@ -2067,22 +2272,22 @@ namespace Board.DesignerModel
         {
 
         }
-        public DesignerDataPointCollection(IEnumerable<DesignerDataPoint> collection, string parentID)
+        public DesignerDataPointCollection(IEnumerable<DesignerDataPoint> collection, string parentName)
             : base(collection)
         {
-            ParentID = parentID;
+            ParentName = parentName;
         }
-        public DesignerDataPointCollection(List<DesignerDataPoint> list, string parentID)
+        public DesignerDataPointCollection(List<DesignerDataPoint> list, string parentName)
             : base(list)
         {
-            ParentID = parentID;
+            ParentName = parentName;
 
         }
         [ReadOnly(true)]
         [Category("控件关系")]
         [DisplayName("所属数据项")]
         [XmlAttribute("ParentID")]
-        public string ParentID { get; set; }
+        public string ParentName { get; set; }
     }
 
 }

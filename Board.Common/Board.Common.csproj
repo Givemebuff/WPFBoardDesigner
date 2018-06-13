@@ -69,6 +69,9 @@
     <Compile Include="Converter\BindConverter\StringToImageSourceConverter.cs" />
     <Compile Include="Converter\BindConverter\StringToUriConverter.cs" />
     <Compile Include="Converter\XmlConverter\ThicknessConverter.cs" />
+    <Compile Include="DataHelper\ControlHelper.cs" />
+    <Compile Include="DataHelper\XmlHelper.cs" />
+    <Compile Include="Interface\IDynamicData.cs" />
     <Compile Include="Model\DesignerModel\Base\DesignerBase.cs" />
     <Compile Include="Model\DesignerModel\Container\Container.cs" />
     <Compile Include="Model\DesignerModel\Control\DesignerBoard.cs" />
@@ -107,6 +110,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DataAccess\" />
+    <Folder Include="NewFolder1\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

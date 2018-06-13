@@ -9,11 +9,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"  
       mc:Ignorable="d" 
       d:DesignHeight="2160" d:DesignWidth="3840"
-	Title="DesignerPage" Background="White">
-    <Page.Resources>
-        
-    </Page.Resources>
-    
+	Title="DesignerPage" Background="White">    
     <Grid>       
         <ScrollViewer Name="DesignerScrollViewer"                                  
                                   HorizontalScrollBarVisibility="Auto"
@@ -72,7 +68,7 @@
                                 <Image Source="/BoardDesigner;component/Resources/Images/SendToBack.png"/>
                             </MenuItem.Icon>
                         </MenuItem>
-                        <MenuItem Header="设计数据源">
+                        <MenuItem Header="数据源" x:Name="DataSourceSelectMenuItem" >
                             <MenuItem.Icon>
                                 <Image Source="/BoardDesigner;component/Resources/Images/Database_24px.png"/>
                             </MenuItem.Icon>

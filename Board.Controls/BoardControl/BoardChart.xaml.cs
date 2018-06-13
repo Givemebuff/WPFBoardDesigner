@@ -308,23 +308,23 @@ namespace Board.Controls.BoardControl
 
         #region 数据线
 
-        public ObservableCollection<DesignerChartDataSeries> ChartDataSeries
+        public ObservableCollection<DesignerChartDataSerie> ChartDataSeries
         {
-            get { return (ObservableCollection<DesignerChartDataSeries>)GetValue(ChartDataSeriesProperty); }
+            get { return (ObservableCollection<DesignerChartDataSerie>)GetValue(ChartDataSeriesProperty); }
             set { SetValue(ChartDataSeriesProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ChartDataSeriesProperty =
             DependencyProperty.Register("ChartDataSeries",
-            typeof(ObservableCollection<DesignerChartDataSeries>),
+            typeof(ObservableCollection<DesignerChartDataSerie>),
             typeof(BoardChart),
-            new PropertyMetadata(new ObservableCollection<DesignerChartDataSeries>(), new PropertyChangedCallback(ChartDataSeriesPropertyChanged)));
+            new PropertyMetadata(new ObservableCollection<DesignerChartDataSerie>(), new PropertyChangedCallback(ChartDataSeriesPropertyChanged)));
 
         private static void ChartDataSeriesPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             BoardChart bc = d as BoardChart;
-            ObservableCollection<DesignerChartDataSeries> ss = e.NewValue as ObservableCollection<DesignerChartDataSeries>;
+            ObservableCollection<DesignerChartDataSerie> ss = e.NewValue as ObservableCollection<DesignerChartDataSerie>;
             bc.InitDataSeries(ss);
         }
 
@@ -335,13 +335,13 @@ namespace Board.Controls.BoardControl
                 case NotifyCollectionChangedAction.Add:
                     foreach (object obj in e.NewItems)
                     {
-                        AddSeries(obj as DesignerChartDataSeries);
+                        AddSeries(obj as DesignerChartDataSerie);
                     }
                     break;
                 case NotifyCollectionChangedAction.Remove:
                     foreach (object obj in e.OldItems)
                     {
-                        RemoveSeries(obj as DesignerChartDataSeries);
+                        RemoveSeries(obj as DesignerChartDataSerie);
                     }
                     break;
 
@@ -349,7 +349,7 @@ namespace Board.Controls.BoardControl
             }
         }
 
-        void AddSeries(DesignerChartDataSeries newSeries)
+        void AddSeries(DesignerChartDataSerie newSeries)
         {
             newSeries.DataPoints.CollectionChanged += DataPoints_CollectionChanged;
             DataSeries s = new Visifire.Charts.DataSeries();
@@ -411,39 +411,30 @@ namespace Board.Controls.BoardControl
             if (uChart.Series == null)
                 uChart.Series = new DataSeriesCollection();
             if (!uChart.Series.Contains(s))
-                uChart.Series.Add(s);
-            AddTimer(newSeries);
-            DataCache.Add(newSeries.Name, new DataTable());
-            DataPointsCache.Add(newSeries.Name, new List<DataPoint>());
+                uChart.Series.Add(s);         
         }
 
-        void RemoveSeries(DesignerChartDataSeries s)
+        void RemoveSeries(DesignerChartDataSerie s)
         {
             Chart uChart = this.Content as Chart;
             for (int i = 0; i < uChart.Series.Count; i++)
             {
                 if (uChart.Series[i].Uid == s.ID.ToString())
                 {
-                    uChart.Series.Remove(uChart.Series[i]);
-                    if (Timers.Keys.Contains(s.Name))
-                        Timers.Remove(s.Name);
-                    if (DataCache.Keys.Contains(s.Name))
-                        DataCache.Remove(s.Name);
-                    if (DataPointsCache.Keys.Contains(s.Name))
-                        DataPointsCache.Remove(s.Name);
+                    uChart.Series.Remove(uChart.Series[i]);                  
 
                 }
 
             }
         }
 
-        public void InitDataSeries(ObservableCollection<DesignerChartDataSeries> ss)
+        public void InitDataSeries(ObservableCollection<DesignerChartDataSerie> ss)
         {
             Chart uChart = this.Content as Chart;
             if (uChart.Series == null)
                 uChart.Series = new DataSeriesCollection();
             uChart.Series.Clear();
-            foreach (DesignerChartDataSeries s in ss)
+            foreach (DesignerChartDataSerie s in ss)
             {
                 AddSeries(s);
             }
@@ -453,7 +444,7 @@ namespace Board.Controls.BoardControl
         {
             //获取所属数据线，找到对应线，对该线进行数据点增删
             DesignerDataPointCollection ddplist = sender as DesignerDataPointCollection;
-            string uid = (ddplist.Parent as DesignerChartDataSeries).ID.ToString();
+            string uid = ddplist.ParentName;
             DataSeries ds = null;
             Chart uChart = this.Content as Chart;
             foreach (DataSeries s in uChart.Series)
@@ -577,9 +568,9 @@ namespace Board.Controls.BoardControl
         }
         public void Init()
         {
-            DataCache = new Dictionary<string, DataTable>();
-            DataPointsCache = new Dictionary<string, List<DataPoint>>();
-            Timers = new Dictionary<string, DispatcherTimer>();
+            //DataCache = new Dictionary<string, DataTable>();
+            //DataPointsCache = new Dictionary<string, List<DataPoint>>();
+            //Timers = new Dictionary<string, DispatcherTimer>();
 
             this.DataContext = DesignerModel;
 
@@ -593,21 +584,11 @@ namespace Board.Controls.BoardControl
             ChartAxesX.CollectionChanged += ChartAxesX_CollectionChanged;
             ChartAxesY.CollectionChanged += ChartAxesY_CollectionChanged;
             ChartDataSeries.CollectionChanged += ChartDataSeries_CollectionChanged;
-
-
         }
 
         public void StartWork()
         {
-            foreach (DesignerChartDataSeries s in ChartDataSeries)
-            {
-                GetData(s);
-                BindData(s);
-            }
-            foreach (DispatcherTimer dt in Timers.Values)
-            {
-                dt.Start();
-            }
+           
         }
 
 
@@ -616,124 +597,121 @@ namespace Board.Controls.BoardControl
         ///数据项每次访问获取数据函数入口
         /// </summary>
         /// <param name="s"></param>
-        private void GetData(DesignerChartDataSeries s)
+        private void GetData(DesignerChartDataSerie s)
         {
-            try
-            {
-                DataTable newData = new DataTable();
-                if (s.DataSource == null)
-                    return;
+            //try
+            //{
+            //    DataTable newData = new DataTable();
+            //    if (s.DataSource == null)
+            //        return;
                 
-                using (SqlExcuter se = new SqlExcuter(DataBaseType.SqlServer, s.DataSource.ConnectionString))
-                {
-                     newData = se.ExecuteSelectSql(s.DataSource.SqlString);
-                    if (DataCache == null)
-                    {
-                        DataCache = new Dictionary<string, DataTable>();
-                    }
-                    //刷新缓存
-                    if (!DataCache.Keys.Contains(s.Name))
-                    {
-                        DataCache.Add(s.Name, newData);
-                    }
-                    else
-                    {
-                        DataCache[s.Name] = newData;
-                    }
+            //    using (SqlExcuter se = new SqlExcuter(DataBaseType.SqlServer, s.DataSource.ConnectionString))
+            //    {
+            //         newData = se.ExecuteSelectSql(s.DataSource.SqlString);
+            //        if (DataCache == null)
+            //        {
+            //            DataCache = new Dictionary<string, DataTable>();
+            //        }
+            //        //刷新缓存
+            //        if (!DataCache.Keys.Contains(s.Name))
+            //        {
+            //            DataCache.Add(s.Name, newData);
+            //        }
+            //        else
+            //        {
+            //            DataCache[s.Name] = newData;
+            //        }
 
-                    if (!DataPointsCache.Keys.Contains(s.Name))
-                    {
-                        DataPointsCache.Add(s.Name, BuiltDataPoints(s));
-                    }
-                    else
-                    {
-                        DataPointsCache[s.Name] = BuiltDataPoints(s);
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
-            }
+            //        if (!DataPointsCache.Keys.Contains(s.Name))
+            //        {
+            //            DataPointsCache.Add(s.Name, BuiltDataPoints(s));
+            //        }
+            //        else
+            //        {
+            //            DataPointsCache[s.Name] = BuiltDataPoints(s);
+            //        }
+            //    }
+            //}
+            //catch (Exception e)
+            //{
+            //    MessageBox.Show(e.Message);
+            //}
 
 
         }
-        private List<DataPoint> BuiltDataPoints(DesignerChartDataSeries s)
-        {
-            List<DataPoint> dps = new List<DataPoint>();
+        //private List<DataPoint> BuiltDataPoints(DesignerChartDataSerie s)
+        //{
+        //    List<DataPoint> dps = new List<DataPoint>();
 
-            DataTable data = DataCache[s.Name];
+        //    DataTable data = DataCache[s.Name];
 
-            foreach (DataRow dr in data.Rows)
-            {
-                DataPoint dp = new DataPoint();
-                dp.XValue = dr[s.XValueBindName];
-                dp.YValue = Convert.ToDouble(dr[s.YValueBindName]);
-                dps.Add(dp);
-            }
+        //    foreach (DataRow dr in data.Rows)
+        //    {
+        //        DataPoint dp = new DataPoint();
+        //        dp.XValue = dr[s.XValueBindName];
+        //        dp.YValue = Convert.ToDouble(dr[s.YValueBindName]);
+        //        dps.Add(dp);
+        //    }
 
-            return dps;
-        }
-        //绑定数据
-        private void BindData(DesignerChartDataSeries s)
-        {
-            List<DataPoint> dps = DataPointsCache[s.Name];
-            foreach (DataSeries ds in uChart.Series)
-            {
-                if (ds.Uid == s.ID.ToString())
-                {
-                    ds.DataPoints = new DataPointCollection(dps);
-                    return;
-                }
-            }
-        }
+        //    return dps;
+        //}
+        ////绑定数据
+        //private void BindData(DesignerChartDataSerie s)
+        //{
+        //    List<DataPoint> dps = DataPointsCache[s.Name];
+        //    foreach (DataSeries ds in uChart.Series)
+        //    {
+        //        if (ds.Uid == s.ID.ToString())
+        //        {
+        //            ds.DataPoints = new DataPointCollection(dps);
+        //            return;
+        //        }
+        //    }
+        //}
 
         #endregion
 
 
         #region 定时器函数
 
-        private void AddTimer(DesignerChartDataSeries s)
-        {
-            DispatcherTimer dt = new DispatcherTimer();
-            dt = new DispatcherTimer();
-            dt.Tick += (object sender, EventArgs e) =>
-            {
-                this.Dispatcher.BeginInvoke(DispatcherPriority.Normal, (ThreadStart)delegate()
-                    {
-                        GetData(s);
-                        BindData(s);
-                      }
-                 );
+        //private void AddTimer(DesignerChartDataSerie s)
+        //{
+        //    DispatcherTimer dt = new DispatcherTimer();
+        //    dt = new DispatcherTimer();
+        //    dt.Tick += (object sender, EventArgs e) =>
+        //    {
+        //        this.Dispatcher.BeginInvoke(DispatcherPriority.Normal, (ThreadStart)delegate()
+        //            {
+        //                GetData(s);
+        //                BindData(s);
+        //              }
+        //         );
                
-            };
-            dt.Interval = new TimeSpan(0, 0, 0, 0, s.DataAccessTimeSpan);
-            if (Timers == null)
-                Timers = new Dictionary<string, DispatcherTimer>();
-            if (!Timers.Keys.Contains(s.Name))
-            {
-                Timers.Add(s.Name, dt);
-            }
-            else
-            {
-                Timers[s.Name] = dt;
-            }
-        }
+        //    };
+        //    dt.Interval = new TimeSpan(0, 0, 0, 0, s.DataAccessTimeSpan);
+        //    if (Timers == null)
+        //        Timers = new Dictionary<string, DispatcherTimer>();
+        //    if (!Timers.Keys.Contains(s.Name))
+        //    {
+        //        Timers.Add(s.Name, dt);
+        //    }
+        //    else
+        //    {
+        //        Timers[s.Name] = dt;
+        //    }
+        //}
 
         #endregion
 
 
         #region 定时器组
 
-        private Dictionary<string, DispatcherTimer> Timers { get; set; }
+        //private Dictionary<string, DispatcherTimer> Timers { get; set; }
 
-        #endregion
+        //#endregion
 
-        #region 数据缓存
-
-        private Dictionary<string, DataTable> DataCache { get; set; }
-
-        private Dictionary<string, List<DataPoint>> DataPointsCache { get; set; }
+        //#region 数据缓存
+        //private Dictionary<string, List<DataPoint>> DataPointsCache { get; set; }
 
         #endregion
 

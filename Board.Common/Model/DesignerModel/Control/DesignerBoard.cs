@@ -16,13 +16,25 @@ namespace Board.DesignerModel
         {
             this.Type = DesignerElementType.Control;
             this.Children = new ObservableCollection<DesignerControl>();
+            this.BackWorkers = new ObservableCollection<DesignerDataSource>();
         } 
         [ReadOnly(true)]
-        [Category("内容")]
-        [DisplayName("子元素集合")]
-        [Description("子元素集合")]   
+        [Category("前台控件")]
+        [DisplayName("可视元素集合")]
+        [Description("可视元素集合")]   
         [XmlArray("Children"),XmlArrayItem("Control")]
         public ObservableCollection<DesignerControl> Children
+        {
+            get;
+            set;
+        }
+
+        [ReadOnly(true)]
+        [Category("后台控件")]
+        [DisplayName("后台元素集合")]
+        [Description("后台元素集合")]
+        [XmlArray("BackChildren"), XmlArrayItem("BackControl")]
+        public ObservableCollection<DesignerDataSource> BackWorkers
         {
             get;
             set;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Board.Interface;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -12,8 +13,8 @@ using System.Xml.Serialization;
 
 namespace Board.DesignerModel
 {
-   [XmlType("Table")] 
-    public class DesignerTable : DesignerControl
+   [XmlType("Table")]
+    public class DesignerTable : DesignerControl, IDynamicData
     {
         public DesignerTable()
         {
@@ -534,23 +535,22 @@ namespace Board.DesignerModel
         #endregion
 
         #region 数据
-        [XmlIgnore]
         [Browsable(false)]
-        public DesignerDataSource _dataSource { get; set; }
+        [XmlIgnore]
+        public string _dataSourceKey { get; set; }
+
+        [ReadOnly(true)]
         [Category("数据")]
         [DisplayName("数据源")]
-        [Description("数据源设置")]
-        [XmlElement("DataSource")]
-        public DesignerDataSource DataSource
+        [Description("数据源")]
+        [XmlElement("DataSourceKey")]
+        public string DataSourceKey
         {
-            get
-            {
-                return this._dataSource;
-            }
+            get { return this._dataSourceKey; }
             set
             {
-                this._dataSource = value;
-                OnPropertyChanged("DataSource");
+                this._dataSourceKey = value;
+                OnPropertyChanged("DataSourceKey");
             }
         }
 
@@ -692,7 +692,6 @@ namespace Board.DesignerModel
 
         #endregion
 
-
         #region 滚动条
 
         [XmlIgnore]
@@ -703,7 +702,7 @@ namespace Board.DesignerModel
             set;
         }
 
-        [Category("图表")]
+        [Category("滚动条")]
         [DisplayName("水平滚动条可见性")]
         [Description("水平滚动条可见性")]
         [XmlAttribute("HorizontalScrollBarVisibility")]
@@ -725,7 +724,7 @@ namespace Board.DesignerModel
             set;
         }
 
-        [Category("图表")]
+        [Category("滚动条")]
         [DisplayName("垂直滚动条可见性")]
         [Description("垂直滚动条可见性")]
         [XmlAttribute("VerticalScrollBarVisibility")]

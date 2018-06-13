@@ -9,7 +9,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Board.Controls.SystemControl;
 using Board.Converter;
 using BoardDesigner;
 using BoardDesigner.BoardControl;
@@ -18,6 +17,7 @@ using BoardDesigner.Properties;
 using Infragistics;
 using Infragistics.Collections;
 using Infragistics.Controls;
+using Infragistics.Controls.Barcodes;
 using Infragistics.Controls.Charts;
 using Infragistics.Controls.Editors;
 using Infragistics.Controls.Gauges;

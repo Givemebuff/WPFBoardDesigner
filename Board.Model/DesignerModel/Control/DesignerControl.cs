@@ -11,25 +11,27 @@ using System.Xml.Serialization;
 namespace Board.DesignerModel
 {
     [Serializable]
+    [XmlInclude(typeof(DesignerBoard))]
+    [XmlInclude(typeof(DesignerLabel))]
     public class DesignerControl : DesignerVisualContentElement
     {
         public DesignerControl() 
         { 
             this.Type = DesignerElementType.Control;
             this.Background = new DesignerBrush(Color.FromArgb(0,255,255,255));
-
         }
 
 
         #region 背景
 
         [Browsable(false)]
+        [XmlIgnore]
         public DesignerBrush _background { get; set; }
 
         [Category("视图")]
         [DisplayName("背景")]
         [Description("背景设置")]
-        [XmlAttribute("Background")]
+        [XmlElement("Background")]
         public DesignerBrush Background
         {
             get { return this._background; }
@@ -45,6 +47,7 @@ namespace Board.DesignerModel
         #region 排版
 
         [Browsable(false)]
+        [XmlIgnore]
         public VerticalAlignment _verticalAlignment { get; set; }
         [Category("排版")]
         [DisplayName("垂直方向")]
@@ -61,6 +64,7 @@ namespace Board.DesignerModel
         }
 
         [Browsable(false)]
+        [XmlIgnore]
         public VerticalAlignment _verticalContentAlignment { get; set; }
         [Category("排版")]
         [DisplayName("内容垂直方向")]
@@ -77,6 +81,7 @@ namespace Board.DesignerModel
         }
 
         [Browsable(false)]
+        [XmlIgnore]
         public HorizontalAlignment _horizontalAlignment { get; set; }
         [Category("排版")]
         [DisplayName("垂直方向")]
@@ -93,6 +98,7 @@ namespace Board.DesignerModel
         }
 
         [Browsable(false)]
+        [XmlIgnore]
         public HorizontalAlignment _horizontalContentAlignment { get; set; }
         [Category("排版")]
         [DisplayName("内容垂直方向")]
@@ -113,6 +119,7 @@ namespace Board.DesignerModel
         #region 边框
 
          [Browsable(false)]
+         [XmlIgnore]
         public DesignerBorder _border
         {
             get;
@@ -121,7 +128,7 @@ namespace Board.DesignerModel
          [Category("边框")]
          [DisplayName("边框")]
          [Description("设置边框")]
-         [XmlAttribute("Border")]
+         [XmlElement("Border")]
         public DesignerBorder Border 
         {
             get { return this._border; }

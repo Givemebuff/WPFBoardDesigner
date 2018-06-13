@@ -42,15 +42,15 @@ namespace BoardDesigner.Windows
 
         
 
-        public DesignerDataSource SelectedItem
+        public DesignerDataBaseDataSource SelectedItem
         {
-            get { return (DesignerDataSource)GetValue(SelectedItemProperty); }
+            get { return (DesignerDataBaseDataSource)GetValue(SelectedItemProperty); }
             set { SetValue(SelectedItemProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty SelectedItemProperty =
-            DependencyProperty.Register("SelectedItem", typeof(DesignerDataSource), typeof(DataSourceSettingWindow), new PropertyMetadata(null));
+            DependencyProperty.Register("SelectedItem", typeof(DesignerDataBaseDataSource), typeof(DataSourceSettingWindow), new PropertyMetadata(null));
 
 
         
@@ -78,7 +78,7 @@ namespace BoardDesigner.Windows
 
         void Select(string name) 
         {
-            foreach (DesignerDataSource ds in DataSourceList) 
+            foreach (DesignerDataBaseDataSource ds in DataSourceList) 
             {
                 if (ds.Name == name)
                 {
@@ -134,7 +134,7 @@ namespace BoardDesigner.Windows
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
 
-            DesignerDataSource ds = new DesignerDataSource();
+            DesignerDataBaseDataSource ds = new DesignerDataBaseDataSource();
             DataSourceList.Add(ds);
             this.SelectedItem = ds;           
         }

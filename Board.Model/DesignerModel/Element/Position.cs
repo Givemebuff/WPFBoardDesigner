@@ -38,6 +38,7 @@ namespace Board.DesignerModel
             this.Location = np;
         }
 
+        [XmlIgnore]
         [Browsable(false)]
 
         public Point _location
@@ -62,7 +63,7 @@ namespace Board.DesignerModel
         #endregion
 
         #region 边距
-
+        [XmlIgnore]
         [Browsable(false)]
         public Thickness _margin
         {
@@ -83,7 +84,7 @@ namespace Board.DesignerModel
             }
         }
         [Browsable(false)]
-
+        [XmlIgnore]
         public Thickness _padding
         {
             get;
@@ -107,6 +108,7 @@ namespace Board.DesignerModel
         #endregion
 
         #region 网格
+        [XmlIgnore]
         [Browsable(false)]
         public int _rowIndex
         {
@@ -127,6 +129,7 @@ namespace Board.DesignerModel
                 OnPropertyChanged("RowIndex");
             }
         }
+        [XmlIgnore]
         [Browsable(false)]
         public int _columnIndex
         {
@@ -150,6 +153,7 @@ namespace Board.DesignerModel
 
 
         #region 网格跨越
+        [XmlIgnore]
         [Browsable(false)]
         public int _rowSpan
         {
@@ -169,6 +173,7 @@ namespace Board.DesignerModel
                 OnPropertyChanged("RowSpan");
             }
         }
+        [XmlIgnore]
         [Browsable(false)]
         public int _columnSpan
         {
@@ -194,11 +199,13 @@ namespace Board.DesignerModel
         #endregion
 
         #region 图层
-          [Browsable(false)]
+        [XmlIgnore]
+        [Browsable(false)]
         public int _zIndex { get; set; }
         [Category("视图")]
         [DisplayName("所在图层")]
         [Description("所在Z轴图层，即平面的上下层次")]
+        [XmlAttribute("ZIndex")]
         public int ZIndex
         {
             get { return this._zIndex; }

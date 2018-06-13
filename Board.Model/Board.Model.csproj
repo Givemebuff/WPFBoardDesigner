@@ -51,7 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DesignerModel\Base\DesignerBase.cs" />
-    <Compile Include="DesignerModel\Brush\Brush.cs" />
+    <Compile Include="DesignerModel\Element\Brush.cs" />
     <Compile Include="DesignerModel\Container\Container.cs" />
     <Compile Include="DesignerModel\Control\DesignerBoard.cs" />
     <Compile Include="DesignerModel\Control\DesignerChart.cs" />

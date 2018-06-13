@@ -33,10 +33,9 @@ namespace Board.DesignerModel
         Media =21
 
 
-    }
-    [Serializable]
+    }    
     public class PropertyChangeBase : INotifyPropertyChanged
-    {
+    {        
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged(string propertyName)
         {
@@ -50,7 +49,8 @@ namespace Board.DesignerModel
     [Serializable]
     public class DesignerElement : PropertyChangeBase
     {
-        [XmlAttribute("Name")]
+
+        [XmlIgnore]
         [Browsable(false)]
         public string _name
         {
@@ -61,6 +61,7 @@ namespace Board.DesignerModel
         [Category("基础")]
         [DisplayName("名称")]
         [Description("元素的名字")]
+        [XmlAttribute("Name")]
        
         public string Name
         {
@@ -82,7 +83,7 @@ namespace Board.DesignerModel
         [Category("基础")]
         [DisplayName("元素种类")]
         [Description("设计元素的种类")]
-        [XmlAttribute("Type")]       
+        [XmlAttribute("DesignerType")]       
         public DesignerElementType Type
         {
             get;
@@ -112,6 +113,7 @@ namespace Board.DesignerModel
         #region 定位
 
         [Browsable(false)]
+        [XmlIgnore]
         public DesignerPosition _position
         {
             get;
@@ -121,7 +123,7 @@ namespace Board.DesignerModel
         [Category("视图")]
         [DisplayName("定位")]
         [Description("定位属性")]
-        [XmlAttribute("Position")]
+        [XmlElement("Position")]
         public DesignerPosition Position
         {
             get { return this._position; }
@@ -135,6 +137,7 @@ namespace Board.DesignerModel
 
         #region 尺寸
 
+        [XmlIgnore]
         [Browsable(false)]
         public DesignerSize _size
         {
@@ -161,6 +164,7 @@ namespace Board.DesignerModel
         #region 可见性
 
 
+        [XmlIgnore]
         [Browsable(false)]
         public Visibility _visibility
         {
@@ -185,7 +189,8 @@ namespace Board.DesignerModel
         #endregion
 
         #region 透明度
-        [XmlAttribute("Opacity")]
+
+        [XmlIgnore]
         [Browsable(false)]
         public double _opacity
         {
@@ -196,6 +201,7 @@ namespace Board.DesignerModel
         [Category("视图")]
         [DisplayName("透明度")]
         [Description("0-1")]
+        [XmlAttribute("Opacity")]
         public double Opacity
         {
             get

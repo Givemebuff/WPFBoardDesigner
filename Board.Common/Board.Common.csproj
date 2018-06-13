@@ -73,6 +73,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResourceManager\DataSourceManager.cs" />
     <Compile Include="ResourceManager\ImageResourcesManager.cs" />
+    <Compile Include="XmlConverter\ColorConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="DLL\Indusfo.Common.dll" />

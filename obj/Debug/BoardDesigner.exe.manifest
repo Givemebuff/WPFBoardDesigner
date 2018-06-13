@@ -179,38 +179,38 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Board.Converter.dll" size="15360">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Board.Converter.dll" size="18432">
       <assemblyIdentity name="Board.Converter" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>aC3wCmbQLyjhVN7N+UTyJhmf8H3mP5UUNt0pYTP2DwM=</dsig:DigestValue>
+        <dsig:DigestValue>uRHCY2PPsnb3SOw/cdMkQypYuCeJaQsFMHmaY4gfCrg=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BoardDesigner.exe" size="5104128">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BoardDesigner.exe" size="5103104">
       <assemblyIdentity name="BoardDesigner" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>fUoDbth+mi+tvMy4jEDbonekR08kIniS4BtK9txKuQc=</dsig:DigestValue>
+        <dsig:DigestValue>TKBay0VKCiMmeV84AEVjaaPz0J2+z0cfJPWWlJfhT+E=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BoardLibrary.dll" size="88064">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BoardLibrary.dll" size="88576">
       <assemblyIdentity name="BoardLibrary" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>OTP4lUX3FaEdRBaONSh5epm9B/y5FaQhPIChInwljRQ=</dsig:DigestValue>
+        <dsig:DigestValue>EmpeLmKcFisptvSLKFZUQxrKLsTNjYgpvnXQV+AUxzo=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

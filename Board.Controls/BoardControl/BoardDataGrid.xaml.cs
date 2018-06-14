@@ -1,5 +1,6 @@
 ﻿using Board.DesignerModel;
 using Board.Interface;
+using Board.Resource;
 using Indusfo.Common;
 using Indusfo.Data.DataAccessBaseLayer;
 using System;
@@ -34,15 +35,6 @@ namespace Board.Controls.BoardControl
 
         #region 数据源
 
-        public DesignerDataSource DataSource
-        {
-            get { return (DesignerDataSource)GetValue(DataSourceProperty); }
-            set { SetValue(DataSourceProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for DataSource.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty DataSourceProperty =
-            DependencyProperty.Register("DataSource", typeof(DesignerDataSource), typeof(BoardDataGrid), new PropertyMetadata(null));
 
         public DataTable ItemSource
         {
@@ -269,16 +261,16 @@ namespace Board.Controls.BoardControl
             this.SetBinding(RowCountProperty, new Binding("DisplayRowCount") { Source = DataContext });
             this.SetBinding(AlterRowsProperty, new Binding("AlterRows") { Source = DataContext });
             this.SetBinding(PaggingTimeSpanProperty, new Binding("PaggingTimeSpan") { Source = DataContext });
-            this.SetBinding(DataSourceProperty, new Binding("DataSource") { Source = DataContext });
             Columns.CollectionChanged += Columns_CollectionChanged;
         }
 
 
         #region 数据
 
-        public void GetData()
+        public async Task<DataTable> GetData()
         {
-            
+            DataTable data = (await DataSourceManager.GetDataAsync(DesignerModel.DataSourceKey)) as DataTable; ;
+            return data;
         }
 
         public void StartBind()
@@ -292,7 +284,6 @@ namespace Board.Controls.BoardControl
                     PageCount++;
                 PageIndex = 0;
             }
-
         }
 
         /// <summary>
@@ -306,9 +297,15 @@ namespace Board.Controls.BoardControl
 
         public void StartWork()
         {
+            Work();
             DataAccrssTimer.Start();
-            GetData();
             PaggingTimer.Start();
+        }
+
+        private async void Work()
+        {
+            ItemSource = await GetData();
+            StartBind();
         }
 
         private void PaggingTimer_Tick(object sender, EventArgs e)
@@ -322,9 +319,9 @@ namespace Board.Controls.BoardControl
             opacityAnimation2.Duration = new Duration(TimeSpan.FromSeconds(2));
             ContentGrid.BeginAnimation(Grid.OpacityProperty, opacityAnimation2);
         }
-        void DataAccrssTimer_Tick(object sender, EventArgs e)
+        async void DataAccrssTimer_Tick(object sender, EventArgs e)
         {
-            GetData();
+            ItemSource = await GetData();
         }
 
         public DataTable GetNextPageData()
@@ -385,7 +382,8 @@ namespace Board.Controls.BoardControl
                     }
                     tb.SetValue(Grid.RowProperty, i);
                     tb.SetValue(Grid.ColumnProperty, j);
-                    ContentGrid.Children.Add(tb);
+                    this.Dispatcher.BeginInvoke(() => ContentGrid.Children.Add(tb));
+                    
                 }
             }
         }

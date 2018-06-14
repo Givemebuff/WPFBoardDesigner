@@ -77,7 +77,34 @@
 
             </igWPF:TabItemEx>
             <igWPF:TabItemEx Header="静态文本">
-
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <ListView BorderThickness="1" BorderBrush="#FF0072C6" ItemsSource="{Binding StaticTextDataSourceList, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type windows:DataSourceSettingWindow}}}" SelectionChanged="ListView_SelectionChanged" >
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="数据源名" DisplayMemberBinding="{Binding Name}" Width="200"></GridViewColumn>
+                                <GridViewColumn Header="文本内容" DisplayMemberBinding="{Binding Text}" Width="500"></GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <Grid Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="8*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock HorizontalAlignment="Right"  VerticalAlignment="Center">数据源名：</TextBlock>
+                        <TextBox x:Name="StaticDSNameTB" Text="{Binding SelectedItem.Name, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type windows:DataSourceSettingWindow}}}" Grid.Column="1" Width="200" HorizontalAlignment="Left" Margin="5"></TextBox>
+                        <TextBlock HorizontalAlignment="Right" Grid.Row="1" VerticalAlignment="Top">文本：</TextBlock>
+                        <TextBox x:Name="StaticDSTextTB" Text="{Binding SelectedItem.Text, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type windows:DataSourceSettingWindow}}}" Grid.Column="1" Grid.Row="1"  Margin="5"></TextBox>
+                    </Grid>
+                </Grid>
             </igWPF:TabItemEx>
         </igWPF:XamTabControl>
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">

@@ -111,9 +111,7 @@ namespace BoardDesigner.CustomPage
         void DesignDataSource_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             if (this.SelectItem == null)
-                e.CanExecute = false;
-            else if (this.SelectItem is DesignerBoard)
-                e.CanExecute = false;
+                e.CanExecute = false;          
             else if (this.SelectItem  is IDynamicData)
             {
                 e.CanExecute = true;
@@ -129,10 +127,10 @@ namespace BoardDesigner.CustomPage
             {
 
             }
-            else 
+            else if (this.SelectItem is IDynamicData) 
             {
                 key = (this.SelectItem as IDynamicData).DataSourceKey;
-            }
+            }           
 
             DataSourceSettingWindow win = new DataSourceSettingWindow(key);
             if (win.ShowDialog() == true)
@@ -140,9 +138,8 @@ namespace BoardDesigner.CustomPage
                 //更改Key，并通过管理器获取对象添加至数据源集合
                 key = win.SelectedItem.Name;
                 (this.SelectItem as IDynamicData).DataSourceKey = key;
-                this.Board.BackWorkers.Add(DataSourceManager.GetDataSourceByKey(key));
-            }
-         
+                this.Board.AddBackWorker(DataSourceManager.GetDataSourceByKey(key));
+            }         
         }
 
         #endregion

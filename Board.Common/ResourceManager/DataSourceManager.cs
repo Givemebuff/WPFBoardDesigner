@@ -17,12 +17,7 @@ using System.Xml.Serialization;
 namespace Board.Resource
 {
     public class DataSourceManager
-    {
-        //全局唯一实例
-        private static DataSourceManager uniqueInstance;
-        //锁
-        private static readonly object locker = new object();
-        //私有构造
+    {  
         public DataSourceManager()
         {
 
@@ -68,6 +63,10 @@ namespace Board.Resource
                 case DesignerDataSourceType.RemoteURL:
                     DesignerRemoteURIDataSource ruds = dataSource as DesignerRemoteURIDataSource;
                     UpdateDataSource(dataSourceKey, ruds);
+                    break;
+                case DesignerDataSourceType.StaticText:
+                    DesignerStaticTextDataSource stds = dataSource as DesignerStaticTextDataSource;
+                    UpdateDataSource(dataSourceKey, stds);
                     break;
                 case DesignerDataSourceType.Default:
                     UpdateDataSource(dataSourceKey, dataSource);
@@ -143,7 +142,7 @@ namespace Board.Resource
         {
             if (DatasList.Keys.Contains(key))
             {
-                ExcuteDataSource(key);
+                await Task.Run(() => ExcuteDataSource(key));//执行
                 return DatasList[key];
             }
             else
@@ -226,13 +225,16 @@ namespace Board.Resource
         //}
 
     }
-
+    /// <summary>
+    /// 数据库数据源
+    /// </summary>
     public class DataBaseDataSourceManager
     {
-        public static IEnumerable<DesignerDataBaseDataSource> GetDataSources()
+        #region 
+        public static IEnumerable<DesignerDataBaseDataSource> GetDataBaseDataSources()
         {
             ObservableCollection<DesignerDataBaseDataSource> dss = new ObservableCollection<DesignerDataBaseDataSource>();
-            string curDirPath = Directory.GetCurrentDirectory() + @"\DataSources";
+            string curDirPath = Directory.GetCurrentDirectory() + @"\DataSources\DataBase";
             //若不存在文件夹则先创建
             if (!Directory.Exists(curDirPath))
             {
@@ -269,9 +271,9 @@ namespace Board.Resource
             }
             
         }
-        public static string AddDataBaseDataSource(DesignerDataBaseDataSource ds) 
+        public static string UpdateDataBaseDataSource(DesignerDataBaseDataSource ds) 
         {
-            string path = Directory.GetCurrentDirectory() + @"\DataSources\"+ds.Name+".bds";
+            string path = Directory.GetCurrentDirectory() + @"\DataSources\DataBase\"+ds.Name+".bds";
             try 
             {
                 MemoryStream Stream = new MemoryStream();
@@ -289,13 +291,95 @@ namespace Board.Resource
                 sw.Close(); 
                 sr.Dispose();
                 Stream.Dispose();
+
+                //注册该数据源
+                DataSourceManager.Register(ds.Name, ds.DataSourceType, ds);
+
+
                 return path;
             }
             catch (Exception e)
             {
                 throw new Exception("增加数据库数据源时出错：" + e.Message);
             }
-            
+
+        }
+
+        #endregion       
+    }
+    /// <summary>
+    /// 静态文本数据源
+    /// </summary>
+    public class StaticTextDataSourceManager 
+    {
+        public static IEnumerable<DesignerStaticTextDataSource> GetStaticTextDataSources()
+        {
+            ObservableCollection<DesignerStaticTextDataSource> dss = new ObservableCollection<DesignerStaticTextDataSource>();
+            string curDirPath = Directory.GetCurrentDirectory() + @"\DataSources\StaticText";
+            //若不存在文件夹则先创建
+            if (!Directory.Exists(curDirPath))
+            {
+                Directory.CreateDirectory(curDirPath);
+            }
+            DirectoryInfo di = new DirectoryInfo(curDirPath);
+            FileInfo[] fis = di.GetFiles();
+            try
+            {
+                foreach (FileInfo fi in fis)
+                {
+                    string ext = fi.Extension.ToLower();
+                    if (ext.IndexOf("bds") == -1 && ext.IndexOf("xml") == -1)
+                        continue;
+                    else
+                    {
+
+                        string xml = File.ReadAllText(fi.FullName);
+                        using (StringReader sr = new StringReader(xml))
+                        {
+                            XmlSerializer xmldes = new XmlSerializer(typeof(DesignerStaticTextDataSource));
+                            DesignerStaticTextDataSource ds = xmldes.Deserialize(sr) as DesignerStaticTextDataSource;
+                            dss.Add(ds);
+                        }
+                    }
+                }
+                return dss;
+            }
+            catch (Exception e)
+            {
+                throw new Exception("读取静态文本数据源时出错：" + e.Message);
+            }
+
+        }
+        public static string UpdateStaticTextDataSource(DesignerStaticTextDataSource ds)
+        {
+            string path = Directory.GetCurrentDirectory() + @"\DataSources\StaticText\" + ds.Name + ".bds";
+            try
+            {
+                MemoryStream Stream = new MemoryStream();
+                XmlSerializer xml = new XmlSerializer(typeof(DesignerStaticTextDataSource));
+                //序列化对象  
+                xml.Serialize(Stream, ds);
+                Stream.Position = 0;
+                StreamReader sr = new StreamReader(Stream);
+                string str = sr.ReadToEnd();
+                //存到文件
+
+                FileStream fs = new FileStream(path, FileMode.OpenOrCreate, FileAccess.ReadWrite);
+                StreamWriter sw = new StreamWriter(fs); // 创建写入流
+                sw.Write(str);
+                sw.Close();
+                sr.Dispose();
+                Stream.Dispose();
+
+                //注册该数据源
+                DataSourceManager.Register(ds.Name, ds.DataSourceType, ds);
+                return path;
+            }
+            catch (Exception e)
+            {
+                throw new Exception("增加静态文本数据源时出错：" + e.Message);
+            }
+
         }
     }
 }

@@ -39,6 +39,16 @@ namespace Board.DesignerModel
             get;
             set;
         }
+
+        public void AddBackWorker(DesignerDataSource ds)
+        {
+            if (BackWorkers.Contains(ds))
+                return;
+            else 
+            {
+                BackWorkers.Add(ds);
+            }
+        }
     }
 
 

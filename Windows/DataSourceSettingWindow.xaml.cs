@@ -28,9 +28,20 @@ namespace BoardDesigner.Windows
     /// </summary>
     public partial class DataSourceSettingWindow : Window
     {
+        #region 静态文本
+        public ObservableCollection<DesignerStaticTextDataSource> StaticTextDataSourceList
+        {
+            get { return (ObservableCollection<DesignerStaticTextDataSource>)GetValue(StaticTextDataSourceListProperty); }
+            set { SetValue(StaticTextDataSourceListProperty, value); }
+        }
 
+        // Using a DependencyProperty as the backing store for StaticTextDataSourceList.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty StaticTextDataSourceListProperty =
+            DependencyProperty.Register("StaticTextDataSourceList", typeof(ObservableCollection<DesignerStaticTextDataSource>), typeof(DataSourceSettingWindow), new PropertyMetadata(StaticTextDataSourceManager.GetStaticTextDataSources()));
 
+        #endregion
 
+        #region 数据库
         public ObservableCollection<DesignerDataBaseDataSource> DataBaseDataSourceList
         {
             get { return (ObservableCollection<DesignerDataBaseDataSource>)GetValue(DataBaseDataSourceListProperty); }
@@ -39,8 +50,8 @@ namespace BoardDesigner.Windows
 
         // Using a DependencyProperty as the backing store for DataSourceList.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty DataBaseDataSourceListProperty =
-            DependencyProperty.Register("DataBaseDataSourceList", typeof(ObservableCollection<DesignerDataBaseDataSource>), typeof(DataSourceSettingWindow), new PropertyMetadata(DataBaseDataSourceManager.GetDataSources()));
-
+            DependencyProperty.Register("DataBaseDataSourceList", typeof(ObservableCollection<DesignerDataBaseDataSource>), typeof(DataSourceSettingWindow), new PropertyMetadata(DataBaseDataSourceManager.GetDataBaseDataSources()));
+        #endregion
 
 
         public DesignerDataSource SelectedItem
@@ -52,8 +63,6 @@ namespace BoardDesigner.Windows
         // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty SelectedItemProperty =
             DependencyProperty.Register("SelectedItem", typeof(DesignerDataSource), typeof(DataSourceSettingWindow), new PropertyMetadata(null));
-
-
 
 
         public DataSourceSettingWindow()
@@ -70,7 +79,7 @@ namespace BoardDesigner.Windows
         }
 
         void Init()
-        {          
+        {
 
         }
 
@@ -109,7 +118,7 @@ namespace BoardDesigner.Windows
 
         private void DataViewButton_Click(object sender, RoutedEventArgs e)
         {
-            try 
+            try
             {
                 using (SqlExcuter se = new SqlExcuter(DataBaseType.SqlServer, (this.SelectedItem as DesignerDataBaseDataSource).ConnectionString))
                 {
@@ -119,7 +128,7 @@ namespace BoardDesigner.Windows
                     win.Show();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -157,27 +166,35 @@ namespace BoardDesigner.Windows
                     throw new NotImplementedException();
                     break;
                 case "静态文本":
-                    throw new NotImplementedException();
+                   ds = new DesignerStaticTextDataSource();
+                   StaticTextDataSourceList.Add(ds as DesignerStaticTextDataSource);
                     break;
                 default:
-                    throw new NotImplementedException();  
-            }       
+                    throw new NotImplementedException();
+            }
             this.SelectedItem = ds;
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
-            //string path = Directory.GetCurrentDirectory() + "\\DataSources\\" + this.SelectedItem.Name + ".bds";
-            //File.Delete(path);
-            //this.DataBaseDataSourceList.Remove(this.SelectedItem);
-            //this.SelectedItem = null;
+            string path = Directory.GetCurrentDirectory() + "\\DataSources\\DataBase\\" + this.SelectedItem.Name + ".bds";
+            File.Delete(path);
+            this.DataBaseDataSourceList.Remove(this.SelectedItem as DesignerDataBaseDataSource);
+            this.SelectedItem = null;
         }
 
         private void OKButton_Click(object sender, RoutedEventArgs e)
         {
+            //确认后，更新每个数据源
+            //Database
             foreach (DesignerDataBaseDataSource ds in DataBaseDataSourceList)
             {
-                DataBaseDataSourceManager.AddDataBaseDataSource(ds);
+                DataBaseDataSourceManager.UpdateDataBaseDataSource(ds);
+            }
+            //StaticText
+            foreach (DesignerStaticTextDataSource ds in StaticTextDataSourceList)
+            {
+                StaticTextDataSourceManager.UpdateStaticTextDataSource(ds);
             }
             this.DialogResult = true;
         }
@@ -186,7 +203,11 @@ namespace BoardDesigner.Windows
         {
             this.DialogResult = false;
         }
-
+        /// <summary>
+        /// 数据库名下拉框下拉时，远程获取所有数据库名
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DSDBCB_DropDownOpened(object sender, EventArgs e)
         {
             if (this.SelectedItem == null)
@@ -224,6 +245,14 @@ namespace BoardDesigner.Windows
             if (e.AddedItems.Count > 0)
             {
                 this.SelectedItem = e.AddedItems[0] as DesignerDataBaseDataSource;
+            }
+        }
+
+        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.AddedItems.Count > 0)
+            {
+                this.SelectedItem = e.AddedItems[0] as DesignerStaticTextDataSource;
             }
         }
     }

@@ -14,13 +14,13 @@ namespace Board.DesignerModel
         DataBase = 1,
         LocalFile = 2,
         RemoteURL = 3,
-        Static = 4
+        StaticText = 4
     }
     [XmlType("DataSource")]
     [XmlInclude(typeof(DesignerDataBaseDataSource))]
     [XmlInclude(typeof(DesignerLocalFileDataSource))]
     [XmlInclude(typeof(DesignerRemoteURIDataSource))]
-    [XmlInclude(typeof(DesignerStaticDataSource))]
+    [XmlInclude(typeof(DesignerStaticTextDataSource))]
     public class DesignerDataSource : DesignerElement
     {
         [Browsable(false)]
@@ -184,11 +184,30 @@ namespace Board.DesignerModel
         }
     }
     [XmlType("STDataSource")]
-    public class DesignerStaticDataSource : DesignerDataSource
+    public class DesignerStaticTextDataSource : DesignerDataSource
     {
-        public DesignerStaticDataSource()
+        public DesignerStaticTextDataSource()
         {
-            this._dataSourceType = DesignerDataSourceType.Static;
+            this._dataSourceType = DesignerDataSourceType.StaticText;
+        }
+        [Browsable(false)]
+        [XmlIgnore]
+        public string _text
+        {
+            get;
+            set;
+        }
+        [Category("数据源")]
+        [DisplayName("静态文本内容")]
+        [XmlAttribute("Text")]
+        public string Text
+        {
+            get { return this._text; }
+            set
+            {
+                this._text = value;
+                OnPropertyChanged("Text");
+            }
         }
     }
 }

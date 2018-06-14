@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<DBDataSource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="公司内网测试数据源" GUID="ddc4f8c8-7eaf-4789-9009-679ad68cfb19" DesignerType="Element" Address="192.168.0.104" DataBaseName="ceshi" UID="Indusfo" PassWord="Indusfo123456">
+  <SqlString>select * from ChartTextTable</SqlString>
+</DBDataSource>

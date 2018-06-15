@@ -9,7 +9,7 @@ using System.Windows.Media;
 using System.Xml.Serialization;
 
 namespace Board.DesignerModel
-{    
+{    [Serializable]
     [XmlType("Border")]
     public class DesignerBorder : DesignerElement
     {

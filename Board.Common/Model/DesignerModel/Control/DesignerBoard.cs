@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 using System.Xml.Serialization;
 
 namespace Board.DesignerModel
-{   
+{
+    [Serializable]
     [XmlType("Board")]    
     public class DesignerBoard:DesignerControl
     {       

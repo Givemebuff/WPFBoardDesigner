@@ -70,7 +70,9 @@
     <Compile Include="Converter\BindConverter\StringToImageSourceConverter.cs" />
     <Compile Include="Converter\BindConverter\StringToUriConverter.cs" />
     <Compile Include="Converter\XmlConverter\ThicknessConverter.cs" />
+    <Compile Include="DataHelper\BytesHelper.cs" />
     <Compile Include="DataHelper\ControlHelper.cs" />
+    <Compile Include="DataHelper\CopyHelper.cs" />
     <Compile Include="DataHelper\XmlHelper.cs" />
     <Compile Include="Interface\IDynamicData.cs" />
     <Compile Include="Model\DesignerModel\Base\DesignerBase.cs" />

@@ -28,7 +28,7 @@ namespace BoardDesigner.CustomPage
     /// DesignerPage.xaml 的交互逻辑
     /// </summary>
     public partial class DesignerPage : Page
-    {
+    {      
         public string FilePath { get; set; }
 
 
@@ -77,6 +77,7 @@ namespace BoardDesigner.CustomPage
             InitializeComponent();
             CreateBoardDesignerPanel(Board);
             InitCustomCommand();
+
         }
         public DesignerPage(DesignerBoard db)
         {

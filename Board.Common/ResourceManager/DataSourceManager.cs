@@ -348,7 +348,7 @@ namespace Board.Resource
             }
             catch (Exception e)
             {
-                throw new Exception("执行数据源:" + ds.Name + "时发生异常，详细信息：" + e.Message);
+                LogManager.WriteLog("执行数据源:" + ds.Name + "时发生异常，详细信息：" + e.Message);
             }
 
         }

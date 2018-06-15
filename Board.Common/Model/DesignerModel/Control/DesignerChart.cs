@@ -15,6 +15,7 @@ using Visifire.Commons;
 
 namespace Board.DesignerModel
 {
+    [Serializable]
     [XmlType("Chart")]
     public class DesignerChart : DesignerControl
     {
@@ -118,6 +119,7 @@ namespace Board.DesignerModel
 
     }
 
+    [Serializable]
     [XmlType("Title")]
     public class DesignerChartTitle : DesignerVisualElement
     {
@@ -232,6 +234,7 @@ namespace Board.DesignerModel
             }
         }
     }
+    [Serializable]
     [XmlType("Axis")]
     public class DesignerChartAxis : DesignerVisualElement
     {
@@ -521,6 +524,7 @@ namespace Board.DesignerModel
         #endregion
     }
 
+    [Serializable]
     [XmlType("Serie")]
     public class DesignerChartDataSerie : DesignerVisualElement, IDynamicData
     {
@@ -1591,7 +1595,10 @@ namespace Board.DesignerModel
 
         #endregion
 
+    
     }
+     [Serializable]
+     [XmlType("DataPoint")]
     public class DesignerDataPoint : DesignerVisualElement
     {
         public DesignerDataPoint()
@@ -2274,6 +2281,7 @@ namespace Board.DesignerModel
             }
         }
     }
+     [Serializable]
     [XmlType("DataPoints")]
     public class DesignerDataPointCollection : ObservableCollection<DesignerDataPoint>
     {

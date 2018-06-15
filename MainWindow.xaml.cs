@@ -262,21 +262,18 @@ namespace BoardDesigner
         }
         private void SaveProCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-
-            Microsoft.Win32.SaveFileDialog sfd = new Microsoft.Win32.SaveFileDialog();
-            sfd.DefaultExt = ".Board";
-            sfd.Filter = "看板(*.Board)|*.Board|All Files|*.*";
-            sfd.FileName =  CurrentDesignerPage.Board.Name+".Board";
-            if (sfd.ShowDialog() == true) 
+            //若是从文件中打开，则DesignerPage存由FilePath，直接覆盖保存，若无，打开保存文件框
+            if (string.IsNullOrEmpty(this.CurrentDesignerPage.FilePath))
             {
-                CurrentDesignerPage.Board.Name = sfd.SafeFileName;
-                (MainTabGroupPane.SelectedItem as ContentPane).Header = sfd.SafeFileName;
-                string path = sfd.FileName;
-                DesignerBoard bd =( CurrentDesignerPage.DesignerGrid.Children[0] as DesignerCanvas).Warp();
-                BoardManager.SaveBoard(bd, path);
-                this.Logout("Saved Board " + CurrentDesignerPage.Board.Name);
+                OpenSaveFileDialogToSaveBoard();
             }
-            
+            else
+            {
+                DesignerBoard bd = (CurrentDesignerPage.DesignerGrid.Children[0] as DesignerCanvas).Warp();
+                BoardManager.SaveBoard(bd, this.CurrentDesignerPage.FilePath);
+            }
+
+
             e.Handled = true;
         }
 
@@ -295,6 +292,12 @@ namespace BoardDesigner
         }
         private void CloseProCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {
+            //若关闭时Board的HashCode于初始化时不一样，则打开文件保存框
+            //object board= (CurrentDesignerPage.DesignerGrid.Children[0] as DesignerCanvas).Warp();
+            //string md5 = Board.DataHelper.BytesHelper.GetMD5Hash(Board.DataHelper.BytesHelper.FormatterObjectBytes(board));
+            SaveProCommand_Executed(sender, e);        
+            this.MainTabGroupPane.Items.Remove(this.MainContentHost.ActiveDocument);
+
             e.Handled = true;
         }
 
@@ -304,20 +307,21 @@ namespace BoardDesigner
 
         void CopyCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            if (this.CurrentDesignerPage == null)
-                e.CanExecute = false;
-            else
-            {
-                if (this.CurrentDesignerPage.SelectItem != null && !(this.CurrentDesignerPage.SelectItem is DesignerBoard))
-                    e.CanExecute = true;
-                else
-                    e.CanExecute = false;
-            }
+            //if (this.CurrentDesignerPage == null)
+            //    e.CanExecute = false;
+            //else
+            //{
+            //    if (this.CurrentDesignerPage.SelectItem != null && !(this.CurrentDesignerPage.SelectItem is DesignerBoard))
+            //        e.CanExecute = true;
+            //    else
+            //        e.CanExecute = false;
+            //}
+            e.CanExecute = false;
             e.Handled = true;
         }
         private void CopyCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-           
+
             e.Handled = true;
         }
 
@@ -326,10 +330,11 @@ namespace BoardDesigner
         #region 粘贴
         void PasteCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            if (this.CurrentDesignerPage != null)//粘贴板不为空TODO
-                e.CanExecute = true;
-            else
-                e.CanExecute = false;
+            //if (this.CurrentDesignerPage != null)//粘贴板不为空TODO
+            //    e.CanExecute = true;
+            //else
+            //    e.CanExecute = false;
+            e.CanExecute = false;
             e.Handled = true;
         }
         private void PasteCommand_Executed(object sender, ExecutedRoutedEventArgs e)
@@ -398,6 +403,34 @@ namespace BoardDesigner
 
         #endregion
 
+        #region 撤销
+
+        void UndoCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = false;
+            e.Handled = true;
+        }
+        private void UndoCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        #endregion
+
+        #region 重复
+
+        void RedoCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = false;
+            e.Handled = true;
+        }
+        private void RedoCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        #endregion
+
         #endregion
 
         #region 自定义命令
@@ -448,10 +481,7 @@ namespace BoardDesigner
 
         #endregion
 
-        private void ImageXamComboEditor_SelectionChanged(object sender, Infragistics.Controls.Editors.SelectionChangedEventArgs e)
-        {
 
-        }
 
         private void MainContentHost_ActiveDocumentChanged(object sender, RoutedPropertyChangedEventArgs<ContentPane> e)
         {
@@ -498,8 +528,25 @@ namespace BoardDesigner
             }
         }
 
-
-
+        /// <summary>
+        /// 打开保存文件对话框来保存看板文件
+        /// </summary>
+        public void OpenSaveFileDialogToSaveBoard()
+        {
+            Microsoft.Win32.SaveFileDialog sfd = new Microsoft.Win32.SaveFileDialog();
+            sfd.DefaultExt = ".Board";
+            sfd.Filter = "看板(*.Board)|*.Board|All Files|*.*";
+            sfd.FileName = CurrentDesignerPage.Board.Name + ".Board";
+            if (sfd.ShowDialog() == true)
+            {
+                CurrentDesignerPage.Board.Name = sfd.SafeFileName;
+                (MainTabGroupPane.SelectedItem as ContentPane).Header = sfd.SafeFileName;
+                string path = sfd.FileName;
+                DesignerBoard bd = (CurrentDesignerPage.DesignerGrid.Children[0] as DesignerCanvas).Warp();
+                BoardManager.SaveBoard(bd, path);
+                this.Logout("Saved Board " + CurrentDesignerPage.Board.Name);
+            }
+        }
 
 
 

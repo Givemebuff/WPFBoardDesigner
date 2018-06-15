@@ -10,7 +10,8 @@ using System.Windows.Media;
 using System.Xml.Serialization;
 
 namespace Board.DesignerModel
-{   
+{
+    [Serializable]
     [XmlType("Label")]
     [XmlInclude(typeof(DesignerDataGridColumn))]
     [XmlInclude(typeof(DesignerClock))]
@@ -64,6 +65,7 @@ namespace Board.DesignerModel
 
 
     }
+    [Serializable]
     [XmlType("Clock")]
     public class DesignerClock : DesignerLabel
     {
@@ -73,6 +75,7 @@ namespace Board.DesignerModel
              this.Text = "YYYY-MM-DD hh-mm-ss";
          }
     }
+    [Serializable]
     [XmlType("DynamicLabel")]
      public class DesignerDynamicLabel : DesignerLabel,IDynamicData
      {

@@ -10,6 +10,7 @@ using System.Xml.Serialization;
 
 namespace Board.DesignerModel
 {
+    [Serializable]
     [XmlType("AlterRow")]
     public class DesignerAlterRow: DesignerElement
     {

@@ -5,3 +5,11 @@ C:\Git\WPFBoardDesigner\Board.Common\bin\Release\Indusfo.DataAccessLayer.dll
 C:\Git\WPFBoardDesigner\Board.Common\bin\Release\WPFVisifire.Charts.dll
 C:\Git\WPFBoardDesigner\Board.Common\obj\Release\Board.Converter.dll
 C:\Git\WPFBoardDesigner\Board.Common\obj\Release\Board.Converter.pdb
+G:\Git\WPFBoardDesigner\Board.Common\bin\Release\Board.Converter.dll
+G:\Git\WPFBoardDesigner\Board.Common\bin\Release\Board.Converter.pdb
+G:\Git\WPFBoardDesigner\Board.Common\bin\Release\Indusfo.Common.dll
+G:\Git\WPFBoardDesigner\Board.Common\bin\Release\Indusfo.DataAccessLayer.dll
+G:\Git\WPFBoardDesigner\Board.Common\bin\Release\WPFVisifire.Charts.dll
+G:\Git\WPFBoardDesigner\Board.Common\obj\Release\Board.Converter.dll
+G:\Git\WPFBoardDesigner\Board.Common\obj\Release\Board.Converter.pdb
+G:\Git\WPFBoardDesigner\Board.Common\obj\Release\Board.Common.csprojResolveAssemblyReference.cache

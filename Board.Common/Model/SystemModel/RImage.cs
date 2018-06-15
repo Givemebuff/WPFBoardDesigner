@@ -16,7 +16,7 @@ namespace Board.SystemModel
             ImageName = fi.Name;
             Path = fi.FullName;
             ImageUri = new Uri(fi.FullName, UriKind.Absolute);
-            Source = new BitmapImage(new Uri(fi.FullName, UriKind.Absolute));
+            Source =File.Exists(fi.FullName)? new BitmapImage(new Uri(fi.FullName, UriKind.Absolute)):null;
 
             if (fi.Length < 1024)
             {

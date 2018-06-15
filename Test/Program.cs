@@ -24,6 +24,11 @@ namespace Test
             //    string s = Console.ReadLine();
             //    Console.WriteLine("异步的同时输入了：" + s);
             //}
+            DesignerBoard a = new DesignerBoard();
+            DesignerBoard b = new DesignerBoard();
+            
+            Console.WriteLine(a.GetHashCode());
+            Console.WriteLine(b.GetHashCode());
             Console.WriteLine(DateTime.Now.ToString());
         
             Console.Read();

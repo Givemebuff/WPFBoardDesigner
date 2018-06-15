@@ -8,6 +8,7 @@ using System.Xml.Serialization;
 
 namespace Board.DesignerModel
 {
+    [Serializable]
     public enum DesignerDataSourceType
     {
         Default = 0,

@@ -8,6 +8,7 @@ using System.Xml.Serialization;
 
 namespace Board.DesignerModel
 {
+    [Serializable]
     [XmlType("Image")]
     public class DesignerImage : DesignerControl
     {
@@ -43,7 +44,8 @@ namespace Board.DesignerModel
             }
         }
     }
-     [XmlType("GIF")]
+    [Serializable]
+    [XmlType("GIF")]
     public class DesignerGif :DesignerControl
     {
         public DesignerGif() 

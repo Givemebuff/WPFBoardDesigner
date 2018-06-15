@@ -26,6 +26,9 @@ namespace Board.BaseControl
 {
     public class DesignerCanvas : Canvas,IDesigner
     {
+        
+        public string MD5 { get; set; }
+        
         private Point? dragStartPoint = null;
         public object GetDesignerModel()
         {
@@ -100,6 +103,7 @@ namespace Board.BaseControl
             }
 
             ((DesignerCanvas)d).SelectItem = e.NewValue as DesignerBoard;
+            //(d as DesignerCanvas).MD5 = DataHelper.BytesHelper.GetMD5Hash(DataHelper.BytesHelper.FormatterObjectBytes(e.NewValue));
         }
 
         public IEnumerable<DesignerItem> SelectedItems

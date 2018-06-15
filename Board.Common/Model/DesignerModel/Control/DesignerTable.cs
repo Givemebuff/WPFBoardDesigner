@@ -13,7 +13,8 @@ using System.Xml.Serialization;
 
 namespace Board.DesignerModel
 {
-   [XmlType("Table")]
+    [Serializable]
+    [XmlType("Table")]
     public class DesignerTable : DesignerControl, IDynamicData
     {
         public DesignerTable()

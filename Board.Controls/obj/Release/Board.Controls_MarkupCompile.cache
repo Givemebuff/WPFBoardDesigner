@@ -4,7 +4,7 @@
 library
 C#
 .cs
-C:\Git\WPFBoardDesigner\Board.Controls\obj\Release\
+G:\Git\WPFBoardDesigner\Board.Controls\obj\Release\
 Board.Controls
 none
 false
@@ -13,7 +13,7 @@ TRACE
 121748318111
 4-323291486
 50-1754387205
-1930939620
+191282807536
 BoardControl\BoardChart.xaml;BoardControl\BoardClock.xaml;BoardControl\BoardDataGrid.xaml;BoardControl\BoardDataGridColumn.xaml;BoardControl\BoardDataGridContentTexkBlock.xaml;BoardControl\BoardDynamicLabel.xaml;BoardControl\BoardGif.xaml;BoardControl\BoardImage.xaml;BoardControl\BoardLabel.xaml;BoardControl\BoardMediaPlayer.xaml;SystemControl\BoardViewer.xaml;SystemControl\ShowList.xaml;
 
 False

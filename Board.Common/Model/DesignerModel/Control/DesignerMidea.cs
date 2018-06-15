@@ -8,6 +8,7 @@ using System.Xml.Serialization;
 
 namespace Board.DesignerModel
 {
+    [Serializable]
     [XmlType("Media")]
     public class DesignerMedia:DesignerControl
     {

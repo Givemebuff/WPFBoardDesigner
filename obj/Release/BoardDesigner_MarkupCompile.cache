@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Git\WPFBoardDesigner\obj\Release\
+G:\Git\WPFBoardDesigner\obj\Release\
 BoardDesigner
 none
 false
 TRACE
-C:\Git\WPFBoardDesigner\App.xaml
+G:\Git\WPFBoardDesigner\App.xaml
 281589187614
 6-1936996747
 14-1772589815
-53-75785103
+531850924443
 CustomPage\HelpPage.xaml;CustomPage\MainPage.xaml;MainWindow.xaml;CustomPage\DesignerPage.xaml;PreViewer.xaml;ResourceDictionaries\AngleInfoChrome.xaml;ResourceDictionaries\Brushes.xaml;ResourceDictionaries\DataGrid.xaml;ResourceDictionaries\DesignerItem.xaml;ResourceDictionaries\Expander.xaml;ResourceDictionaries\LineChrome.xaml;ResourceDictionaries\LineDecorator.xaml;ResourceDictionaries\LocationInfoChrome.xaml;ResourceDictionaries\ResizeableChrome.xaml;ResourceDictionaries\ResizeableDecorator.xaml;ResourceDictionaries\RotateableChrome.xaml;ResourceDictionaries\RotateableDecorator.xaml;ResourceDictionaries\SizeInfoChrome.xaml;ResourceDictionaries\Slider.xaml;ResourceDictionaries\ToolBar.xaml;ResourceDictionaries\ToolBox.xaml;ResourceDictionaries\ToolBox\BaseControl.xaml;ResourceDictionaries\TransformOriginPointChrome.xaml;ResourceDictionaries\TransformOriginPointDecorator.xaml;Windows\DataSourceSettingWindow.xaml;Windows\DataTablePreViewWindow.xaml;Windows\ImageResourceWindow.xaml;Windows\NewBoardWindow.xaml;
 
 False

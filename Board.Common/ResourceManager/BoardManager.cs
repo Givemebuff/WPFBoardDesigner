@@ -25,6 +25,28 @@ namespace Board.Resource
             }         
         }
 
+        public static List<string> GetRecents() 
+        {
+            //记录文件中读取
+            string path = Directory.GetCurrentDirectory() + "\\DataSources\\RecentBoards.xml";
+            if (!File.Exists(path))
+            {
+               StreamWriter sw =  File.CreateText(path);
+               sw.Close();
+            }
+
+            return DataHelper.XmlHelper.XmlDerialize<List<string>>(File.ReadAllText(path));
+        }
+
+        public static void AddRecent(string newPath)
+        {
+            string path = Directory.GetCurrentDirectory() + "\\DataSources\\RecentBoards.xml";
+            List<string> list=  DataHelper.XmlHelper.XmlDerialize<List<string>>(File.ReadAllText(path));
+            list.Add(newPath);
+
+            File.WriteAllText(path, DataHelper.XmlHelper.XmlSerialize(list));
+        }
+
 
     }
 }

@@ -53,6 +53,14 @@
                           CanExecute="DeleteCommand_CanExecute"
                          Executed="DeleteCommand_Executed">
         </CommandBinding>
+        <CommandBinding Command="ApplicationCommands.Undo"
+                          CanExecute="UndoCommand_CanExecute"
+                         Executed="UndoCommand_Executed">
+        </CommandBinding>
+        <CommandBinding Command="ApplicationCommands.Redo"
+                          CanExecute="RedoCommand_CanExecute"
+                         Executed="RedoCommand_Executed">
+        </CommandBinding>
     </Window.CommandBindings>
     <Grid Background="Gray">
         <Grid.RowDefinitions>
@@ -176,13 +184,14 @@
                                                         </Grid.ColumnDefinitions>
                                                         <ig:XamComboEditor x:Name="ImageXamComboEditor" 
                                                                            Height="30" MinWidth="200" 
-                                                                           IsEditable="True" AllowFiltering="True" 
-                                                                           SelectionChanged="ImageXamComboEditor_SelectionChanged"
-                                                                           DisplayMemberPath="ImageName"
+                                                                           IsEditable="True" AllowFiltering="True"                                                                           
+                                                                           DisplayMemberPath="ImageName"         
                                                                            SelectedValuePath="Path"                                                                          
                                                                            ItemsSource="{Binding RelativeSource={RelativeSource   Mode= FindAncestor,  AncestorType={x:Type MyWindow:MainWindow}}, Path=ImageResourceCollection}"
-                                                                         SelectedItem="{Binding Path=Value,Converter={StaticResource RImageToStringConverter}}"  EmptyText="选择一张图片..."
+                                                                           
+                                                                          SelectedValue="{Binding Path=Value}"  EmptyText="选择一张图片..."
                                                                           >
+                                                           
                                                             <ig:XamComboEditor.ItemTemplate>
                                                                 <DataTemplate>
                                                                     <Grid Height="60">
@@ -328,35 +337,35 @@
                 <Custom:RibbonGroup Id="Layer" Caption="层">
                     <Custom:ToolHorizontalWrapPanel>
                         <Custom:ButtonTool
-							Caption="组合" 
+							Caption="组合" IsEnabled="False"
 							Custom:RibbonGroup.MaximumSize="ImageAndTextLarge"
 							SmallImage="Resources/Images/Layer_Group_32px.png"
 							LargeImage="Resources/Images/Layer_Group_32px.png"/>
                     </Custom:ToolHorizontalWrapPanel>
                     <Custom:ToolHorizontalWrapPanel>
                         <Custom:ButtonTool
-							Caption="拆分" 
+							Caption="拆分" IsEnabled="False"
 							Custom:RibbonGroup.MaximumSize="ImageAndTextLarge"
 							SmallImage="Resources/Images/Shape_Ungroup_32px.png"
 							LargeImage="Resources/Images/Shape_Ungroup_32px.png"/>
                     </Custom:ToolHorizontalWrapPanel>
                     <Custom:ButtonGroup>                       
                             <Custom:ButtonTool
-							Caption="上移"							
+							Caption="上移"						IsEnabled="False"	
                             SmallImage="Resources/Images/BringForward.png" Custom:RibbonGroup.MinimumSize="ImageOnly"/>
                         <Custom:ButtonTool
-							Caption="置于顶层" 
+							Caption="置于顶层" IsEnabled="False"	
 							Custom:RibbonGroup.MinimumSize="ImageOnly"
                             SmallImage="Resources/Images/BringToFront.png"/>
                     
                     </Custom:ButtonGroup>
                     <Custom:ButtonGroup>
                         <Custom:ButtonTool
-							Caption="下移" 
+							Caption="下移" IsEnabled="False"	
 							Custom:RibbonGroup.MinimumSize="ImageOnly"
                             SmallImage="Resources/Images/SendBackward.png"/>
                         <Custom:ButtonTool
-							Caption="置于底层" 
+							Caption="置于底层" IsEnabled="False"	
 							Custom:RibbonGroup.MinimumSize="ImageOnly"
                             SmallImage="Resources/Images/SendToBack.png"/>                        
                     </Custom:ButtonGroup>
@@ -373,7 +382,7 @@
                     </Custom:ToolHorizontalWrapPanel>
                     <Custom:ToolHorizontalWrapPanel>
                         <Custom:ButtonTool 
-						Caption="生成" Click="ViewButtonTool_Click"
+						Caption="打包" Click="ViewButtonTool_Click"
 							Custom:RibbonGroup.MaximumSize="ImageAndTextLarge" 
                             LargeImage="Resources/Images/Application_Get.png" SmallImage="Resources/Images/Application_Get.png"/>
                         </Custom:ToolHorizontalWrapPanel>
@@ -396,12 +405,6 @@
 							LargeImage="Resources/Images/boxin_128px.png"/>
                     </Custom:ToolHorizontalWrapPanel>
                     <Custom:ButtonGroup x:Name="WordButtonGroup">
-                        <!--<Custom:ButtonTool
-							Content="标签" IsQatCommonTool="True"
-							Id="labelControl" SmallImage="Resources/Images/T 16X16.png"/>-->
-
-
-
                     </Custom:ButtonGroup>
                 </Custom:RibbonGroup>
 

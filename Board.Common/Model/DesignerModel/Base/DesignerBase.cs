@@ -35,9 +35,12 @@ namespace Board.DesignerModel
         DynamicLabel =23
 
 
-    }    
+    }
+     [Serializable]
+
     public class PropertyChangeBase : INotifyPropertyChanged
     {        
+        
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged(string propertyName)
         {
@@ -47,7 +50,7 @@ namespace Board.DesignerModel
             }
         }
     }
-    
+     [Serializable]
     public class DesignerElement : PropertyChangeBase
     {
 
@@ -104,6 +107,7 @@ namespace Board.DesignerModel
         }
     }
 
+     [Serializable]
    
     public class DesignerVisualElement : DesignerElement
     {
@@ -226,6 +230,7 @@ namespace Board.DesignerModel
 
     }
 
+     [Serializable]
     
     public class DesignerBackgroundElement : DesignerElement
     {

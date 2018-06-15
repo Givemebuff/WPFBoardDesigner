@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:thumb="clr-namespace:BoardDesigner.BaseThumb">
+                    xmlns:thumb="clr-namespace:Board.BaseControl;assembly=Board.Controls">
 
     <ControlTemplate x:Key="CornerRectResizeableThumbTemplate"  TargetType="{x:Type thumb:ResizeableThumb}">
         <Rectangle Fill="#00499d"   Opacity="0.8" Width="6" Height="6" x:Name="CornerRect" >

@@ -1,6 +1,7 @@
 ﻿using Board.Controls.BoardControl;
 using Board.DesignerModel;
 using Board.Interface;
+using Board.Resource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,20 +35,20 @@ namespace Board.Controls.SystemControl
             InitializeComponent();
             Board = board;
             this.DataContext = Board;
-            Init();
+            InitBack();
+            InitVisual();           
             Work();
         }
 
-        void Init()
+        void InitVisual()
         {
             if (Board == null)
                 return;
             this.Height = Board.Size.Height;
             this.Width = Board.Size.Width;
 
-            foreach (DesignerControl cd in Board.Children)
-            {
-
+            foreach (DesignerControl cd in Board.VisualChildren)
+            {               
                 switch (cd.Type)
                 {
                     case DesignerElementType.Image:
@@ -74,9 +75,28 @@ namespace Board.Controls.SystemControl
                         BoardMediaPlayer bmp = new BoardMediaPlayer(cd as DesignerMedia);
                         Add(bmp, cd);
                         break;
+                    case DesignerElementType.Clock:
+                        BoardClock clock = new BoardClock(cd as DesignerClock);
+                        Add(clock, cd);
+                        break;
+                    case DesignerElementType.DynamicLabel:
+                        BoardDynamicLabel dlb = new BoardDynamicLabel(cd as DesignerDynamicLabel);
+                        Add(dlb, cd);
+                        break;                   
+                       
                     default: break;
                 }
                 
+            }
+        }
+
+        void InitBack() 
+        {
+            foreach (DesignerDataSource ds in Board.BackChildren) 
+            {
+                DataSourceManager.Register(ds.Name, ds.DataSourceType, ds);
+                DataSourceManager.InitTimer(ds.Name);
+                DataSourceManager.BeginTimer(ds.Name);
             }
         }
 

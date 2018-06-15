@@ -1,6 +1,4 @@
-﻿<Page xmlns:BaseControl="clr-namespace:BoardDesigner.BoardControl.BaseControl" 
-      xmlns:Base="clr-namespace:BoardDesigner.Base"   
-      xmlns:BoardControl="clr-namespace:BoardDesigner.BoardControl" 
+﻿<Page 
       xmlns:ig="http://schemas.infragistics.com/xaml" 
       x:Class="BoardDesigner.CustomPage.DesignerPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"

@@ -1,4 +1,5 @@
-﻿<Page xmlns:SystemControl="clr-namespace:Board.Controls.SystemControl;assembly=Board.Controls"  x:Class="BoardDesigner.CustomPage.MainPage"
+﻿<Page xmlns:SystemControl="clr-namespace:Board.Controls.SystemControl;assembly=Board.Controls"  
+      x:Class="BoardDesigner.CustomPage.MainPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 

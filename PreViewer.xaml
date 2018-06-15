@@ -2,6 +2,6 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:sys="clr-namespace:Board.Controls.SystemControl;assembly=Board.Controls"
-        Title="PreViewer" Height="300" Width="300" WindowStyle="None" WindowStartupLocation="CenterScreen">
+        Title="PreViewer" Height="300" Width="300" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <ContentControl x:Name="MainContentControl"></ContentControl>
 </Window>

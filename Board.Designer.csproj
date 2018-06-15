@@ -156,25 +156,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="BoardControl\BaseControl\GIF.cs" />
-    <Compile Include="BoardControl\BaseControl\Image.cs" />
-    <Compile Include="BoardControl\BaseControl\Label.cs" />
-    <Compile Include="BoardControl\BaseControl\Video.cs" />
-    <Compile Include="BoardControl\BaseShape\Circle.cs" />
     <Compile Include="CustomPage\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Interface\ICandy.cs" />
-    <Compile Include="BoardControl\BaseShape\Line.cs" />
-    <Compile Include="BoardControl\BaseShape\Rect.cs" />
-    <Compile Include="BoardControl\BaseShape\SpLine.cs" />
-    <Compile Include="BoardControl\ChartControl\AreaChart.cs" />
-    <Compile Include="BoardControl\ChartControl\ColumnChart.cs" />
-    <Compile Include="BoardControl\ChartControl\LineChart.cs" />
-    <Compile Include="BoardControl\ChartControl\PieChart.cs" />
-    <Compile Include="BoardControl\ChartControl\SpLineChart.cs" />
-    <Compile Include="BoardControl\ChartControl\Table.cs" />
-    <Compile Include="BoardControl\ControlWrapper.cs" />
     <Compile Include="CustomPage\DesignerPage.xaml.cs">
       <DependentUpon>DesignerPage.xaml</DependentUpon>
     </Compile>
@@ -182,34 +166,6 @@
       <DependentUpon>HelpPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="DemoData\DataTableData.cs" />
-    <Compile Include="Control\Adorner\AngleInfoAdorner.cs" />
-    <Compile Include="Control\Adorner\DesignerItemAdorner.cs" />
-    <Compile Include="Control\Adorner\LineAdorner.cs" />
-    <Compile Include="Control\Chrome\LineChrome.cs" />
-    <Compile Include="Control\Adorner\LocationInfoAdorner.cs" />
-    <Compile Include="Control\Adorner\MoveAdorner.cs" />
-    <Compile Include="Control\Adorner\ResizeAdorner.cs" />
-    <Compile Include="Control\Adorner\RubberbandAdorner.cs" />
-    <Compile Include="Control\Adorner\SizeInfoAdorner.cs" />
-    <Compile Include="Control\Chrome\AngleInfoChrome.cs" />
-    <Compile Include="Control\Chrome\LocationInfoChrome.cs" />
-    <Compile Include="Control\Chrome\MoveableChrome.cs" />
-    <Compile Include="Control\Chrome\ResizeableChrome.cs" />
-    <Compile Include="Control\Chrome\RotateableChrome.cs" />
-    <Compile Include="Control\Chrome\SizeInfoChrome.cs" />
-    <Compile Include="Control\Chrome\TransformOriginPointChrome.cs" />
-    <Compile Include="Control\CopyHelper\CopyHelper.cs" />
-    <Compile Include="Control\Factory\CandyFactory.cs" />
-    <Compile Include="Control\DesignerItemBase\DesignerCanvas.cs" />
-    <Compile Include="Control\DesignerItemBase\DesignerItem.cs" />
-    <Compile Include="Control\DesignerItemBase\DesignerItemDecorator.cs" />
-    <Compile Include="Control\Thumb\CenterPointThumb.cs" />
-    <Compile Include="Control\Thumb\LineThumb.cs" />
-    <Compile Include="Control\Thumb\MoveableThumb.cs" />
-    <Compile Include="Control\Thumb\ResizeableThumb.cs" />
-    <Compile Include="Control\Thumb\RotateableThumb.cs" />
-    <Compile Include="Control\ToolBox\ToolBox.cs" />
-    <Compile Include="Control\ToolBox\ToolBoxItem.cs" />
     <Compile Include="PreViewer.xaml.cs">
       <DependentUpon>PreViewer.xaml</DependentUpon>
     </Compile>
@@ -318,18 +274,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ResourceDictionaries\ToolBox\BaseControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ResourceDictionaries\ToolBox\BaseShape.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ResourceDictionaries\ToolBox\Chart.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ResourceDictionaries\ToolBox\Expand.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -716,6 +660,8 @@
     <Resource Include="Resources\Images\Layer_Group_32px.png" />
     <Resource Include="Resources\Images\Zoom_Selection_32px.png" />
     <Resource Include="Resources\Images\Application_Get.png" />
+    <Resource Include="Resources\Images\statictext_32px.png" />
+    <Resource Include="Resources\Images\media32px.png" />
     <Content Include="Resources\Videos\VideoDemo.wmv" />
     <Content Include="dll\Indusfo.Common.dll" />
     <Content Include="dll\Indusfo.DataAccessLayer.dll" />

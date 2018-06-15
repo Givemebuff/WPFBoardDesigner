@@ -61,8 +61,37 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseControl\Adorner\AngleInfoAdorner.cs" />
+    <Compile Include="BaseControl\Adorner\DesignerItemAdorner.cs" />
+    <Compile Include="BaseControl\Adorner\LineAdorner.cs" />
+    <Compile Include="BaseControl\Adorner\LocationInfoAdorner.cs" />
+    <Compile Include="BaseControl\Adorner\MoveAdorner.cs" />
+    <Compile Include="BaseControl\Adorner\ResizeAdorner.cs" />
+    <Compile Include="BaseControl\Adorner\RubberbandAdorner.cs" />
+    <Compile Include="BaseControl\Adorner\SizeInfoAdorner.cs" />
+    <Compile Include="BaseControl\Chrome\AngleInfoChrome.cs" />
+    <Compile Include="BaseControl\Chrome\LineChrome.cs" />
+    <Compile Include="BaseControl\Chrome\LocationInfoChrome.cs" />
+    <Compile Include="BaseControl\Chrome\MoveableChrome.cs" />
+    <Compile Include="BaseControl\Chrome\ResizeableChrome.cs" />
+    <Compile Include="BaseControl\Chrome\RotateableChrome.cs" />
+    <Compile Include="BaseControl\Chrome\SizeInfoChrome.cs" />
+    <Compile Include="BaseControl\Chrome\TransformOriginPointChrome.cs" />
+    <Compile Include="BaseControl\DesignerItemBase\DesignerCanvas.cs" />
+    <Compile Include="BaseControl\DesignerItemBase\DesignerItem.cs" />
+    <Compile Include="BaseControl\DesignerItemBase\DesignerItemDecorator.cs" />
+    <Compile Include="BaseControl\Thumb\CenterPointThumb.cs" />
+    <Compile Include="BaseControl\Thumb\LineThumb.cs" />
+    <Compile Include="BaseControl\Thumb\MoveableThumb.cs" />
+    <Compile Include="BaseControl\Thumb\ResizeableThumb.cs" />
+    <Compile Include="BaseControl\Thumb\RotateableThumb.cs" />
+    <Compile Include="BaseControl\ToolBox\ToolBox.cs" />
+    <Compile Include="BaseControl\ToolBox\ToolBoxItem.cs" />
     <Compile Include="BoardControl\BoardChart.xaml.cs">
       <DependentUpon>BoardChart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BoardControl\BoardClock.xaml.cs">
+      <DependentUpon>BoardClock.xaml</DependentUpon>
     </Compile>
     <Compile Include="BoardControl\BoardDataGrid.xaml.cs">
       <DependentUpon>BoardDataGrid.xaml</DependentUpon>
@@ -72,6 +101,9 @@
     </Compile>
     <Compile Include="BoardControl\BoardDataGridContentTexkBlock.xaml.cs">
       <DependentUpon>BoardDataGridContentTexkBlock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BoardControl\BoardDynamicLabel.xaml.cs">
+      <DependentUpon>BoardDynamicLabel.xaml</DependentUpon>
     </Compile>
     <Compile Include="BoardControl\BoardGif.xaml.cs">
       <DependentUpon>BoardGif.xaml</DependentUpon>
@@ -85,6 +117,17 @@
     <Compile Include="BoardControl\BoardMediaPlayer.xaml.cs">
       <DependentUpon>BoardMediaPlayer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Factory\BoardControlFactory.cs" />
+    <Compile Include="Factory\Clock.cs" />
+    <Compile Include="Factory\ControlWrapper.cs" />
+    <Compile Include="Factory\DynamicLabel.cs" />
+    <Compile Include="Factory\GIF.cs" />
+    <Compile Include="Factory\ICandy.cs" />
+    <Compile Include="Factory\Image.cs" />
+    <Compile Include="Factory\Label.cs" />
+    <Compile Include="Factory\LineChart.cs" />
+    <Compile Include="Factory\TableCandy.cs" />
+    <Compile Include="Factory\Video.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SystemControl\BoardViewer.xaml.cs">
       <DependentUpon>BoardViewer.xaml</DependentUpon>
@@ -93,9 +136,15 @@
       <DependentUpon>ShowList.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="BaseControl\Factory\" />
+  </ItemGroup>
   <ItemGroup>
     <Page Include="BoardControl\BoardChart.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BoardControl\BoardClock.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -108,6 +157,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="BoardControl\BoardDataGridContentTexkBlock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BoardControl\BoardDynamicLabel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

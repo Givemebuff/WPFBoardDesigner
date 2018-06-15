@@ -63,7 +63,8 @@ namespace Board.DesignerModel
                 OnPropertyChanged("FontColor");
             }
         }
-        [XmlAttribute]
+         [Browsable(false)]
+        [XmlAttribute("FontColor")]
         public string XmlFontColor
         {
             get
@@ -100,6 +101,7 @@ namespace Board.DesignerModel
                 OnPropertyChanged("FontFamily");
             }
         }
+         [Browsable(false)]
         [XmlAttribute("FontFamily")]
         public string XmlFontFamily 
         {

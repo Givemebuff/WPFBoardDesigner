@@ -30,7 +30,9 @@ namespace Board.DesignerModel
         Label = 18,
         Chart = 19,
         DataPoint = 20,
-        Media =21
+        Media =21,
+        Clock = 22,
+        DynamicLabel =23
 
 
     }    
@@ -88,12 +90,17 @@ namespace Board.DesignerModel
             get;
             set;
         }
+
+        public void New() 
+        {
+            this.ID = Guid.NewGuid();
+            System.Type tp = this.GetType();
+            Name = tp.Name + "_" + this.ID.ToString();
+        }
         public DesignerElement()
         {
             this.Type = DesignerElementType.Element;
-            this.ID = Guid.NewGuid();
-            System.Type tp = this.GetType();
-            Name = tp.Name + "_"+this.ID.ToString();
+            New();
         }
     }
 

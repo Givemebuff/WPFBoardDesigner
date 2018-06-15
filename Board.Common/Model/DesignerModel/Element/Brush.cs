@@ -45,6 +45,7 @@ namespace Board.DesignerModel
                 OnPropertyChanged("Background");
             }
         }
+        [Browsable(false)]
         [XmlAttribute("Color")]
         public string XmlColorBrush
         {

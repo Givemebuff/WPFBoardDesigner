@@ -1,10 +1,9 @@
-﻿using Board.Controls.BoardControl;
+﻿using Board.BaseControl;
+using Board.Controls.BoardControl;
 using Board.DataHelper;
 using Board.DesignerModel;
 using Board.Interface;
 using Board.Resource;
-using BoardDesigner.Base;
-using BoardDesigner.BoardControl;
 using BoardDesigner.Windows;
 using Infragistics.Controls.Editors;
 using Infragistics.Controls.Maps;
@@ -138,7 +137,7 @@ namespace BoardDesigner.CustomPage
                 //更改Key，并通过管理器获取对象添加至数据源集合
                 key = win.SelectedItem.Name;
                 (this.SelectItem as IDynamicData).DataSourceKey = key;
-                this.Board.AddBackWorker(DataSourceManager.GetDataSourceByKey(key));
+                this.Board.AddBackControl(DataSourceManager.GetDataSource(key));
             }         
         }
 

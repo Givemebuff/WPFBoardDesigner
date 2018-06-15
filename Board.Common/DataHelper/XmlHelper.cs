@@ -19,6 +19,7 @@ namespace Board.DataHelper
             StreamReader sr = new StreamReader(Stream);
             string str = sr.ReadToEnd();
             sr.Dispose();
+            Stream.Close();
             return str;
         }
 

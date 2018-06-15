@@ -34,7 +34,7 @@ namespace Board.DesignerModel
                 OnPropertyChanged("AlternatingRowBackground");
             }
         }
-
+         [Browsable(false)]
         [XmlAttribute("AlternatingRowBackground")]
         public string XmlAlternatingRowBackground
         {

@@ -15,15 +15,15 @@ namespace Board.DesignerModel
         public DesignerBoard() 
         {
             this.Type = DesignerElementType.Control;
-            this.Children = new ObservableCollection<DesignerControl>();
-            this.BackWorkers = new ObservableCollection<DesignerDataSource>();
+            this.VisualChildren = new ObservableCollection<DesignerControl>();
+            this.BackChildren = new ObservableCollection<DesignerDataSource>();
         } 
         [ReadOnly(true)]
         [Category("前台控件")]
         [DisplayName("可视元素集合")]
-        [Description("可视元素集合")]   
-        [XmlArray("Children"),XmlArrayItem("Control")]
-        public ObservableCollection<DesignerControl> Children
+        [Description("可视元素集合")]
+        [XmlArray("VisualChildren"), XmlArrayItem("VisualControl")]
+        public ObservableCollection<DesignerControl> VisualChildren
         {
             get;
             set;
@@ -34,19 +34,48 @@ namespace Board.DesignerModel
         [DisplayName("后台元素集合")]
         [Description("后台元素集合")]
         [XmlArray("BackChildren"), XmlArrayItem("BackControl")]
-        public ObservableCollection<DesignerDataSource> BackWorkers
+        public ObservableCollection<DesignerDataSource> BackChildren
         {
             get;
             set;
         }
 
-        public void AddBackWorker(DesignerDataSource ds)
+        public void AddVisualControl(DesignerControl dc) 
         {
-            if (BackWorkers.Contains(ds))
+            if (VisualChildren.Contains(dc))
                 return;
             else 
             {
-                BackWorkers.Add(ds);
+                VisualChildren.Add(dc);
+            }
+        }
+
+        public void RemoveVisualControl(DesignerControl dc) 
+        {
+            if (VisualChildren.Contains(dc))
+                VisualChildren.Remove(dc);
+            else
+            {
+                return;
+            }
+        }
+
+        public void AddBackControl(DesignerDataSource ds)
+        {
+            if (BackChildren.Contains(ds))            
+                return;
+            else 
+            {
+                BackChildren.Add(ds);
+            }
+        }
+        public void RemoveBackWorker(DesignerDataSource ds)
+        {
+            if (BackChildren.Contains(ds))
+                BackChildren.Remove(ds);
+            else
+            {
+                return;
             }
         }
     }

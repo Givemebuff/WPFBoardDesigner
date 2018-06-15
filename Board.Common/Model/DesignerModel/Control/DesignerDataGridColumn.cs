@@ -77,6 +77,7 @@ namespace Board.DesignerModel
                 OnPropertyChanged("ColumnBackground");
             }
         }
+         [Browsable(false)]
         [XmlAttribute("ColumnBackground")]
         public string XmlColumnBackground
         {

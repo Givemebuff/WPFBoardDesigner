@@ -17,27 +17,15 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            //DesignerDataBaseDataSource ds = new DesignerDataBaseDataSource()
-            //{
-            //    SqlString = "select * from Money",
-            //    UserName = "Indusfo",
-            //    PassWord = "Indusfo123456",
-            //    DataBaseName = "Test",
-            //    Address = "Factory.indusfo.club"
-            //};
-
-            //DataSourceManager.Register(ds.Name, DesignerDataSourceType.DataBase, ds);
-
-            //DataTable data = DataSourceManager.GetDataAsync(ds.Name).Result as DataTable;
-
-            //Console.WriteLine("我在下面");
-          
-
-            //while (true) 
+            //Test();
+            //Test2();
+            //while (true)
             //{
             //    string s = Console.ReadLine();
             //    Console.WriteLine("异步的同时输入了：" + s);
             //}
+            Console.WriteLine(DateTime.Now.ToString());
+        
             Console.Read();
         }
 
@@ -63,6 +51,7 @@ namespace Test
             }
             return i;
         }
+       
 
         private static async void Cal()
         {
@@ -75,8 +64,21 @@ namespace Test
             Console.Write("Result:" + c);
         }
 
+        private async static void PrintDataTable(DataTable data) 
+        {
+            foreach (DataRow r in data.Rows) 
+            {
+                await Task.Delay(500);
+                Console.Write("Row" + data.Rows.IndexOf(r) + ": ");
+                foreach (DataColumn clo in data.Columns) 
+                {
+                    Console.Write(clo.ColumnName + ":" + r[clo].ToString());
+                }
+                Console.Write("\n");
+            }
+        }
 
-       
+
     }
 
 

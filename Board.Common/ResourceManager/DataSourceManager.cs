@@ -12,21 +12,39 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Threading;
 using System.Xml.Serialization;
+
 
 namespace Board.Resource
 {
-    public class DataSourceManager
-    {  
-        public DataSourceManager()
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="Key"></typeparam>
+    /// <typeparam name="DesignerDataSource"></typeparam>
+    /// <typeparam name="TimeSpan"></typeparam>
+    /// <typeparam name="Data"></typeparam>
+    public class DataSouceDictionary<TKey, TDesignerDataSource, TTimeSpan, TDispatcherTimer, TData> : 
+        DependencyObject       
+        where TDesignerDataSource : DesignerDataSource        
+        where TDispatcherTimer:DispatcherTimer
+       
+    {
+
+        public DataSouceDictionary() 
         {
-
-
+            
         }
+      
+        #region 集合    
 
-        //数据源集合
-        static Dictionary<string, DesignerDataSource> _dataSourceList { get; set; }
-        public static Dictionary<string, DesignerDataSource> DataSourceList
+     
+            
+
+        #region Key-数据源
+        Dictionary<string, DesignerDataSource> _dataSourceList { get; set; }
+        public Dictionary<string, DesignerDataSource> DataSourceList
         {
             get
             {
@@ -35,58 +53,261 @@ namespace Board.Resource
                 return _dataSourceList;
             }
         }
-        static Dictionary<string, object> _datasList { get; set; }
-        public static Dictionary<string, object> DatasList
+
+        #endregion  
+       
+        #region Key-Data
+
+        Dictionary<string, object> _dataList { get; set; }
+        public Dictionary<string, object> DataList
         {
             get
             {
-                if (_datasList == null)
-                    _datasList = new Dictionary<string, object>();
-                return _datasList;
+                if (_dataList == null)
+                    _dataList = new Dictionary<string, object>();
+                return _dataList;
             }
         }
-        //注册数据源
+
+        #endregion  
+
+        #region Key-TimeSpan
+
+        Dictionary<string, int> _timeSpanList { get; set; }
+        public Dictionary<string, int> TimeSpanList
+        {
+            get
+            {
+                if (_timeSpanList == null)
+                    _timeSpanList = new Dictionary<string, int>();
+                return _timeSpanList;
+            }
+        }
+
+        #endregion
+
+        #region Key-计时器
+
+        Dictionary<string, DispatcherTimer> _timers { get; set; }
+        public Dictionary<string, DispatcherTimer> Timers
+        {
+            get
+            {
+                if (_timers == null)
+                    _timers = new Dictionary<string, DispatcherTimer>();
+                return _timers;
+            }
+        }
+
+        #endregion
+
+        #endregion
+
+        #region 操作
+
+        #region DataSource
+
+        public void AddOrUpdateDataSource(string key, DesignerDataSource ds) 
+        {
+            if (DataSourceList.Keys.Contains(key))
+            {
+                DataSourceList[key] = ds;              
+            }
+            else
+            {
+                DataSourceList.Add(key, ds);
+            }
+        }
+
+        public void RemoveDataSource(string key)
+        {
+            if (DataSourceList.Keys.Contains(key))
+            {
+                DataSourceList.Remove(key);
+            }
+            else
+            {                
+                return;
+            }
+        }
+
+        #endregion
+
+        #region 计时器
+
+        public void AddOrUpdateTimer(string key, DispatcherTimer dt)
+        {
+            if (Timers.Keys.Contains(key))
+            {
+                Timers[key] = dt;
+            }
+            else
+            {
+                Timers.Add(key, dt);
+                
+            }
+        }
+
+        public void RemoveTimer(string key)
+        {
+            if (Timers.Keys.Contains(key))
+            {
+                Timers.Remove(key);
+            }
+            else
+            {
+                return;
+            }
+        }
+
+        #endregion
+
+        #region 时间间隔
+
+        public void AddOrUpdateTimeSpan(string key, int ts)
+        {
+            if (TimeSpanList.Keys.Contains(key))
+            {
+                TimeSpanList[key] = ts;
+            }
+            else
+            {
+                TimeSpanList.Add(key, ts); 
+            }
+        }
+
+        public void RemoveTimeSpan(string key)
+        {
+            if (TimeSpanList.Keys.Contains(key))
+            {
+                TimeSpanList.Remove(key);
+            }
+            else
+            {
+                return;
+            }
+        }
+
+        #endregion
+
+        #region 数据
+
+        public void AddOrUpdateData(string key, object data)
+        {
+            if (DataList.Keys.Contains(key))
+            {
+                DataList[key] = data; 
+            }
+            else
+            {
+                DataList.Add(key, data);
+            }
+        }
+
+        public void RemoveData(string key)
+        {
+            if (DataList.Keys.Contains(key))
+            {
+                DataList.Remove(key);
+            }
+            else
+            {
+                return;
+            }
+        }
+
+        #endregion
+
+        #region Add
+        public void AddOrUpdate(string key, DesignerDataSource ds, int timeSpan, DispatcherTimer timer, object data) 
+        {
+            AddOrUpdateDataSource(key, ds);
+            AddOrUpdateTimeSpan(key, timeSpan);
+            AddOrUpdateTimer(key, timer);
+            AddOrUpdateData(key, data);
+        }
+
+        #endregion
+
+        public void Remove(string key)
+        {
+            RemoveDataSource(key);
+            RemoveTimeSpan(key);
+            RemoveTimer(key);
+            RemoveData(key);
+        }
+
+
+        #endregion
+    }
+    public class DataSourceManager 
+    {  
+        static DataSouceDictionary<string, DesignerDataSource, int, DispatcherTimer, object> _list { get; set; }
+        public static DataSouceDictionary<string, DesignerDataSource, int, DispatcherTimer, object> List
+        {
+            get
+            {
+                if (_list == null)
+                    _list = new DataSouceDictionary<string, DesignerDataSource, int, DispatcherTimer, object>();
+                return _list;
+            }
+        }    
+
+        /// <summary>
+        /// 注册数据源
+        /// </summary>
+        /// <param name="dataSourceKey"></param>
+        /// <param name="type"></param>
+        /// <param name="dataSource"></param>
         public static void Register(string dataSourceKey, DesignerDataSourceType type, DesignerDataSource dataSource)
         {
             if (string.IsNullOrEmpty(dataSourceKey))
                 dataSourceKey = dataSource.Name;
-            switch (type)
-            {
-                case DesignerDataSourceType.DataBase:
-                    DesignerDataBaseDataSource dbds = dataSource as DesignerDataBaseDataSource;
-                    UpdateDataSource(dataSourceKey, dbds);
-                    break;
-                case DesignerDataSourceType.LocalFile:
-                    DesignerLocalFileDataSource lfds = dataSource as DesignerLocalFileDataSource;
-                    UpdateDataSource(dataSourceKey, lfds);
-                    break;
-                case DesignerDataSourceType.RemoteURL:
-                    DesignerRemoteURIDataSource ruds = dataSource as DesignerRemoteURIDataSource;
-                    UpdateDataSource(dataSourceKey, ruds);
-                    break;
-                case DesignerDataSourceType.StaticText:
-                    DesignerStaticTextDataSource stds = dataSource as DesignerStaticTextDataSource;
-                    UpdateDataSource(dataSourceKey, stds);
-                    break;
-                case DesignerDataSourceType.Default:
-                    UpdateDataSource(dataSourceKey, dataSource);
-                    break;
-
-            }
+            List.AddOrUpdate(dataSourceKey, dataSource, dataSource.TimeSpan < 0 ? 0 : dataSource.TimeSpan,new DispatcherTimer(),null);
         }
+
+        /// <summary>
+        /// 注销数据源
+        /// </summary>
+        /// <param name="dataSourceKey"></param>
+        public static void Cancel(string dataSourceKey) 
+        {
+            if (string.IsNullOrEmpty(dataSourceKey))
+                return;
+            List.Remove(dataSourceKey);
+        }
+
         /// <summary>
         /// 根据Key找到数据源
         /// </summary>
         /// <param name="dataSourceKey"></param>
         /// <returns></returns>
-        public static DesignerDataSource GetDataSourceByKey(string dataSourceKey)
+        public static DesignerDataSource GetDataSource(string dataSourceKey)
         {
-            if (DataSourceList.Keys.Contains(dataSourceKey))
+            if (List.DataSourceList.Keys.Contains(dataSourceKey))
             {
-                return DataSourceList[dataSourceKey];
+                return List.DataSourceList[dataSourceKey];
             }
             else
                 throw new NotImplementedException();
+        }
+
+        public static void InitTimer(string key)
+        {
+            DispatcherTimer timer = List.Timers[key];
+            timer.Interval = new TimeSpan(0,0,0,0,List.TimeSpanList[key]);
+            timer.Tick += new EventHandler((s, e) =>
+            {
+                 ExcuteDataSource(key);
+                 if (List.TimeSpanList[key] <= 0)
+                     timer.Stop();
+            });
+        }
+
+        public static void BeginTimer(string key)
+        {
+            DispatcherTimer timer = List.Timers[key];
+            timer.Start();
         }
 
         /// <summary>
@@ -95,26 +316,30 @@ namespace Board.Resource
         /// <param name="key"></param>
         /// <returns></returns>
 
-        private static void ExcuteDataSource(string key)
+        private async static void ExcuteDataSource(string key)
         {
-            DesignerDataSource ds = GetDataSourceByKey(key);
+            DesignerDataSource ds = GetDataSource(key);
             try
             {
                 switch (ds.DataSourceType)
                 {
                     case DesignerDataSourceType.DataBase:
-                        object dbData = ExcuteDataBaseDataSource(ds as DesignerDataBaseDataSource);
-                        UpdateData(key, dbData);
+                        DataTable dbData = await ExcuteDataBaseDataSource(ds as DesignerDataBaseDataSource);
+                        List.AddOrUpdateData(key, dbData);
                         break;
 
                     case DesignerDataSourceType.LocalFile:
-                        object lfData = ExcuteLocalFileDataSource(ds as DesignerLocalFileDataSource);
-                        UpdateData(key, lfData);
+                        object lfData = await ExcuteLocalFileDataSource(ds as DesignerLocalFileDataSource);
+                        List.AddOrUpdateData(key, lfData);
                         break;
 
                     case DesignerDataSourceType.RemoteURL:
-                        object ruData = ExcuteRemoteURIDataSource(ds as DesignerRemoteURIDataSource);
-                        UpdateData(key, ruData);
+                        object ruData = await ExcuteRemoteURIDataSource(ds as DesignerRemoteURIDataSource);
+                        List.AddOrUpdateData(key, ruData);
+                        break;
+                    case DesignerDataSourceType.StaticText:
+                        object stData = ExcuteStaticTextDataSource(ds as DesignerStaticTextDataSource);
+                        List.AddOrUpdateData(key, stData);
                         break;
 
                     default:
@@ -128,61 +353,21 @@ namespace Board.Resource
 
         }
 
-        public static async Task<object> GetDataAsync(string key)
-        {
-            return await GetData(key);
-        }
-
         /// <summary>
         /// 获取数据
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        public static async Task<object> GetData(string key)
+        public static object GetData(string key)
         {
-            if (DatasList.Keys.Contains(key))
+            if (List.DataList.Keys.Contains(key))
             {
-                await Task.Run(() => ExcuteDataSource(key));//执行
-                return DatasList[key];
+                return List.DataList[key];
             }
             else
                 throw new NotImplementedException();
         }
 
-        /// <summary>
-        /// 数据源更新数据方法
-        /// </summary>
-        /// <param name="key"></param>
-        /// <param name="data"></param>
-        private static void UpdateData(string key, object data)
-        {
-            if (DatasList.Keys.Contains(key))
-            {
-                DatasList[key] = data;
-            }
-            else
-            {
-                DatasList.Add(key, data);
-            }
-        }
-
-        /// <summary>
-        /// 数据源更新方法
-        /// </summary>
-        /// <param name="key"></param>
-        /// <param name="ds"></param>
-        private static void UpdateDataSource(string key, DesignerDataSource ds)
-        {
-            if (DataSourceList.Keys.Contains(key))
-            {
-                DataSourceList[key] = ds;
-            }
-            else
-            {
-                DataSourceList.Add(key, ds);
-            }
-            UpdateData(key, null);
-        }
 
         #region 执行方法
         /// <summary>
@@ -190,19 +375,23 @@ namespace Board.Resource
         /// </summary>
         /// <param name="designerDataBaseDataSource"></param>
         /// <returns></returns>
-        private static object ExcuteDataBaseDataSource(DesignerDataBaseDataSource ds)
+        private static Task<DataTable> ExcuteDataBaseDataSource(DesignerDataBaseDataSource ds)
         {
-            using (SqlExcuter se = new SqlExcuter(DataBaseType.SqlServer, ds.ConnectionString))
+            return Task<DataTable>.Run(() =>
             {
-                return se.ExecuteSelectSql(ds.SqlString);
-            }
+                using (SqlExcuter se = new SqlExcuter(DataBaseType.SqlServer, ds.ConnectionString))
+                {
+                    return se.ExecuteSelectSql(ds.SqlString);
+                }
+            });
+           
         }
         /// <summary>
         /// 直接使用URI读取远程数据,返回二进制流数据
         /// </summary>
         /// <param name="designerRemoteURIDataSource"></param>
         /// <returns></returns>
-        private static object ExcuteRemoteURIDataSource(DesignerRemoteURIDataSource designerRemoteURIDataSource)
+        private static Task<object> ExcuteRemoteURIDataSource(DesignerRemoteURIDataSource designerRemoteURIDataSource)
         {
             throw new NotImplementedException();
         }
@@ -212,17 +401,21 @@ namespace Board.Resource
         /// </summary>
         /// <param name="designerLocalFileDataSource"></param>
         /// <returns></returns>
-        private static object ExcuteLocalFileDataSource(DesignerLocalFileDataSource designerLocalFileDataSource)
+        private static Task<object> ExcuteLocalFileDataSource(DesignerLocalFileDataSource designerLocalFileDataSource)
         {
             throw new NotImplementedException();
         }
+        /// <summary>
+        /// 执行静态文本数据源，返回字符串
+        /// </summary>
+        /// <param name="ds"></param>
+        /// <returns></returns>
+        private static string ExcuteStaticTextDataSource(DesignerStaticTextDataSource ds)
+        {
+            return ds.Text;
+        }
 
         #endregion
-        //public static T GetData<T>(string key)
-        //{
-        //    DesignerDataSource ds = GetDataSourceByKey(key);
-
-        //}
 
     }
     /// <summary>

@@ -1,31 +1,34 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:base="clr-namespace:BoardDesigner.Base">
+                    xmlns:base="clr-namespace:Board.BaseControl;assembly=Board.Controls">
     <base:ToolBox x:Key="BaseControlToolBox"
                DefaultItemSize="32,32">
         <ItemsControl.Items>
-            <Image IsHitTestVisible="False" x:Name="Label"
+            <Image IsHitTestVisible="False" x:Name="Label" ToolTip="静态文本"
+                   Stretch="Fill"
+                   Source="pack://application:,,,/Resources/Images/statictext_32px.png" />
+            <Image IsHitTestVisible="False" x:Name="DynamicLabel" ToolTip="动态文本"
                    Stretch="Fill"
                    Source="pack://application:,,,/Resources/Images/label_128px.png" />
-            <Image IsHitTestVisible="False" x:Name="Image"
+            <Image IsHitTestVisible="False" x:Name="Image" ToolTip="图片"
                    Stretch="Fill"
                    Source="pack://application:,,,/Resources/Images/Picture_32px.png" />
-            <Image IsHitTestVisible="False" x:Name="GIF"
+            <Image IsHitTestVisible="False" x:Name="GIF" ToolTip="GIF"
                    Stretch="Fill"
                    Source="pack://application:,,,/Resources/Images/Sharpen_32px.png" />
-            <Image IsHitTestVisible="False" x:Name="Video"
+            <Image IsHitTestVisible="False" x:Name="Video" ToolTip="媒体文件"
                    Stretch="Fill"
-                   Source="pack://application:,,,/Resources/Images/Video_32px.png" />
-            <Image IsHitTestVisible="False" x:Name="WebBrowser"
+                   Source="pack://application:,,,/Resources/Images/media32px.png" />
+            <Image IsHitTestVisible="False" x:Name="WebBrowser" ToolTip="网络资源"
                    Stretch="Fill"   
                    Source="pack://application:,,,/Resources/Images/World_32px.png" />
-            <Image IsHitTestVisible="False" x:Name="Table"
+            <Image IsHitTestVisible="False" x:Name="Table" ToolTip="表格"
                    Stretch="Fill"   
                    Source="pack://application:,,,/Resources/Images/table.png" />
-            <Image IsHitTestVisible="False" x:Name="Chart"
+            <Image IsHitTestVisible="False" x:Name="Chart" ToolTip="图标"
                    Stretch="Fill"   
                    Source="pack://application:,,,/Resources/Images/LineChart_32px.png" />
-            <Image IsHitTestVisible="False" x:Name="Timer"
+            <Image IsHitTestVisible="False" x:Name="Clock" ToolTip="时钟"
                    Stretch="Fill"   
                    Source="pack://application:,,,/Resources/Images/Time_32px.png" />
             

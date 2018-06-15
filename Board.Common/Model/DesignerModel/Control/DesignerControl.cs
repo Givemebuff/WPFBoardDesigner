@@ -9,15 +9,15 @@ using System.Windows.Media;
 using System.Xml.Serialization;
 
 namespace Board.DesignerModel
-{   
-    [XmlType("Control")]
+{
+    [XmlType("VisualControl")]
     [XmlInclude(typeof(DesignerLabel))]  
     [XmlInclude(typeof(DesignerBoard))]   
     [XmlInclude(typeof(DesignerTable))]
     [XmlInclude(typeof(DesignerImage))]
     [XmlInclude(typeof(DesignerGif))]
     [XmlInclude(typeof(DesignerMedia))]
-    [XmlInclude(typeof(DesignerChart))]
+    [XmlInclude(typeof(DesignerChart))]  
     public class DesignerControl : DesignerVisualElement
     {
         public DesignerControl()

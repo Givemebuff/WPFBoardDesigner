@@ -117,6 +117,7 @@ namespace Board.DesignerModel
                 OnPropertyChanged("HeaderBackground");
             }
         }
+        [Browsable(false)]
         [XmlAttribute("HeadBackground")]
         public string XmlHeaderBackground 
         {
@@ -320,7 +321,7 @@ namespace Board.DesignerModel
                 OnPropertyChanged("ContentBackground");
             }
         }
-
+        [Browsable(false)]
         [XmlAttribute("ContentBackground")]
         public string XmlContentBackground
         {
@@ -450,6 +451,7 @@ namespace Board.DesignerModel
                 OnPropertyChanged("CellBackground");
             }
         }
+        [Browsable(false)]
         [XmlAttribute("CellBackground")]
         public string XmlCellBackground
         {
@@ -539,7 +541,7 @@ namespace Board.DesignerModel
         [XmlIgnore]
         public string _dataSourceKey { get; set; }
 
-        [ReadOnly(true)]
+        
         [Category("数据")]
         [DisplayName("数据源")]
         [Description("数据源")]
@@ -675,8 +677,8 @@ namespace Board.DesignerModel
         [Category("计时器")]
         [DisplayName("数据访问时间间隔")]
         [Description("获取新数据时间间隔")]
-        [XmlAttribute("DataAccrssTimeSpan")]
-        public int DataAccrssTimeSpan
+        [XmlAttribute("DataAccessTimeSpan")]
+        public int DataAccessTimeSpan
         {
             get { return this._dataAccessTimeSpan; }
             set
@@ -684,7 +686,7 @@ namespace Board.DesignerModel
                 if (value < 1000)
                     value = 1000;
                 this._dataAccessTimeSpan = value;
-                OnPropertyChanged("DataAccrssTimeSpan");
+                OnPropertyChanged("DataAccessTimeSpan");
             }
         }
 

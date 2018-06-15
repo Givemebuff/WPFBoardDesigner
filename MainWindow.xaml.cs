@@ -1,11 +1,13 @@
-﻿using Board.Controls.SystemControl;
+﻿using Board.BaseControl;
+using Board.Controls.SystemControl;
 using Board.DesignerModel;
+using Board.Interface;
 using Board.Resource;
 using Board.SystemModel;
-using BoardDesigner.Base;
 using BoardDesigner.CustomPage;
 using BoardDesigner.Windows;
 using Infragistics.Controls.Editors;
+using Infragistics.Documents;
 using Infragistics.Windows.DockManager;
 using System;
 using System.Collections.ObjectModel;
@@ -39,9 +41,9 @@ namespace BoardDesigner
 
         private static void CurrentDesignerPagePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            MainWindow mw = d as MainWindow;           
-            
-            
+            MainWindow mw = d as MainWindow;
+
+
             mw.xamPropertyGrid.SetBinding(XamPropertyGrid.SelectedObjectProperty, new Binding("SelectItem") { Source = mw.CurrentDesignerPage });
         }
 
@@ -77,7 +79,9 @@ namespace BoardDesigner
         void CreateNewBoardDesignerPage(DesignerBoard db, string fileName, string filePath)
         {
             //新建一个设计页
+
             ContentPane newDesignerContentPanel = new ContentPane();
+
             newDesignerContentPanel.Header = fileName;
             newDesignerContentPanel.CloseButtonVisibility = System.Windows.Visibility.Visible;
             DesignerPage newDesignerPage = new DesignerPage(db);
@@ -87,9 +91,11 @@ namespace BoardDesigner
             newDesignerContentPanel.Content = newFrame;
             MainTabGroupPane.Items.Add(newDesignerContentPanel);
             MainTabGroupPane.SelectedItem = newDesignerContentPanel;
+            newDesignerPage.Board.Name = fileName;
             this.CurrentDesignerPage = newDesignerPage;
             ToolGroupPane.IsPinned = true;
             propertiesDockPane.IsPinned = true;
+            this.Logout("Create Page:\nMode:Design for Board\nBoard :" + filePath + "," + fileName + "," + db.Size.Width + "," + db.Size.Height);
         }
 
         //预览
@@ -97,6 +103,7 @@ namespace BoardDesigner
         {
             if (CurrentDesignerPage == null)
                 return;
+            this.Logout("Previewing...");
             DesignerBoard board = (CurrentDesignerPage.DesignerGrid.Children[0] as DesignerCanvas).Warp();
             PreViewer pv = new PreViewer(board);
             pv.ShowDialog();
@@ -130,6 +137,7 @@ namespace BoardDesigner
 
                 System.IO.File.Copy(sourceImagePath, newImagePath, true);
                 ImageResourceCollection.Add(newImage);
+                this.Logout("Image FullPath:" + newImagePath);
             }
 
         }
@@ -154,10 +162,10 @@ namespace BoardDesigner
             openProCmdBinding.Executed += new ExecutedRoutedEventHandler(OpenProCommand_Executed);
             openProCmdBinding.CanExecute += OpenProCommand_CanExecute;
             //打开数据库数据源窗口
-
+            InitCustomCommand();
         }
 
-      
+
 
         #region 系统命令
 
@@ -172,6 +180,7 @@ namespace BoardDesigner
 
             //打开新建对话框
             NewBoardWindow nbw = new NewBoardWindow();
+            this.Logout("Opened " + nbw.Title);
             if (nbw.ShowDialog() == true)
             {
                 CreateNewBoardDesignerPage(nbw.Result, nbw.FileName, null);
@@ -202,9 +211,20 @@ namespace BoardDesigner
                     //Board文件，Rdlx文件,jpg,png,gif,bmp
                     if (exn.IndexOf("board") != -1)
                     {
-                        //TODO Board文件反序列化为DesignerBoard对象进行初始化
-                        DesignerBoard db = new DesignerBoard() { Background = new DesignerBrush() { ColorBrush = new SolidColorBrush(Color.FromRgb(255, 255, 255)) } };
-                        CreateNewBoardDesignerPage(db, "Test", "C:\\Test.Board");
+
+                        try
+                        {
+                            string xml = File.ReadAllText(fi.FullName);
+                            DesignerBoard db = Board.DataHelper.XmlHelper.XmlDerialize<DesignerBoard>(xml);
+                            CreateNewBoardDesignerPage(db, fi.Name, fi.FullName);
+                            this.Logout("Loaded Board " + db.Name);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("打开看板文件出错：" + ex.Message);
+                        }
+
+
                     }
                     else if (exn.IndexOf("rdlx") != -1)
                     {
@@ -212,7 +232,7 @@ namespace BoardDesigner
                     }
                     else if (exn.IndexOf("jpg") != -1 || exn.IndexOf("png") != -1 || exn.IndexOf("gif") != -1 || exn.IndexOf("bmp") != -1)
                     {
-
+                        throw new Exception("敬请期待");
                     }
                     else
                     {
@@ -233,15 +253,34 @@ namespace BoardDesigner
 
         void SaveProCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = true;
+            if (CurrentDesignerPage != null)
+            {
+                e.CanExecute = true;
+            }
+
             e.Handled = true;
         }
         private void SaveProCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {
+
+            Microsoft.Win32.SaveFileDialog sfd = new Microsoft.Win32.SaveFileDialog();
+            sfd.DefaultExt = ".Board";
+            sfd.Filter = "看板(*.Board)|*.Board|All Files|*.*";
+            sfd.FileName =  CurrentDesignerPage.Board.Name+".Board";
+            if (sfd.ShowDialog() == true) 
+            {
+                CurrentDesignerPage.Board.Name = sfd.SafeFileName;
+                (MainTabGroupPane.SelectedItem as ContentPane).Header = sfd.SafeFileName;
+                string path = sfd.FileName;
+                DesignerBoard bd =( CurrentDesignerPage.DesignerGrid.Children[0] as DesignerCanvas).Warp();
+                BoardManager.SaveBoard(bd, path);
+                this.Logout("Saved Board " + CurrentDesignerPage.Board.Name);
+            }
+            
             e.Handled = true;
         }
 
-        #endregion     
+        #endregion
 
         #region 关闭
 
@@ -267,14 +306,13 @@ namespace BoardDesigner
         {
             if (this.CurrentDesignerPage == null)
                 e.CanExecute = false;
-            else 
+            else
             {
-                if (this.CurrentDesignerPage.SelectItem != null && this.CurrentDesignerPage.SelectItem is DesignerItem)
+                if (this.CurrentDesignerPage.SelectItem != null && !(this.CurrentDesignerPage.SelectItem is DesignerBoard))
                     e.CanExecute = true;
                 else
                     e.CanExecute = false;
             }
-           
             e.Handled = true;
         }
         private void CopyCommand_Executed(object sender, ExecutedRoutedEventArgs e)
@@ -308,7 +346,7 @@ namespace BoardDesigner
                 e.CanExecute = false;
             else
             {
-                if (this.CurrentDesignerPage.SelectItem != null && this.CurrentDesignerPage.SelectItem is DesignerItem)
+                if (this.CurrentDesignerPage.SelectItem != null && !(this.CurrentDesignerPage.SelectItem is DesignerBoard))
                     e.CanExecute = true;
                 else
                     e.CanExecute = false;
@@ -330,7 +368,7 @@ namespace BoardDesigner
                 e.CanExecute = false;
             else
             {
-                if (this.CurrentDesignerPage.SelectItem != null && this.CurrentDesignerPage.SelectItem is DesignerItem)
+                if (this.CurrentDesignerPage.SelectItem != null && !(this.CurrentDesignerPage.SelectItem is DesignerBoard))
                     e.CanExecute = true;
                 else
                     e.CanExecute = false;
@@ -339,6 +377,21 @@ namespace BoardDesigner
         }
         private void DeleteCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {
+            if (this.CurrentDesignerPage.DesignerGrid.Children[0] != null)
+            {
+                DesignerCanvas dc = this.CurrentDesignerPage.DesignerGrid.Children[0] as DesignerCanvas;
+                for (int i = dc.Children.Count - 1; i >= 0; i--)
+                {
+                    if ((dc.Children[i] as DesignerItem).IsSelected)
+                    {
+                        this.Logout("Deleted DesignerItem");
+                        dc.Children.Remove(dc.Children[i]);
+
+                    }
+                }
+                this.CurrentDesignerPage.SelectItem = CurrentDesignerPage.Board;
+            }
+
             e.Handled = true;
         }
 
@@ -348,7 +401,47 @@ namespace BoardDesigner
 
         #region 自定义命令
 
-      
+        private void InitCustomCommand()
+        {
+
+            this.SelectAllButton.Command = SelectAllCommand;
+            this.SelectAllCommand.InputGestures.Add(new KeyGesture(Key.A, ModifierKeys.Control));
+            this.SelectAllButton.CommandTarget = CurrentDesignerPage;
+            CommandBinding selectAllCommandBinding = new CommandBinding();
+            selectAllCommandBinding.Command = SelectAllCommand;
+            selectAllCommandBinding.CanExecute += new CanExecuteRoutedEventHandler(SelectAll_CanExecute);
+            selectAllCommandBinding.Executed += new ExecutedRoutedEventHandler(SelectAll_Execute);
+            this.CommandBindings.Add(selectAllCommandBinding);
+        }
+
+        private RoutedCommand SelectAllCommand = new RoutedCommand("SelectAll", typeof(MainWindow));
+        void SelectAll_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            if (CurrentDesignerPage == null)
+                e.CanExecute = false;
+            else
+            {
+                if (CurrentDesignerPage.Content == null)
+                    e.CanExecute = false;
+                else
+                {
+                    if ((this.CurrentDesignerPage.DesignerGrid.Children[0] as DesignerCanvas).Children.Count > 0)
+                        e.CanExecute = true;
+                    else
+                        e.CanExecute = false;
+                }
+            }
+            e.Handled = true;
+        }
+        private void SelectAll_Execute(object sender, ExecutedRoutedEventArgs e)
+        {
+            foreach (DesignerItem di in (this.CurrentDesignerPage.DesignerGrid.Children[0] as DesignerCanvas).Children)
+            {
+                di.IsSelected = true;
+                this.CurrentDesignerPage.SelectItem = (di as IDesigner).GetDesignerModel();
+            }
+            e.Handled = true;
+        }
 
         #endregion
 
@@ -361,12 +454,12 @@ namespace BoardDesigner
 
         private void MainContentHost_ActiveDocumentChanged(object sender, RoutedPropertyChangedEventArgs<ContentPane> e)
         {
-            if (e.NewValue == null) 
+            if (e.NewValue == null)
             {
                 CurrentDesignerPage = null;
                 return;
             }
-                
+
             Frame f = e.NewValue.Content as Frame;
             if (f.Content == null)
                 return;
@@ -374,13 +467,40 @@ namespace BoardDesigner
             {
                 Page p = f.Content as Page;
                 if (p is DesignerPage)
+                {
                     CurrentDesignerPage = p as DesignerPage;
+                }
                 else
                 {
                     CurrentDesignerPage = null;
                 }
+                this.Logout("Changed Active DesignerPage");
             }
         }
-      
+        public void Logout(string str)
+        {
+            DebugTextBox.AppendText("\n" + "[" + DateTime.Now.ToLongTimeString() + "]" + str);
+            DebugTextBox.ScrollToEnd();
+        }
+
+        private void DataSourceSettingButton_Click(object sender, RoutedEventArgs e)
+        {
+            string key = (((sender as Button).Parent as StackPanel).FindName("DataSourceTB") as TextBox).Text;
+            DataSourceSettingWindow win = new DataSourceSettingWindow(key);
+            if (win.ShowDialog() == true)
+            {
+                //更改Key，并通过管理器获取对象添加至数据源集合
+                key = win.SelectedItem.Name;
+
+                ((((sender as Button).Parent as StackPanel).FindName("DataSourceTB") as TextBox).DataContext as PropertyGridPropertyItem).Value = key;
+                this.CurrentDesignerPage.Board.AddBackControl(DataSourceManager.GetDataSource(key));
+            }
+        }
+
+
+
+
+
+
     }
 }

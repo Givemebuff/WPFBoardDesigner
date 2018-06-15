@@ -34,6 +34,26 @@ namespace Board.DesignerModel
         {
             get { return this._dataSourceType; }
         }
+        [Browsable(false)]
+        [XmlIgnore]
+        public int _timeSpan { get; set; }
+        [ReadOnly(true)]
+        [Category("时间")]
+        [DisplayName("访问时间间隔")]
+        [Description("0表示访问一次。单位毫秒")]
+        [XmlAttribute("TimeSpan")]
+        public int TimeSpan 
+        {
+            get { return this._timeSpan; }
+            set
+            {
+                if (value < 0)
+                    value = 0;
+                this._timeSpan = value;
+                OnPropertyChanged("TimeSpan");
+            }
+        }
+
     }
     [XmlType("DBDataSource")]
     public class DesignerDataBaseDataSource : DesignerDataSource

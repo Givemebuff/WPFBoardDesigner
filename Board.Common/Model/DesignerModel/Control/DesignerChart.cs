@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Board.Interface;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
@@ -20,14 +21,10 @@ namespace Board.DesignerModel
         public DesignerChart()
         {
             this.Type = DesignerElementType.Chart;
-            this.ChartTitles = new ObservableCollection<DesignerChartTitle>();
-            this.ChartTitles.Add(new DesignerChartTitle());
-            this.ChartAxesX = new ObservableCollection<DesignerChartAxis>();
-            this.ChartAxesX.Add(new DesignerChartAxis());
-            this.ChartAxesY = new ObservableCollection<DesignerChartAxis>();
-            this.ChartAxesY.Add(new DesignerChartAxis());
-            this.Series = new ObservableCollection<DesignerChartDataSerie>();
-            this.Series.Add(new DesignerChartDataSerie());
+            this.ChartTitles = new ObservableCollection<DesignerChartTitle>();          
+            this.ChartAxesX = new ObservableCollection<DesignerChartAxis>();           
+            this.ChartAxesY = new ObservableCollection<DesignerChartAxis>();          
+            this.Series = new ObservableCollection<DesignerChartDataSerie>();           
         }
         #region 标题
         [Browsable(false)]
@@ -94,7 +91,6 @@ namespace Board.DesignerModel
         #endregion
 
         #region 数据
-
 
         #region 数据线
 
@@ -222,6 +218,7 @@ namespace Board.DesignerModel
                 OnPropertyChanged("TitleBackground");
             }
         }
+        [Browsable(false)]
         [XmlAttribute("TitleBackground")]
         public string XmlTitleBackground
         {
@@ -296,11 +293,12 @@ namespace Board.DesignerModel
                 OnPropertyChanged("LineColor");
             }
         }
+        [Browsable(false)]
         [XmlAttribute("LineColor")]
         public string XmlLineColor
         {
             get { return this.LineColor == null ? null : LineColor.ToString(); }
-            set 
+            set
             {
                 this.LineColor = Board.XmlConverter.ColorConverter.XmlToBrush(value);
             }
@@ -503,15 +501,16 @@ namespace Board.DesignerModel
                 OnPropertyChanged("AxisBackground");
             }
         }
+        [Browsable(false)]
         [XmlAttribute("AxisBackground")]
-        public string XmlAxisBackground 
+        public string XmlAxisBackground
         {
-            get 
+            get
             {
                 return this.AxisBackground == null ? null : AxisBackground.ToString();
             }
 
-            set 
+            set
             {
                 this.AxisBackground = Board.XmlConverter.ColorConverter.XmlToBrush(value);
             }
@@ -523,7 +522,7 @@ namespace Board.DesignerModel
     }
 
     [XmlType("Serie")]
-    public class DesignerChartDataSerie : DesignerVisualElement
+    public class DesignerChartDataSerie : DesignerVisualElement, IDynamicData
     {
         public DesignerChartDataSerie()
         {
@@ -597,6 +596,7 @@ namespace Board.DesignerModel
             }
             get { return this._color; }
         }
+        [Browsable(false)]
         [XmlAttribute("Color")]
         public string XmlColor
         {
@@ -755,6 +755,7 @@ namespace Board.DesignerModel
                 OnPropertyChanged("LabelBackground");
             }
         }
+        [Browsable(false)]
         [XmlAttribute("LabelBackground")]
         public string XmlLabelBackground
         {
@@ -833,7 +834,7 @@ namespace Board.DesignerModel
                 OnPropertyChanged("LabelLineColor");
             }
         }
-
+        [Browsable(false)]
         [XmlAttribute("LabelLineColor")]
         public string XmlLabelLineColor
         {
@@ -950,7 +951,7 @@ namespace Board.DesignerModel
             get { return this._legendMarkerColor; }
             set { this._legendMarkerColor = value; OnPropertyChanged("LegendMarkerColor"); }
         }
-
+        [Browsable(false)]
         [XmlAttribute("LegendMarkerColor")]
         public string XmlLegendMarkerColor
         {
@@ -997,6 +998,7 @@ namespace Board.DesignerModel
                 OnPropertyChanged("HighLightColor");
             }
         }
+        [Browsable(false)]
         [XmlAttribute("HighLightColor")]
         public string XmlHighLightColor
         {
@@ -1068,6 +1070,7 @@ namespace Board.DesignerModel
             set { this._lineFill = value; OnPropertyChanged("LineFill"); }
             get { return this._lineFill; }
         }
+        [Browsable(false)]
         [XmlAttribute("LineFill")]
         public string XmlLineFill
         {
@@ -1136,6 +1139,7 @@ namespace Board.DesignerModel
             set { this._markerBorderColor = value; OnPropertyChanged("MarkerBorderColor"); }
             get { return this._markerBorderColor; }
         }
+        [Browsable(false)]
         [XmlAttribute("MarkerBorderColor")]
         public string XmlMarkerBorderColor
         {
@@ -1173,6 +1177,7 @@ namespace Board.DesignerModel
             set { this._markerColor = value; OnPropertyChanged("MarkerColor"); }
             get { return this._markerColor; }
         }
+        [Browsable(false)]
         [XmlAttribute("MarkerColor")]
         public string XmlMarkerColor
         {
@@ -1303,8 +1308,8 @@ namespace Board.DesignerModel
         [XmlIgnore]
         public string _dataSourceKey { get; set; }
 
-        [ReadOnly(true)]
-        [Category("数据")]        
+        //[ReadOnly(true)]
+        [Category("数据")]
         [DisplayName("数据源")]
         [Description("数据源")]
         [XmlElement("DataSourceKey")]
@@ -1633,6 +1638,7 @@ namespace Board.DesignerModel
                 OnPropertyChanged("Color");
             }
         }
+        [Browsable(false)]
         [XmlAttribute("Color")]
         public string XmlColor
         {
@@ -1743,7 +1749,7 @@ namespace Board.DesignerModel
                 OnPropertyChanged("LabelBackground");
             }
         }
-
+        [Browsable(false)]
         [XmlAttribute("LabelBackground")]
         public string XmlLabelBackground
         {
@@ -1792,6 +1798,7 @@ namespace Board.DesignerModel
                 OnPropertyChanged("LabelLineColor");
             }
         }
+        [Browsable(false)]
         [XmlAttribute("LabelLineColor")]
         public string XmlLabelLineColor
         {
@@ -1889,6 +1896,7 @@ namespace Board.DesignerModel
                 OnPropertyChanged("LegendMarkerColor");
             }
         }
+        [Browsable(false)]
         [XmlAttribute("LegendMarkerColor")]
         public string XmlLegendMarkerColor
         {
@@ -1965,6 +1973,7 @@ namespace Board.DesignerModel
                 OnPropertyChanged("MarkerBorderColor");
             }
         }
+        [Browsable(false)]
         [XmlAttribute("MarkerBorderColor")]
         public string XmlMarkerBorderColor
         {
@@ -2013,6 +2022,7 @@ namespace Board.DesignerModel
                 OnPropertyChanged("MarkerColor");
             }
         }
+        [Browsable(false)]
         [XmlAttribute("MarkerColor")]
         public string XmlMarkerColor
         {
@@ -2185,6 +2195,7 @@ namespace Board.DesignerModel
                 OnPropertyChanged("StickColor");
             }
         }
+        [Browsable(false)]
         [XmlAttribute("StickColor")]
         public string XmlStickColor
         {

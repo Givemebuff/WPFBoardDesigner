@@ -1,4 +1,4 @@
-﻿<Window xmlns:BoardControl="clr-namespace:BoardDesigner.BoardControl"  
+﻿<Window 
                         xmlns:Controls="clr-namespace:System.Windows.Controls" 
                         xmlns:igWPF="http://schemas.infragistics.com/xaml/wpf" 
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -15,13 +15,13 @@
         xmlns:res="clr-namespace:BoardDesigner.Properties"
         x:Name="ThisWindow"
         Title="看板设计器" Height="768" Width="1366" WindowStyle="ThreeDBorderWindow" Icon="Resources/Icons/web-design.ico" >
-    <Window.Resources>
+    <Window.Resources>       
         <converter:Int100ToDoubleConverter x:Key="Int100ToDoubleConverter"/>
         <converter:RImageToStringConverter x:Key="RImageToStringConverter" />
         <converter:NameToDataSourceConverter x:Key="NameToDataSourceConverter" />
-    </Window.Resources>
+    </Window.Resources>   
     <Window.CommandBindings>
-        <CommandBinding Command="ApplicationCommands.Open"
+        <CommandBinding Command="ApplicationCommands.Open"                        
                         CanExecute="OpenProCommand_CanExecute"
                          Executed="OpenProCommand_Executed">
         </CommandBinding>
@@ -65,7 +65,7 @@
                 <igWPF:SplitPane igWPF:XamDockManager.InitialLocation="DockedBottom" 
 					SplitterOrientation="Vertical" Height="200">
                     <igWPF:TabGroupPane >
-                        <igWPF:ContentPane x:Name="xmlDockPane" Header="XML"	  IsPinned="False"                                        
+                        <igWPF:ContentPane x:Name="xmlDockPane" Header="XML" IsPinned="False"    Visibility="Collapsed"                                    
 							CloseButtonVisibility="Visible" 
 							PinButtonVisibility="Visible"
 							WindowPositionMenuVisibility="Visible">
@@ -79,11 +79,15 @@
                                 </ig:XamSyntaxEditor.Document>
                             </ig:XamSyntaxEditor>
                         </igWPF:ContentPane>
-                        <igWPF:ContentPane x:Name="debugDockPane" Header="Debug"  IsPinned="False"   
+                        <igWPF:ContentPane x:Name="debugDockPane" Header="Debug"  IsPinned="True"   
 							Image="Resources/Images/cmd_128px.png"
 							CloseButtonVisibility="Visible"
 							PinButtonVisibility="Visible"
-							WindowPositionMenuVisibility="Visible"/>
+							WindowPositionMenuVisibility="Visible">
+                            <RichTextBox x:Name="DebugTextBox" IsReadOnly="True" IsInactiveSelectionHighlightEnabled="True" IsReadOnlyCaretVisible="True" >
+                                
+                            </RichTextBox>
+                        </igWPF:ContentPane>
 
                     </igWPF:TabGroupPane>
                 </igWPF:SplitPane>
@@ -106,7 +110,7 @@
                             </Border>
 
                         </igWPF:ContentPane>
-                        <igWPF:ContentPane x:Name="structDockPane" Header="结构"
+                        <igWPF:ContentPane x:Name="structDockPane" Header="结构" Visibility="Collapsed"
 							CloseButtonVisibility="Visible" IsPinned="False"
 							PinButtonVisibility="Visible"
 							WindowPositionMenuVisibility="Visible">
@@ -126,6 +130,19 @@
                                 <ig:XamPropertyGrid HorizontalAlignment="Left" VerticalAlignment="Top" x:Name="xamPropertyGrid"                                                     
                                                     ScrollBarVisibility="Auto"  >
                                     <ig:XamPropertyGrid.EditorDefinitions>
+                                        <ig:PropertyGridEditorDefinition>
+                                            <ig:PropertyGridEditorDefinition.TargetProperties>
+                                                <sys:String>DataSourceKey</sys:String>
+                                            </ig:PropertyGridEditorDefinition.TargetProperties>
+                                            <ig:PropertyGridEditorDefinition.EditTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBox Text="{Binding Value,Mode=TwoWay}" x:Name="DataSourceTB"></TextBox>
+                                                        <Button Width="80" Height="20" VerticalAlignment="Center" x:Name="DataSourceSettingButton" Click="DataSourceSettingButton_Click">编辑</Button>
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ig:PropertyGridEditorDefinition.EditTemplate>
+                                        </ig:PropertyGridEditorDefinition>
                                         <ig:PropertyGridEditorDefinition>
                                             <ig:PropertyGridEditorDefinition.TargetProperties>
                                                 <sys:String>Opacity</sys:String>
@@ -220,9 +237,8 @@
         </StatusBar>
         <Custom:XamRibbon Height="120" Grid.Row="0" VerticalAlignment="Top" Theme="Office2013" AllowMinimize="True" AutoHideEnabled="True" >
             <Custom:XamRibbon.ApplicationMenu>
-                <Custom:ApplicationMenu Caption="文件">
-                    <Custom:ApplicationMenu.RecentItems>
-                        <Custom:ButtonTool Caption="11111" />
+                <Custom:ApplicationMenu Caption="文件" x:Name="MainApplicationMenu">
+                    <Custom:ApplicationMenu.RecentItems>                        
                     </Custom:ApplicationMenu.RecentItems>
                     <Custom:ButtonTool x:Name="NewProjectButton" Caption="新建" LargeImage="Resources/Images/New_Large.png" Command="ApplicationCommands.New" />
                     <Custom:ButtonTool x:Name="OpenProjectButton" Caption="打开" LargeImage="Resources/Images/Open_Large.png"  Command="ApplicationCommands.Open"/>
@@ -273,7 +289,7 @@
                 <Custom:RibbonGroup Id="Clipboard" Caption="粘贴板">
                     <Custom:ToolHorizontalWrapPanel>
                         <Custom:ButtonTool
-							Caption="全选" 
+							Caption="全选" x:Name="SelectAllButton"
 							Custom:RibbonGroup.MaximumSize="ImageAndTextLarge"							
 							LargeImage="Resources/Images/selectAll.png"/>
                     </Custom:ToolHorizontalWrapPanel>
@@ -363,7 +379,7 @@
                         </Custom:ToolHorizontalWrapPanel>
                 </Custom:RibbonGroup>
             </Custom:RibbonTabItem>
-            <Custom:RibbonTabItem Header="画笔">
+            <Custom:RibbonTabItem Header="画笔" Visibility="Collapsed">
                 <Custom:RibbonGroup Id="PenCustomControlGroup" Caption="画笔拓展功能">
                     <Custom:ToolHorizontalWrapPanel>
                         <Custom:ButtonTool
@@ -420,7 +436,7 @@
                     </Custom:ToolHorizontalWrapPanel>
                 </Custom:RibbonGroup>
             </Custom:RibbonTabItem>
-            <Custom:RibbonTabItem Header="模板"/>
+            <Custom:RibbonTabItem Header="模板" Visibility="Collapsed"/>
 
         </Custom:XamRibbon>
 

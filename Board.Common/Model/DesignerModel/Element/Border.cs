@@ -66,6 +66,7 @@ namespace Board.DesignerModel
                 OnPropertyChanged("BorderBrush");
             }
         }
+        [Browsable(false)]
         [XmlAttribute("BorderBrush")]
         public string XmlBorderBrush 
         {

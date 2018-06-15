@@ -6,11 +6,9 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>              
                 <ResourceDictionary Source="ResourceDictionaries\DesignerItem.xaml" />
-                <ResourceDictionary Source="ResourceDictionaries\ToolBox.xaml" />
-                <ResourceDictionary Source="ResourceDictionaries\ToolBox\BaseShape.xaml" />
+                <ResourceDictionary Source="ResourceDictionaries\ToolBox.xaml" />               
                 <ResourceDictionary Source="ResourceDictionaries\ToolBox\BaseControl.xaml" />
-                <ResourceDictionary Source="ResourceDictionaries\ToolBox\Chart.xaml" />
-                <ResourceDictionary Source="ResourceDictionaries\ToolBox\Expand.xaml" />
+            
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

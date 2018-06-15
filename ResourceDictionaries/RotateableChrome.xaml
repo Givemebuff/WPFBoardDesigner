@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"      
-                    xmlns:chrome="clr-namespace:BoardDesigner.BaseChrome">
+                    xmlns:chrome="clr-namespace:Board.BaseControl;assembly=Board.Controls">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="RotateableDecorator.xaml"/>
         <!--TODO-->

@@ -9,5 +9,6 @@ namespace Board.Interface
     public interface IDynamicData
     {
         string DataSourceKey { get; set; }
+        int DataAccessTimeSpan { get; set; }
     }
 }

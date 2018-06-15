@@ -70,9 +70,6 @@ C:\Git\WPFBoardDesigner\obj\Debug\ResourceDictionaries\RotateableDecorator.baml
 C:\Git\WPFBoardDesigner\obj\Debug\ResourceDictionaries\SizeInfoChrome.baml
 C:\Git\WPFBoardDesigner\obj\Debug\ResourceDictionaries\ToolBox.baml
 C:\Git\WPFBoardDesigner\obj\Debug\ResourceDictionaries\ToolBox\BaseControl.baml
-C:\Git\WPFBoardDesigner\obj\Debug\ResourceDictionaries\ToolBox\BaseShape.baml
-C:\Git\WPFBoardDesigner\obj\Debug\ResourceDictionaries\ToolBox\Chart.baml
-C:\Git\WPFBoardDesigner\obj\Debug\ResourceDictionaries\ToolBox\Expand.baml
 C:\Git\WPFBoardDesigner\obj\Debug\ResourceDictionaries\TransformOriginPointChrome.baml
 C:\Git\WPFBoardDesigner\obj\Debug\ResourceDictionaries\TransformOriginPointDecorator.baml
 C:\Git\WPFBoardDesigner\obj\Debug\Windows\DataSourceSettingWindow.baml

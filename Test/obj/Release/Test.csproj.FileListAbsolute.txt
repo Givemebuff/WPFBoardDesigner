@@ -1,0 +1,11 @@
+C:\Git\WPFBoardDesigner\Test\bin\Release\Test.exe.config
+C:\Git\WPFBoardDesigner\Test\bin\Release\Test.exe
+C:\Git\WPFBoardDesigner\Test\bin\Release\Test.pdb
+C:\Git\WPFBoardDesigner\Test\bin\Release\Board.Converter.dll
+C:\Git\WPFBoardDesigner\Test\bin\Release\WPFVisifire.Charts.dll
+C:\Git\WPFBoardDesigner\Test\bin\Release\Indusfo.DataAccessLayer.dll
+C:\Git\WPFBoardDesigner\Test\bin\Release\Indusfo.Common.dll
+C:\Git\WPFBoardDesigner\Test\bin\Release\Board.Converter.pdb
+C:\Git\WPFBoardDesigner\Test\obj\Release\Test.csprojResolveAssemblyReference.cache
+C:\Git\WPFBoardDesigner\Test\obj\Release\Test.exe
+C:\Git\WPFBoardDesigner\Test\obj\Release\Test.pdb

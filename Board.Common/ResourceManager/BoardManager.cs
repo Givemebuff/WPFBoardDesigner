@@ -22,9 +22,9 @@ namespace Board.Resource
             catch (Exception e)
             {
                 LogManager.WriteLog("保存看板文件时出错," + e.Message);
-            }
-           
-           
+            }         
         }
+
+
     }
 }

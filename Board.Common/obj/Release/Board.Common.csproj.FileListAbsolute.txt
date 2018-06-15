@@ -1,0 +1,7 @@
+C:\Git\WPFBoardDesigner\Board.Common\bin\Release\Board.Converter.dll
+C:\Git\WPFBoardDesigner\Board.Common\bin\Release\Board.Converter.pdb
+C:\Git\WPFBoardDesigner\Board.Common\bin\Release\Indusfo.Common.dll
+C:\Git\WPFBoardDesigner\Board.Common\bin\Release\Indusfo.DataAccessLayer.dll
+C:\Git\WPFBoardDesigner\Board.Common\bin\Release\WPFVisifire.Charts.dll
+C:\Git\WPFBoardDesigner\Board.Common\obj\Release\Board.Converter.dll
+C:\Git\WPFBoardDesigner\Board.Common\obj\Release\Board.Converter.pdb

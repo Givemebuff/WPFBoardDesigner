@@ -317,6 +317,7 @@ namespace BoardDesigner
         }
         private void CopyCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {
+           
             e.Handled = true;
         }
 

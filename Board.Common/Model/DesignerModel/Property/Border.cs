@@ -11,7 +11,7 @@ using System.Xml.Serialization;
 namespace Board.DesignerModel
 {    [Serializable]
     [XmlType("Border")]
-    public class DesignerBorder : DesignerElement
+    public class DesignerBorder : DesignerProperty
     {
         public DesignerBorder() 
         {

@@ -10,7 +10,7 @@ using System.Xml.Serialization;
 namespace Board.DesignerModel
 {
     [Serializable]
-    public class DesignerPosition : DesignerElement
+    public class DesignerPosition : DesignerProperty
     {
         public DesignerPosition()
         {

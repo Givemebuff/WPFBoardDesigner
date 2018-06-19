@@ -22,7 +22,7 @@ namespace Board.DesignerModel
     [XmlInclude(typeof(DesignerLocalFileDataSource))]
     [XmlInclude(typeof(DesignerRemoteURIDataSource))]
     [XmlInclude(typeof(DesignerStaticTextDataSource))]
-    public class DesignerDataSource : DesignerElement
+    public class DesignerDataSource : DesignerProperty
     {
         [Browsable(false)]
         [XmlIgnore]

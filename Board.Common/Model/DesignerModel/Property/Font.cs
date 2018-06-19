@@ -11,7 +11,7 @@ using System.Xml.Serialization;
 namespace Board.DesignerModel
 {
     [Serializable]
-    public class DesignerFont : DesignerElement
+    public class DesignerFont : DesignerProperty
     {
         public DesignerFont()
         {

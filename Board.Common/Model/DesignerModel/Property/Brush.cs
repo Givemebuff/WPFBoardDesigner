@@ -11,8 +11,8 @@ using System.Xml.Serialization;
 
 namespace Board.DesignerModel
 {
-    [Serializable]    
-    public class DesignerBrush : DesignerElement
+    [Serializable]
+    public class DesignerBrush : DesignerProperty
     {
         public DesignerBrush()
         {

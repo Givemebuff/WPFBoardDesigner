@@ -179,31 +179,31 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>ElUr6qclqJAMF5YbIJJ/vL+9VMXNoyX5rpdUqyDh1YU=</dsig:DigestValue>
+        <dsig:DigestValue>A/P6aEvhbQYkj0b4lSTa7rEPGTJaGBszr856xkF1n+g=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Board.Converter.dll" size="126976">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Board.Converter.dll" size="125952">
       <assemblyIdentity name="Board.Converter" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>zE1pstAnHx53hRrTheeEUC0omZYSdPQi6qnY1RBqGxg=</dsig:DigestValue>
+        <dsig:DigestValue>TxYb6K7f9lkDq+EnqTHTRKYTlpS2fM+zDZvX5Wemm9s=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BoardDesigner.exe" size="5086720">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BoardDesigner.exe" size="5086208">
       <assemblyIdentity name="BoardDesigner" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>CVScXQQ5ssbU4uabAnVnwkZwS/LVY4ztjg9rCw7ugoo=</dsig:DigestValue>
+        <dsig:DigestValue>JK4/JkFT6A0VPFx0UrJAL1wZvcWo1jm5+DnpGeFOmq4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

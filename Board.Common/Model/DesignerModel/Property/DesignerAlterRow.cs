@@ -12,7 +12,7 @@ namespace Board.DesignerModel
 {
     [Serializable]
     [XmlType("AlterRow")]
-    public class DesignerAlterRow: DesignerElement
+    public class DesignerAlterRow : DesignerProperty
     {
         [Browsable(false)]
         [XmlIgnore]

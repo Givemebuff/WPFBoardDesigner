@@ -50,60 +50,68 @@ namespace Board.DesignerModel
             }
         }
     }
+
+     public class DesignerObject : PropertyChangeBase 
+     {
+         [XmlIgnore]
+         [Browsable(false)]
+         public string _name
+         {
+             get;
+             set;
+         }
+
+         [Category("基础")]
+         [DisplayName("名称")]
+         [Description("元素的名字")]
+         [XmlAttribute("Name")]
+
+         public string Name
+         {
+             get { return this._name; }
+             set
+             {
+                 _name = value;
+                 OnPropertyChanged("Name");
+             }
+         }
+         [ReadOnly(true)]
+         [Category("基础")]
+         [DisplayName("元素种类")]
+         [Description("设计元素的种类")]
+         [XmlAttribute("DesignerType")]
+         public DesignerElementType Type
+         {
+             get;
+             set;
+         }
+     }
+
+     public class DesignerProperty : DesignerObject
+     {
+         public DesignerProperty()
+        {
+            this.Type = DesignerElementType.Property;           
+        }
+     }
+
      [Serializable]
-    public class DesignerElement : PropertyChangeBase
+    public class DesignerElement : DesignerObject
     {
-
-        [XmlIgnore]
-        [Browsable(false)]
-        public string _name
-        {
-            get;
-            set;
-        }
-
-        [Category("基础")]
-        [DisplayName("名称")]
-        [Description("元素的名字")]
-        [XmlAttribute("Name")]
-       
-        public string Name
-        {
-            get { return this._name; }
-            set
-            {
-                _name = value;
-                OnPropertyChanged("Name");
-            }
-        }
-
-        [Browsable(false)]      
-        [XmlAttribute("GUID")]        
-        public Guid ID { get; set; }
-
-
-
-        [ReadOnly(true)]
-        [Category("基础")]
-        [DisplayName("元素种类")]
-        [Description("设计元素的种类")]
-        [XmlAttribute("DesignerType")]       
-        public DesignerElementType Type
-        {
-            get;
-            set;
-        }
-
-        public void New() 
-        {
-            this.ID = Guid.NewGuid();
-            System.Type tp = this.GetType();
-            Name = tp.Name + "_" + this.ID.ToString();
-        }
+        
         public DesignerElement()
         {
             this.Type = DesignerElementType.Element;
             New();
+        }
+        [ReadOnly(true)]
+        [XmlAttribute("GUID")]
+        public Guid ID { get; set; }
+        public void New()
+        {
+            this.ID = Guid.NewGuid();
+            System.Type tp = this.GetType();
+            Name = tp.Name + "_" + this.ID.ToString();
         }
     }
 
@@ -232,9 +240,9 @@ namespace Board.DesignerModel
 
      [Serializable]
     
-    public class DesignerBackgroundElement : DesignerElement
+    public class DesignerBackElement : DesignerElement
     {
-        public DesignerBackgroundElement() { this.Type = DesignerElementType.DesignerBackgroundElement; }
+        public DesignerBackElement() { this.Type = DesignerElementType.DesignerBackgroundElement; }
     }  
    
 }

@@ -9,7 +9,7 @@ using System.Xml.Serialization;
 namespace Board.DesignerModel
 {
     [Serializable]
-    public class DesignerSize:DesignerElement
+    public class DesignerSize : DesignerProperty
     {
         #region 长宽
         [Browsable(false)]

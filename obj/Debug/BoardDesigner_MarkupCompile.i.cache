@@ -16,5 +16,5 @@ G:\Git\WPFBoardDesigner\App.xaml
 53480732063
 CustomPage\HelpPage.xaml;CustomPage\MainPage.xaml;MainWindow.xaml;CustomPage\DesignerPage.xaml;PreViewer.xaml;ResourceDictionaries\AngleInfoChrome.xaml;ResourceDictionaries\Brushes.xaml;ResourceDictionaries\DataGrid.xaml;ResourceDictionaries\DesignerItem.xaml;ResourceDictionaries\Expander.xaml;ResourceDictionaries\LineChrome.xaml;ResourceDictionaries\LineDecorator.xaml;ResourceDictionaries\LocationInfoChrome.xaml;ResourceDictionaries\ResizeableChrome.xaml;ResourceDictionaries\ResizeableDecorator.xaml;ResourceDictionaries\RotateableChrome.xaml;ResourceDictionaries\RotateableDecorator.xaml;ResourceDictionaries\SizeInfoChrome.xaml;ResourceDictionaries\Slider.xaml;ResourceDictionaries\ToolBar.xaml;ResourceDictionaries\ToolBox.xaml;ResourceDictionaries\ToolBox\BaseControl.xaml;ResourceDictionaries\TransformOriginPointChrome.xaml;ResourceDictionaries\TransformOriginPointDecorator.xaml;Windows\DataSourceSettingWindow.xaml;Windows\DataTablePreViewWindow.xaml;Windows\ImageResourceWindow.xaml;Windows\NewBoardWindow.xaml;
 
-True
+False
 

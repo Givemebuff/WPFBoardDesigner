@@ -71,7 +71,7 @@ namespace Board.DesignerModel
                 if (this._fontColor == null)
                     return null;
                 else
-                    return this._fontColor.ToString();
+                    return Board.XmlConverter.ColorConverter.BrushToString(this._fontColor);
             }
             set
             {

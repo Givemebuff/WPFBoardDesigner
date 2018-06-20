@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Windows;
+using System.Windows.Media;
 using System.Xml.Serialization;
 
 namespace Board.DesignerModel
@@ -26,6 +27,8 @@ namespace Board.DesignerModel
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
+
+        
     }
 
     public class DesignerObject : PropertyChangeBase

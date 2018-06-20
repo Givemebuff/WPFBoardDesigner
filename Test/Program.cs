@@ -24,11 +24,17 @@ namespace Test
             //    string s = Console.ReadLine();
             //    Console.WriteLine("异步的同时输入了：" + s);
             //}
-            DesignerBoard a = new DesignerBoard();
-            DesignerBoard b = new DesignerBoard();
-            
-            Console.WriteLine(a.GetHashCode());
-            Console.WriteLine(b.GetHashCode());
+            LinearGradientBrush lk = new LinearGradientBrush();
+
+            MemoryStream Stream = new MemoryStream();
+            XmlSerializer xml = new XmlSerializer(lk.GetType());
+            xml.Serialize(Stream, lk);
+            Stream.Position = 0;
+            StreamReader sr = new StreamReader(Stream);
+            string str = sr.ReadToEnd();
+            sr.Dispose();
+            Stream.Close();
+
             Console.WriteLine(DateTime.Now.ToString());
         
             Console.Read();

@@ -95,7 +95,7 @@ namespace Board.DesignerModel
             {
                 if (this._columnBackground == null)
                     return null;
-                return this._columnBackground.ToString();
+                return Board.XmlConverter.ColorConverter.BrushToString(this._columnBackground);                
             }
             set
             {

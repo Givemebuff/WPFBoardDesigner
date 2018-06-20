@@ -78,3 +78,5 @@ C:\Git\WPFBoardDesigner\Board.Controls\obj\Debug\BoardControl\BoardDynamicLabel.
 C:\Git\WPFBoardDesigner\Board.Controls\obj\Debug\Board.Controls.g.resources
 C:\Git\WPFBoardDesigner\Board.Controls\obj\Debug\Board.Controls.dll
 C:\Git\WPFBoardDesigner\Board.Controls\obj\Debug\Board.Controls.pdb
+G:\Git\WPFBoardDesigner\Board.Controls\obj\Debug\BoardControl\BoardProcessbar.baml
+G:\Git\WPFBoardDesigner\Board.Controls\obj\Debug\BoardControl\BoardProcessbar.g.cs

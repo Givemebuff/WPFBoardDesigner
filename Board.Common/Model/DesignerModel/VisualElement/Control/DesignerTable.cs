@@ -126,7 +126,7 @@ namespace Board.DesignerModel
             {
                 if (this._headerBackground == null)
                     return null;
-                return this._headerBackground.ToString();
+                return Board.XmlConverter.ColorConverter.BrushToString(this._headerBackground);               
             }
             set 
             {

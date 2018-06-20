@@ -43,7 +43,7 @@ namespace Board.DesignerModel
             {
                 if (this._alternatingRowBackground == null)
                     return null;
-                return this._alternatingRowBackground.ToString();
+                return Board.XmlConverter.ColorConverter.BrushToString(this._alternatingRowBackground);               
             }
             set
             {

@@ -37,12 +37,14 @@ namespace Board.DesignerModel
         
         public Brush ColorBrush
         {
-            get { return this._colorBrush; }
+            get 
+            { 
+                return this._colorBrush;
+            }
             set
             {
                 this._colorBrush = value;
-                OnPropertyChanged("ColorBrush");
-                OnPropertyChanged("Background");
+                OnPropertyChanged("ColorBrush");               
             }
         }
         [Browsable(false)]
@@ -52,7 +54,7 @@ namespace Board.DesignerModel
             get {
                 if (this._colorBrush == null)
                     return null;
-                return this._colorBrush.ToString();
+                return Board.XmlConverter.ColorConverter.BrushToString(this._colorBrush);
             }
             set 
             {
@@ -90,6 +92,7 @@ namespace Board.DesignerModel
             }
             else if (this._colorBrush != null)
             {
+                
                 return _colorBrush.ToString();
             }
             return null;

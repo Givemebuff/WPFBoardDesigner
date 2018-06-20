@@ -69,7 +69,12 @@ namespace Board.DesignerModel
         [XmlAttribute("BorderBrush")]
         public string XmlBorderBrush 
         {
-            get { return this._borderBrush.ToString(); }
+            get 
+            {
+                if (this._borderBrush == null)
+                    return null;
+                return Board.XmlConverter.ColorConverter.BrushToString(this._borderBrush);               
+            }
             set 
             {
                 this.BorderBrush = Board.XmlConverter.ColorConverter.XmlToBrush(value);

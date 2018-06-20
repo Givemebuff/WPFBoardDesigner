@@ -225,8 +225,8 @@ namespace Board.DesignerModel
         public string XmlTitleBackground
         {
             get
-            {
-                return this.TitleBackground == null ? null : TitleBackground.ToString();
+            {                
+                return this.TitleBackground == null ? null : Board.XmlConverter.ColorConverter.BrushToString(this.TitleBackground);
             }
             set
             {
@@ -300,7 +300,7 @@ namespace Board.DesignerModel
         [XmlAttribute("LineColor")]
         public string XmlLineColor
         {
-            get { return this.LineColor == null ? null : LineColor.ToString(); }
+            get { return this.LineColor == null ? null : Board.XmlConverter.ColorConverter.BrushToString(this.LineColor);  }
             set
             {
                 this.LineColor = Board.XmlConverter.ColorConverter.XmlToBrush(value);
@@ -510,7 +510,7 @@ namespace Board.DesignerModel
         {
             get
             {
-                return this.AxisBackground == null ? null : AxisBackground.ToString();
+                return this.AxisBackground == null ? null : Board.XmlConverter.ColorConverter.BrushToString(this.AxisBackground);
             }
 
             set
@@ -610,7 +610,7 @@ namespace Board.DesignerModel
                     return null;
                 else
                 {
-                    return this.Color.ToString();
+                    return Board.XmlConverter.ColorConverter.BrushToString(this.Color); 
                 }
             }
             set
@@ -765,7 +765,7 @@ namespace Board.DesignerModel
         {
             get
             {
-                return this.LabelBackground == null ? null : LabelBackground.ToString();
+                return this.LabelBackground == null ? null :  Board.XmlConverter.ColorConverter.BrushToString(this.LabelBackground);
             }
             set
             {
@@ -844,7 +844,7 @@ namespace Board.DesignerModel
         {
             get
             {
-                return this.LabelLineColor == null ? null : LabelLineColor.ToString();
+                return this.LabelLineColor == null ? null : Board.XmlConverter.ColorConverter.BrushToString(this.LabelLineColor);
             }
             set
             {
@@ -961,7 +961,7 @@ namespace Board.DesignerModel
         {
             get
             {
-                return this.LegendMarkerColor == null ? null : LegendMarkerColor.ToString();
+                return this.LegendMarkerColor == null ? null : Board.XmlConverter.ColorConverter.BrushToString(this.LegendMarkerColor); 
             }
             set
             {
@@ -1008,7 +1008,7 @@ namespace Board.DesignerModel
         {
             get
             {
-                return this.HighLightColor == null ? null : HighLightColor.ToString();
+                return this.HighLightColor == null ? null : Board.XmlConverter.ColorConverter.BrushToString(this.HighLightColor);
             }
             set
             {
@@ -1080,7 +1080,7 @@ namespace Board.DesignerModel
         {
             get
             {
-                return this.LineFill == null ? null : LineFill.ToString();
+                return this.LineFill == null ? null : Board.XmlConverter.ColorConverter.BrushToString(this.LineFill); 
             }
             set
             {
@@ -1149,7 +1149,7 @@ namespace Board.DesignerModel
         {
             get
             {
-                return this.MarkerBorderColor == null ? null : MarkerBorderColor.ToString();
+                return this.MarkerBorderColor == null ? null : Board.XmlConverter.ColorConverter.BrushToString(this.MarkerBorderColor); 
             }
             set
             {
@@ -1187,7 +1187,7 @@ namespace Board.DesignerModel
         {
             get
             {
-                return this.MarkerColor == null ? null : MarkerColor.ToString();
+                return this.MarkerColor == null ? null : Board.XmlConverter.ColorConverter.BrushToString(this.MarkerColor); 
             }
             set
             {
@@ -1653,7 +1653,7 @@ namespace Board.DesignerModel
                 if (this.Color == null)
                     return null;
                 else
-                    return this.Color.ToString();
+                    return Board.XmlConverter.ColorConverter.BrushToString(this.Color); 
             }
             set
             {
@@ -1764,7 +1764,7 @@ namespace Board.DesignerModel
                 if (this.LabelBackground == null)
                     return null;
                 else
-                    return this.LabelBackground.ToString();
+                    return Board.XmlConverter.ColorConverter.BrushToString(this.LabelBackground); 
             }
 
             set
@@ -1813,7 +1813,7 @@ namespace Board.DesignerModel
                 if (this.LabelLineColor == null)
                     return null;
                 else
-                    return this.LabelLineColor.ToString();
+                    return Board.XmlConverter.ColorConverter.BrushToString(this.LabelLineColor);
             }
 
             set
@@ -1911,7 +1911,7 @@ namespace Board.DesignerModel
                 if (this.LegendMarkerColor == null)
                     return null;
                 else
-                    return this.LegendMarkerColor.ToString();
+                    return Board.XmlConverter.ColorConverter.BrushToString(this.LegendMarkerColor); 
             }
 
             set
@@ -1988,9 +1988,8 @@ namespace Board.DesignerModel
                 if (this.MarkerBorderColor == null)
                     return null;
                 else
-                    return this.MarkerBorderColor.ToString();
+                    return Board.XmlConverter.ColorConverter.BrushToString(this.MarkerBorderColor);
             }
-
             set
             {
                 this.MarkerBorderColor = Board.XmlConverter.ColorConverter.XmlToBrush(value);
@@ -2038,7 +2037,7 @@ namespace Board.DesignerModel
                     return null;
                 else
                 {
-                    return MarkerColor.ToString();
+                    return Board.XmlConverter.ColorConverter.BrushToString(this.MarkerColor);
                 }
             }
 
@@ -2209,7 +2208,7 @@ namespace Board.DesignerModel
             {
                 if (StickColor == null)
                     return null;
-                else return StickColor.ToString();
+                else return Board.XmlConverter.ColorConverter.BrushToString(this.StickColor);
             }
             set
             {

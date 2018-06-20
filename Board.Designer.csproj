@@ -662,6 +662,7 @@
     <Resource Include="Resources\Images\Application_Get.png" />
     <Resource Include="Resources\Images\statictext_32px.png" />
     <Resource Include="Resources\Images\media32px.png" />
+    <Resource Include="Resources\Images\Progressbar_32px.png" />
     <Content Include="Resources\Videos\VideoDemo.wmv" />
     <Content Include="dll\Indusfo.Common.dll" />
     <Content Include="dll\Indusfo.DataAccessLayer.dll" />

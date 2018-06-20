@@ -14,8 +14,7 @@ namespace Board.DesignerModel
     public class DesignerFont : DesignerProperty
     {
         public DesignerFont()
-        {
-            this.Type = DesignerElementType.Font;
+        {           
             FontColor = new SolidColorBrush(Color.FromRgb(0, 0, 0));
             FontSize = 24;
             FontFamily = new FontFamily("微软雅黑");

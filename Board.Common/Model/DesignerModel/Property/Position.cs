@@ -13,14 +13,12 @@ namespace Board.DesignerModel
     public class DesignerPosition : DesignerProperty
     {
         public DesignerPosition()
-        {
-            this.Type = DesignerElementType.Position;
+        {            
             Location = new Point(0, 0);
         }
 
         public DesignerPosition(double x, double y)
-        {
-            this.Type = DesignerElementType.Position;
+        {           
             Location = new Point(x, y);
         }
 

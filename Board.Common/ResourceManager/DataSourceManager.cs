@@ -426,7 +426,7 @@ namespace Board.Resource
         #region 
         public static IEnumerable<DesignerDataBaseDataSource> GetDataBaseDataSources()
         {
-            ObservableCollection<DesignerDataBaseDataSource> dss = new ObservableCollection<DesignerDataBaseDataSource>();
+            List<DesignerDataBaseDataSource> dss = new List<DesignerDataBaseDataSource>();
             string curDirPath = Directory.GetCurrentDirectory() + @"\DataSources\DataBase";
             //若不存在文件夹则先创建
             if (!Directory.Exists(curDirPath))
@@ -452,8 +452,6 @@ namespace Board.Resource
                             DesignerDataBaseDataSource ds = xmldes.Deserialize(sr) as DesignerDataBaseDataSource;
                             dss.Add(ds);
                         }
-
-
                     }
                 }
                 return dss;
@@ -507,7 +505,7 @@ namespace Board.Resource
     {
         public static IEnumerable<DesignerStaticTextDataSource> GetStaticTextDataSources()
         {
-            ObservableCollection<DesignerStaticTextDataSource> dss = new ObservableCollection<DesignerStaticTextDataSource>();
+            List<DesignerStaticTextDataSource> dss = new List<DesignerStaticTextDataSource>();
             string curDirPath = Directory.GetCurrentDirectory() + @"\DataSources\StaticText";
             //若不存在文件夹则先创建
             if (!Directory.Exists(curDirPath))

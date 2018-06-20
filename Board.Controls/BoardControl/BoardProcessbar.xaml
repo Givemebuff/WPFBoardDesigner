@@ -1,0 +1,30 @@
+﻿<UserControl x:Class="Board.Controls.BoardControl.BoardProcessbar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d"  xmlns:converter="clr-namespace:Board.Converter;assembly=Board.Converter"
+             d:DesignHeight="50" d:DesignWidth="100">
+    <UserControl.Resources>
+        <converter:DesignerBrushToBrushConverter x:Key="DesignerBrushToBrushConverter" />
+    </UserControl.Resources>
+    <Border x:Name="uBorder" Width="{Binding Size.Width}" Height="{Binding Size.Height}" BorderThickness="{Binding Border.BorderThickness}" IsHitTestVisible="False"
+           BorderBrush="{Binding Border.BorderBrush}" Visibility="{Binding Visibility}" Margin="{Binding Position.Margin}" CornerRadius="{Binding Border.CornerRadius}"
+            Padding="{Binding Position.Padding}" Opacity="{Binding Opacity}" HorizontalAlignment="{Binding HorizontalAlignment}" 
+           VerticalAlignment="{Binding VerticalAlignment}">
+        <Border.Background>
+            <MultiBinding Converter="{StaticResource DesignerBrushToBrushConverter}">
+                <Binding Path="Background.BackgoundImage"/>
+                <Binding Path="Background.ColorBrush"/>
+            </MultiBinding>
+        </Border.Background>
+        <ProgressBar x:Name="uProcessBar" Background="{x:Null}"  Value="{Binding Value}" BorderThickness="0">
+            <ProgressBar.Foreground>
+                <MultiBinding Converter="{StaticResource DesignerBrushToBrushConverter}">
+                    <Binding Path="Color.BackgoundImage"/>
+                    <Binding Path="Color.ColorBrush"/>
+                </MultiBinding>
+            </ProgressBar.Foreground>
+        </ProgressBar>
+    </Border>
+</UserControl>

@@ -20,7 +20,7 @@ namespace Board.DesignerModel
     {
         public DesignerLabel() 
         {
-            this.Type = DesignerElementType.Label;
+            this.ControlType = DesignerControlType.Label;
             Text = "请输入文本";
             Font = new DesignerFont();
             this.Size = new DesignerSize(150, 50);
@@ -71,7 +71,7 @@ namespace Board.DesignerModel
     {
          public DesignerClock() 
          {
-             this.Type = DesignerElementType.Clock;
+             this.ControlType = DesignerControlType.Clock;
              this.Text = "YYYY-MM-DD hh-mm-ss";
          }
     }
@@ -81,7 +81,7 @@ namespace Board.DesignerModel
      {
         public DesignerDynamicLabel() 
         {
-            this.Type = DesignerElementType.DynamicLabel;           
+            this.ControlType = DesignerControlType.DynamicLabel;           
             this.BindName = "Value";
             this.FormatString = "[#Value]";
         }

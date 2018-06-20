@@ -54,7 +54,8 @@ namespace Board.BoardControl
             StringToClassDictionary.Add("Video", typeof(VideoCandy));
             StringToClassDictionary.Add("Clock", typeof(ClockCandy));   
             StringToClassDictionary.Add("Table", typeof(TableCandy));
-            StringToClassDictionary.Add("Chart", typeof(LineChartCandy));         
+            StringToClassDictionary.Add("Chart", typeof(LineChartCandy));
+            StringToClassDictionary.Add("ProcessBar", typeof(ProcessBar));         
   
             ///
             ClassToClassDictionary.Add(typeof(DesignerLabel), typeof(LabelCandy));
@@ -65,6 +66,7 @@ namespace Board.BoardControl
             ClassToClassDictionary.Add(typeof(DesignerClock), typeof(ClockCandy));
             ClassToClassDictionary.Add(typeof(DesignerTable), typeof(TableCandy));
             ClassToClassDictionary.Add(typeof(DesignerChart), typeof(LineChartCandy));
+            ClassToClassDictionary.Add(typeof(DesignerProcessbar), typeof(ProcessBar));
         }
     }
 }

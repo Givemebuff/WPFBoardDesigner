@@ -19,6 +19,7 @@ namespace Board.BoardControl
             DesignerClock clock = new DesignerClock();
             clock.Size.Width = 200;
             clock.Size.Height = 50;
+
             BoardClock bf = new BoardClock(clock);
             cw.Protect(bf);
             return cw;

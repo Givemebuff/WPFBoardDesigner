@@ -37,7 +37,7 @@ namespace BoardDesigner.Windows
 
         // Using a DependencyProperty as the backing store for StaticTextDataSourceList.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty StaticTextDataSourceListProperty =
-            DependencyProperty.Register("StaticTextDataSourceList", typeof(ObservableCollection<DesignerStaticTextDataSource>), typeof(DataSourceSettingWindow), new PropertyMetadata(StaticTextDataSourceManager.GetStaticTextDataSources()));
+            DependencyProperty.Register("StaticTextDataSourceList", typeof(ObservableCollection<DesignerStaticTextDataSource>), typeof(DataSourceSettingWindow), new PropertyMetadata(null));//StaticTextDataSourceManager.GetStaticTextDataSources()
 
         #endregion
 
@@ -50,7 +50,7 @@ namespace BoardDesigner.Windows
 
         // Using a DependencyProperty as the backing store for DataSourceList.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty DataBaseDataSourceListProperty =
-            DependencyProperty.Register("DataBaseDataSourceList", typeof(ObservableCollection<DesignerDataBaseDataSource>), typeof(DataSourceSettingWindow), new PropertyMetadata(DataBaseDataSourceManager.GetDataBaseDataSources()));
+            DependencyProperty.Register("DataBaseDataSourceList", typeof(ObservableCollection<DesignerDataBaseDataSource>), typeof(DataSourceSettingWindow), new PropertyMetadata(null));//new ObservableCollection<DesignerDataBaseDataSource>(DataBaseDataSourceManager.GetDataBaseDataSources())
         #endregion
 
 
@@ -62,7 +62,7 @@ namespace BoardDesigner.Windows
 
         // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty SelectedItemProperty =
-            DependencyProperty.Register("SelectedItem", typeof(DesignerDataSource), typeof(DataSourceSettingWindow), new PropertyMetadata(null));
+            DependencyProperty.Register("SelectedItem", typeof(DesignerDataSource), typeof(DataSourceSettingWindow), new PropertyMetadata());
 
 
         public DataSourceSettingWindow()
@@ -80,6 +80,13 @@ namespace BoardDesigner.Windows
 
         void Init()
         {
+            //加载静态文本数据源
+
+            StaticTextDataSourceList = new ObservableCollection<DesignerStaticTextDataSource>(StaticTextDataSourceManager.GetStaticTextDataSources());           
+
+            //加载数据库数据源
+
+            DataBaseDataSourceList = new ObservableCollection<DesignerDataBaseDataSource>(DataBaseDataSourceManager.GetDataBaseDataSources());
 
         }
 

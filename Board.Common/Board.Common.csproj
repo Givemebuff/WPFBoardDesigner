@@ -69,6 +69,7 @@
     <Compile Include="Converter\BindConverter\SetterValueConvert.cs" />
     <Compile Include="Converter\BindConverter\StringToImageSourceConverter.cs" />
     <Compile Include="Converter\BindConverter\StringToUriConverter.cs" />
+    <Compile Include="Converter\XmlConverter\GridLengthConverter.cs" />
     <Compile Include="Converter\XmlConverter\ThicknessConverter.cs" />
     <Compile Include="DataHelper\BytesHelper.cs" />
     <Compile Include="DataHelper\ControlHelper.cs" />
@@ -83,6 +84,7 @@
     <Compile Include="Model\DesignerModel\VisualElement\Control\DesignerImage.cs" />
     <Compile Include="Model\DesignerModel\VisualElement\Control\DesignerLabel.cs" />
     <Compile Include="Model\DesignerModel\VisualElement\Control\DesignerMidea.cs" />
+    <Compile Include="Model\DesignerModel\VisualElement\Control\DesignerProcessbar.cs" />
     <Compile Include="Model\DesignerModel\VisualElement\Control\DesignerTable.cs" />
     <Compile Include="Model\DesignerModel\Property\Border.cs" />
     <Compile Include="Model\DesignerModel\Property\Brush.cs" />

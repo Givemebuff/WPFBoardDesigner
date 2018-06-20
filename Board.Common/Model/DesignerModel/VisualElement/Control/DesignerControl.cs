@@ -10,6 +10,22 @@ using System.Xml.Serialization;
 
 namespace Board.DesignerModel
 {
+    public enum DesignerControlType
+    {
+        Default =0,
+        Image = 1,
+        GIF = 2,
+        Video = 3,
+        Table = 4,
+        Label = 5,
+        Chart = 6,       
+        Media = 7,
+        Clock = 8,
+        DynamicLabel = 9,
+        Processbar = 10
+    }
+
+
     [Serializable]
     [XmlType("VisualControl")]
     [XmlInclude(typeof(DesignerLabel))]  
@@ -18,7 +34,8 @@ namespace Board.DesignerModel
     [XmlInclude(typeof(DesignerImage))]
     [XmlInclude(typeof(DesignerGif))]
     [XmlInclude(typeof(DesignerMedia))]
-    [XmlInclude(typeof(DesignerChart))]  
+    [XmlInclude(typeof(DesignerChart))]
+    [XmlInclude(typeof(DesignerProcessbar))]  
     public class DesignerControl : DesignerVisualElement
     {
         public DesignerControl()
@@ -28,6 +45,20 @@ namespace Board.DesignerModel
             this.Border = new DesignerBorder();
         }
 
+
+        private DesignerControlType _controlType { get; set; }
+        [Category("基础")]
+        [DisplayName("控件种类")]
+        [XmlElement("ControlType")]
+        public DesignerControlType ControlType 
+        {
+            get { return this._controlType; }
+            set 
+            {
+                this._controlType = value;
+                OnPropertyChanged("ControlType");
+            }
+        }
 
         #region 背景
 

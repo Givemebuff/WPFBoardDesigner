@@ -19,7 +19,7 @@ namespace Board.DesignerModel
     {
         public DesignerTable()
         {
-            this.Type = DesignerElementType.Table;
+            this.ControlType = DesignerControlType.Table;
             this.AlterRows = new ObservableCollection<DesignerAlterRow>();
             this.Columns = new ObservableCollection<DesignerDataGridColumn>();
         }

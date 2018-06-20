@@ -31,6 +31,9 @@
             <Image IsHitTestVisible="False" x:Name="Clock" ToolTip="时钟"
                    Stretch="Fill"   
                    Source="pack://application:,,,/Resources/Images/Time_32px.png" />
+            <Image IsHitTestVisible="False" x:Name="ProcessBar" ToolTip="进度条"
+                   Stretch="Fill"   
+                   Source="pack://application:,,,/Resources/Images/Progressbar_32px.png" />
             
         </ItemsControl.Items>
     </base:ToolBox>

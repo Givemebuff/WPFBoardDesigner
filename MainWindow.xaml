@@ -188,7 +188,7 @@
                                                                            DisplayMemberPath="ImageName"         
                                                                            SelectedValuePath="Path"                                                                          
                                                                            ItemsSource="{Binding RelativeSource={RelativeSource   Mode= FindAncestor,  AncestorType={x:Type MyWindow:MainWindow}}, Path=ImageResourceCollection}"
-                                                                           
+                                                                           SelectedItem="{Binding Value,Converter={StaticResource RImageToStringConverter}}"
                                                                           SelectedValue="{Binding Path=Value}"  EmptyText="选择一张图片..."
                                                                           >
                                                            

@@ -49,41 +49,44 @@ namespace Board.Controls.SystemControl
 
             foreach (DesignerControl cd in Board.VisualChildren)
             {               
-                switch (cd.Type)
+                switch (cd.ControlType)
                 {
-                    case DesignerElementType.Image:
+                    case DesignerControlType.Image:
                         BoardImage bi = new BoardImage(cd as DesignerImage);
                         Add(bi, cd);
                         break;
-                    case DesignerElementType.GIF:
+                    case DesignerControlType.GIF:
                         BoardGif bg = new BoardGif(cd as DesignerGif);
                         Add(bg, cd);
                         break;
-                    case DesignerElementType.Label:
+                    case DesignerControlType.Label:
                         BoardLabel bl = new BoardLabel(cd as DesignerLabel);
                         Add(bl, cd);
                         break;
-                    case DesignerElementType.Table:
+                    case DesignerControlType.Table:
                         BoardDataGrid bdg = new BoardDataGrid(cd as DesignerTable);
                         Add(bdg, cd);
                         break;
-                    case DesignerElementType.Chart:
+                    case DesignerControlType.Chart:
                         BoardChart bc = new BoardChart(cd as DesignerChart);
                         Add(bc, cd);
                         break;
-                    case DesignerElementType.Media:
+                    case DesignerControlType.Media:
                         BoardMediaPlayer bmp = new BoardMediaPlayer(cd as DesignerMedia);
                         Add(bmp, cd);
                         break;
-                    case DesignerElementType.Clock:
+                    case DesignerControlType.Clock:
                         BoardClock clock = new BoardClock(cd as DesignerClock);
                         Add(clock, cd);
                         break;
-                    case DesignerElementType.DynamicLabel:
+                    case DesignerControlType.DynamicLabel:
                         BoardDynamicLabel dlb = new BoardDynamicLabel(cd as DesignerDynamicLabel);
                         Add(dlb, cd);
-                        break;                   
-                       
+                        break;
+                    case DesignerControlType.Processbar:
+                        BoardProcessbar bpd = new BoardProcessbar(cd as DesignerProcessbar);
+                        Add(bpd, cd);
+                        break;                 
                     default: break;
                 }
                 

@@ -14,13 +14,8 @@ namespace Board.DesignerModel
     {
         public DesignerImage() 
         {
-            this.Type = DesignerElementType.Image;            
-        }
-        public DesignerImage(string path)
-        {
-            this.Type = DesignerElementType.Image;
-            ImageSource = path;
-        }
+            this.ControlType = DesignerControlType.Image;            
+        }      
 
         [Browsable(false)]
         [XmlIgnore]
@@ -50,7 +45,7 @@ namespace Board.DesignerModel
     {
         public DesignerGif() 
         {
-            this.Type = DesignerElementType.GIF;            
+            this.ControlType = DesignerControlType.GIF;            
         }
 
         [Browsable(false)]

@@ -117,6 +117,9 @@
     <Compile Include="BoardControl\BoardMediaPlayer.xaml.cs">
       <DependentUpon>BoardMediaPlayer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BoardControl\BoardProcessbar.xaml.cs">
+      <DependentUpon>BoardProcessbar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Factory\BoardControlFactory.cs" />
     <Compile Include="Factory\Clock.cs" />
     <Compile Include="Factory\ControlWrapper.cs" />
@@ -126,6 +129,7 @@
     <Compile Include="Factory\Image.cs" />
     <Compile Include="Factory\Label.cs" />
     <Compile Include="Factory\LineChart.cs" />
+    <Compile Include="Factory\ProcessBar.cs" />
     <Compile Include="Factory\TableCandy.cs" />
     <Compile Include="Factory\Video.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -177,6 +181,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="BoardControl\BoardMediaPlayer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BoardControl\BoardProcessbar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -20,3 +20,14 @@ G:\Git\WPFBoardDesigner\Test\bin\Debug\Board.Converter.pdb
 G:\Git\WPFBoardDesigner\Test\obj\Debug\Test.csprojResolveAssemblyReference.cache
 G:\Git\WPFBoardDesigner\Test\obj\Debug\Test.exe
 G:\Git\WPFBoardDesigner\Test\obj\Debug\Test.pdb
+C:\Git\WPFBoardDesigner\Test\bin\Debug\Test.exe.config
+C:\Git\WPFBoardDesigner\Test\bin\Debug\Test.exe
+C:\Git\WPFBoardDesigner\Test\bin\Debug\Test.pdb
+C:\Git\WPFBoardDesigner\Test\bin\Debug\Board.Converter.dll
+C:\Git\WPFBoardDesigner\Test\bin\Debug\WPFVisifire.Charts.dll
+C:\Git\WPFBoardDesigner\Test\bin\Debug\Indusfo.DataAccessLayer.dll
+C:\Git\WPFBoardDesigner\Test\bin\Debug\Indusfo.Common.dll
+C:\Git\WPFBoardDesigner\Test\bin\Debug\Board.Converter.pdb
+C:\Git\WPFBoardDesigner\Test\obj\Debug\Test.csprojResolveAssemblyReference.cache
+C:\Git\WPFBoardDesigner\Test\obj\Debug\Test.exe
+C:\Git\WPFBoardDesigner\Test\obj\Debug\Test.pdb

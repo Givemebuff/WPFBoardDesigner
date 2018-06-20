@@ -17,7 +17,7 @@ namespace Board.DesignerModel
         public DesignerDataGridColumn() 
         {
             this.Font = new DesignerFont() { FontSize = 18 };
-            ColumnWidth = new GridLength(1, GridUnitType.Star);
+            ColumnWidth = new GridLength(2, GridUnitType.Star);
             Text = "Column";
             HorizontalContentAlignment = System.Windows.HorizontalAlignment.Center;
             VerticalContentAlignment = System.Windows.VerticalAlignment.Center;
@@ -31,7 +31,7 @@ namespace Board.DesignerModel
         [Category("列基础")]
         [DisplayName("宽（占比）")]
         [Description("设置宽度")]
-        [XmlElement("Width")]
+        [XmlIgnore]
         public GridLength ColumnWidth
         {
             get { return this._columnWidth; }
@@ -39,6 +39,15 @@ namespace Board.DesignerModel
             {
                 this._columnWidth = value;
                 OnPropertyChanged("ColumnWidth");
+            }
+        }
+         [XmlElement("ColumnWidth")]
+        public string XmlColumnWidth 
+        {
+            get { return this.ColumnWidth.Value.ToString(); }
+            set 
+            {
+                this.ColumnWidth = Board.XmlConverter.GridLengthConverter.XmlToGridLength(value);
             }
         }
 

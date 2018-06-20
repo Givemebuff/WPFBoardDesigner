@@ -172,38 +172,38 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Board.Controls.dll" size="107008">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Board.Controls.dll" size="111616">
       <assemblyIdentity name="Board.Controls" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>A/P6aEvhbQYkj0b4lSTa7rEPGTJaGBszr856xkF1n+g=</dsig:DigestValue>
+        <dsig:DigestValue>VsUN73uNbK0Jo1qb4cNKq8D3t/3uInf+ytxg34s9y8I=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Board.Converter.dll" size="125952">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Board.Converter.dll" size="128000">
       <assemblyIdentity name="Board.Converter" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>TxYb6K7f9lkDq+EnqTHTRKYTlpS2fM+zDZvX5Wemm9s=</dsig:DigestValue>
+        <dsig:DigestValue>vW8cgYYKwOqcOmy2W/1a7nthX4B5nCporp7bm3xnmSE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BoardDesigner.exe" size="5086208">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BoardDesigner.exe" size="5088256">
       <assemblyIdentity name="BoardDesigner" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>JK4/JkFT6A0VPFx0UrJAL1wZvcWo1jm5+DnpGeFOmq4=</dsig:DigestValue>
+        <dsig:DigestValue>GpDzd8MAcsRFZgFZg7qzgXzA/h8kZ9J73E2L0sefJxs=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

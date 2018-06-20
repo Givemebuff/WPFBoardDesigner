@@ -7,40 +7,17 @@ namespace Board.DesignerModel
 {
     public enum DesignerElementType
     {
-        [XmlEnum("Element")]
         Element = 1,
-        [XmlEnum("Border")]
-        Border = 2,
-        [XmlEnum("Size")]
-        Size = 3,
-        Position = 4,
-        Brush = 5,
-        DesignerVisualElement = 6,
-        DesignerBackgroundElement = 7,
-        DesignerVisualContentElement =8,
-        Font =9,
-        Shape =10,
-        Control =11,
-        Container=12,
-        Property = 13, 
-        Image =14,
-        GIF =15,
-        Video = 16,
-        Table =17,
-        Label = 18,
-        Chart = 19,
-        DataPoint = 20,
-        Media =21,
-        Clock = 22,
-        DynamicLabel =23
-
-
+        Back = 2,
+        Control = 3,
+        Container = 4,
+        Property = 6
     }
-     [Serializable]
+    [Serializable]
 
     public class PropertyChangeBase : INotifyPropertyChanged
-    {        
-        
+    {
+
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged(string propertyName)
         {
@@ -51,54 +28,54 @@ namespace Board.DesignerModel
         }
     }
 
-     public class DesignerObject : PropertyChangeBase 
-     {
-         [XmlIgnore]
-         [Browsable(false)]
-         public string _name
-         {
-             get;
-             set;
-         }
-
-         [Category("基础")]
-         [DisplayName("名称")]
-         [Description("元素的名字")]
-         [XmlAttribute("Name")]
-
-         public string Name
-         {
-             get { return this._name; }
-             set
-             {
-                 _name = value;
-                 OnPropertyChanged("Name");
-             }
-         }
-         [ReadOnly(true)]
-         [Category("基础")]
-         [DisplayName("元素种类")]
-         [Description("设计元素的种类")]
-         [XmlAttribute("DesignerType")]
-         public DesignerElementType Type
-         {
-             get;
-             set;
-         }
-     }
-
-     public class DesignerProperty : DesignerObject
-     {
-         public DesignerProperty()
+    public class DesignerObject : PropertyChangeBase
+    {
+        [XmlIgnore]
+        [Browsable(false)]
+        public string _name
         {
-            this.Type = DesignerElementType.Property;           
+            get;
+            set;
         }
-     }
 
-     [Serializable]
+        [Category("基础")]
+        [DisplayName("名称")]
+        [Description("元素的名字")]
+        [XmlAttribute("Name")]
+
+        public string Name
+        {
+            get { return this._name; }
+            set
+            {
+                _name = value;
+                OnPropertyChanged("Name");
+            }
+        }
+        [ReadOnly(true)]
+        [Category("基础")]
+        [DisplayName("元素种类")]
+        [Description("设计元素的种类")]
+        [XmlAttribute("DesignerType")]
+        public DesignerElementType Type
+        {
+            get;
+            set;
+        }
+    }
+
+    public class DesignerProperty : DesignerObject
+    {
+        public DesignerProperty()
+        {
+            this.Type = DesignerElementType.Property;
+        }
+    }
+
+    [Serializable]
     public class DesignerElement : DesignerObject
     {
-        
+
         public DesignerElement()
         {
             this.Type = DesignerElementType.Element;
@@ -115,14 +92,13 @@ namespace Board.DesignerModel
         }
     }
 
-     [Serializable]
-   
+    [Serializable]
+
     public class DesignerVisualElement : DesignerElement
     {
-        public DesignerVisualElement() 
+        public DesignerVisualElement()
         {
-            this.Type = DesignerElementType.DesignerVisualElement;
-            Size = new DesignerSize(100,50);
+            Size = new DesignerSize(100, 50);
             Visibility = Visibility.Visible;
             Opacity = 1;
             Position = new DesignerPosition();
@@ -225,7 +201,7 @@ namespace Board.DesignerModel
             get
             {
                 return this._opacity;
-                
+
             }
             set
             {
@@ -238,11 +214,14 @@ namespace Board.DesignerModel
 
     }
 
-     [Serializable]
-    
+    [Serializable]
+
     public class DesignerBackElement : DesignerElement
     {
-        public DesignerBackElement() { this.Type = DesignerElementType.DesignerBackgroundElement; }
-    }  
-   
+        public DesignerBackElement()
+        {
+            this.Type = DesignerElementType.Back;
+        }
+    }
+
 }

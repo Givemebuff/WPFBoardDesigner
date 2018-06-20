@@ -14,7 +14,7 @@ namespace Board.DesignerModel
     {
         public DesignerMedia()
         {
-            this.Type = DesignerElementType.Media;
+            this.ControlType = DesignerControlType.Media;
             MediaSource = "MediaDemo.wmv";
             SpeedRatio = 1;
             Volume = 0.5;

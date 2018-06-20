@@ -14,8 +14,7 @@ namespace Board.DesignerModel
     public class DesignerBorder : DesignerProperty
     {
         public DesignerBorder() 
-        {
-            this.Type = DesignerElementType.Border;
+        {            
             this.BorderThickness = new Thickness(1);
             this.BorderBrush = new SolidColorBrush(Color.FromRgb(0, 0, 0));
         }

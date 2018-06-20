@@ -21,7 +21,7 @@ namespace Board.DesignerModel
     {
         public DesignerChart()
         {
-            this.Type = DesignerElementType.Chart;
+            this.ControlType = DesignerControlType.Chart;
             this.ChartTitles = new ObservableCollection<DesignerChartTitle>();          
             this.ChartAxesX = new ObservableCollection<DesignerChartAxis>();           
             this.ChartAxesY = new ObservableCollection<DesignerChartAxis>();          
@@ -1602,8 +1602,7 @@ namespace Board.DesignerModel
     public class DesignerDataPoint : DesignerVisualElement
     {
         public DesignerDataPoint()
-        {
-            this.Type = DesignerElementType.DataPoint;
+        {            
             this.Enabled = true;
         }
 

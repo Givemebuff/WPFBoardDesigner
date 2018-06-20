@@ -1,4 +1,0 @@
-<?xml version="1.0"?>
-<DBDataSource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="测试数据源" GUID="ded86464-6119-407a-a797-56f6a7dfaf2b" DesignerType="Element" TimeSpan="5000" Address="factory.indusfo.club" DataBaseName="Test" UID="Indusfo" PassWord="Indusfo123456">
-  <SqlString>select * from Money</SqlString>
-</DBDataSource>

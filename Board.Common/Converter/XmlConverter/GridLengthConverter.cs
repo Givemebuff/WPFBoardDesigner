@@ -16,22 +16,27 @@ namespace Board.XmlConverter
             {
                 length = new GridLength(1, GridUnitType.Star);
             }
-            else if(xml.IndexOf("*")!=-1)
+            //else if(xml.IndexOf("*")!=-1)
+            //{
+            //    string ws = xml.Replace("*", "");
+            //    if (string.IsNullOrEmpty(ws)) 
+            //    {
+            //        length = new GridLength(1, GridUnitType.Star);
+            //    }
+            //    else 
+            //    {
+            //        length = new GridLength(Convert.ToDouble(ws), GridUnitType.Star);
+            //    }
+            //}
+            //else if (xml.IndexOf("*") == -1)
+            //{
+            //    string ws = xml.Replace("*", "");
+            //    length = new GridLength(Convert.ToDouble(ws));
+            //}
+            else
             {
                 string ws = xml.Replace("*", "");
-                if (string.IsNullOrEmpty(ws)) 
-                {
-                    length = new GridLength(1, GridUnitType.Star);
-                }
-                else 
-                {
-                    length = new GridLength(Convert.ToDouble(ws), GridUnitType.Star);
-                }
-            }
-            else if (xml.IndexOf("*") == -1)
-            {
-                string ws = xml.Replace("*", "");
-                length = new GridLength(Convert.ToDouble(ws));
+                length = new GridLength(Convert.ToDouble(ws), GridUnitType.Star);
             }
             return length; 
            

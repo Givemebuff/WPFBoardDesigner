@@ -596,6 +596,8 @@ namespace Board.Controls.BoardControl
                 {
                     try
                     {
+                        if (string.IsNullOrEmpty(dcds.DataSourceKey))
+                            return;
                         DataTable data = DataSourceManager.GetData(dcds.DataSourceKey) as DataTable;
                         IEnumerable<DataPoint> dpList = Board.DataHelper.ControlHelper.DataTableToDataPoints(data, dcds.XValueBindName, dcds.YValueBindName);
                         foreach (DataSeries ds in uChart.Series)

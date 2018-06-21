@@ -1,0 +1,997 @@
+<?xml version="1.0"?>
+<Board xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="新建看板.Board" DesignerType="Control" GUID="57d0968e-6d71-45e5-9195-e83f3aa22db4" Visibility="Visible" Opacity="1" VerticalAlignment="Top" VerticalContentAlignment="Top" HorizontalAlignment="Left" HorizontalContentAlignment="Left">
+  <Position DesignerType="Property" RowIndex="0" Column="0" RowSpan="0" ColumnSpan="0" ZIndex="0">
+    <Location>
+      <X>0</X>
+      <Y>0</Y>
+    </Location>
+    <Margin>
+      <Left>0</Left>
+      <Top>0</Top>
+      <Right>0</Right>
+      <Bottom>0</Bottom>
+    </Margin>
+    <Padding>
+      <Left>0</Left>
+      <Top>0</Top>
+      <Right>0</Right>
+      <Bottom>0</Bottom>
+    </Padding>
+  </Position>
+  <Size DesignerType="Property" Width="1920" Height="1080" />
+  <ControlType>Default</ControlType>
+  <Background DesignerType="Property" Color="0,0,0,1,0,#FF055095,0,#FF025058,1,#FF82DBEC,0.509405789081687,#FF1F98D8,0.803888721578076" />
+  <Border DesignerType="Property" BorderBrush="#FF000000" CornerRadius="0">
+    <Thickness>
+      <Left>1</Left>
+      <Top>1</Top>
+      <Right>1</Right>
+      <Bottom>1</Bottom>
+    </Thickness>
+  </Border>
+  <VisualChildren>
+    <VisualControl xsi:type="Table" Name="DesignerTable_331a82a6-c663-4ad6-9085-8ac89094aeef" DesignerType="Control" GUID="331a82a6-c663-4ad6-9085-8ac89094aeef" Visibility="Visible" Opacity="1" VerticalAlignment="Top" VerticalContentAlignment="Top" HorizontalAlignment="Left" HorizontalContentAlignment="Left" HeadBackground="#6746DB06" HeaderHeight="50" HeaderHorizontalAlignment="Left" HeaderVerticalAlignment="Top" CellVerticalAlignment="Center" CellHorizontalAlignment="Center" AutoGenerateColumns="false" PaggingTimeSpan="5000" DataAccessTimeSpan="10000" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Disabled">
+      <Position DesignerType="Property" RowIndex="0" Column="0" RowSpan="0" ColumnSpan="0" ZIndex="0">
+        <Location>
+          <X>37.52402862985673</X>
+          <Y>765.11833602584829</Y>
+        </Location>
+        <Margin>
+          <Left>0</Left>
+          <Top>0</Top>
+          <Right>0</Right>
+          <Bottom>0</Bottom>
+        </Margin>
+        <Padding>
+          <Left>0</Left>
+          <Top>0</Top>
+          <Right>0</Right>
+          <Bottom>0</Bottom>
+        </Padding>
+      </Position>
+      <Size DesignerType="Property" Width="1848.25" Height="283.25" />
+      <ControlType>Table</ControlType>
+      <Background DesignerType="Property" Color="#00FFFFFF" />
+      <Border DesignerType="Property" BorderBrush="#FF000000" CornerRadius="0">
+        <Thickness>
+          <Left>1</Left>
+          <Top>1</Top>
+          <Right>1</Right>
+          <Bottom>1</Bottom>
+        </Thickness>
+      </Border>
+      <AlterRows />
+      <HeadPadding>
+        <Left>0</Left>
+        <Top>0</Top>
+        <Right>0</Right>
+        <Bottom>0</Bottom>
+      </HeadPadding>
+      <HeadMargin>
+        <Left>0</Left>
+        <Top>0</Top>
+        <Right>0</Right>
+        <Bottom>0</Bottom>
+      </HeadMargin>
+      <ContentPadding>
+        <Left>0</Left>
+        <Top>0</Top>
+        <Right>0</Right>
+        <Bottom>0</Bottom>
+      </ContentPadding>
+      <ContentMargin>
+        <Left>0</Left>
+        <Top>0</Top>
+        <Right>0</Right>
+        <Bottom>0</Bottom>
+      </ContentMargin>
+      <ContentFont DesignerType="Property" FontSize="24" FontColor="#FF50E90A" FontFamily="微软雅黑">
+        <FontStyle />
+        <FontWeight />
+      </ContentFont>
+      <CellPadding>
+        <Left>0</Left>
+        <Top>0</Top>
+        <Right>0</Right>
+        <Bottom>0</Bottom>
+      </CellPadding>
+      <CellMargin>
+        <Left>0</Left>
+        <Top>0</Top>
+        <Right>0</Right>
+        <Bottom>0</Bottom>
+      </CellMargin>
+      <DataSourceKey>成型大表格</DataSourceKey>
+      <DisplayRowCount>5</DisplayRowCount>
+      <Columns>
+        <Column Name="DesignerDataGridColumn_2f1a27d0-ba75-4b9f-bc2a-a9efdfee9703" DesignerType="Control" GUID="2f1a27d0-ba75-4b9f-bc2a-a9efdfee9703" Visibility="Visible" Opacity="1" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalAlignment="Left" HorizontalContentAlignment="Center">
+          <Position DesignerType="Property" RowIndex="0" Column="0" RowSpan="0" ColumnSpan="0" ZIndex="0">
+            <Location>
+              <X>0</X>
+              <Y>0</Y>
+            </Location>
+            <Margin>
+              <Left>0</Left>
+              <Top>0</Top>
+              <Right>0</Right>
+              <Bottom>0</Bottom>
+            </Margin>
+            <Padding>
+              <Left>0</Left>
+              <Top>0</Top>
+              <Right>0</Right>
+              <Bottom>0</Bottom>
+            </Padding>
+          </Position>
+          <Size DesignerType="Property" Width="150" Height="50" />
+          <ControlType>Label</ControlType>
+          <Background DesignerType="Property" Color="#00FFFFFF" />
+          <Border DesignerType="Property" BorderBrush="#FFFFFFFF" CornerRadius="0">
+            <Thickness>
+              <Left>1</Left>
+              <Top>1</Top>
+              <Right>1</Right>
+              <Bottom>1</Bottom>
+            </Thickness>
+          </Border>
+          <Text>机台</Text>
+          <Font DesignerType="Property" FontSize="18" FontColor="#FFFFFFFF" FontFamily="微软雅黑">
+            <FontStyle />
+            <FontWeight />
+          </Font>
+          <ColumnWidth>2</ColumnWidth>
+          <BindingName>机台</BindingName>
+        </Column>
+        <Column Name="DesignerDataGridColumn_7090aeba-3e4a-4006-9541-d5ffc6be9e18" DesignerType="Control" GUID="7090aeba-3e4a-4006-9541-d5ffc6be9e18" Visibility="Visible" Opacity="1" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalAlignment="Left" HorizontalContentAlignment="Center">
+          <Position DesignerType="Property" RowIndex="0" Column="1" RowSpan="0" ColumnSpan="0" ZIndex="0">
+            <Location>
+              <X>0</X>
+              <Y>0</Y>
+            </Location>
+            <Margin>
+              <Left>0</Left>
+              <Top>0</Top>
+              <Right>0</Right>
+              <Bottom>0</Bottom>
+            </Margin>
+            <Padding>
+              <Left>0</Left>
+              <Top>0</Top>
+              <Right>0</Right>
+              <Bottom>0</Bottom>
+            </Padding>
+          </Position>
+          <Size DesignerType="Property" Width="150" Height="50" />
+          <ControlType>Label</ControlType>
+          <Background DesignerType="Property" Color="#00FFFFFF" />
+          <Border DesignerType="Property" BorderBrush="#FFFFFFFF" CornerRadius="0">
+            <Thickness>
+              <Left>1</Left>
+              <Top>1</Top>
+              <Right>1</Right>
+              <Bottom>1</Bottom>
+            </Thickness>
+          </Border>
+          <Text>批号</Text>
+          <Font DesignerType="Property" FontSize="18" FontColor="#FFFFFFFF" FontFamily="微软雅黑">
+            <FontStyle />
+            <FontWeight />
+          </Font>
+          <ColumnWidth>2</ColumnWidth>
+          <BindingName>批号</BindingName>
+        </Column>
+        <Column Name="DesignerDataGridColumn_3981c28f-8725-45bd-a29d-1ea950bc9712" DesignerType="Control" GUID="3981c28f-8725-45bd-a29d-1ea950bc9712" Visibility="Visible" Opacity="1" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalAlignment="Left" HorizontalContentAlignment="Center">
+          <Position DesignerType="Property" RowIndex="0" Column="2" RowSpan="0" ColumnSpan="0" ZIndex="0">
+            <Location>
+              <X>0</X>
+              <Y>0</Y>
+            </Location>
+            <Margin>
+              <Left>0</Left>
+              <Top>0</Top>
+              <Right>0</Right>
+              <Bottom>0</Bottom>
+            </Margin>
+            <Padding>
+              <Left>0</Left>
+              <Top>0</Top>
+              <Right>0</Right>
+              <Bottom>0</Bottom>
+            </Padding>
+          </Position>
+          <Size DesignerType="Property" Width="150" Height="50" />
+          <ControlType>Label</ControlType>
+          <Background DesignerType="Property" Color="#00FFFFFF" />
+          <Border DesignerType="Property" BorderBrush="#FFFFFFFF" CornerRadius="0">
+            <Thickness>
+              <Left>1</Left>
+              <Top>1</Top>
+              <Right>1</Right>
+              <Bottom>1</Bottom>
+            </Thickness>
+          </Border>
+          <Text>数量</Text>
+          <Font DesignerType="Property" FontSize="18" FontColor="#FFFFFFFF" FontFamily="微软雅黑">
+            <FontStyle />
+            <FontWeight />
+          </Font>
+          <ColumnWidth>2</ColumnWidth>
+          <BindingName>数量</BindingName>
+        </Column>
+        <Column Name="DesignerDataGridColumn_f165664b-91fb-43cf-ba91-d2547812d5f9" DesignerType="Control" GUID="f165664b-91fb-43cf-ba91-d2547812d5f9" Visibility="Visible" Opacity="1" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalAlignment="Left" HorizontalContentAlignment="Center">
+          <Position DesignerType="Property" RowIndex="0" Column="3" RowSpan="0" ColumnSpan="0" ZIndex="0">
+            <Location>
+              <X>0</X>
+              <Y>0</Y>
+            </Location>
+            <Margin>
+              <Left>0</Left>
+              <Top>0</Top>
+              <Right>0</Right>
+              <Bottom>0</Bottom>
+            </Margin>
+            <Padding>
+              <Left>0</Left>
+              <Top>0</Top>
+              <Right>0</Right>
+              <Bottom>0</Bottom>
+            </Padding>
+          </Position>
+          <Size DesignerType="Property" Width="150" Height="50" />
+          <ControlType>Label</ControlType>
+          <Background DesignerType="Property" Color="#00FFFFFF" />
+          <Border DesignerType="Property" BorderBrush="#FFFFFFFF" CornerRadius="0">
+            <Thickness>
+              <Left>1</Left>
+              <Top>1</Top>
+              <Right>1</Right>
+              <Bottom>1</Bottom>
+            </Thickness>
+          </Border>
+          <Text>产值</Text>
+          <Font DesignerType="Property" FontSize="18" FontColor="#FFFFFFFF" FontFamily="微软雅黑">
+            <FontStyle />
+            <FontWeight />
+          </Font>
+          <ColumnWidth>2</ColumnWidth>
+          <BindingName>产值</BindingName>
+        </Column>
+        <Column Name="DesignerDataGridColumn_40c21566-0f72-494d-bd10-ac23ce2f0934" DesignerType="Control" GUID="40c21566-0f72-494d-bd10-ac23ce2f0934" Visibility="Visible" Opacity="1" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalAlignment="Left" HorizontalContentAlignment="Center">
+          <Position DesignerType="Property" RowIndex="0" Column="4" RowSpan="0" ColumnSpan="0" ZIndex="0">
+            <Location>
+              <X>0</X>
+              <Y>0</Y>
+            </Location>
+            <Margin>
+              <Left>0</Left>
+              <Top>0</Top>
+              <Right>0</Right>
+              <Bottom>0</Bottom>
+            </Margin>
+            <Padding>
+              <Left>0</Left>
+              <Top>0</Top>
+              <Right>0</Right>
+              <Bottom>0</Bottom>
+            </Padding>
+          </Position>
+          <Size DesignerType="Property" Width="150" Height="50" />
+          <ControlType>Label</ControlType>
+          <Background DesignerType="Property" Color="#00FFFFFF" />
+          <Border DesignerType="Property" BorderBrush="#FFFFFFFF" CornerRadius="0">
+            <Thickness>
+              <Left>1</Left>
+              <Top>1</Top>
+              <Right>1</Right>
+              <Bottom>1</Bottom>
+            </Thickness>
+          </Border>
+          <Text>吨位（KG）</Text>
+          <Font DesignerType="Property" FontSize="18" FontColor="#FFFFFFFF" FontFamily="微软雅黑">
+            <FontStyle />
+            <FontWeight />
+          </Font>
+          <ColumnWidth>2</ColumnWidth>
+          <BindingName>吨位(KG)</BindingName>
+        </Column>
+        <Column Name="DesignerDataGridColumn_a33af39d-62a2-4876-994c-4a21a5ee21b3" DesignerType="Control" GUID="a33af39d-62a2-4876-994c-4a21a5ee21b3" Visibility="Visible" Opacity="1" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalAlignment="Left" HorizontalContentAlignment="Center">
+          <Position DesignerType="Property" RowIndex="0" Column="5" RowSpan="0" ColumnSpan="0" ZIndex="0">
+            <Location>
+              <X>0</X>
+              <Y>0</Y>
+            </Location>
+            <Margin>
+              <Left>0</Left>
+              <Top>0</Top>
+              <Right>0</Right>
+              <Bottom>0</Bottom>
+            </Margin>
+            <Padding>
+              <Left>0</Left>
+              <Top>0</Top>
+              <Right>0</Right>
+              <Bottom>0</Bottom>
+            </Padding>
+          </Position>
+          <Size DesignerType="Property" Width="150" Height="50" />
+          <ControlType>Label</ControlType>
+          <Background DesignerType="Property" Color="#00FFFFFF" />
+          <Border DesignerType="Property" BorderBrush="#FFFFFFFF" CornerRadius="0">
+            <Thickness>
+              <Left>1</Left>
+              <Top>1</Top>
+              <Right>1</Right>
+              <Bottom>1</Bottom>
+            </Thickness>
+          </Border>
+          <Text>操作工</Text>
+          <Font DesignerType="Property" FontSize="18" FontColor="#FFFFFFFF" FontFamily="微软雅黑">
+            <FontStyle />
+            <FontWeight />
+          </Font>
+          <ColumnWidth>2</ColumnWidth>
+          <BindingName>报工员</BindingName>
+        </Column>
+        <Column Name="DesignerDataGridColumn_893a6698-21b2-4618-8379-c53083c13852" DesignerType="Control" GUID="893a6698-21b2-4618-8379-c53083c13852" Visibility="Visible" Opacity="1" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalAlignment="Left" HorizontalContentAlignment="Center">
+          <Position DesignerType="Property" RowIndex="0" Column="6" RowSpan="0" ColumnSpan="0" ZIndex="0">
+            <Location>
+              <X>0</X>
+              <Y>0</Y>
+            </Location>
+            <Margin>
+              <Left>0</Left>
+              <Top>0</Top>
+              <Right>0</Right>
+              <Bottom>0</Bottom>
+            </Margin>
+            <Padding>
+              <Left>0</Left>
+              <Top>0</Top>
+              <Right>0</Right>
+              <Bottom>0</Bottom>
+            </Padding>
+          </Position>
+          <Size DesignerType="Property" Width="150" Height="50" />
+          <ControlType>Label</ControlType>
+          <Background DesignerType="Property" Color="#00FFFFFF" />
+          <Border DesignerType="Property" BorderBrush="#FFFFFFFF" CornerRadius="0">
+            <Thickness>
+              <Left>1</Left>
+              <Top>1</Top>
+              <Right>1</Right>
+              <Bottom>1</Bottom>
+            </Thickness>
+          </Border>
+          <Text>投产时间</Text>
+          <Font DesignerType="Property" FontSize="18" FontColor="#FFFFFFFF" FontFamily="微软雅黑">
+            <FontStyle />
+            <FontWeight />
+          </Font>
+          <ColumnWidth>2</ColumnWidth>
+          <BindingName>投产时间</BindingName>
+        </Column>
+        <Column Name="DesignerDataGridColumn_2e16a42c-4289-480b-b77a-d51441367c22" DesignerType="Control" GUID="2e16a42c-4289-480b-b77a-d51441367c22" Visibility="Visible" Opacity="1" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalAlignment="Left" HorizontalContentAlignment="Center">
+          <Position DesignerType="Property" RowIndex="0" Column="7" RowSpan="0" ColumnSpan="0" ZIndex="0">
+            <Location>
+              <X>0</X>
+              <Y>0</Y>
+            </Location>
+            <Margin>
+              <Left>0</Left>
+              <Top>0</Top>
+              <Right>0</Right>
+              <Bottom>0</Bottom>
+            </Margin>
+            <Padding>
+              <Left>0</Left>
+              <Top>0</Top>
+              <Right>0</Right>
+              <Bottom>0</Bottom>
+            </Padding>
+          </Position>
+          <Size DesignerType="Property" Width="150" Height="50" />
+          <ControlType>Label</ControlType>
+          <Background DesignerType="Property" Color="#00FFFFFF" />
+          <Border DesignerType="Property" BorderBrush="#FFFFFFFF" CornerRadius="0">
+            <Thickness>
+              <Left>1</Left>
+              <Top>1</Top>
+              <Right>1</Right>
+              <Bottom>1</Bottom>
+            </Thickness>
+          </Border>
+          <Text>材质</Text>
+          <Font DesignerType="Property" FontSize="18" FontColor="#FFFFFFFF" FontFamily="微软雅黑">
+            <FontStyle />
+            <FontWeight />
+          </Font>
+          <ColumnWidth>2</ColumnWidth>
+        </Column>
+        <Column Name="DesignerDataGridColumn_6096f721-3d20-47f2-805e-9ca97ef842fe" DesignerType="Control" GUID="6096f721-3d20-47f2-805e-9ca97ef842fe" Visibility="Visible" Opacity="1" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalAlignment="Left" HorizontalContentAlignment="Center">
+          <Position DesignerType="Property" RowIndex="0" Column="8" RowSpan="0" ColumnSpan="0" ZIndex="0">
+            <Location>
+              <X>0</X>
+              <Y>0</Y>
+            </Location>
+            <Margin>
+              <Left>0</Left>
+              <Top>0</Top>
+              <Right>0</Right>
+              <Bottom>0</Bottom>
+            </Margin>
+            <Padding>
+              <Left>0</Left>
+              <Top>0</Top>
+              <Right>0</Right>
+              <Bottom>0</Bottom>
+            </Padding>
+          </Position>
+          <Size DesignerType="Property" Width="150" Height="50" />
+          <ControlType>Label</ControlType>
+          <Background DesignerType="Property" Color="#00FFFFFF" />
+          <Border DesignerType="Property" BorderBrush="#FFFFFFFF" CornerRadius="0">
+            <Thickness>
+              <Left>1</Left>
+              <Top>1</Top>
+              <Right>1</Right>
+              <Bottom>1</Bottom>
+            </Thickness>
+          </Border>
+          <Text>型号</Text>
+          <Font DesignerType="Property" FontSize="18" FontColor="#FFFFFFFF" FontFamily="微软雅黑">
+            <FontStyle />
+            <FontWeight />
+          </Font>
+          <ColumnWidth>2</ColumnWidth>
+          <BindingName>型号</BindingName>
+        </Column>
+        <Column Name="DesignerDataGridColumn_df46bf1c-b2f8-4b1f-bb43-dace905c59fc" DesignerType="Control" GUID="df46bf1c-b2f8-4b1f-bb43-dace905c59fc" Visibility="Visible" Opacity="1" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalAlignment="Left" HorizontalContentAlignment="Center">
+          <Position DesignerType="Property" RowIndex="0" Column="9" RowSpan="0" ColumnSpan="0" ZIndex="0">
+            <Location>
+              <X>0</X>
+              <Y>0</Y>
+            </Location>
+            <Margin>
+              <Left>0</Left>
+              <Top>0</Top>
+              <Right>0</Right>
+              <Bottom>0</Bottom>
+            </Margin>
+            <Padding>
+              <Left>0</Left>
+              <Top>0</Top>
+              <Right>0</Right>
+              <Bottom>0</Bottom>
+            </Padding>
+          </Position>
+          <Size DesignerType="Property" Width="150" Height="50" />
+          <ControlType>Label</ControlType>
+          <Background DesignerType="Property" Color="#00FFFFFF" />
+          <Border DesignerType="Property" BorderBrush="#FFFFFFFF" CornerRadius="0">
+            <Thickness>
+              <Left>1</Left>
+              <Top>1</Top>
+              <Right>1</Right>
+              <Bottom>1</Bottom>
+            </Thickness>
+          </Border>
+          <Text>班别</Text>
+          <Font DesignerType="Property" FontSize="18" FontColor="#FFFFFFFF" FontFamily="微软雅黑">
+            <FontStyle />
+            <FontWeight />
+          </Font>
+          <ColumnWidth>2</ColumnWidth>
+          <BindingName>班别</BindingName>
+        </Column>
+        <Column Name="DesignerDataGridColumn_0218dcee-5f38-4f44-a4eb-d470c7b67bf3" DesignerType="Control" GUID="0218dcee-5f38-4f44-a4eb-d470c7b67bf3" Visibility="Visible" Opacity="1" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalAlignment="Left" HorizontalContentAlignment="Center">
+          <Position DesignerType="Property" RowIndex="0" Column="10" RowSpan="0" ColumnSpan="0" ZIndex="0">
+            <Location>
+              <X>0</X>
+              <Y>0</Y>
+            </Location>
+            <Margin>
+              <Left>0</Left>
+              <Top>0</Top>
+              <Right>0</Right>
+              <Bottom>0</Bottom>
+            </Margin>
+            <Padding>
+              <Left>0</Left>
+              <Top>0</Top>
+              <Right>0</Right>
+              <Bottom>0</Bottom>
+            </Padding>
+          </Position>
+          <Size DesignerType="Property" Width="150" Height="50" />
+          <ControlType>Label</ControlType>
+          <Background DesignerType="Property" Color="#00FFFFFF" />
+          <Border DesignerType="Property" BorderBrush="#FFFFFFFF" CornerRadius="0">
+            <Thickness>
+              <Left>1</Left>
+              <Top>1</Top>
+              <Right>1</Right>
+              <Bottom>1</Bottom>
+            </Thickness>
+          </Border>
+          <Text>状态</Text>
+          <Font DesignerType="Property" FontSize="18" FontColor="#FFFFFFFF" FontFamily="微软雅黑">
+            <FontStyle />
+            <FontWeight />
+          </Font>
+          <ColumnWidth>2</ColumnWidth>
+        </Column>
+      </Columns>
+    </VisualControl>
+    <VisualControl xsi:type="Chart" Name="DesignerChart_356c6582-6673-4919-b52f-b5cb852d5885" DesignerType="Control" GUID="356c6582-6673-4919-b52f-b5cb852d5885" Visibility="Visible" Opacity="1" VerticalAlignment="Top" VerticalContentAlignment="Top" HorizontalAlignment="Left" HorizontalContentAlignment="Left">
+      <Position DesignerType="Property" RowIndex="0" Column="0" RowSpan="0" ColumnSpan="0" ZIndex="0">
+        <Location>
+          <X>35.533742331288522</X>
+          <Y>112.12277867528292</Y>
+        </Location>
+        <Margin>
+          <Left>0</Left>
+          <Top>0</Top>
+          <Right>0</Right>
+          <Bottom>0</Bottom>
+        </Margin>
+        <Padding>
+          <Left>0</Left>
+          <Top>0</Top>
+          <Right>0</Right>
+          <Bottom>0</Bottom>
+        </Padding>
+      </Position>
+      <Size DesignerType="Property" Width="584" Height="379.99999999999989" />
+      <ControlType>Chart</ControlType>
+      <Background DesignerType="Property" Color="#00FFFFFF" />
+      <Border DesignerType="Property" BorderBrush="#FF000000" CornerRadius="0">
+        <Thickness>
+          <Left>1</Left>
+          <Top>1</Top>
+          <Right>1</Right>
+          <Bottom>1</Bottom>
+        </Thickness>
+      </Border>
+      <Titles />
+      <AxesX />
+      <AxesY />
+      <DataSeries />
+    </VisualControl>
+    <VisualControl xsi:type="Label" Name="DesignerLabel_6a27bc7d-bf9c-4c1a-862b-d59a68fba5f9" DesignerType="Control" GUID="6a27bc7d-bf9c-4c1a-862b-d59a68fba5f9" Visibility="Visible" Opacity="1" VerticalAlignment="Top" VerticalContentAlignment="Top" HorizontalAlignment="Left" HorizontalContentAlignment="Left">
+      <Position DesignerType="Property" RowIndex="0" Column="0" RowSpan="0" ColumnSpan="0" ZIndex="0">
+        <Location>
+          <X>-3.0256916996049767</X>
+          <Y>0</Y>
+        </Location>
+        <Margin>
+          <Left>0</Left>
+          <Top>0</Top>
+          <Right>0</Right>
+          <Bottom>0</Bottom>
+        </Margin>
+        <Padding>
+          <Left>0</Left>
+          <Top>0</Top>
+          <Right>0</Right>
+          <Bottom>0</Bottom>
+        </Padding>
+      </Position>
+      <Size DesignerType="Property" Width="1921.9999999999996" Height="90" />
+      <ControlType>Label</ControlType>
+      <Background DesignerType="Property" Color="0,0,0,0,1,#FF444444,0,#FF000000,1" />
+      <Border DesignerType="Property" BorderBrush="#FF000000" CornerRadius="0">
+        <Thickness>
+          <Left>1</Left>
+          <Top>1</Top>
+          <Right>1</Right>
+          <Bottom>1</Bottom>
+        </Thickness>
+      </Border>
+      <Text />
+      <Font DesignerType="Property" FontSize="24" FontColor="#FF000000" FontFamily="微软雅黑">
+        <FontStyle />
+        <FontWeight />
+      </Font>
+    </VisualControl>
+    <VisualControl xsi:type="Label" Name="DesignerLabel_daf2c6f5-2a59-4304-8bcb-bceeace8a011" DesignerType="Control" GUID="daf2c6f5-2a59-4304-8bcb-bceeace8a011" Visibility="Visible" Opacity="1" VerticalAlignment="Top" VerticalContentAlignment="Top" HorizontalAlignment="Left" HorizontalContentAlignment="Left">
+      <Position DesignerType="Property" RowIndex="0" Column="0" RowSpan="0" ColumnSpan="0" ZIndex="0">
+        <Location>
+          <X>807.26002258610924</X>
+          <Y>-1.4285714285714732</Y>
+        </Location>
+        <Margin>
+          <Left>0</Left>
+          <Top>0</Top>
+          <Right>0</Right>
+          <Bottom>0</Bottom>
+        </Margin>
+        <Padding>
+          <Left>0</Left>
+          <Top>0</Top>
+          <Right>0</Right>
+          <Bottom>0</Bottom>
+        </Padding>
+      </Position>
+      <Size DesignerType="Property" Width="314" Height="92" />
+      <ControlType>Label</ControlType>
+      <Background DesignerType="Property" Color="#00FFFFFF" />
+      <Border DesignerType="Property" BorderBrush="#FF000000" CornerRadius="0">
+        <Thickness>
+          <Left>0</Left>
+          <Top>0</Top>
+          <Right>0</Right>
+          <Bottom>0</Bottom>
+        </Thickness>
+      </Border>
+      <Text>成型车间看板</Text>
+      <Font DesignerType="Property" FontSize="50" FontColor="#FFFFFFFF" FontFamily="微软雅黑">
+        <FontStyle />
+        <FontWeight />
+      </Font>
+    </VisualControl>
+    <VisualControl xsi:type="Table" Name="DesignerTable_8fcae381-003d-446d-92ea-e15ec9501fa8" DesignerType="Control" GUID="8fcae381-003d-446d-92ea-e15ec9501fa8" Visibility="Visible" Opacity="1" VerticalAlignment="Top" VerticalContentAlignment="Top" HorizontalAlignment="Left" HorizontalContentAlignment="Left" HeadBackground="#5238E4FC" HeaderHeight="30" HeaderHorizontalAlignment="Left" HeaderVerticalAlignment="Top" CellVerticalAlignment="Center" CellHorizontalAlignment="Center" AutoGenerateColumns="false" PaggingTimeSpan="20000" DataAccessTimeSpan="10000" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Disabled">
+      <Position DesignerType="Property" RowIndex="0" Column="0" RowSpan="0" ColumnSpan="0" ZIndex="0">
+        <Location>
+          <X>30.974308300395023</X>
+          <Y>505.99999999999989</Y>
+        </Location>
+        <Margin>
+          <Left>0</Left>
+          <Top>0</Top>
+          <Right>0</Right>
+          <Bottom>0</Bottom>
+        </Margin>
+        <Padding>
+          <Left>0</Left>
+          <Top>0</Top>
+          <Right>0</Right>
+          <Bottom>0</Bottom>
+        </Padding>
+      </Position>
+      <Size DesignerType="Property" Width="592.00000000000011" Height="240" />
+      <ControlType>Table</ControlType>
+      <Background DesignerType="Property" Color="#00FFFFFF" />
+      <Border DesignerType="Property" BorderBrush="#FF000000" CornerRadius="0">
+        <Thickness>
+          <Left>1</Left>
+          <Top>1</Top>
+          <Right>1</Right>
+          <Bottom>1</Bottom>
+        </Thickness>
+      </Border>
+      <AlterRows />
+      <HeadPadding>
+        <Left>0</Left>
+        <Top>0</Top>
+        <Right>0</Right>
+        <Bottom>0</Bottom>
+      </HeadPadding>
+      <HeadMargin>
+        <Left>0</Left>
+        <Top>0</Top>
+        <Right>0</Right>
+        <Bottom>0</Bottom>
+      </HeadMargin>
+      <ContentPadding>
+        <Left>0</Left>
+        <Top>0</Top>
+        <Right>0</Right>
+        <Bottom>0</Bottom>
+      </ContentPadding>
+      <ContentMargin>
+        <Left>0</Left>
+        <Top>0</Top>
+        <Right>0</Right>
+        <Bottom>0</Bottom>
+      </ContentMargin>
+      <CellPadding>
+        <Left>0</Left>
+        <Top>0</Top>
+        <Right>0</Right>
+        <Bottom>0</Bottom>
+      </CellPadding>
+      <CellMargin>
+        <Left>0</Left>
+        <Top>0</Top>
+        <Right>0</Right>
+        <Bottom>0</Bottom>
+      </CellMargin>
+      <DisplayRowCount>1</DisplayRowCount>
+      <Columns>
+        <Column Name="DesignerDataGridColumn_39600fd6-8599-4322-a1a4-33ebc0f411c8" DesignerType="Control" GUID="39600fd6-8599-4322-a1a4-33ebc0f411c8" Visibility="Visible" Opacity="1" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalAlignment="Left" HorizontalContentAlignment="Center">
+          <Position DesignerType="Property" RowIndex="0" Column="0" RowSpan="0" ColumnSpan="0" ZIndex="0">
+            <Location>
+              <X>0</X>
+              <Y>0</Y>
+            </Location>
+            <Margin>
+              <Left>0</Left>
+              <Top>0</Top>
+              <Right>0</Right>
+              <Bottom>0</Bottom>
+            </Margin>
+            <Padding>
+              <Left>0</Left>
+              <Top>0</Top>
+              <Right>0</Right>
+              <Bottom>0</Bottom>
+            </Padding>
+          </Position>
+          <Size DesignerType="Property" Width="150" Height="50" />
+          <ControlType>Label</ControlType>
+          <Background DesignerType="Property" Color="#00FFFFFF" />
+          <Border DesignerType="Property" BorderBrush="#FFFFFFFF" CornerRadius="0">
+            <Thickness>
+              <Left>1</Left>
+              <Top>1</Top>
+              <Right>1</Right>
+              <Bottom>1</Bottom>
+            </Thickness>
+          </Border>
+          <Text>日期</Text>
+          <Font DesignerType="Property" FontSize="18" FontColor="#FFFFFFFF" FontFamily="微软雅黑">
+            <FontStyle />
+            <FontWeight />
+          </Font>
+          <ColumnWidth>2</ColumnWidth>
+        </Column>
+        <Column Name="DesignerDataGridColumn_a15551b3-ac36-4f8b-9497-2f843fd05d87" DesignerType="Control" GUID="a15551b3-ac36-4f8b-9497-2f843fd05d87" Visibility="Visible" Opacity="1" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalAlignment="Left" HorizontalContentAlignment="Center">
+          <Position DesignerType="Property" RowIndex="0" Column="1" RowSpan="0" ColumnSpan="0" ZIndex="0">
+            <Location>
+              <X>0</X>
+              <Y>0</Y>
+            </Location>
+            <Margin>
+              <Left>0</Left>
+              <Top>0</Top>
+              <Right>0</Right>
+              <Bottom>0</Bottom>
+            </Margin>
+            <Padding>
+              <Left>0</Left>
+              <Top>0</Top>
+              <Right>0</Right>
+              <Bottom>0</Bottom>
+            </Padding>
+          </Position>
+          <Size DesignerType="Property" Width="150" Height="50" />
+          <ControlType>Label</ControlType>
+          <Background DesignerType="Property" Color="#00FFFFFF" />
+          <Border DesignerType="Property" BorderBrush="#FFFFFFFF" CornerRadius="0">
+            <Thickness>
+              <Left>1</Left>
+              <Top>1</Top>
+              <Right>1</Right>
+              <Bottom>1</Bottom>
+            </Thickness>
+          </Border>
+          <Text>白班</Text>
+          <Font DesignerType="Property" FontSize="18" FontColor="#FFFFFFFF" FontFamily="微软雅黑">
+            <FontStyle />
+            <FontWeight />
+          </Font>
+          <ColumnWidth>2</ColumnWidth>
+        </Column>
+        <Column Name="DesignerDataGridColumn_bdc40cdc-7041-4bcc-be6f-cd3b795079d3" DesignerType="Control" GUID="bdc40cdc-7041-4bcc-be6f-cd3b795079d3" Visibility="Visible" Opacity="1" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalAlignment="Left" HorizontalContentAlignment="Center">
+          <Position DesignerType="Property" RowIndex="0" Column="2" RowSpan="0" ColumnSpan="0" ZIndex="0">
+            <Location>
+              <X>0</X>
+              <Y>0</Y>
+            </Location>
+            <Margin>
+              <Left>0</Left>
+              <Top>0</Top>
+              <Right>0</Right>
+              <Bottom>0</Bottom>
+            </Margin>
+            <Padding>
+              <Left>0</Left>
+              <Top>0</Top>
+              <Right>0</Right>
+              <Bottom>0</Bottom>
+            </Padding>
+          </Position>
+          <Size DesignerType="Property" Width="150" Height="50" />
+          <ControlType>Label</ControlType>
+          <Background DesignerType="Property" Color="#00FFFFFF" />
+          <Border DesignerType="Property" BorderBrush="#FFFFFFFF" CornerRadius="0">
+            <Thickness>
+              <Left>1</Left>
+              <Top>1</Top>
+              <Right>1</Right>
+              <Bottom>1</Bottom>
+            </Thickness>
+          </Border>
+          <Text>夜班</Text>
+          <Font DesignerType="Property" FontSize="18" FontColor="#FFFFFFFF" FontFamily="微软雅黑">
+            <FontStyle />
+            <FontWeight />
+          </Font>
+          <ColumnWidth>2</ColumnWidth>
+        </Column>
+      </Columns>
+    </VisualControl>
+    <VisualControl xsi:type="Processbar" Name="DesignerProcessbar_22d3a67f-b8d5-48f4-b817-821e3167c8c0" DesignerType="Control" GUID="22d3a67f-b8d5-48f4-b817-821e3167c8c0" Visibility="Visible" Opacity="1" VerticalAlignment="Top" VerticalContentAlignment="Top" HorizontalAlignment="Left" HorizontalContentAlignment="Left" DataAccessTimeSpan="0">
+      <Position DesignerType="Property" RowIndex="0" Column="0" RowSpan="0" ColumnSpan="0" ZIndex="1">
+        <Location>
+          <X>707.22430830039491</X>
+          <Y>221.49999999999989</Y>
+        </Location>
+        <Margin>
+          <Left>0</Left>
+          <Top>0</Top>
+          <Right>0</Right>
+          <Bottom>0</Bottom>
+        </Margin>
+        <Padding>
+          <Left>5</Left>
+          <Top>5</Top>
+          <Right>5</Right>
+          <Bottom>5</Bottom>
+        </Padding>
+      </Position>
+      <Size DesignerType="Property" Width="506" Height="50" />
+      <ControlType>Processbar</ControlType>
+      <Background DesignerType="Property" Color="#00FFFFFF" />
+      <Border DesignerType="Property" BorderBrush="#FF000000" CornerRadius="5">
+        <Thickness>
+          <Left>1</Left>
+          <Top>1</Top>
+          <Right>1</Right>
+          <Bottom>1</Bottom>
+        </Thickness>
+      </Border>
+      <Color DesignerType="Property" Color="#FF91E305" />
+      <Value>50</Value>
+    </VisualControl>
+    <VisualControl xsi:type="Label" Name="DesignerLabel_3babb34d-f6f9-4918-b208-caf1bff69be2" DesignerType="Control" GUID="3babb34d-f6f9-4918-b208-caf1bff69be2" Visibility="Visible" Opacity="1" VerticalAlignment="Top" VerticalContentAlignment="Top" HorizontalAlignment="Left" HorizontalContentAlignment="Left">
+      <Position DesignerType="Property" RowIndex="0" Column="0" RowSpan="0" ColumnSpan="0" ZIndex="0">
+        <Location>
+          <X>688.974308300395</X>
+          <Y>101.99999999999989</Y>
+        </Location>
+        <Margin>
+          <Left>0</Left>
+          <Top>0</Top>
+          <Right>0</Right>
+          <Bottom>0</Bottom>
+        </Margin>
+        <Padding>
+          <Left>0</Left>
+          <Top>0</Top>
+          <Right>0</Right>
+          <Bottom>0</Bottom>
+        </Padding>
+      </Position>
+      <Size DesignerType="Property" Width="577.99999999999977" Height="638" />
+      <ControlType>Label</ControlType>
+      <Background DesignerType="Property" Color="#00FFFFFF" />
+      <Border DesignerType="Property" BorderBrush="#FF000000" CornerRadius="0">
+        <Thickness>
+          <Left>1</Left>
+          <Top>1</Top>
+          <Right>1</Right>
+          <Bottom>1</Bottom>
+        </Thickness>
+      </Border>
+      <Text>计划进度</Text>
+      <Font DesignerType="Property" FontSize="24" FontColor="#FF000000" FontFamily="微软雅黑">
+        <FontStyle />
+        <FontWeight />
+      </Font>
+    </VisualControl>
+    <VisualControl xsi:type="Label" Name="DesignerLabel_ac83b1e3-e650-4f22-b6fd-009bac311a0f" DesignerType="Control" GUID="ac83b1e3-e650-4f22-b6fd-009bac311a0f" Visibility="Visible" Opacity="1" VerticalAlignment="Top" VerticalContentAlignment="Top" HorizontalAlignment="Left" HorizontalContentAlignment="Left">
+      <Position DesignerType="Property" RowIndex="0" Column="0" RowSpan="0" ColumnSpan="0" ZIndex="0">
+        <Location>
+          <X>705.97430830039491</X>
+          <Y>158.0379644588042</Y>
+        </Location>
+        <Margin>
+          <Left>0</Left>
+          <Top>0</Top>
+          <Right>0</Right>
+          <Bottom>0</Bottom>
+        </Margin>
+        <Padding>
+          <Left>0</Left>
+          <Top>0</Top>
+          <Right>0</Right>
+          <Bottom>0</Bottom>
+        </Padding>
+      </Position>
+      <Size DesignerType="Property" Width="180" Height="50" />
+      <ControlType>Label</ControlType>
+      <Background DesignerType="Property" Color="#00FFFFFF" />
+      <Border DesignerType="Property" BorderBrush="#FF000000" CornerRadius="0">
+        <Thickness>
+          <Left>0</Left>
+          <Top>0</Top>
+          <Right>0</Right>
+          <Bottom>0</Bottom>
+        </Thickness>
+      </Border>
+      <Text>机台号：YJ001</Text>
+      <Font DesignerType="Property" FontSize="24" FontColor="#FF000000" FontFamily="微软雅黑">
+        <FontStyle />
+        <FontWeight />
+      </Font>
+    </VisualControl>
+    <VisualControl xsi:type="Label" Name="DesignerLabel_c59de32c-4538-4e24-a51c-e5f2bd3315e4" DesignerType="Control" GUID="c59de32c-4538-4e24-a51c-e5f2bd3315e4" Visibility="Visible" Opacity="1" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalAlignment="Left" HorizontalContentAlignment="Center">
+      <Position DesignerType="Property" RowIndex="0" Column="0" RowSpan="0" ColumnSpan="0" ZIndex="0">
+        <Location>
+          <X>1296.2178853754931</X>
+          <Y>106.92245557350555</Y>
+        </Location>
+        <Margin>
+          <Left>0</Left>
+          <Top>0</Top>
+          <Right>0</Right>
+          <Bottom>0</Bottom>
+        </Margin>
+        <Padding>
+          <Left>0</Left>
+          <Top>0</Top>
+          <Right>0</Right>
+          <Bottom>0</Bottom>
+        </Padding>
+      </Position>
+      <Size DesignerType="Property" Width="567.50000000000045" Height="219.99999999999989" />
+      <ControlType>Label</ControlType>
+      <Background DesignerType="Property" Color="#00FFFFFF" />
+      <Border DesignerType="Property" BorderBrush="#FF000000" CornerRadius="0">
+        <Thickness>
+          <Left>1</Left>
+          <Top>1</Top>
+          <Right>1</Right>
+          <Bottom>1</Bottom>
+        </Thickness>
+      </Border>
+      <Text>人员信息</Text>
+      <Font DesignerType="Property" FontSize="50" FontColor="#FF000000" FontFamily="微软雅黑">
+        <FontStyle />
+        <FontWeight />
+      </Font>
+    </VisualControl>
+    <VisualControl xsi:type="Label" Name="DesignerLabel_0de9adf8-0164-4d94-9ac2-5702391f78cf" DesignerType="Control" GUID="0de9adf8-0164-4d94-9ac2-5702391f78cf" Visibility="Visible" Opacity="1" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalAlignment="Left" HorizontalContentAlignment="Center">
+      <Position DesignerType="Property" RowIndex="0" Column="0" RowSpan="0" ColumnSpan="0" ZIndex="0">
+        <Location>
+          <X>1301.2178853754931</X>
+          <Y>366.92245557350543</Y>
+        </Location>
+        <Margin>
+          <Left>0</Left>
+          <Top>0</Top>
+          <Right>0</Right>
+          <Bottom>0</Bottom>
+        </Margin>
+        <Padding>
+          <Left>0</Left>
+          <Top>0</Top>
+          <Right>0</Right>
+          <Bottom>0</Bottom>
+        </Padding>
+      </Position>
+      <Size DesignerType="Property" Width="557.50000000000045" Height="362.5" />
+      <ControlType>Label</ControlType>
+      <Background DesignerType="Property" Color="#00FFFFFF" />
+      <Border DesignerType="Property" BorderBrush="#FF000000" CornerRadius="0">
+        <Thickness>
+          <Left>1</Left>
+          <Top>1</Top>
+          <Right>1</Right>
+          <Bottom>1</Bottom>
+        </Thickness>
+      </Border>
+      <Text>报警信息</Text>
+      <Font DesignerType="Property" FontSize="50" FontColor="#FF000000" FontFamily="微软雅黑">
+        <FontStyle />
+        <FontWeight />
+      </Font>
+    </VisualControl>
+  </VisualChildren>
+  <BackChildren>
+    <BackControl xsi:type="DBDataSource" Name="成型大表格" DesignerType="Property" TimeSpan="10000" Address="factory.indusfo.club" DataBaseName="IEIS" UID="Indusfo" PassWord="Indusfo123456">
+      <SqlString>EXEC U_QueryDay 0,'','','001'</SqlString>
+    </BackControl>
+  </BackChildren>
+</Board>

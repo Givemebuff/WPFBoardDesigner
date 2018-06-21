@@ -360,6 +360,8 @@ namespace Board.Resource
         /// <returns></returns>
         public static object GetData(string key)
         {
+            if (string.IsNullOrEmpty(key))
+                return null;
             if (List.DataList.Keys.Contains(key))
             {
                 return List.DataList[key];

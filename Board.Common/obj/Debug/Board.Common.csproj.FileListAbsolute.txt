@@ -14,3 +14,4 @@ C:\Git\WPFBoardDesigner\Board.Common\bin\Debug\Indusfo.DataAccessLayer.dll
 C:\Git\WPFBoardDesigner\Board.Common\bin\Debug\WPFVisifire.Charts.dll
 C:\Git\WPFBoardDesigner\Board.Common\obj\Debug\Board.Converter.dll
 C:\Git\WPFBoardDesigner\Board.Common\obj\Debug\Board.Converter.pdb
+C:\Git\WPFBoardDesigner\Board.Common\obj\Debug\Board.Common.csprojResolveAssemblyReference.cache
